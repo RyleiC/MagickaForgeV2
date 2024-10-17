@@ -126,6 +126,7 @@ namespace MagickaForge.Forges.Characters
             foreach (BonedLight light in Lights)
             {
                 bw.Write(light.Bone);
+                bw.Write(light.Light.Radius);
                 for (int i = 0; i < 3; i++)
                 {
                     bw.Write(light.Light.DiffuseColor[i]);
