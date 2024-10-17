@@ -1,0 +1,520 @@
+{
+  "Name": "swampfrog",
+  "LocalizedName": "",
+  "Faction": "Evil",
+  "BloodType": "insect",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic03",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic04",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic05",
+      "Mass": 10,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 1000,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 1000,
+  "PainTolerance": 50,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 600,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 1.5,
+  "ZapModifier": 0,
+  "Length": 0.100000024,
+  "Radius": 0.5,
+  "Mass": 55,
+  "Speed": 2,
+  "TurnSpeed": 5,
+  "BleedRate": 50,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Poison",
+      "Multiplier": 0,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\swampfrog\\swampfrog_mesh_0",
+      "Scale": 0.5,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\swampfrog\\swampfrog_animation_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.68,
+              "ActionEnd": 0.8
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampfrog_attack",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "attack_ranged0",
+          "AnimationKey": "attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Tongue",
+              "MaxLength": 15,
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.3,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_spider_angry",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_spider_spit",
+              "Bank": "Characters",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampfrog_death",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampfrog_pain",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_jump_begin",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_jump_mid",
+          "AnimationKey": "move_jump",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_jump_end",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_jump",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "BreakFree",
+              "Magnitude": 1,
+              "WeaponSlot": 0,
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "mouth",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\spider_poison_fangs_0"
+    },
+    {
+      "Slot": 0,
+      "Bone": "mouth",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\spider_poison_spit_0"
+    }
+  ],
+  "Conditions": [],
+  "AlertRadius": 17,
+  "GroupChase": 0,
+  "GroupSeperation": 1,
+  "GroupCohesion": 1,
+  "GroupAlignment": 1,
+  "GroupWander": 1,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 2.5,
+      "ArcAngle": 0.17453292,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(2.5) \u002B 0.5",
+      "Animations": [
+        "attack_melee0"
+      ]
+    },
+    {
+      "_AbilityType": "Ranged",
+      "MinimumRange": 5,
+      "MaximumRange": 15,
+      "Elevation": 0.20943952,
+      "Arc": 0.05235988,
+      "Accuracy": 1,
+      "WeaponSlots": [
+        0
+      ],
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "",
+      "Animations": [
+        "attack_ranged0"
+      ]
+    }
+  ],
+  "Movement": [
+    {
+      "MoveProperty": 2,
+      "Animations": [
+        "move_jump_mid"
+      ]
+    }
+  ],
+  "Buffs": [],
+  "Auras": []
+}

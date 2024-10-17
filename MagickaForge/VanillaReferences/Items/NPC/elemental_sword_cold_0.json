@@ -1,0 +1,117 @@
+{
+  "Name": "elemental_sword_cold",
+  "LocalizedName": "",
+  "LocalizedDescription": "",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Default",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [
+    "elemental_sword_cold"
+  ],
+  "Lights": [
+    {
+      "Radius": 3,
+      "DiffuseColor": [
+        0,
+        0.3,
+        0.5
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0.5
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "Candle",
+      "VariationAmount": 15,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 1,
+  "MeleeMultihit": true,
+  "MeleeConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Cold",
+          "Amount": 200,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Status",
+          "Element": "Cold",
+          "Amount": 55,
+          "Magnitude": 0.5,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_elemental_fist_hit",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_elemental_fist_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_NPC\\elemental_sword_0",
+  "Auras": []
+}

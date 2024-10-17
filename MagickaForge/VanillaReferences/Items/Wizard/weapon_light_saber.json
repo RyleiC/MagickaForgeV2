@@ -1,0 +1,120 @@
+{
+  "Name": "weapon_light_saber",
+  "LocalizedName": "#item_weapon07",
+  "LocalizedDescription": "#item_weapon07d",
+  "Sounds": [
+    {
+      "Cue": "wep_light_sabre_idle",
+      "Bank": "Additional"
+    }
+  ],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 500,
+  "WeaponClass": "Slash_Fast",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [
+    "lightsaber_blade"
+  ],
+  "Lights": [
+    {
+      "Radius": 3,
+      "DiffuseColor": [
+        2,
+        0,
+        0
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "Candle",
+      "VariationAmount": 15,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0.625,
+  "MeleeMultihit": true,
+  "MeleeConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Arcane",
+          "Amount": 650,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_light_sabre_hit",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Lightsaber_hit"
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_lightsaber_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\lightsaber_0",
+  "Auras": []
+}

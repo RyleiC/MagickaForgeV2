@@ -1,0 +1,69 @@
+{
+  "Name": "staff_purple",
+  "LocalizedName": "#item_steam_staff02",
+  "LocalizedDescription": "#item_steam_staff02d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 50,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 6,
+      "DiffuseColor": [
+        0.3,
+        0.3,
+        0.6
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 6,
+  "SpecialAbility": {
+    "Type": "EpicBuff",
+    "Animation": "cast_self",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\staff_purple_0",
+  "Auras": []
+}

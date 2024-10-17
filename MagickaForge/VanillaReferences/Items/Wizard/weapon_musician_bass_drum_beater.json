@@ -1,0 +1,97 @@
+{
+  "Name": "weapon_musician_bass_drum_beater",
+  "LocalizedName": "#item_musician_weapon02",
+  "LocalizedDescription": "#item_musician_weapon02d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 50,
+  "WeaponClass": "Slash_Medium",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0.6,
+  "MeleeMultihit": false,
+  "MeleeConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 60,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockdown",
+          "Element": "Earth",
+          "Amount": 0,
+          "Magnitude": 1,
+          "Radius": 3
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_club_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_sword_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_musician_bass_drum_beater_0",
+  "Auras": []
+}

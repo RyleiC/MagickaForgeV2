@@ -1,0 +1,285 @@
+{
+  "Name": "murray",
+  "LocalizedName": "",
+  "Faction": "Evil, Wild, Friendly",
+  "BloodType": "wood",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [],
+  "Lights": [],
+  "MaxHitpoints": 500,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 500,
+  "PainTolerance": 0,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 0,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 0,
+  "ZapModifier": 0,
+  "Length": 0.5999999,
+  "Radius": 0.75,
+  "Mass": 17000,
+  "Speed": 5,
+  "TurnSpeed": 5,
+  "BleedRate": 25,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Lightning",
+      "Multiplier": 0,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\murray\\murray_0",
+      "Scale": 1.6,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\murray\\murray_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "impact_wood",
+              "Bank": "WaveBank",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "BreakFree",
+              "Magnitude": 0.1,
+              "WeaponSlot": 0,
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "talk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [],
+  "Conditions": [],
+  "AlertRadius": 15,
+  "GroupChase": 0,
+  "GroupSeperation": 1,
+  "GroupCohesion": 1,
+  "GroupAlignment": 1,
+  "GroupWander": 1,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

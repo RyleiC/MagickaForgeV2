@@ -1,0 +1,71 @@
+{
+  "Name": "dungeons_druid_staff",
+  "LocalizedName": "#item_staff03",
+  "LocalizedDescription": "#item_staff03d",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [
+    "fission_staff_smoke"
+  ],
+  "Lights": [
+    {
+      "Radius": 15,
+      "DiffuseColor": [
+        0.2,
+        1.2,
+        0.2
+      ],
+      "AmbientColor": [
+        0.2,
+        1.2,
+        0.2
+      ],
+      "SpecularAmount": 0.6,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 30,
+  "SpecialAbility": {
+    "Type": "SummonSpirit",
+    "Animation": "cast_area_ground",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_NPC\\druid_root_staff_0",
+  "Auras": []
+}

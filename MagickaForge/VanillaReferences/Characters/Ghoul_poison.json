@@ -1,0 +1,535 @@
+{
+  "Name": "ghoul_poison",
+  "LocalizedName": "#Ent_Undead_Ghoul_Poison",
+  "Faction": "Evil",
+  "BloodType": "regular",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic03",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic04",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic05",
+      "Mass": 10,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 1500,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 1500,
+  "PainTolerance": 40,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 200,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 1.25,
+  "ZapModifier": 0,
+  "Length": 0,
+  "Radius": 0.8,
+  "Mass": 55,
+  "Speed": 5.5,
+  "TurnSpeed": 5,
+  "BleedRate": 75,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Poison",
+      "Multiplier": 0,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\ghoul\\ghoul_mesh_0",
+      "Scale": 1.1,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\ghoul\\ghoul_animation_0",
+  "Effects": [
+    {
+      "Bone": "Hips",
+      "Effect": "Ghoul_Poison_Body"
+    }
+  ],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "spawn_pit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_ghoul_jumpout",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "attack0",
+          "AnimationSpeed": 1.8,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.125,
+              "ActionEnd": 0.2
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 1,
+              "Target": "All",
+              "ActionStart": 0.4,
+              "ActionEnd": 0.62
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_ghoul_attack",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_ghoul_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die1",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_ghoul_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown",
+          "AnimationKey": "die_drown",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_ghoul_pain",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "hit_stun_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "hit_stun_begin",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_slide",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_generic",
+              "Bank": "Footsteps",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_generic",
+              "Bank": "Footsteps",
+              "ActionStart": 0.55,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "ghoul_poison_trail",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_generic",
+              "Bank": "Footsteps",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_generic",
+              "Bank": "Footsteps",
+              "ActionStart": 0.55,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "revive",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "rightattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\ghoul_claw_poison_0"
+    },
+    {
+      "Slot": 1,
+      "Bone": "leftattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\ghoul_claw_poison_0"
+    }
+  ],
+  "Conditions": [],
+  "AlertRadius": 12,
+  "GroupChase": 0.2,
+  "GroupSeperation": 1,
+  "GroupCohesion": 0.2,
+  "GroupAlignment": 1,
+  "GroupWander": 1,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 4,
+  "DangerAvoidance": 0,
+  "AngerWeight": 0.3,
+  "DistanceWeight": 0.3,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 1.2,
+      "ArcAngle": 0.17453292,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "s.health",
+      "Animations": [
+        "attack_melee0"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

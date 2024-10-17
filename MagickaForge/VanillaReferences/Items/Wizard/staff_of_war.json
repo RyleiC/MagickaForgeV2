@@ -1,0 +1,128 @@
+{
+  "Name": "staff_of_war",
+  "LocalizedName": "#item_staff06",
+  "LocalizedDescription": "#item_staff06d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 3,
+      "DiffuseColor": [
+        0.4,
+        0.13,
+        0.36
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 2,
+  "SpecialAbility": {
+    "Type": "Arcanebolt",
+    "Animation": "cast_force_projectile",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_NPC\\warlock_staff_0",
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "Resistance",
+        "Element": "Earth",
+        "Multiplier": 0,
+        "Modifier": 0.25,
+        "StatusImmunity": false,
+        "BuffVisualCategory": "Defensive",
+        "BuffColor": [
+          2,
+          1.5,
+          1
+        ],
+        "BuffTime": 1,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Self",
+      "VisualCategory": "None",
+      "Color": [
+        0,
+        0,
+        0
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 0,
+      "Types": "none",
+      "Faction": "None"
+    },
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "ModifyHitPoints",
+        "HealthMultiplier": 2,
+        "HealthModifier": 0,
+        "BuffVisualCategory": "Special",
+        "BuffColor": [
+          2,
+          1.5,
+          1
+        ],
+        "BuffTime": 1,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Self",
+      "VisualCategory": "None",
+      "Color": [
+        1,
+        0,
+        0
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 0,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

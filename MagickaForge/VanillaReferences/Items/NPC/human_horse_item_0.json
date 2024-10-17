@@ -1,0 +1,89 @@
+{
+  "Name": "human_horse_item",
+  "LocalizedName": "",
+  "LocalizedDescription": "",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": false,
+  "BlockStrength": 200,
+  "WeaponClass": "Default",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0.45,
+  "MeleeMultihit": false,
+  "MeleeConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 100,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_dagger_hit_flesh",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_dagger_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 3,
+  "Model": "..\\..\\..\\Models\\Items_NPC\\human_horse_item_0",
+  "Auras": []
+}

@@ -1,0 +1,96 @@
+{
+  "Name": "weapon_chainsaw",
+  "LocalizedName": "#item_tsal_weapon08",
+  "LocalizedDescription": "#item_tsal_weapon08d",
+  "Sounds": [
+    {
+      "Cue": "wep_chainsaw_idle",
+      "Bank": "Additional"
+    }
+  ],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 500,
+  "WeaponClass": "Slash_Slow",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [
+    "chainsaw_smoke"
+  ],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0.45,
+  "MeleeMultihit": true,
+  "MeleeConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage, Bleed",
+          "Element": "Earth",
+          "Amount": 600,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "wep_chainsaw_hit",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "wep_chainsaw_attack",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_chainsaw_0",
+  "Auras": []
+}

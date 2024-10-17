@@ -1,0 +1,938 @@
+{
+  "Name": "orc_regular_axe",
+  "LocalizedName": "#Ent_Orc_Lumberjack0",
+  "Faction": "Evil",
+  "BloodType": "black",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 20,
+      "Scale": 1.5
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 20,
+      "Scale": 1.5
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 20,
+      "Scale": 1.5
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 20,
+      "Scale": 1.5
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic03",
+      "Mass": 20,
+      "Scale": 1.4
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic04",
+      "Mass": 20,
+      "Scale": 1.3
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic05",
+      "Mass": 20,
+      "Scale": 1.3
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_orc01_0",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_orc02_0",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_orc03_0",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_orc01_0",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_orc02_0",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_orc03_0",
+      "Mass": 20,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 2200,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 2200,
+  "PainTolerance": 600,
+  "KnockdownTolerance": 1.2,
+  "ScoreValue": 180,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 2,
+  "ZapModifier": 0,
+  "Length": 0.5000001,
+  "Radius": 0.95,
+  "Mass": 200,
+  "Speed": 4,
+  "TurnSpeed": 5,
+  "BleedRate": 0.01,
+  "StunTime": 0.8,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Fire",
+      "Multiplier": 0.6,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\orc\\orc_regular_mesh_0",
+      "Scale": 1.8,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\orc\\orc_animation_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "attack_sword0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.26,
+              "ActionEnd": 0.3
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_attack",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee1",
+          "AnimationKey": "attack_combo1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_attack",
+              "Bank": "Characters",
+              "ActionStart": 0.05,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                -4
+              ],
+              "ActionStart": 0.0937,
+              "ActionEnd": 0.187
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.156,
+              "ActionEnd": 0.219
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_attack",
+              "Bank": "Characters",
+              "ActionStart": 0.4,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                -4
+              ],
+              "ActionStart": 0.422,
+              "ActionEnd": 0.515
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.515,
+              "ActionEnd": 0.578
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                -4
+              ],
+              "ActionStart": 0.672,
+              "ActionEnd": 0.766
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 1,
+              "Target": "All",
+              "ActionStart": 0.765,
+              "ActionEnd": 0.828
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee2",
+          "AnimationKey": "attack_grip",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Grip",
+              "GripType": "Hold",
+              "Radius": 0,
+              "BreakFreeTolerance": 9,
+              "BoneA": "",
+              "BoneB": "",
+              "FinishOnGrip": false,
+              "ActionStart": 0.18,
+              "ActionEnd": 0.48
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_attack",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                -14
+              ],
+              "ActionStart": 0.24,
+              "ActionEnd": 0.48
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "wep_teeth_pounce",
+              "Bank": "Weapons",
+              "ActionStart": 0.24,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_grapple",
+          "AnimationKey": "attack_grip_gnaw",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "DamageGrip",
+              "DamageOwner": false,
+              "Damages": [
+                {
+                  "AttackProperty": "Damage",
+                  "Element": "Earth",
+                  "Amount": 20,
+                  "Magnitude": 1
+                }
+              ],
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "DamageGrip",
+              "DamageOwner": true,
+              "Damages": [
+                {
+                  "AttackProperty": "Damage",
+                  "Element": "Life",
+                  "Amount": -50,
+                  "Magnitude": 1
+                }
+              ],
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Mouth",
+              "Attached": false,
+              "Effect": "vlad_bloodsquirt",
+              "Value": -1,
+              "ActionStart": 0.3,
+              "ActionEnd": 0.8
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "wep_teeth_bite",
+              "Bank": "Weapons",
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special0",
+          "AnimationKey": "attack_grip_bite",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special1",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "attack_sword_recoil",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "removestatus0",
+          "AnimationKey": "removestatus_wet",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "RemoveStatus",
+              "Status": "wet",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "taunt0",
+          "AnimationKey": "taunt_growl",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_angry",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "orc_drool",
+              "Value": -1,
+              "ActionStart": 0.2,
+              "ActionEnd": 0.8
+            }
+          ]
+        },
+        {
+          "AnimationType": "taunt1",
+          "AnimationKey": "taunt_insult",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_taunt",
+              "Bank": "Characters",
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_bodyfall",
+              "Bank": "Misc",
+              "ActionStart": 0.42,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die1",
+          "AnimationKey": "die1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_bodyfall",
+              "Bank": "Misc",
+              "ActionStart": 0.75,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown",
+          "AnimationKey": "die_drown",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_heavy_drown01",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown02",
+              "Bank": "Characters",
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_pain",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "hit_fly",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "hit_stun_end2",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "hit_stun_begin2",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_slide",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.05,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.55,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 2,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.05,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.55,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_panic",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.05,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.55,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "spec_alert0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert1",
+          "AnimationKey": "spec_alert1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "spec_doorknock",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_doorpound_heavy",
+              "Bank": "Misc",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_doorpound_heavy",
+              "Bank": "Misc",
+              "ActionStart": 0.79,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_action1",
+          "AnimationKey": "spec_streetlight",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_action2",
+          "AnimationKey": "spec_tantrum",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_orc_taunt",
+              "Bank": "Characters",
+              "ActionStart": 0.05,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "spawn",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "rightattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\orc_axe_0"
+    },
+    {
+      "Slot": 1,
+      "Bone": "leftattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\orc_fist_0"
+    },
+    {
+      "Slot": 3,
+      "Bone": "leftshoulder",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\orc_tackle_0"
+    }
+  ],
+  "Conditions": [],
+  "AlertRadius": 12,
+  "GroupChase": 0.05,
+  "GroupSeperation": 2.8,
+  "GroupCohesion": 0.6,
+  "GroupAlignment": 1,
+  "GroupWander": 0.05,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 2,
+  "DangerAvoidance": 0,
+  "AngerWeight": 1.6,
+  "DistanceWeight": 1,
+  "HealthWeight": 1.3,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 1.5,
+      "ArcAngle": 0.034906585,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 3,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(6)",
+      "Animations": [
+        "attack_melee0"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 2,
+      "ArcAngle": 0.034906585,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 10,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(6)\u002B0.5",
+      "Animations": [
+        "attack_melee1"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 50,
+      "ArcAngle": 0.34906584,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 15,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distexp(5,15)*2",
+      "Animations": [
+        "taunt0",
+        "taunt1"
+      ]
+    },
+    {
+      "_AbilityType": "Dash",
+      "MinimumRange": 0,
+      "MaximumRange": 5,
+      "Arc": 0.08726646,
+      "Velocity": [
+        0,
+        0,
+        0
+      ],
+      "Cooldown": 11,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distexp(7)*2",
+      "Animations": [
+        "attack_melee2"
+      ]
+    },
+    {
+      "_AbilityType": "DamageGrip",
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "",
+      "Animations": [
+        "spec_grapple"
+      ]
+    },
+    {
+      "_AbilityType": "RemoveStatus",
+      "Cooldown": 2,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "s.status(wet)*5",
+      "Animations": [
+        "removestatus0"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

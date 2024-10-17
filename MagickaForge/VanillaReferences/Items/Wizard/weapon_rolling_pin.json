@@ -1,0 +1,125 @@
+{
+  "Name": "weapon_rolling_pin",
+  "LocalizedName": "#item_tsal_weapon04",
+  "LocalizedDescription": "#item_tsal_weapon04d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 500,
+  "WeaponClass": "Crush_Medium",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 18,
+  "Facing": false,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 5,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "..\\..\\..\\Models\\Missiles\\Rollingpin",
+  "RangedConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 40,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Stun",
+          "Element": "Earth",
+          "Amount": 1,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_phantom_punch",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Collision",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 10,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Remove",
+          "Bounces": 1
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_sword_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Damaged",
+      "Hitpoints": 2.8E-44,
+      "Element": "Lightning",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    }
+  ],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_rollingpin_0",
+  "Auras": []
+}

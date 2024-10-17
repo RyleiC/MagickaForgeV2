@@ -1,0 +1,286 @@
+{
+  "Name": "goblin_mortar",
+  "LocalizedName": "",
+  "LocalizedDescription": "",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": false,
+  "BlockStrength": 500,
+  "WeaponClass": "Default",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 1.5,
+  "MeleeMultihit": true,
+  "MeleeConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 220,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Knockback",
+          "Element": "Earth",
+          "Amount": 120,
+          "Magnitude": 8,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_club_hit_flesh",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Hit_Troll_Club"
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_club_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "RangedRange": 30,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "..\\..\\..\\Models\\missiles\\mortar_round_0",
+  "RangedConditions": [
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "wep_mortar",
+          "Magnitude": 0,
+          "StopOnRemove": true
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": true,
+          "WorldAligned": false,
+          "Effect": "troll_shell_trail"
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "mortar_muzzleflash"
+        }
+      ]
+    },
+    {
+      "ConditionType": "Collision",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Earth, Fire",
+          "Amount": 600,
+          "Magnitude": 1,
+          "Radius": 5
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockdown",
+          "Element": "Earth",
+          "Amount": 150,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockback",
+          "Element": "Earth",
+          "Amount": 150,
+          "Magnitude": 6,
+          "Radius": 2
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "wep_mortar_explode",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "mortar_explosion"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Earth, Fire",
+          "Amount": 600,
+          "Magnitude": 1,
+          "Radius": 5
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockdown",
+          "Element": "Earth",
+          "Amount": 150,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockback",
+          "Element": "Earth",
+          "Amount": 150,
+          "Magnitude": 6,
+          "Radius": 2
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "wep_mortar_explode",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "mortar_explosion"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Damaged",
+      "Hitpoints": 1.4E-44,
+      "Element": "Fire, Lightning",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Earth, Fire",
+          "Amount": 600,
+          "Magnitude": 1,
+          "Radius": 5
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockdown",
+          "Element": "Earth",
+          "Amount": 150,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockback",
+          "Element": "Earth",
+          "Amount": 150,
+          "Magnitude": 6,
+          "Radius": 2
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "wep_mortar_explode",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "mortar_explosion"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    }
+  ],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_NPC\\vietnam_mortar_0",
+  "Auras": []
+}

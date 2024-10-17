@@ -1,0 +1,874 @@
+{
+  "Name": "dungeons_slimecube_poison",
+  "LocalizedName": "#Ent_Dungeons_Slime_Medium",
+  "Faction": "Evil, Undead",
+  "BloodType": "green",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\models\\characters\\gib_slime01_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_slime01_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_slime02_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_slime02_0",
+      "Mass": 10,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 1100,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 1100,
+  "PainTolerance": 0,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 130,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 3,
+  "ZapModifier": 2,
+  "Length": 0.5,
+  "Radius": 0.75,
+  "Mass": 100,
+  "Speed": 2.5,
+  "TurnSpeed": 5,
+  "BleedRate": 55,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Poison",
+      "Multiplier": -3.5,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Life",
+      "Multiplier": 3.5,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Earth",
+      "Multiplier": 0.8,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Earth",
+      "Multiplier": 0.4,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Ice",
+      "Multiplier": 0.8,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\dungeons\\dungeons_slimecube_poision_mesh_0",
+      "Scale": 0.8,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\dungeons\\dungeons_slimecube_animations_0",
+  "Effects": [
+    {
+      "Bone": "root",
+      "Effect": "slime_trail_dungeons"
+    }
+  ],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.5,
+              "ActionEnd": 0.8
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_attack",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee1",
+          "AnimationKey": "attack1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.36,
+              "ActionEnd": 0.5
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_attack",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slime_cube_death_medium",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Suicide",
+              "Overkill": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die1",
+          "AnimationKey": "die1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slime_cube_death_medium",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Suicide",
+              "Overkill": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown",
+          "AnimationKey": "die_drown",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_zombie_drown",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_medium_move",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "move_fall",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "hit_stun_begin",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "hit_stun_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit_slide",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_medium_move",
+              "Bank": "Additional",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_medium_move",
+              "Bank": "Additional",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_medium_move",
+              "Bank": "Additional",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_medium_move",
+              "Bank": "Additional",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_panic",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_fall",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_sprint",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_jump_begin",
+          "AnimationKey": "move_panic",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_medium_move",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_mid",
+          "AnimationKey": "move_panic",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slimecube_medium_move",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Grip",
+              "GripType": "Ride",
+              "Radius": 0,
+              "BreakFreeTolerance": 2,
+              "BoneA": "",
+              "BoneB": "spine",
+              "FinishOnGrip": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_end",
+          "AnimationKey": "move_panic",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special0",
+          "AnimationKey": "move_panic",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "spine03",
+              "Attached": false,
+              "Effect": "dungeons_slime_grab",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0.5
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slime_cube_grab_medium",
+              "Bank": "Additional",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special1",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DamageGrip",
+              "DamageOwner": false,
+              "Damages": [
+                {
+                  "AttackProperty": "Damage",
+                  "Element": "Earth",
+                  "Amount": 100,
+                  "Magnitude": 1
+                }
+              ],
+              "ActionStart": 0.66,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slime_cube_grab_medium",
+              "Bank": "Additional",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special2",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "ReleaseGrip",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "spawn",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Immortal",
+              "Collide": false,
+              "ActionStart": 0,
+              "ActionEnd": 0.75
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "root",
+              "Attached": false,
+              "Effect": "dungeons_slime_grab",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0.75
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeon_slime_cube_spawn",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "spine03",
+              "Attached": false,
+              "Effect": "gore_spray_regular",
+              "Value": -1,
+              "ActionStart": 0.15,
+              "ActionEnd": 0.5
+            },
+            {
+              "_ActionType": "BreakFree",
+              "Magnitude": 1,
+              "WeaponSlot": 0,
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "revive",
+          "AnimationKey": "hit_stun_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "spine03",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_slime_poison_0"
+    }
+  ],
+  "Conditions": [
+    {
+      "ConditionType": "Death",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "CastMagick",
+          "MagickType": "spawnslime",
+          "Elements": []
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        },
+        {
+          "_EventType": "SpawnGibs",
+          "StartIndex": 0,
+          "EndIndex": 1
+        }
+      ]
+    },
+    {
+      "ConditionType": "OverKill",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "CastMagick",
+          "MagickType": "spawnslime",
+          "Elements": []
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        },
+        {
+          "_EventType": "SpawnGibs",
+          "StartIndex": 0,
+          "EndIndex": 3
+        }
+      ]
+    },
+    {
+      "ConditionType": "Death",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "slime_death_dungeons"
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Status",
+          "Element": "Poison",
+          "Amount": 20,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Poison",
+          "Amount": 300,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Pushed",
+          "Element": "Earth",
+          "Amount": 140,
+          "Magnitude": 2,
+          "Radius": 4
+        }
+      ]
+    },
+    {
+      "ConditionType": "OverKill",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "slime_death_dungeons"
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Status",
+          "Element": "Poison",
+          "Amount": 20,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Poison",
+          "Amount": 300,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Pushed",
+          "Element": "Earth",
+          "Amount": 140,
+          "Magnitude": 2,
+          "Radius": 4
+        }
+      ]
+    }
+  ],
+  "AlertRadius": 6,
+  "GroupChase": 0.8,
+  "GroupSeperation": 1.2,
+  "GroupCohesion": 0.6,
+  "GroupAlignment": 1,
+  "GroupWander": 0.2,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 0,
+  "DistanceWeight": 1,
+  "HealthWeight": 0,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 3,
+      "ArcAngle": 0.08726646,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 2,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(0,3)",
+      "Animations": [
+        "attack_melee0"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 3,
+      "ArcAngle": 0.08726646,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 2,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(0,3)",
+      "Animations": [
+        "attack_melee1"
+      ]
+    },
+    {
+      "_AbilityType": "GripCharacterFromBehind",
+      "MaximumRange": 5,
+      "MinimumRange": 2,
+      "Angle": 0.17453292,
+      "MaxWeight": 150,
+      "Cooldown": 6,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "",
+      "Animations": [
+        "move_jump_begin"
+      ]
+    },
+    {
+      "_AbilityType": "ConfuseGrip",
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "",
+      "Animations": [
+        "special0"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

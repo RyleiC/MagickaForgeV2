@@ -1,0 +1,102 @@
+{
+  "Name": "weapon_freeze_ray",
+  "LocalizedName": "#item_tsal_weapon01",
+  "LocalizedDescription": "#item_tsal_weapon01d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 500,
+  "WeaponClass": "Handgun",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 40,
+  "GunClip": 200,
+  "GunRate": 10,
+  "GunAccuracy": 1,
+  "GunSound": "additional/wep_phaser",
+  "GunMuzzleEffect": "freeze_flash",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "A/2",
+  "GunTracer": "A/2",
+  "GunConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Status",
+          "Element": "Water",
+          "Amount": 10,
+          "Magnitude": 0.1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Status",
+          "Element": "Cold",
+          "Amount": 10,
+          "Magnitude": 0.1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "freeze_hit"
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_chill_hit",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Collision",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "freeze_hit"
+        }
+      ]
+    }
+  ],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_freezeray_0",
+  "Auras": []
+}

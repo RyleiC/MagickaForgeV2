@@ -1,0 +1,777 @@
+{
+  "Name": "vlad_vietnam",
+  "LocalizedName": "",
+  "Faction": "Neutral",
+  "BloodType": "regular",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [],
+  "Lights": [],
+  "MaxHitpoints": 40000000,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 40000000,
+  "PainTolerance": 20000,
+  "KnockdownTolerance": 10,
+  "ScoreValue": 0,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 3,
+  "ZapModifier": 0,
+  "Length": 0.70000005,
+  "Radius": 0.75,
+  "Mass": 10000,
+  "Speed": 2.83,
+  "TurnSpeed": 5,
+  "BleedRate": 0,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Fire",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Lightning",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Earth",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Arcane",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Life",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Poison",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Steam",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Cold",
+      "Multiplier": 0,
+      "Modifier": -10000,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\vlad\\vlad_vietnam_mesh_0",
+      "Scale": 1.2,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\vlad\\vlad_animation_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "cast_area_blast",
+          "AnimationKey": "cast_area",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "CastSpell",
+              "FromStaff": true,
+              "Bone": null,
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "cast_force_projectile",
+          "AnimationKey": "cast_force",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "wizard_hit",
+              "Bank": "WaveBank",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "spec_disappear",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "vlad_spawn",
+              "Value": -1,
+              "ActionStart": 1,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_vlad_spawn",
+              "Bank": "Misc",
+              "ActionStart": 1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown",
+          "AnimationKey": "spec_disappear",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "vlad_spawn",
+              "Value": -1,
+              "ActionStart": 1,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_vlad_spawn",
+              "Bank": "Misc",
+              "ActionStart": 1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "revive",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_spider_unburrow",
+              "Bank": "Characters",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "spec_appear",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "vlad_spawn",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_vlad_spawn",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "despawn",
+          "AnimationKey": "spec_disappear",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "vlad_spawn",
+              "Value": -1,
+              "ActionStart": 1,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_vlad_spawn",
+              "Bank": "Misc",
+              "ActionStart": 1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "spec_talk_casual0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual1",
+          "AnimationKey": "spec_talk_casual1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual2",
+          "AnimationKey": "spec_talk_emphasize",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual3",
+          "AnimationKey": "spec_talk_picnic2",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "spec_chopper_arrive",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Gunfire",
+              "WeaponSlot": 0,
+              "Accuracy": 0.8,
+              "ActionStart": 0.15,
+              "ActionEnd": 0.19
+            },
+            {
+              "_ActionType": "Gunfire",
+              "WeaponSlot": 0,
+              "Accuracy": 0.8,
+              "ActionStart": 0.22,
+              "ActionEnd": 0.28
+            },
+            {
+              "_ActionType": "Gunfire",
+              "WeaponSlot": 0,
+              "Accuracy": 0.8,
+              "ActionStart": 0.52,
+              "ActionEnd": 0.53
+            },
+            {
+              "_ActionType": "Gunfire",
+              "WeaponSlot": 0,
+              "Accuracy": 0.8,
+              "ActionStart": 0.54,
+              "ActionEnd": 0.55
+            }
+          ]
+        },
+        {
+          "AnimationType": "talk_alarmed0",
+          "AnimationKey": "spec_talk_havindr",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cutscene_introduction",
+          "AnimationKey": "spec_intro_pose",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_intro0",
+          "AnimationKey": "spec_talk_intro1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_intro1",
+          "AnimationKey": "spec_talk_intro2",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_intro2",
+          "AnimationKey": "spec_talk_emphasize",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cutscene_fall",
+          "AnimationKey": "spec_airship",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cutscene_eat",
+          "AnimationKey": "spec_bloodsuck",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Mouth",
+              "Attached": false,
+              "Effect": "vlad_bloodsquirt",
+              "Value": -1,
+              "ActionStart": 0.1,
+              "ActionEnd": 0.15
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Mouth",
+              "Attached": false,
+              "Effect": "vlad_bloodsquirt",
+              "Value": -1,
+              "ActionStart": 0.3,
+              "ActionEnd": 0.45
+            }
+          ]
+        },
+        {
+          "AnimationType": "cutscene_hide",
+          "AnimationKey": "spec_enterdoor",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cutscene_sit",
+          "AnimationKey": "spec_khanthrone_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cutscene_sit_talk0",
+          "AnimationKey": "spec_khanthrone_clap",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cutscene_sit_talk1",
+          "AnimationKey": "spec_khanthrone_talk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "BreakFree",
+              "Magnitude": 1,
+              "WeaponSlot": 0,
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "block",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Block",
+              "WeaponSlot": 1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "special0",
+          "AnimationKey": "dodge_left",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                -10,
+                0,
+                0
+              ],
+              "ActionStart": 0,
+              "ActionEnd": 0.3
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                -5,
+                0,
+                0
+              ],
+              "ActionStart": 0.3,
+              "ActionEnd": 0.35
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                -1,
+                0,
+                0
+              ],
+              "ActionStart": 0.35,
+              "ActionEnd": 0.4
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_vlad_spawn01",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special1",
+          "AnimationKey": "trailer_talk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0.4,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special2",
+          "AnimationKey": "trailer_rage",
+          "AnimationSpeed": 1,
+          "BlendTime": 0.4,
+          "Loop": false,
+          "AnimationActions": []
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "rightattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\Items\\Wizard\\weapon_m60v"
+    }
+  ],
+  "Conditions": [],
+  "AlertRadius": 15,
+  "GroupChase": 0,
+  "GroupSeperation": 1,
+  "GroupCohesion": 1,
+  "GroupAlignment": 1,
+  "GroupWander": 1,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

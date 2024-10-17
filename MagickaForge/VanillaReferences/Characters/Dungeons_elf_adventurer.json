@@ -1,0 +1,1595 @@
+{
+  "Name": "dungeons_elf_adventurer",
+  "LocalizedName": "#Ent_Dungeons_Elf_Adventurer",
+  "Faction": "Evil",
+  "BloodType": "regular",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": true,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic03",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic04",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic05",
+      "Mass": 20,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic06",
+      "Mass": 20,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 13000,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 13000,
+  "PainTolerance": 150,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 400,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 2,
+  "ZapModifier": 0,
+  "Length": 0.29999995,
+  "Radius": 0.8,
+  "Mass": 200,
+  "Speed": 5.5,
+  "TurnSpeed": 5,
+  "BleedRate": 650,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Lightning",
+      "Multiplier": 0.5,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Earth",
+      "Multiplier": 1,
+      "Modifier": -500,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Fire",
+      "Multiplier": 1,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Cold",
+      "Multiplier": 0.5,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Poison",
+      "Multiplier": 0,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\dungeons\\dungeons_elf_adventurer_mesh_0",
+      "Scale": 1.25,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\elf\\elf_noble_animations_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "ad_attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.12,
+              "ActionEnd": 0.28
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.51,
+              "ActionEnd": 0.7
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee1",
+          "AnimationKey": "ad_attack1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.05,
+              "ActionEnd": 0.3
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee2",
+          "AnimationKey": "ad_attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0.1,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.12,
+              "ActionEnd": 0.3
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.51,
+              "ActionEnd": 0.7
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "attack_recoil",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_die",
+              "Bank": "Additional",
+              "ActionStart": 0.34,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die1",
+          "AnimationKey": "die1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_die",
+              "Bank": "Additional",
+              "ActionStart": 0.34,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown0",
+          "AnimationKey": "die_drown0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die_drown1",
+          "AnimationKey": "die_drown1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": true,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_hit",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit_slide",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "ad_hit_stun_begin",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "ad_hit_stun_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "hit_fly",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": true,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle_wnd",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": true,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "ad_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": true,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "ad_move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": true,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "ad_move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": true,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_wnd",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_fall",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "ad_spawn",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_aggro",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "spec_talkidle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_action1",
+          "AnimationKey": "spec_talkbow",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": true,
+              "ActionStart": 0.3,
+              "ActionEnd": 0.8
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_action3",
+          "AnimationKey": "spec_talkcheer",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_begin",
+          "AnimationKey": "ad_leap_begin",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell3",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Jump",
+              "Elevation": 30,
+              "MinRange": 10,
+              "MaxRange": 16,
+              "ActionStart": 0.99,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_mid",
+          "AnimationKey": "ad_leap_mid",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_end",
+          "AnimationKey": "ad_leap_end",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 3,
+              "Target": "All",
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "breakbarriers",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_generic",
+              "Bank": "Footsteps",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_armorrattle_heavy",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_generic",
+              "Bank": "Footsteps",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_armorrattle_heavy",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special0",
+          "AnimationKey": "ad_drink",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 0.98
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": true,
+              "ActionStart": 0.98,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionright",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.16,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": true,
+              "ActionStart": 0.06,
+              "ActionEnd": 0.15
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0.16,
+              "ActionEnd": 0.19
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.16,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionleft",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": true,
+              "ActionStart": 0.17,
+              "ActionEnd": 0.24
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0.25,
+              "ActionEnd": 0.27
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionright",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.34,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": true,
+              "ActionStart": 0.27,
+              "ActionEnd": 0.33
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0.34,
+              "ActionEnd": 0.36
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.34,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionleft",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.43,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": true,
+              "ActionStart": 0.34,
+              "ActionEnd": 0.43
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0.44,
+              "ActionEnd": 0.46
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.43,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionright",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": true,
+              "ActionStart": 0.44,
+              "ActionEnd": 0.49
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0.5,
+              "ActionEnd": 0.52
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionleft",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.58,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": true,
+              "ActionStart": 0.5,
+              "ActionEnd": 0.57
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0.58,
+              "ActionEnd": 0.6
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.58,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionright",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.67,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": true,
+              "ActionStart": 0.58,
+              "ActionEnd": 0.66
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0.67,
+              "ActionEnd": 0.69
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.67,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionleft",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.76,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": true,
+              "ActionStart": 0.67,
+              "ActionEnd": 0.75
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0.76,
+              "ActionEnd": 0.78
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.76,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionright",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.84,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": true,
+              "ActionStart": 0.76,
+              "ActionEnd": 0.83
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0.84,
+              "ActionEnd": 0.86
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.84,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "potionleft",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0.92,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": true,
+              "ActionStart": 0.84,
+              "ActionEnd": 0.91
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0.92,
+              "ActionEnd": 0.94
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell4",
+              "Bank": "Additional",
+              "ActionStart": 0.92,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special1",
+          "AnimationKey": "ad_charge",
+          "AnimationSpeed": 2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                -10
+              ],
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": -1,
+              "SpecialAbilityInstance": {
+                "Type": "homingcharge",
+                "Animation": "",
+                "Hash": "",
+                "Elements": []
+              },
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "#dungeons_boss_elf_spell1",
+              "Bank": "Additional",
+              "ActionStart": 0.34,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special2",
+          "AnimationKey": "ad_charge_attackswing",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.02,
+              "ActionEnd": 0.28
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "spec_entangled",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "spec_entangled_attack",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "BreakFree",
+              "Magnitude": 1,
+              "WeaponSlot": 0,
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "ad_talk0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 3,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "special3",
+          "AnimationKey": "ad_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 3,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "special4",
+          "AnimationKey": "ad_talk0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 3,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "special5",
+          "AnimationKey": "ad_talk1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 3,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "special6",
+          "AnimationKey": "ad_talk2",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 0,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 1,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 2,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "WeaponVisibility",
+              "WeaponSlot": 3,
+              "Visible": false,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "rightattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_elf_adventurer_axe_0"
+    },
+    {
+      "Slot": 1,
+      "Bone": "leftattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_flask_healing_potion_0"
+    },
+    {
+      "Slot": 2,
+      "Bone": "rightattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_flask_healing_potion_0"
+    },
+    {
+      "Slot": 3,
+      "Bone": "root",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\khan_smash_0"
+    },
+    {
+      "Slot": 4,
+      "Bone": "root",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\khan_smash_air_0"
+    }
+  ],
+  "Conditions": [
+    {
+      "ConditionType": "Death",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Spawn",
+          "Type": "dungeons_elf_adventurer_ressurected",
+          "IdleAnimation": "none",
+          "SpawnAnimation": "spawn",
+          "Health": 1,
+          "Order": "Attack",
+          "ReactTo": "None",
+          "Reaction": "None",
+          "Rotation": 0,
+          "Offset": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "ConditionType": "OverKill",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        },
+        {
+          "_EventType": "SpawnGibs",
+          "StartIndex": 0,
+          "EndIndex": 0
+        },
+        {
+          "_EventType": "Spawn",
+          "Type": "dungeons_elf_adventurer_ressurected",
+          "IdleAnimation": "none",
+          "SpawnAnimation": "spawn",
+          "Health": 1,
+          "Order": "Attack",
+          "ReactTo": "None",
+          "Reaction": "None",
+          "Rotation": 0,
+          "Offset": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "AlertRadius": 16,
+  "GroupChase": 0.5,
+  "GroupSeperation": 1,
+  "GroupCohesion": 0.2,
+  "GroupAlignment": 0,
+  "GroupWander": 0,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 1.5,
+      "ArcAngle": 0.17453292,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 5,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(10)\u002B 0.5",
+      "Animations": [
+        "attack_melee0",
+        "attack_melee1"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 28.5,
+      "ArcAngle": 0.08726646,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": true,
+      "Cooldown": 6,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(7,16) \u002B t.threat(earth)",
+      "Animations": [
+        "special1"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 5,
+      "MaximumRange": 15,
+      "ArcAngle": 0.08726646,
+      "WeaponSlots": [
+        4
+      ],
+      "Rotate": false,
+      "Cooldown": 5,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "t.IsCharacter*(!LOS\u002Bt.enemydensity)\u002Bt.danger(offensive)",
+      "Animations": [
+        "move_jump_begin"
+      ]
+    },
+    {
+      "_AbilityType": "CastSpell",
+      "MinimumRange": 0,
+      "MaximumRange": 28.5,
+      "Angle": 0.08726646,
+      "ChantTime": 1,
+      "Power": 0,
+      "CastType": "Force",
+      "Elements": [],
+      "Cooldown": 7,
+      "AbilityTarget": "Self",
+      "FuzzyExpression": "(!s.health-0.2)*4",
+      "Animations": [
+        "special0"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

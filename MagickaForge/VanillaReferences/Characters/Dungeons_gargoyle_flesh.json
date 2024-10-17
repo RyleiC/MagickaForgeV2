@@ -1,0 +1,858 @@
+{
+  "Name": "dungeons_gargoyle_flesh",
+  "LocalizedName": "#Ent_Dungeons_Gargoyle",
+  "Faction": "Evil",
+  "BloodType": "regular",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 10,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 6000,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 6000,
+  "PainTolerance": 1500,
+  "KnockdownTolerance": 6,
+  "ScoreValue": 1600,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 3,
+  "ZapModifier": 0,
+  "Length": 0,
+  "Radius": 2,
+  "Mass": 5000,
+  "Speed": 5,
+  "TurnSpeed": 5,
+  "BleedRate": 0.5,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Lightning",
+      "Multiplier": 1,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Earth",
+      "Multiplier": 1,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Fire",
+      "Multiplier": 0.5,
+      "Modifier": 0,
+      "StatusImmunity": true
+    },
+    {
+      "Element": "Poison",
+      "Multiplier": 0.5,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Cold",
+      "Multiplier": 1,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Arcane",
+      "Multiplier": 0.5,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Life",
+      "Multiplier": 1,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\dungeons\\dungeons_gargoyle_flesh_mesh_0",
+      "Scale": 1.6,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\dungeons\\dungeons_gargoyle_animations_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "flesh_attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.44,
+              "ActionEnd": 0.51
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_stone_swipe",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee1",
+          "AnimationKey": "flesh_attack1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.33,
+              "ActionEnd": 0.44
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_twohandsmash",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee2",
+          "AnimationKey": "flesh_attack2",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 2,
+              "Target": "All",
+              "ActionStart": 0.18,
+              "ActionEnd": 0.54
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_pelvisthrust",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_melee3",
+          "AnimationKey": "flesh_charge",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                -16
+              ],
+              "ActionStart": 0.35,
+              "ActionEnd": 0.85
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 2,
+              "Target": "All",
+              "ActionStart": 0.35,
+              "ActionEnd": 0.85
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_flesh_charge",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "taunt0",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "taunt1",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "taunt2",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "flesh_die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_flesh_die",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_bodyfall_heavy",
+              "Bank": "Misc",
+              "ActionStart": 0.6,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                2.6
+              ],
+              "ActionStart": 0,
+              "ActionEnd": 0.56
+            },
+            {
+              "_ActionType": "CameraShake",
+              "Duration": 1,
+              "Magnitude": 0.8,
+              "ActionStart": 0.6,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown0",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown02",
+              "Bank": "Characters",
+              "ActionStart": 0.65,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown1",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown02",
+              "Bank": "Characters",
+              "ActionStart": 0.75,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "flesh_hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_flesh_hurt",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_slide",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "stonebase",
+              "Attached": false,
+              "Effect": "generic_dust_slide",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "stonebase",
+              "Attached": false,
+              "Effect": "generic_dust_slide",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "flesh_idle_wnd",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1.3,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "flesh_move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.9,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "flesh_move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.9,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "flesh_move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "flesh_move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_begin",
+          "AnimationKey": "flesh_leap_begin",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_flesh_leap",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Jump",
+              "Elevation": 72,
+              "MinRange": 10,
+              "MaxRange": 18,
+              "ActionStart": 0.99,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_mid",
+          "AnimationKey": "flesh_leap_mid",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0.5,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_jump_end",
+          "AnimationKey": "flesh_leap_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 4,
+              "Target": "All",
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "CameraShake",
+              "Duration": 1,
+              "Magnitude": 1,
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "dungeons_gargoyle_stone_crash",
+              "Bank": "Additional",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "flesh_move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special0",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "flesh_spawn0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cutscene_fail",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert1",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert2",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special6",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "flesh_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "r_attach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_gargoyle_claw_0"
+    },
+    {
+      "Slot": 1,
+      "Bone": "jaw",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_gargoyle_horns_0"
+    },
+    {
+      "Slot": 2,
+      "Bone": "stonebase",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_gargoyle_base_0"
+    },
+    {
+      "Slot": 3,
+      "Bone": "tonguebase",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\dungeons_gargoyle_fangs_0"
+    },
+    {
+      "Slot": 4,
+      "Bone": "root",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\khan_smash_0"
+    }
+  ],
+  "Conditions": [
+    {
+      "ConditionType": "Death",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": []
+    },
+    {
+      "ConditionType": "OverKill",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": []
+    }
+  ],
+  "AlertRadius": 15,
+  "GroupChase": 0,
+  "GroupSeperation": 5.5,
+  "GroupCohesion": 0,
+  "GroupAlignment": 1,
+  "GroupWander": 0,
+  "FriendlyAvoidance": 1,
+  "EnemyAvoidance": 1,
+  "SightAvoidance": 2,
+  "DangerAvoidance": 2,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 1,
+      "MaximumRange": 1.2,
+      "ArcAngle": 0.17453292,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 2,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(3) \u002B 0.5",
+      "Animations": [
+        "attack_melee0",
+        "attack_melee1",
+        "attack_melee2"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 5,
+      "MaximumRange": 18,
+      "ArcAngle": 0.08726646,
+      "WeaponSlots": [
+        8
+      ],
+      "Rotate": false,
+      "Cooldown": 8,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(5,18)",
+      "Animations": [
+        "move_jump_begin"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 5,
+      "MaximumRange": 9,
+      "ArcAngle": 0.08726646,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 6,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(3,9)",
+      "Animations": [
+        "attack_melee3"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

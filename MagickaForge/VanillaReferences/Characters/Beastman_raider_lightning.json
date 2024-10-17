@@ -1,0 +1,809 @@
+{
+  "Name": "beastman_raider_lightning",
+  "LocalizedName": "#Ent_Beast_RaiderA",
+  "Faction": "Evil",
+  "BloodType": "regular",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic03",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic04",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic05",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_beastman_alpha01_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_beastman_alpha02_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_beastman_alpha03_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_beastman_alpha04_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_beastman_alpha04_0",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\gib_beastman_alpha04_0",
+      "Mass": 10,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 1200,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 1200,
+  "PainTolerance": 50,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 350,
+  "XPValue": 30,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 2,
+  "ZapModifier": 0,
+  "Length": 0.7800001,
+  "Radius": 0.81,
+  "Mass": 75,
+  "Speed": 6,
+  "TurnSpeed": 5,
+  "BleedRate": 60,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\beastman\\beastman_raider_alpha_mesh_0",
+      "Scale": 1.2,
+      "Tint": [
+        0.75,
+        0.5,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\beastman\\beastman_animation_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "raider_attack0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_beastman_raider_attack",
+              "Bank": "Characters",
+              "ActionStart": 0.09,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.11,
+              "ActionEnd": 0.16
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.65,
+              "ActionEnd": 0.81
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "raider_die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_beastman_raider_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_bodyfall",
+              "Bank": "Misc",
+              "ActionStart": 0.47,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                0,
+                0,
+                2.4
+              ],
+              "ActionStart": 0,
+              "ActionEnd": 0.8
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown",
+          "AnimationKey": "raider_die_drown",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown01",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown02",
+              "Bank": "Characters",
+              "ActionStart": 0.9,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "raider_hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_beastman_raider_pain",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "raider_hit_fly",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "raider_hit_stun_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "raider_hit_stun_begin",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "raider_hit_slide",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_slide",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "RightFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "LeftFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "raider_idle_agg",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "raider_move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_horseL",
+              "Bank": "Footsteps",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_horseR",
+              "Bank": "Footsteps",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "RightBall",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "LeftFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "raider_move_run",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_horseL",
+              "Bank": "Footsteps",
+              "ActionStart": 0.42,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_horseR",
+              "Bank": "Footsteps",
+              "ActionStart": 0.96,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "RightFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.42,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "LeftFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.96,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "raider_move_run",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_horseL",
+              "Bank": "Footsteps",
+              "ActionStart": 0.42,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "footstep_horseR",
+              "Bank": "Footsteps",
+              "ActionStart": 0.96,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "RightBall",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.42,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "LeftFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.96,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_begin",
+          "AnimationKey": "raider_move_jump_begin",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_beastman_raider_jump",
+              "Bank": "Characters",
+              "ActionStart": 0.9,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Jump",
+              "Elevation": 60,
+              "MinRange": 10,
+              "MaxRange": 16,
+              "ActionStart": 0.9,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_mid",
+          "AnimationKey": "raider_move_jump_mid",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 1,
+              "Target": "All",
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_jump_end",
+          "AnimationKey": "raider_move_jump_end",
+          "AnimationSpeed": 1.2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_beastman_raider_land",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "RightFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "LeftFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.15,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "RightFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "LeftFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust",
+              "Value": -1,
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "raider_move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "raider_move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "raider_idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special0",
+          "AnimationKey": "raider_dodge_left",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "Move",
+              "Velocity": [
+                -10,
+                0,
+                0
+              ],
+              "ActionStart": 0,
+              "ActionEnd": 0.25
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_slide",
+              "Bank": "Misc",
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "leftattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\Items\\Wizard\\weapon_skyward_spear"
+    }
+  ],
+  "Conditions": [],
+  "AlertRadius": 15,
+  "GroupChase": 0,
+  "GroupSeperation": 1,
+  "GroupCohesion": 0.1,
+  "GroupAlignment": 1,
+  "GroupWander": 0.1,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 0,
+      "MaximumRange": 1.4,
+      "ArcAngle": 0.08726646,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "",
+      "Animations": [
+        "attack_melee0"
+      ]
+    },
+    {
+      "_AbilityType": "Dash",
+      "MinimumRange": 0,
+      "MaximumRange": 4,
+      "Arc": 0.34906584,
+      "Velocity": [
+        -10,
+        0,
+        0
+      ],
+      "Cooldown": 2,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "t.threat(offensive)",
+      "Animations": [
+        "special0"
+      ]
+    },
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 10,
+      "MaximumRange": 16,
+      "ArcAngle": 0.13962634,
+      "WeaponSlots": [
+        0
+      ],
+      "Rotate": false,
+      "Cooldown": 6,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(10,16)",
+      "Animations": [
+        "move_jump_begin"
+      ]
+    }
+  ],
+  "Movement": [
+    {
+      "MoveProperty": 2,
+      "Animations": [
+        "move_jump_mid"
+      ]
+    }
+  ],
+  "Buffs": [],
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "Resistance",
+        "Element": "Lightning",
+        "Multiplier": 0,
+        "Modifier": 0,
+        "StatusImmunity": false,
+        "BuffVisualCategory": "Defensive",
+        "BuffColor": [
+          0.75,
+          0.5,
+          1
+        ],
+        "BuffTime": 1,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Friendly",
+      "VisualCategory": "Defensive",
+      "Color": [
+        0.75,
+        0.5,
+        1
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 5,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

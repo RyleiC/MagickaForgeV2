@@ -1,0 +1,97 @@
+{
+  "Name": "staff_sceptre_of_the_troll_king",
+  "LocalizedName": "#item_staff08",
+  "LocalizedDescription": "#item_staff08d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 10,
+      "DiffuseColor": [
+        0.5,
+        0.34,
+        0.03
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 15,
+  "SpecialAbility": {
+    "Type": "charm",
+    "Animation": "",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\troll_sceptre_0",
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "ReduceAgro",
+        "AggroReduceAmount": 0.1,
+        "BuffVisualCategory": "Special",
+        "BuffColor": [
+          0,
+          1,
+          0
+        ],
+        "BuffTime": 0.5,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Self",
+      "VisualCategory": "None",
+      "Color": [
+        0,
+        0,
+        0
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 2,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

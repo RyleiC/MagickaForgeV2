@@ -1,0 +1,82 @@
+{
+  "Name": "staff_gadget_dwarven_utility_stick",
+  "LocalizedName": "#item_gadget_staff01",
+  "LocalizedDescription": "#item_gadget_staff01d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 50,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [
+    {
+      "Element": "Earth",
+      "Multiplier": 0.9,
+      "Modifier": -200,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Lightning",
+      "Multiplier": 0.6,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 6,
+      "DiffuseColor": [
+        0.5,
+        0.5,
+        1
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 5,
+  "SpecialAbility": {
+    "Type": "Grease",
+    "Animation": "",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\staff_gadget_dwarven_utility_sti_0",
+  "Auras": []
+}

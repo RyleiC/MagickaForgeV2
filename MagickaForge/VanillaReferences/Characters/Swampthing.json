@@ -1,0 +1,834 @@
+{
+  "Name": "swampthing",
+  "LocalizedName": "#Ent_Wild_SwampThing",
+  "Faction": "Evil, Wild",
+  "BloodType": "wood",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib00_0",
+      "Mass": 30,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib01_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib01_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib02_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib02_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib03_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib04_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib04_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib05_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib06_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib06_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib06_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib07_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib07_0",
+      "Mass": 45,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_gib07_0",
+      "Mass": 45,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 7000,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 7000,
+  "PainTolerance": 1000,
+  "KnockdownTolerance": 5,
+  "ScoreValue": 1000,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 3,
+  "ZapModifier": 0,
+  "Length": 1.9000001,
+  "Radius": 1.3,
+  "Mass": 6000,
+  "Speed": 3,
+  "TurnSpeed": 5,
+  "BleedRate": 350,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Earth",
+      "Multiplier": 0.8,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Fire",
+      "Multiplier": 2,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Water",
+      "Multiplier": -1,
+      "Modifier": 400,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\swampthing\\swampthing_mesh_0",
+      "Scale": 0.95,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\swampthing\\swampthing_animation_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "attack_underground",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 0,
+              "Target": "All",
+              "ActionStart": 0.15,
+              "ActionEnd": 0.44
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_treespirit_attack_pre",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_attack",
+              "Bank": "Characters",
+              "ActionStart": 0.35,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idlelong_agg0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_pain",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "hit0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "gore_spray_regular",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0.15
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "gore_spray_regular",
+              "Value": -1,
+              "ActionStart": 0.48,
+              "ActionEnd": 0.52
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "gore_spray_regular",
+              "Value": -1,
+              "ActionStart": 0.7,
+              "ActionEnd": 0.95
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "swampthing_death",
+              "Value": -1,
+              "ActionStart": 0.1,
+              "ActionEnd": 0.95
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die1",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "gore_spray_regular",
+              "Value": -1,
+              "ActionStart": 0.15,
+              "ActionEnd": 0.5
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "gore_spray_regular",
+              "Value": -1,
+              "ActionStart": 0.5,
+              "ActionEnd": 0.9
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "mouth",
+              "Attached": false,
+              "Effect": "swampthing_death",
+              "Value": -1,
+              "ActionStart": 0.1,
+              "ActionEnd": 0.95
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown02",
+              "Bank": "Characters",
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1.3,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "root",
+              "Attached": false,
+              "Effect": "swampthing_mud",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_walk",
+              "Bank": "Characters",
+              "ActionStart": 0.45,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_walk",
+              "Bank": "Characters",
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1.3,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.01,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_walk",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_walk",
+              "Bank": "Characters",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_grip",
+          "AnimationKey": "grab_hold",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special0",
+          "AnimationKey": "grab",
+          "AnimationSpeed": 1.4,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_grip",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Grip",
+              "GripType": "Pickup",
+              "Radius": 1.3,
+              "BreakFreeTolerance": 0,
+              "BoneA": "RightAttach",
+              "BoneB": "",
+              "FinishOnGrip": true,
+              "ActionStart": 0,
+              "ActionEnd": 0.7
+            }
+          ]
+        },
+        {
+          "AnimationType": "special1",
+          "AnimationKey": "grab_hold",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "special2",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "ReleaseGrip",
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special3",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "ThrowGrip",
+              "ActionStart": 0.625,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special4",
+          "AnimationKey": "grab_strangle",
+          "AnimationSpeed": 2,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_attack",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "DamageGrip",
+              "DamageOwner": false,
+              "Damages": [
+                {
+                  "AttackProperty": "Damage",
+                  "Element": "Earth",
+                  "Amount": 150,
+                  "Magnitude": 1
+                }
+              ],
+              "ActionStart": 0.333,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "special5",
+          "AnimationKey": "grab_overkill",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_treespirit_attack_pre",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_attack",
+              "Bank": "Characters",
+              "ActionStart": 0.41,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "DamageGrip",
+              "DamageOwner": false,
+              "Damages": [
+                {
+                  "AttackProperty": "Damage",
+                  "Element": "Earth",
+                  "Amount": 2500,
+                  "Magnitude": 1
+                }
+              ],
+              "ActionStart": 0.41,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "BreakFree",
+              "Magnitude": 1,
+              "WeaponSlot": 0,
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "spawn",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_swampthing_appear",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "root",
+              "Attached": false,
+              "Effect": "swampthing_appear",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [],
+  "Conditions": [],
+  "AlertRadius": 15,
+  "GroupChase": 0,
+  "GroupSeperation": 1.4,
+  "GroupCohesion": 0,
+  "GroupAlignment": 1,
+  "GroupWander": 0,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": false,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "PickUpCharacter",
+      "MaximumRange": 4.5,
+      "MinimumRange": 1,
+      "Angle": 0.017453292,
+      "MaxWeight": 150,
+      "DropAnimation": "special2",
+      "Cooldown": 2,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "0.5\u002Bs.edensity",
+      "Animations": [
+        "special0",
+        "special1"
+      ]
+    },
+    {
+      "_AbilityType": "DamageGrip",
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "t.health",
+      "Animations": [
+        "special4"
+      ]
+    },
+    {
+      "_AbilityType": "DamageGrip",
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "(!t.health-0.5)*5",
+      "Animations": [
+        "special5"
+      ]
+    },
+    {
+      "_AbilityType": "ThrowGrip",
+      "MaximumRange": 10,
+      "MinimumRange": 5,
+      "Elevation": 0.17453292,
+      "Damages": [
+        {
+          "AttackProperty": 0,
+          "Element": "None",
+          "Amount": 0,
+          "Magnitude": 0
+        },
+        {
+          "AttackProperty": 0,
+          "Element": "None",
+          "Amount": 0,
+          "Magnitude": 0
+        }
+      ],
+      "Cooldown": 0,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "",
+      "Animations": [
+        "special3"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

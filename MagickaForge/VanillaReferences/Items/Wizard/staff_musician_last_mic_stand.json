@@ -1,0 +1,100 @@
+{
+  "Name": "staff_musician_last_mic_stand",
+  "LocalizedName": "#item_musician_staff01",
+  "LocalizedDescription": "#item_musician_staff01d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 8,
+      "DiffuseColor": [
+        0.39,
+        0.21,
+        0.47
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 10,
+  "SpecialAbility": {
+    "Type": "CharmMetal",
+    "Animation": "spec_musician_microphone",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\staff_musician_last_mic_stand_0",
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "BoostDamage",
+        "AttackProperty": "Damage",
+        "Element": "Lightning",
+        "Amount": 0,
+        "Magnitude": 1.15,
+        "BuffVisualCategory": "Special",
+        "BuffColor": [
+          1,
+          1,
+          1
+        ],
+        "BuffTime": 0.5,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Friendly",
+      "VisualCategory": "Offensive",
+      "Color": [
+        0.75,
+        0.5,
+        1
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 5,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

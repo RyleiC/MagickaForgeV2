@@ -1,0 +1,73 @@
+{
+  "Name": "troll_machinegun",
+  "LocalizedName": "",
+  "LocalizedDescription": "",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": false,
+  "BlockStrength": 500,
+  "WeaponClass": "Machinegun",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 40,
+  "GunClip": 1100,
+  "GunRate": 8,
+  "GunAccuracy": 0.8,
+  "GunSound": "additional/wep_dshk_fire",
+  "GunMuzzleEffect": "dpsh_flash",
+  "GunShellEffect": "casing_dshk",
+  "GunTracerVelocity": 400,
+  "GunNonTracer": "C/48",
+  "GunTracer": "C/48",
+  "GunConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 320,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Pushed",
+          "Element": "Earth",
+          "Amount": 70,
+          "Magnitude": 1,
+          "VelocityBased": false
+        }
+      ]
+    }
+  ],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_NPC\\troll_machinegun_0",
+  "Auras": []
+}

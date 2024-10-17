@@ -1,0 +1,150 @@
+{
+  "Name": "weapon_musician_vinyl_record",
+  "LocalizedName": "#item_musician_weapon03",
+  "LocalizedDescription": "#item_musician_weapon03d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 50,
+  "WeaponClass": "Throw_Medium",
+  "CooldownTime": 0.7,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 18,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 5,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "..\\..\\..\\Models\\Items_Wizard\\weapon_musician_vinyl_record_0",
+  "RangedConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Bleed",
+          "Element": "Earth",
+          "Amount": 400,
+          "Magnitude": 1,
+          "Radius": 1.5
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockback",
+          "Element": "Earth",
+          "Amount": 500,
+          "Magnitude": 1,
+          "Radius": 2.5
+        },
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 20,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "musician_vinyl_scratch",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Special_record_brake"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_sword_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Timer",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 1.3,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Bleed",
+          "Element": "Earth",
+          "Amount": 400,
+          "Magnitude": 1,
+          "Radius": 1.5
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "musician_vinyl_scratch",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Special_record_brake"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    }
+  ],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_musician_vinyl_record_0",
+  "Auras": []
+}

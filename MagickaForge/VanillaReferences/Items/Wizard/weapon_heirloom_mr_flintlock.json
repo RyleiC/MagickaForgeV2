@@ -1,0 +1,100 @@
+{
+  "Name": "weapon_heirloom_mr_flintlock",
+  "LocalizedName": "#item_heirloom_weapon04",
+  "LocalizedDescription": "#item_heirloom_weapon04d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 50,
+  "WeaponClass": "Rifle",
+  "CooldownTime": 2.2,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 10,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 2,
+  "GunRange": 30,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 0.95,
+  "GunSound": "additional/wep_mortar",
+  "GunMuzzleEffect": "heirloom_mr_flintlock_trail",
+  "GunShellEffect": "casing_gyrojet",
+  "GunTracerVelocity": 0.2,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 1499,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_bomb_explode",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "gunhit_generic"
+        }
+      ]
+    },
+    {
+      "ConditionType": "Collision",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "gunhit_generic"
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "gyrojet_glow"
+        }
+      ]
+    }
+  ],
+  "ProjectileModel": "..\\..\\..\\Models\\missiles\\mortar_round_0",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_heirloom_mr_flintlock_0",
+  "Auras": []
+}

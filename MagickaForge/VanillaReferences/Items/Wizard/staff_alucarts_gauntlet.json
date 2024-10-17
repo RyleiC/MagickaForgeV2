@@ -1,0 +1,82 @@
+{
+  "Name": "staff_alucarts_gauntlet",
+  "LocalizedName": "#item_osotc_staff01",
+  "LocalizedDescription": "#item_osotc_staff01d",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": true,
+  "BlockStrength": 0,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [
+    {
+      "Element": "Arcane",
+      "Multiplier": 0,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Life",
+      "Multiplier": -1,
+      "Modifier": 0,
+      "StatusImmunity": false
+    }
+  ],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 1,
+      "DiffuseColor": [
+        0.67,
+        0.14,
+        0.15
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 3,
+  "SpecialAbility": {
+    "Type": "DrinkBlood",
+    "Animation": "special3",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\alucarts_gauntlet_0",
+  "Auras": []
+}

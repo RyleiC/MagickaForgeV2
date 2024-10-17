@@ -1,0 +1,200 @@
+{
+  "Name": "weapon_gadget_failed_doomsday_launcher_prototype",
+  "LocalizedName": "#item_gadget_weapon07",
+  "LocalizedDescription": "#item_gadget_weapon07d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 50,
+  "WeaponClass": "Handgun",
+  "CooldownTime": 1.4,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [
+    "thunderblade_idle"
+  ],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 30,
+  "Facing": false,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "..\\..\\..\\Models\\Missiles\\Earth0",
+  "RangedConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Life",
+          "Amount": -450,
+          "Magnitude": 1,
+          "Radius": 5
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Spells",
+          "Cue": "spell_life_hit",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Beam_Life_Explosion"
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Life_Explosion_Charge"
+        },
+        {
+          "_EventType": "Light",
+          "Radius": 3,
+          "DiffuseColor": [
+            0,
+            1,
+            0
+          ],
+          "AmbientColor": [
+            1,
+            1,
+            0
+          ],
+          "SpecularAmount": 1,
+          "LightVariationType": "None",
+          "VariationAmount": 0,
+          "VariationSpeed": 0
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Collision",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Life",
+          "Amount": -450,
+          "Magnitude": 1,
+          "Radius": 5
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Beam_Life_Explosion"
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Life_Explosion_Charge"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Misc",
+          "Cue": "misc_lever",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Additional",
+          "Cue": "wep_phaser",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": true,
+          "WorldAligned": false,
+          "Effect": "epic__green_trail"
+        }
+      ]
+    }
+  ],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_gadget_doomsday_launcher_0",
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "ReduceAgro",
+        "AggroReduceAmount": -0.5,
+        "BuffVisualCategory": "Special",
+        "BuffColor": [
+          0,
+          1,
+          0
+        ],
+        "BuffTime": 0.5,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Self",
+      "VisualCategory": "None",
+      "Color": [
+        0,
+        0,
+        0
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 2,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

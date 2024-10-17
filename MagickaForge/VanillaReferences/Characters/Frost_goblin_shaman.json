@@ -1,0 +1,960 @@
+{
+  "Name": "frost_goblin_shaman",
+  "LocalizedName": "#Ent_XMAS2012_Frost_Goblin_Shaman",
+  "Faction": "Evil",
+  "BloodType": "regular",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 15,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic03",
+      "Mass": 15,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic04",
+      "Mass": 15,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic05",
+      "Mass": 15,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic06",
+      "Mass": 15,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 2000,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 2000,
+  "PainTolerance": 250,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 1200,
+  "XPValue": 10,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 2,
+  "ZapModifier": 0,
+  "Length": 0,
+  "Radius": 0.8,
+  "Mass": 55,
+  "Speed": 3.5,
+  "TurnSpeed": 5,
+  "BleedRate": 100,
+  "StunTime": 2,
+  "SummonElementBank": "Characters",
+  "SummonElementCue": "chr_goblin_shaman_cast_pre",
+  "Resistances": [],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\goblin\\goblin_shaman_mesh_0",
+      "Scale": 1.1,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\Models\\Characters\\Goblin\\goblin_animation",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_melee0",
+          "AnimationKey": "attack_dagger",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "DealDamage",
+              "WeaponSlot": 1,
+              "Target": "All",
+              "ActionStart": 0.5,
+              "ActionEnd": 0.6
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "attack_dagger_recoil",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "cast_spell0",
+          "AnimationKey": "shaman_cast_lightning",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "CastSpell",
+              "FromStaff": true,
+              "Bone": null,
+              "ActionStart": 0.66,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast_pre",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast",
+              "Bank": "Characters",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "cast_spell1",
+          "AnimationKey": "shaman_cast_beam",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "CastSpell",
+              "FromStaff": true,
+              "Bone": null,
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast_pre",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast",
+              "Bank": "Characters",
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "cast_spell2",
+          "AnimationKey": "shaman_cast_push",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "CastSpell",
+              "FromStaff": true,
+              "Bone": null,
+              "ActionStart": 0.68,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast_pre",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast",
+              "Bank": "Characters",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "cast_spell3",
+          "AnimationKey": "cast_self",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "CastSpell",
+              "FromStaff": true,
+              "Bone": null,
+              "ActionStart": 0.68,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast_pre",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_cast",
+              "Bank": "Characters",
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "cast_teleport",
+          "AnimationKey": "shaman_teleport",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_teleport",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "goblin_shaman_teleport_out",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpecialAbility",
+              "WeaponSlot": 0,
+              "SpecialAbilityInstance": {
+                "Type": null,
+                "Animation": null,
+                "Hash": null,
+                "Elements": null
+              },
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "goblin_shaman_teleport_in",
+              "Value": -1,
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "warlock_die1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_death",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "goblin_shaman_particles",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0.95
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "Hips",
+              "Attached": false,
+              "Effect": "goblin_shaman_explode",
+              "Value": -1,
+              "ActionStart": 0.95,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_daemon_explode",
+              "Bank": "Characters",
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown0",
+          "AnimationKey": "die_drown0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_drown01",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown02",
+              "Bank": "Characters",
+              "ActionStart": 0.65,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown1",
+          "AnimationKey": "die_drown1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_drown01",
+              "Bank": "Characters",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_generic_drown02",
+              "Bank": "Characters",
+              "ActionStart": 0.75,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_shaman_pain",
+              "Bank": "Characters",
+              "ActionStart": 0.1,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "hit_fly",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "hit_stun_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "hit_stun_begin",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit_slide",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "misc_slide",
+              "Bank": "Misc",
+              "ActionStart": 0,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "RightFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust_slide",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            },
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "LeftFootEnd",
+              "Attached": false,
+              "Effect": "generic_dust_slide",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 1
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle_wnd",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle_agg",
+          "AnimationSpeed": 1.3,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idlelong_agg0",
+          "AnimationKey": "taunt_rogue0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "idlelong_agg1",
+          "AnimationKey": "taunt_rogue1",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "walk_shaman",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.31,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.62,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.93,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "walk_shaman",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.31,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.62,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.93,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move_walk",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move_panic",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.33,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "Footstep",
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_run",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "spec_alert_rogue0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlaySound",
+              "Cue": "chr_goblin_angry",
+              "Bank": "Characters",
+              "ActionStart": 0.05,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "chant",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "talk_casual0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "spec_entangled",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "spec_entangled_attack",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "BreakFree",
+              "Magnitude": 1,
+              "WeaponSlot": 0,
+              "ActionStart": 0.8,
+              "ActionEnd": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "leftattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\goblin_cult_staff_0"
+    },
+    {
+      "Slot": 1,
+      "Bone": "rightattach",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\goblin_dagger_0"
+    }
+  ],
+  "Conditions": [
+    {
+      "ConditionType": "Death",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "OverKill",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Goblin_Shaman_Explode"
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Characters",
+          "Cue": "chr_daemon_explode",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "AlertRadius": 15,
+  "GroupChase": 0,
+  "GroupSeperation": 0.2,
+  "GroupCohesion": 1,
+  "GroupAlignment": 1.5,
+  "GroupWander": 0,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 1,
+  "SightAvoidance": 2,
+  "DangerAvoidance": 2,
+  "AngerWeight": 1,
+  "DistanceWeight": 1,
+  "HealthWeight": 1,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Melee",
+      "MinimumRange": 1,
+      "MaximumRange": 1.2,
+      "ArcAngle": 0.17453292,
+      "WeaponSlots": [
+        1
+      ],
+      "Rotate": false,
+      "Cooldown": 1,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(3)",
+      "Animations": [
+        "attack_melee0"
+      ]
+    },
+    {
+      "_AbilityType": "CastSpell",
+      "MinimumRange": 0,
+      "MaximumRange": 5,
+      "Angle": 0.17453292,
+      "ChantTime": 0.33,
+      "Power": 0,
+      "CastType": "Force",
+      "Elements": [
+        16,
+        16
+      ],
+      "Cooldown": 3,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "!s.status(wet) * (distExp(0,7) \u002B t.status(wet))*0.75",
+      "Animations": [
+        "cast_spell0"
+      ]
+    },
+    {
+      "_AbilityType": "CastSpell",
+      "MinimumRange": 0,
+      "MaximumRange": 15,
+      "Angle": 0.034906585,
+      "ChantTime": 0.33,
+      "Power": 0,
+      "CastType": "Force",
+      "Elements": [
+        32,
+        2,
+        2
+      ],
+      "Cooldown": 10,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "distExp(5,15) * !t.status(wet) - !LOS*0.75",
+      "Animations": [
+        "cast_spell1"
+      ]
+    },
+    {
+      "_AbilityType": "CastSpell",
+      "MinimumRange": 0,
+      "MaximumRange": 5,
+      "Angle": 3.1415927,
+      "ChantTime": 0.01,
+      "Power": 2,
+      "CastType": "Area",
+      "Elements": [],
+      "Cooldown": 4,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "EDensity(5)\u002BDistLin(5)",
+      "Animations": [
+        "cast_spell2"
+      ]
+    },
+    {
+      "_AbilityType": "CastSpell",
+      "MinimumRange": 0,
+      "MaximumRange": 8,
+      "Angle": 0.06981317,
+      "ChantTime": 0.1,
+      "Power": 0,
+      "CastType": "Self",
+      "Elements": [
+        64,
+        64
+      ],
+      "Cooldown": 6,
+      "AbilityTarget": "Self",
+      "FuzzyExpression": "(!s.health-0.5)*4",
+      "Animations": [
+        "cast_spell3"
+      ]
+    },
+    {
+      "_AbilityType": "CastSpell",
+      "MinimumRange": 0,
+      "MaximumRange": 8,
+      "Angle": 0.06981317,
+      "ChantTime": 0.1,
+      "Power": 0,
+      "CastType": "Self",
+      "Elements": [
+        2
+      ],
+      "Cooldown": 2,
+      "AbilityTarget": "Self",
+      "FuzzyExpression": "(s.status(burning)\u002Bs.status(greased))*2",
+      "Animations": [
+        "cast_spell3"
+      ]
+    },
+    {
+      "_AbilityType": "CastSpell",
+      "MinimumRange": 0,
+      "MaximumRange": 8,
+      "Angle": 0.06981317,
+      "ChantTime": 0.1,
+      "Power": 0,
+      "CastType": "Self",
+      "Elements": [
+        8
+      ],
+      "Cooldown": 2,
+      "AbilityTarget": "Self",
+      "FuzzyExpression": "(s.status(wet)\u002Bs.status(cold)\u002Bs.status(frozen))*2",
+      "Animations": [
+        "cast_spell3"
+      ]
+    },
+    {
+      "_AbilityType": "SpecialAbilityAbility",
+      "MaximumRange": 20,
+      "MinimumRange": 0,
+      "Angle": 3.1415927,
+      "WeaponSlot": 0,
+      "Cooldown": 10,
+      "AbilityTarget": "Self",
+      "FuzzyExpression": "s.danger(offensive)*1.5",
+      "Animations": [
+        "cast_teleport"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "Resistance",
+        "Element": "Cold",
+        "Multiplier": 0,
+        "Modifier": 0,
+        "StatusImmunity": false,
+        "BuffVisualCategory": "Defensive",
+        "BuffColor": [
+          0,
+          0.7,
+          1.3
+        ],
+        "BuffTime": 1,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Friendly",
+      "VisualCategory": "Defensive",
+      "Color": [
+        0.7,
+        0.7,
+        0.95
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 5,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

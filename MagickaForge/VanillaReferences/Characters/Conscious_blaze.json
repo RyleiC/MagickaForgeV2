@@ -1,0 +1,1319 @@
+{
+  "Name": "conscious_blaze",
+  "LocalizedName": "",
+  "Faction": "Evil",
+  "BloodType": "black",
+  "IsEthereal": false,
+  "LooksEthereal": false,
+  "Fearless": false,
+  "Uncharmable": false,
+  "Nonslippery": false,
+  "HasFairy": false,
+  "CanSeeInvisible": false,
+  "Sounds": [],
+  "Gibs": [
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic01",
+      "Mass": 10,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic02",
+      "Mass": 15,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic03",
+      "Mass": 25,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic04",
+      "Mass": 25,
+      "Scale": 1
+    },
+    {
+      "Model": "..\\..\\Models\\Characters\\gib_generic05",
+      "Mass": 15,
+      "Scale": 1
+    }
+  ],
+  "Lights": [],
+  "MaxHitpoints": 2000,
+  "NrOfHealthbars": 1,
+  "Undying": false,
+  "UndieTime": 0,
+  "UndieHitpoints": 2000,
+  "PainTolerance": 200,
+  "KnockdownTolerance": 0,
+  "ScoreValue": 800,
+  "XPValue": 0,
+  "RewardOnKill": true,
+  "RewardOnOverkill": true,
+  "Regeneration": 0,
+  "MaxPanic": 3,
+  "ZapModifier": 0,
+  "Length": 0,
+  "Radius": 1,
+  "Mass": 440,
+  "Speed": 4,
+  "TurnSpeed": 5,
+  "BleedRate": 100,
+  "StunTime": 2,
+  "SummonElementBank": "None",
+  "SummonElementCue": "",
+  "Resistances": [
+    {
+      "Element": "Fire",
+      "Multiplier": -1,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Lightning",
+      "Multiplier": 0.75,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Poison",
+      "Multiplier": 0,
+      "Modifier": 0,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Cold",
+      "Multiplier": 0.1,
+      "Modifier": 5000,
+      "StatusImmunity": false
+    },
+    {
+      "Element": "Water",
+      "Multiplier": 0,
+      "Modifier": 100,
+      "StatusImmunity": false
+    }
+  ],
+  "Models": [
+    {
+      "Model": "..\\..\\models\\characters\\Concious_Flame\\concious_flamer_mesh_0",
+      "Scale": 1,
+      "Tint": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "AnimationSkeleton": "..\\..\\models\\characters\\Concious_Flame\\concious_flamer_animations_0",
+  "Effects": [],
+  "Animations": [
+    {
+      "AnimationClips": [
+        {
+          "AnimationType": "attack_ranged0",
+          "AnimationKey": "attack1",
+          "AnimationSpeed": 1.8,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 4,
+              "Velocity": [
+                15,
+                0,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "attack_recoil",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "die0",
+          "AnimationKey": "die0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.45,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.66,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.85,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown0",
+          "AnimationKey": "die_drown0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.45,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.66,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.85,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "die_drown1",
+          "AnimationKey": "die_drown0",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.45,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.2,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.83,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.66,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.85,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.25,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit",
+          "AnimationKey": "hit",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.34,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.61,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.43,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_fly",
+          "AnimationKey": "hit_fly",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.63,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_stun_end",
+          "AnimationKey": "hit_stun_end",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.63,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_stun_begin",
+          "AnimationKey": "hit_stun_begin",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.63,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "hit_slide",
+          "AnimationKey": "hit_fly",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.34,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.61,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.43,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.3,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 0.5,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.63,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle_wnd",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 0.5,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.63,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "idle_agg",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 0.5,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.63,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.95,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.26,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_walk",
+          "AnimationKey": "move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.99,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.28,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.87,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_run",
+          "AnimationKey": "move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.99,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.28,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.87,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_panic",
+          "AnimationKey": "move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.99,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.28,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.87,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_wnd",
+          "AnimationKey": "move",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.99,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.28,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.87,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "move_fall",
+          "AnimationKey": "move_fall",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": [
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 0,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.5,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 1,
+              "Velocity": [
+                0,
+                0,
+                -15
+              ],
+              "Aligned": true,
+              "ActionStart": 0.99,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 2,
+              "Velocity": [
+                0,
+                -15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.28,
+              "ActionEnd": 0
+            },
+            {
+              "_ActionType": "SpawnMissile",
+              "WeaponSlot": 3,
+              "Velocity": [
+                0,
+                15,
+                0
+              ],
+              "Aligned": true,
+              "ActionStart": 0.87,
+              "ActionEnd": 0
+            }
+          ]
+        },
+        {
+          "AnimationType": "spawn",
+          "AnimationKey": "spawn",
+          "AnimationSpeed": 1.5,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": [
+            {
+              "_ActionType": "PlayEffect",
+              "Bone": "leg_joint",
+              "Attached": false,
+              "Effect": "blaze_spawn",
+              "Value": -1,
+              "ActionStart": 0,
+              "ActionEnd": 0.8
+            }
+          ]
+        },
+        {
+          "AnimationType": "spec_action0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_alert0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": false,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "talk_casual0",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        },
+        {
+          "AnimationType": "spec_entangled_attack",
+          "AnimationKey": "idle",
+          "AnimationSpeed": 1,
+          "BlendTime": 0,
+          "Loop": true,
+          "AnimationActions": []
+        }
+      ]
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    },
+    {
+      "AnimationClips": []
+    }
+  ],
+  "Equipment": [
+    {
+      "Slot": 0,
+      "Bone": "joint2",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\blaze_random_flame_0"
+    },
+    {
+      "Slot": 1,
+      "Bone": "joint3",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\blaze_random_flame_0"
+    },
+    {
+      "Slot": 2,
+      "Bone": "joint5",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\blaze_random_flame_0"
+    },
+    {
+      "Slot": 3,
+      "Bone": "joint6",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\blaze_random_flame_0"
+    },
+    {
+      "Slot": 4,
+      "Bone": "joint21",
+      "Offset": [
+        0,
+        0,
+        0
+      ],
+      "Item": "..\\items\\NPC\\blaze_bolt_0"
+    }
+  ],
+  "Conditions": [],
+  "AlertRadius": 5,
+  "GroupChase": 0,
+  "GroupSeperation": 4,
+  "GroupCohesion": 1,
+  "GroupAlignment": 1,
+  "GroupWander": 0,
+  "FriendlyAvoidance": 0,
+  "EnemyAvoidance": 0,
+  "SightAvoidance": 0,
+  "DangerAvoidance": 0,
+  "AngerWeight": 0,
+  "DistanceWeight": 1,
+  "HealthWeight": 0,
+  "Flocking": true,
+  "BreakFreeStrength": 1,
+  "Abilities": [
+    {
+      "_AbilityType": "Ranged",
+      "MinimumRange": 6,
+      "MaximumRange": 8,
+      "Elevation": 1.0471976,
+      "Arc": 0.17453292,
+      "Accuracy": 0.8,
+      "WeaponSlots": [
+        4
+      ],
+      "Cooldown": 5,
+      "AbilityTarget": "Enemy",
+      "FuzzyExpression": "1",
+      "Animations": [
+        "attack_ranged0"
+      ]
+    }
+  ],
+  "Movement": [],
+  "Buffs": [],
+  "Auras": []
+}

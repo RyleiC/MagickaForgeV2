@@ -1,0 +1,151 @@
+{
+  "Name": "staff_vulcanschyte",
+  "LocalizedName": "#item_vs_staff02",
+  "LocalizedDescription": "#item_vs_staff02d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 50,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 6,
+      "DiffuseColor": [
+        0.2,
+        0.2,
+        0.6
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "None",
+      "VariationAmount": 10,
+      "VariationSpeed": 10
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 5,
+  "SpecialAbility": {
+    "Type": "SpecialAnimation",
+    "Animation": "spec_throwitem",
+    "Hash": "#ITEM_specab_sucker",
+    "Elements": []
+  },
+  "MeleeRange": 0.5,
+  "MeleeMultihit": true,
+  "MeleeConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 350,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Knockback",
+          "Element": "Earth",
+          "Amount": 130,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_katana_hit_flesh",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Sound",
+          "Bank": "Weapons",
+          "Cue": "wep_katana_swing",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        }
+      ]
+    }
+  ],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\staff_vulcanschyte_0",
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "Resistance",
+        "Element": "Poison",
+        "Multiplier": 0,
+        "Modifier": 0.8,
+        "StatusImmunity": false,
+        "BuffVisualCategory": "None",
+        "BuffColor": [
+          0,
+          0,
+          0
+        ],
+        "BuffTime": 1,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "All",
+      "VisualCategory": "None",
+      "Color": [
+        1,
+        1,
+        1.4
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 5,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

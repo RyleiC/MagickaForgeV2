@@ -1,0 +1,98 @@
+{
+  "Name": "staff_tesla",
+  "LocalizedName": "#item_staff16",
+  "LocalizedDescription": "#item_staff16d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Staff",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [
+    {
+      "Radius": 3,
+      "DiffuseColor": [
+        0.75,
+        0.5,
+        1
+      ],
+      "AmbientColor": [
+        0,
+        0,
+        0
+      ],
+      "SpecularAmount": 0.3,
+      "LightVariationType": "Sine",
+      "VariationAmount": 0.2,
+      "VariationSpeed": 1
+    }
+  ],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 6,
+  "SpecialAbility": {
+    "Type": "Zap",
+    "Animation": "cast_force_projectile",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\staff_tesla_0",
+  "Auras": [
+    {
+      "_AuraType": "Buff",
+      "Buff": {
+        "_BuffType": "ModifySpellRange",
+        "SpellRangeMultiplier": 1.5,
+        "SpellRangeModifier": 0,
+        "BuffVisualCategory": "Special",
+        "BuffColor": [
+          0.75,
+          0.5,
+          1
+        ],
+        "BuffTime": 0.5,
+        "BuffEffect": ""
+      },
+      "AuraTarget": "Self",
+      "VisualCategory": "None",
+      "Color": [
+        0,
+        0,
+        0
+      ],
+      "Effect": "",
+      "Duration": 6900000,
+      "Radius": 2,
+      "Types": "none",
+      "Faction": "None"
+    }
+  ]
+}

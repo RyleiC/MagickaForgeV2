@@ -1,0 +1,119 @@
+{
+  "Name": "spider_poison_spit",
+  "LocalizedName": "",
+  "LocalizedDescription": "",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Default",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 10,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "..\\..\\..\\Models\\Missiles\\Poison",
+  "RangedConditions": [
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": true,
+          "WorldAligned": false,
+          "Effect": "spider_spit"
+        }
+      ]
+    },
+    {
+      "ConditionType": "Collision",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "spider_spit_hit"
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Status",
+          "Element": "Poison",
+          "Amount": 25,
+          "Magnitude": 1,
+          "Radius": 2.5
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "spider_spit_hit"
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Status",
+          "Element": "Poison",
+          "Amount": 25,
+          "Magnitude": 1,
+          "Radius": 2.5
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    }
+  ],
+  "Scale": 1,
+  "Model": "",
+  "Auras": []
+}

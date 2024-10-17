@@ -1,0 +1,70 @@
+{
+  "Name": "dwarf_rifleman_rifle",
+  "LocalizedName": "",
+  "LocalizedDescription": "",
+  "Sounds": [],
+  "Grabbable": false,
+  "Bound": false,
+  "BlockStrength": 0,
+  "WeaponClass": "Handgun",
+  "CooldownTime": 0,
+  "HideModel": false,
+  "HideEffects": false,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": true,
+  "SpecialAbilityCooldown": 30,
+  "SpecialAbility": {
+    "Type": "EpicBuff",
+    "Animation": "cast_spell0",
+    "Hash": "",
+    "Elements": []
+  },
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 0,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 40,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 0.95,
+  "GunSound": "additional/wep_handgun_fire",
+  "GunMuzzleEffect": "mat-49_flash",
+  "GunShellEffect": "casing_9mm_single",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Earth",
+          "Amount": 105,
+          "Magnitude": 1,
+          "VelocityBased": false
+        }
+      ]
+    }
+  ],
+  "ProjectileModel": "",
+  "RangedConditions": [],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_NPC\\dwarf_rifleman_rifle_0",
+  "Auras": []
+}

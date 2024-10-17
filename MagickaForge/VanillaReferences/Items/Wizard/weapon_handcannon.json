@@ -1,0 +1,190 @@
+{
+  "Name": "weapon_handcannon",
+  "LocalizedName": "#item_weapon70",
+  "LocalizedDescription": "#item_weapon70d",
+  "Sounds": [],
+  "Grabbable": true,
+  "Bound": false,
+  "BlockStrength": 100,
+  "WeaponClass": "Handgun",
+  "CooldownTime": 6,
+  "HideModel": false,
+  "HideEffects": true,
+  "PauseSounds": false,
+  "Resistances": [],
+  "PassiveAbilityType": "None",
+  "PassiveAbilityStrength": 0,
+  "Effects": [],
+  "Lights": [],
+  "HasSpecialAbility": false,
+  "SpecialAbilityCooldown": 0,
+  "SpecialAbility": null,
+  "MeleeRange": 0,
+  "MeleeMultihit": false,
+  "MeleeConditions": [],
+  "RangedRange": 20,
+  "Facing": true,
+  "Homing": 0,
+  "RangedElevation": 0,
+  "RangedDanger": 0,
+  "GunRange": 0,
+  "GunClip": 1,
+  "GunRate": 1,
+  "GunAccuracy": 1,
+  "GunSound": "",
+  "GunMuzzleEffect": "",
+  "GunShellEffect": "",
+  "GunTracerVelocity": 100,
+  "GunNonTracer": "",
+  "GunTracer": "",
+  "GunConditions": [],
+  "ProjectileModel": "",
+  "RangedConditions": [
+    {
+      "ConditionType": "Hit",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Lightning",
+          "Amount": 2200,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Lightning",
+          "Amount": 400,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockback",
+          "Element": "Lightning",
+          "Amount": 300,
+          "Magnitude": 3,
+          "Radius": 5
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Beholder_Main_Blast"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Collision",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Damage",
+          "AttackProperty": "Damage",
+          "Element": "Lightning",
+          "Amount": 2200,
+          "Magnitude": 1,
+          "VelocityBased": false
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Damage",
+          "Element": "Lightning",
+          "Amount": 400,
+          "Magnitude": 1,
+          "Radius": 4
+        },
+        {
+          "_EventType": "Splash",
+          "AttackProperty": "Knockback",
+          "Element": "Lightning",
+          "Amount": 300,
+          "Magnitude": 3,
+          "Radius": 5
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": false,
+          "WorldAligned": false,
+          "Effect": "Beholder_Main_Blast"
+        },
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Timer",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 4,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Remove",
+          "Bounces": 0
+        }
+      ]
+    },
+    {
+      "ConditionType": "Default",
+      "Hitpoints": 0,
+      "Element": "All",
+      "Threshold": 0,
+      "Time": 0,
+      "Repeat": true,
+      "Events": [
+        {
+          "_EventType": "Light",
+          "Radius": 7,
+          "DiffuseColor": [
+            0.5,
+            1,
+            2
+          ],
+          "AmbientColor": [
+            0,
+            0,
+            0
+          ],
+          "SpecularAmount": 1,
+          "LightVariationType": "None",
+          "VariationAmount": 0,
+          "VariationSpeed": 0
+        },
+        {
+          "_EventType": "Sound",
+          "Bank": "Characters",
+          "Cue": "chr_darksoul_missile_arcane",
+          "Magnitude": 0,
+          "StopOnRemove": false
+        },
+        {
+          "_EventType": "Effect",
+          "Follow": true,
+          "WorldAligned": false,
+          "Effect": "handcannon_projectile"
+        }
+      ]
+    }
+  ],
+  "Scale": 1,
+  "Model": "..\\..\\..\\Models\\Items_Wizard\\weapon_handcannon_0",
+  "Auras": []
+}
