@@ -18,7 +18,7 @@ namespace CharacterForge
             }
             else
             {
-                instructionPath = args[0];
+                instructionPath = args[1];
             }
             Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
             int mode = int.Parse(Console.ReadLine()!);

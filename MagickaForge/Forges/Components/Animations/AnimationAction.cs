@@ -1,6 +1,7 @@
 using MagickaForge.Forges.Components;
 using MagickaForge.Utils;
 using Microsoft.VisualBasic;
+using System.Net.WebSockets;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Forges.Components.Animations
@@ -460,13 +461,14 @@ namespace MagickaForge.Forges.Components.Animations
         {
             base.Write(bw);
             bw.Write(Elevation);
-            bool hasMin = MinRange == 0;
-            bool hasMax = MaxRange == 0;
+            bool hasMin = MinRange != 0;
+            bool hasMax = MaxRange != 0;
             bw.Write(hasMin);
             if (hasMin)
             {
                 bw.Write(MinRange);
             }
+            bw.Write(hasMax);
             if (hasMax)
             {
                 bw.Write(MaxRange);

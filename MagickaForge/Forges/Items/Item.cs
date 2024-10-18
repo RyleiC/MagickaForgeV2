@@ -129,6 +129,7 @@ namespace MagickaForge.Forges.Items
                 bw.Write(SpecialAbility!.Type!);
                 bw.Write(SpecialAbility.Animation!);
                 bw.Write(SpecialAbility.Hash!);
+                bw.Write(SpecialAbility.Elements!.Length);
                 for (int x = 0; x < SpecialAbility!.Elements!.Length; x++)
                 {
                     bw.Write(SpecialAbility.Elements[x]);

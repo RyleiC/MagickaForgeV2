@@ -6,7 +6,7 @@ namespace CharacterForge
 {
     internal class Program
     {
-        static bool ModernMagicka;
+        static bool LegacyMagicka;
         static void Main(string[] args)
         {
             Console.WriteLine("= Magicka Character Forge by Rylei. C =");
@@ -19,13 +19,12 @@ namespace CharacterForge
             }
             else
             {
-                instructionPath = args[0];
+                instructionPath = args[1];
             }
             Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
             int mode = int.Parse(Console.ReadLine()!);
-            Console.WriteLine("Do you want to compile to an older version of Magicka? [Eg. 1.5.1.0]\n\"y\" : Yes\n\"n\" : No");
-            char usesModern = char.Parse(Console.ReadLine()!.ToLower());
-            ModernMagicka = usesModern == 'y';
+            Console.WriteLine("Do you want to compile to an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
+            LegacyMagicka = int.Parse(Console.ReadLine()!) == 1;
             Console.WriteLine("= Process Starting... =\n");
 
             var stopWatch = Stopwatch.StartNew();
@@ -63,7 +62,7 @@ namespace CharacterForge
                     throw new FileNotFoundException(InstructionPath);
                 }
                 Character character = Character.LoadFromJson(InstructionPath);
-                character.CharacterToXNB(InstructionPath.Replace(".json", ".xnb"), ModernMagicka);
+                character.CharacterToXNB(InstructionPath.Replace(".json", ".xnb"), LegacyMagicka);
                 Console.WriteLine($"Succesfully compiled {InstructionPath}");
             }
         }
@@ -85,7 +84,7 @@ namespace CharacterForge
                     throw new FileNotFoundException(InstructionPath);
                 }
                 Character character = new();
-                character = character.XNBToCharacter(InstructionPath, ModernMagicka);
+                character = character.XNBToCharacter(InstructionPath, LegacyMagicka);
                 Character.WriteToJson(InstructionPath.Replace(".xnb", ".json"), character);
                 Console.WriteLine($"Succesfully decompiled {InstructionPath}");
             }
