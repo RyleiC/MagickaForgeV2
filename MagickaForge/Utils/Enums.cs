@@ -209,7 +209,23 @@
         Wave,
         PerformanceEnchantment,
         JudgementSpray,
-        Amalgameddon
+        Amalgameddon,
+        NrOfMagicks,
+        Grow,
+        Shrink,
+        Etherealize,
+        Polymorph,
+        Earthquake,
+        Votal,
+        KnockDownChance,
+        SummonCross,
+        VladZap,
+        SpawnSlime,
+        SpawnSlimeOverkill,
+        GreaseSplash,
+        EtherealClone,
+        InflictBleedDamage,
+        InflictPoisonDamage
     }
     public enum AuraTarget : byte
     {
