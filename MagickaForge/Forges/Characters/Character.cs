@@ -313,7 +313,7 @@ namespace MagickaForge.Forges.Characters
             for (int i = 0; i < Lights.Length; i++)
             {
                 Lights[i].Bone = br.ReadString();
-                var light = new Light();
+                Light light = new();
                 light.Radius = br.ReadSingle();
                 light.DiffuseColor = new float[3];
                 for (int x = 0; x < 3; x++)

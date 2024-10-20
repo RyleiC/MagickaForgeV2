@@ -2,7 +2,7 @@
 using MagickaForge.Forges.Items;
 using System.Diagnostics;
 using System.Text.Json.Nodes;
-namespace CharacterForge
+namespace ItemForge
 {
     internal class Program
     {
