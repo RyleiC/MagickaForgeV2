@@ -1,8 +1,8 @@
-﻿using MagickaForge.Forges.Components.Events;
+﻿using MagickaForge.Components.Events;
 using MagickaForge.Utils;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Forges.Components
+namespace MagickaForge.Components
 {
     public class ConditionCollection
     {
@@ -32,7 +32,7 @@ namespace MagickaForge.Forges.Components
                 EventType type = (EventType)br.ReadByte();
                 switch (type)
                 {
-                    case (EventType.Damage):
+                    case EventType.Damage:
                         Events[i] = new DamageEvent()
                         {
                             AttackProperty = (AttackProperties)br.ReadInt32(),
@@ -42,7 +42,7 @@ namespace MagickaForge.Forges.Components
                             VelocityBased = br.ReadBoolean(),
                         };
                         break;
-                    case (EventType.Splash):
+                    case EventType.Splash:
                         Events[i] = new SplashEvent()
                         {
                             AttackProperty = (AttackProperties)br.ReadInt32(),
@@ -52,7 +52,7 @@ namespace MagickaForge.Forges.Components
                             Radius = br.ReadSingle()
                         };
                         break;
-                    case (EventType.Sound):
+                    case EventType.Sound:
                         Events[i] = new SoundEvent()
                         {
                             Bank = (Banks)br.ReadInt32(),
@@ -61,7 +61,7 @@ namespace MagickaForge.Forges.Components
                             StopOnRemove = br.ReadBoolean(),
                         };
                         break;
-                    case (EventType.Effect):
+                    case EventType.Effect:
                         {
                             Events[i] = new EffectEvent()
                             {
@@ -71,7 +71,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.Remove):
+                    case EventType.Remove:
                         {
                             Events[i] = new RemoveEvent()
                             {
@@ -79,7 +79,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.CameraShake):
+                    case EventType.CameraShake:
                         {
                             Events[i] = new CameraShakeEvent()
                             {
@@ -89,7 +89,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.Decal):
+                    case EventType.Decal:
                         {
                             Events[i] = new DecalEvent()
                             {
@@ -99,7 +99,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.Spawn):
+                    case EventType.Spawn:
                         {
                             Events[i] = new SpawnEvent()
                             {
@@ -115,7 +115,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.SpawnGibs):
+                    case EventType.SpawnGibs:
                         {
                             Events[i] = new SpawnGibsEvent()
                             {
@@ -124,7 +124,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.SpawnItem):
+                    case EventType.SpawnItem:
                         {
                             Events[i] = new SpawnItemEvent()
                             {
@@ -132,7 +132,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.SpawnMagick):
+                    case EventType.SpawnMagick:
                         {
                             Events[i] = new SpawnMagickEvent()
                             {
@@ -140,7 +140,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.SpawnMissile):
+                    case EventType.SpawnMissile:
                         {
                             Events[i] = new SpawnMissileEvent()
                             {
@@ -150,7 +150,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.Light):
+                    case EventType.Light:
                         {
                             Events[i] = new LightEvent()
                             {
@@ -164,7 +164,7 @@ namespace MagickaForge.Forges.Components
                             };
                         }
                         break;
-                    case (EventType.CastMagick):
+                    case EventType.CastMagick:
                         {
                             Events[i] = new CastMagickEvent()
                             {
@@ -177,7 +177,7 @@ namespace MagickaForge.Forges.Components
                             }
                         }
                         break;
-                    case (EventType.DamageOwner):
+                    case EventType.DamageOwner:
                         Events[i] = new DamageOwnerEvent()
                         {
                             AttackProperty = (AttackProperties)br.ReadInt32(),

@@ -1,4 +1,4 @@
-﻿namespace MagickaForge.Forges.Components
+﻿namespace MagickaForge.Components
 {
     public class SpecialAbility
     {

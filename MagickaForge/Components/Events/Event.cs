@@ -1,7 +1,7 @@
 ﻿using MagickaForge.Utils;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Forges.Components.Events
+namespace MagickaForge.Components.Events
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "_EventType")]
     [JsonDerivedType(typeof(DamageEvent), typeDiscriminator: "Damage")]

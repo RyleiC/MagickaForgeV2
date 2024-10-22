@@ -1,10 +1,7 @@
-using MagickaForge.Forges.Components;
 using MagickaForge.Utils;
-using Microsoft.VisualBasic;
-using System.Net.WebSockets;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Forges.Components.Animations
+namespace MagickaForge.Components.Animations
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "_ActionType")]
     [JsonDerivedType(typeof(Block), typeDiscriminator: "Block")]
@@ -170,7 +167,7 @@ namespace MagickaForge.Forges.Components.Animations
             }
             else if (aType == ActionType.SpawnMissile)
             {
-                action = new SpawnMissile() { WeaponSlot = br.ReadInt32(), Velocity = [ br.ReadSingle(), br.ReadSingle(), br.ReadSingle() ], Aligned = br.ReadBoolean() };
+                action = new SpawnMissile() { WeaponSlot = br.ReadInt32(), Velocity = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()], Aligned = br.ReadBoolean() };
             }
             else if (aType == ActionType.SpecialAbility)
             {

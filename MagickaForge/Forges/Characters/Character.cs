@@ -1,8 +1,8 @@
-using MagickaForge.Forges.Components;
-using MagickaForge.Forges.Components.Auras;
-using MagickaForge.Forges.Components.Animations;
+using MagickaForge.Components;
+using MagickaForge.Components.Abilities;
+using MagickaForge.Components.Animations;
+using MagickaForge.Components.Auras;
 using MagickaForge.Utils;
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -10,7 +10,7 @@ namespace MagickaForge.Forges.Characters
 {
     public class Character
     {
-        public static readonly byte[] XNB_HEADER =
+        private static readonly byte[] Header =
         [
             0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x59,
             0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F, 0x6E, 0x74,
@@ -97,7 +97,7 @@ namespace MagickaForge.Forges.Characters
         public void CharacterToXNB(string outputPath, bool legacyMagicka)
         {
             BinaryWriter bw = new(File.Create(outputPath));
-            bw.Write(XNB_HEADER);
+            bw.Write(Header);
             bw.Write(Name!);
             bw.Write(LocalizedName!);
             bw.Write((int)Faction);
@@ -281,7 +281,7 @@ namespace MagickaForge.Forges.Characters
         public Character XNBToCharacter(string inputPath, bool legacyMagicka)
         {
             BinaryReader br = new(File.Open(inputPath, FileMode.Open));
-            br.ReadBytes(XNB_HEADER.Length);
+            br.ReadBytes(Header.Length);
 
             Name = br.ReadString();
             LocalizedName = br.ReadString();

@@ -1,7 +1,7 @@
 ﻿using MagickaForge.Utils;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Forges.Components.Auras
+namespace MagickaForge.Components.Auras
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "_AuraType")]
     [JsonDerivedType(typeof(BuffAura), typeDiscriminator: "Buff")]

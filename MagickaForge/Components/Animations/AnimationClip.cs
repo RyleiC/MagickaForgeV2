@@ -1,6 +1,6 @@
 using MagickaForge.Utils;
 
-namespace MagickaForge.Forges.Components.Animations
+namespace MagickaForge.Components.Animations
 {
     public class AnimationClip
     {

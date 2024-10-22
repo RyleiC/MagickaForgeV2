@@ -1,5 +1,5 @@
-﻿using MagickaForge.Forges.Components;
-using MagickaForge.Forges.Components.Auras;
+﻿using MagickaForge.Components;
+using MagickaForge.Components.Auras;
 using MagickaForge.Utils;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -8,7 +8,7 @@ namespace MagickaForge.Forges.Items
 {
     public class Item
     {
-        public static readonly byte[] XNB_HEADER =
+        private static readonly byte[] Header =
         {
             0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x4C,
             0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F, 0x6E, 0x74,
@@ -71,8 +71,8 @@ namespace MagickaForge.Forges.Items
 
         public void ItemToXNB(string outputPath)
         {
-            BinaryWriter bw = new (File.Create(outputPath));
-            bw.Write(XNB_HEADER);
+            BinaryWriter bw = new(File.Create(outputPath));
+            bw.Write(Header);
             bw.Write(Name!);
             bw.Write(LocalizedName!);
             bw.Write(LocalizedDescription!);
@@ -209,13 +209,13 @@ namespace MagickaForge.Forges.Items
         }
         public static void WriteToJson(string outputPath, Item item)
         {
-            StreamWriter sw = new (outputPath);
+            StreamWriter sw = new(outputPath);
             sw.Write(JsonSerializer.Serialize(item, new JsonSerializerOptions { WriteIndented = true, }));
             sw.Close();
         }
         public static Item LoadFromJson(string inputPath)
         {
-            StreamReader sr = new (inputPath);
+            StreamReader sr = new(inputPath);
             string json = sr.ReadToEnd();
             sr.Close();
             return JsonSerializer.Deserialize<Item>(json)!;
@@ -223,8 +223,8 @@ namespace MagickaForge.Forges.Items
 
         public Item XNBToItem(string inputPath)
         {
-            BinaryReader br = new (File.Open(inputPath, FileMode.Open));
-            br.ReadBytes(XNB_HEADER.Length);
+            BinaryReader br = new(File.Open(inputPath, FileMode.Open));
+            br.ReadBytes(Header.Length);
 
             Name = br.ReadString();
             LocalizedName = br.ReadString();
@@ -289,7 +289,7 @@ namespace MagickaForge.Forges.Items
             if (HasSpecialAbility)
             {
                 SpecialAbilityCooldown = br.ReadSingle();
-                SpecialAbility specialAbility = new ();
+                SpecialAbility specialAbility = new();
                 specialAbility.Type = br.ReadString();
                 specialAbility.Animation = br.ReadString();
                 specialAbility.Hash = br.ReadString();

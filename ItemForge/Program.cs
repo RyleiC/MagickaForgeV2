@@ -1,7 +1,5 @@
-﻿using MagickaForge.Forges.Characters;
-using MagickaForge.Forges.Items;
+﻿using MagickaForge.Forges.Items;
 using System.Diagnostics;
-using System.Text.Json.Nodes;
 namespace ItemForge
 {
     internal class Program

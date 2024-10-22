@@ -1,4 +1,4 @@
-namespace MagickaForge.Forges.Components.Animations
+namespace MagickaForge.Components.Animations
 {
     public class AnimationSet
     {

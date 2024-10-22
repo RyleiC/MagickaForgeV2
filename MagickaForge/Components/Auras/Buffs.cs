@@ -1,7 +1,7 @@
 ﻿using MagickaForge.Utils;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Forges.Components.Auras
+namespace MagickaForge.Components.Auras
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "_BuffType")]
     [JsonDerivedType(typeof(BoostDamageBuff), typeDiscriminator: "BoostDamage")]
@@ -33,47 +33,47 @@ namespace MagickaForge.Forges.Components.Auras
 
             switch (buffType)
             {
-                case (BuffType.BoostDamage):
+                case BuffType.BoostDamage:
                     {
                         buff = new BoostDamageBuff() { AttackProperty = (AttackProperties)br.ReadInt32(), Element = (Elements)br.ReadInt32(), Amount = br.ReadSingle(), Magnitude = br.ReadSingle() };
                     }
                     break;
-                case (BuffType.DealDamage):
+                case BuffType.DealDamage:
                     {
                         buff = new DealDamageBuff() { AttackProperty = (AttackProperties)br.ReadInt32(), Element = (Elements)br.ReadInt32(), Amount = br.ReadSingle(), Magnitude = br.ReadSingle() };
                     }
                     break;
-                case (BuffType.Resistance):
+                case BuffType.Resistance:
                     {
                         buff = new ResistanceBuff() { Element = (Elements)br.ReadInt32(), Multiplier = br.ReadSingle(), Modifier = br.ReadSingle(), StatusImmunity = br.ReadBoolean() };
                     }
                     break;
-                case (BuffType.Undying):
+                case BuffType.Undying:
                     {
                         buff = new UndyingBuff();
                     }
                     break;
-                case (BuffType.Boost):
+                case BuffType.Boost:
                     {
                         buff = new BoostBuff() { BoostAmount = br.ReadSingle() };
                     }
                     break;
-                case (BuffType.ReduceAgro):
+                case BuffType.ReduceAgro:
                     {
                         buff = new ReduceAggroBuff() { AggroReduceAmount = br.ReadSingle() };
                     }
                     break;
-                case (BuffType.ModifyHitPoints):
+                case BuffType.ModifyHitPoints:
                     {
                         buff = new ModifyHitpointsBuff() { HealthMultiplier = br.ReadSingle(), HealthModifier = br.ReadSingle() };
                     }
                     break;
-                case (BuffType.ModifySpellTTL):
+                case BuffType.ModifySpellTTL:
                     {
                         buff = new ModifySpellTTLBuff() { SpellTimeMultiplier = br.ReadSingle(), SpellTimeModifier = br.ReadSingle() };
                     }
                     break;
-                case (BuffType.ModifySpellRange):
+                case BuffType.ModifySpellRange:
                     {
                         buff = new ModifySpellRangeBuff() { SpellRangeMultiplier = br.ReadSingle(), SpellRangeModifier = br.ReadSingle() };
                     }

@@ -1,6 +1,6 @@
 using MagickaForge.Utils;
 using System.Text.Json.Serialization;
-namespace MagickaForge.Forges.Components
+namespace MagickaForge.Components.Abilities
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "_AbilityType")]
     [JsonDerivedType(typeof(Block), typeDiscriminator: "Block")]
@@ -24,7 +24,7 @@ namespace MagickaForge.Forges.Components
         public float Cooldown { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<AbilityTarget>))]
         public AbilityTarget AbilityTarget { get; set; }
-        public string FuzzyExpression { get; set; }
+        public string? FuzzyExpression { get; set; }
         public string[] Animations { get; set; }
 
         public virtual void Write(BinaryWriter bw)
@@ -32,7 +32,7 @@ namespace MagickaForge.Forges.Components
             bw.Write(type.ToString());
             bw.Write(Cooldown);
             bw.Write((byte)AbilityTarget);
-            bool hasFuzzy = FuzzyExpression.Length > 0;
+            bool hasFuzzy = FuzzyExpression!.Length > 0;
             bw.Write(hasFuzzy);
             if (hasFuzzy)
             {
@@ -67,7 +67,7 @@ namespace MagickaForge.Forges.Components
             else if (type == AbilityTypes.CastSpell)
             {
                 ability = new CastSpell() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Angle = br.ReadSingle(), ChantTime = br.ReadSingle(), Power = br.ReadSingle(), CastType = (CastType)br.ReadInt32() };
-                CastSpell castSpell = (ability as CastSpell);
+                CastSpell castSpell = ability as CastSpell;
                 castSpell.Elements = new int[br.ReadInt32()];
                 for (int i = 0; i < castSpell.Elements.Length; i++)
                 {
@@ -101,7 +101,7 @@ namespace MagickaForge.Forges.Components
             else if (type == AbilityTypes.Melee)
             {
                 ability = new Melee() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), ArcAngle = br.ReadSingle() };
-                Melee melee = (ability as Melee);
+                Melee melee = ability as Melee;
                 melee.WeaponSlots = new int[br.ReadInt32()];
                 for (int i = 0; i < melee.WeaponSlots.Length; i++)
                 {
@@ -116,7 +116,7 @@ namespace MagickaForge.Forges.Components
             else if (type == AbilityTypes.Ranged)
             {
                 ability = new Ranged() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Elevation = br.ReadSingle(), Arc = br.ReadSingle(), Accuracy = br.ReadSingle() };
-                Ranged ranged = (ability as Ranged);
+                Ranged ranged = ability as Ranged;
                 ranged.WeaponSlots = new int[br.ReadInt32()];
                 for (int i = 0; i < ranged.WeaponSlots.Length; i++)
                 {
@@ -134,7 +134,7 @@ namespace MagickaForge.Forges.Components
             else if (type == AbilityTypes.ThrowGrip)
             {
                 ability = new ThrowGrip() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Elevation = br.ReadSingle() };
-                ThrowGrip throwGrip = (ability as ThrowGrip);
+                ThrowGrip throwGrip = ability as ThrowGrip;
                 throwGrip.Damages = new Damage[br.ReadInt32()];
                 for (int i = 0; i < throwGrip.Damages.Length; i++)
                 {

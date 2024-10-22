@@ -1,7 +1,7 @@
 using MagickaForge.Utils;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Forges.Components
+namespace MagickaForge.Components
 {
     public struct Damage
     {

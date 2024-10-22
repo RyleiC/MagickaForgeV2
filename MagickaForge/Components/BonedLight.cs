@@ -1,4 +1,4 @@
-using MagickaForge.Forges.Components;
+using MagickaForge.Components;
 
 public struct BonedLight
 {

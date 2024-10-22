@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Forges\Characters\" />
+    <Folder Include="Forges\PhysicsEntities\" />
   </ItemGroup>
 
   <ItemGroup>
