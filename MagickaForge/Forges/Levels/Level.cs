@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagickaForge.Forges.Level
+namespace MagickaForge.Forges.Levels
 {
     public class Level
     {
