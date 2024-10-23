@@ -1,6 +1,6 @@
 using MagickaForge.Utils;
 
-namespace MagickaForge.Components
+namespace MagickaForge.Components.Characters
 {
     public struct Movement
     {

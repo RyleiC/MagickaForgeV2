@@ -1,8 +1,7 @@
-﻿using MagickaForge.Components.Events;
-using MagickaForge.Utils;
+﻿using MagickaForge.Utils;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Components
+namespace MagickaForge.Components.Events
 {
     public class ConditionCollection
     {
@@ -20,7 +19,7 @@ namespace MagickaForge.Components
         public ConditionCollection(BinaryReader br)
         {
             ConditionType = (EventConditionType)br.ReadByte();
-            Hitpoints = br.ReadSingle();
+            Hitpoints = (float)br.ReadInt32();
             Element = (Elements)br.ReadInt32();
             Threshold = br.ReadSingle();
             Time = br.ReadSingle();

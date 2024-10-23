@@ -2,6 +2,8 @@ using MagickaForge.Components;
 using MagickaForge.Components.Abilities;
 using MagickaForge.Components.Animations;
 using MagickaForge.Components.Auras;
+using MagickaForge.Components.Characters;
+using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
 using MagickaForge.Utils;
 using System.Text.Json;

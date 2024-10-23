@@ -1,5 +1,6 @@
 ﻿using MagickaForge.Components;
 using MagickaForge.Components.Auras;
+using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
 using MagickaForge.Utils;
 using System.Text.Json;
@@ -142,7 +143,7 @@ namespace MagickaForge.Forges.Items
             for (int i = 0; i < MeleeConditions.Length; i++)
             {
                 bw.Write((byte)MeleeConditions[i].ConditionType);
-                bw.Write(MeleeConditions[i].Hitpoints);
+                bw.Write((int)MeleeConditions[i].Hitpoints);
                 bw.Write((int)MeleeConditions[i].Element);
                 bw.Write(MeleeConditions[i].Threshold);
                 bw.Write(MeleeConditions[i].Time);

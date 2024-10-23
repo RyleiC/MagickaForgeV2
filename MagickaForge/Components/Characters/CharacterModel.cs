@@ -1,4 +1,4 @@
-namespace MagickaForge.Components
+namespace MagickaForge.Components.Characters
 {
     public struct CharacterModel
     {
