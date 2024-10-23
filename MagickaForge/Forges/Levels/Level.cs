@@ -85,6 +85,8 @@ namespace MagickaForge.Forges.Levels
             {
                 locators[i] = new Locator(br);
             }
+            Console.WriteLine("YOU DID IT AND DIDN'T DIE YAY!!");
+            br.Close();
         }
         public void LevelToXNB(string inputPath)
         {

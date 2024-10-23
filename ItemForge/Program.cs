@@ -11,7 +11,7 @@ namespace ItemForge
 
             if (args.Length < 1)
             {
-                Console.WriteLine(@"Input the path to a JSON instruction file\directory:");
+                Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
                 instructionPath = Console.ReadLine()!;
             }
             else

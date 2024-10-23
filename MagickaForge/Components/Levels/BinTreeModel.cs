@@ -19,7 +19,6 @@ namespace MagickaForge.Components.Levels
             {
                 binaryTreeRoots[i] = new BinTreeRoot(binaryReader);
             }
-            Console.WriteLine($"Binary Tree read finished at {binaryReader.BaseStream.Position}");
         }
     }
 }

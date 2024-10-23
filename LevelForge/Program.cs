@@ -13,7 +13,7 @@ namespace LevelForge
 
             if (args.Length < 1)
             {
-                Console.WriteLine(@"Input the path to a JSON instruction file\directory:");
+                Console.WriteLine(@"Input the path to a XNB level file:");
                 instructionPath = Console.ReadLine()!;
             }
             else
