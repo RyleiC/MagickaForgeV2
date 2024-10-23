@@ -26,7 +26,7 @@ namespace MagickaForge.Components.Abilities
         [JsonConverter(typeof(JsonStringEnumConverter<AbilityTarget>))]
         public AbilityTarget AbilityTarget { get; set; }
         public string? FuzzyExpression { get; set; }
-        public List<string> Animations { get; set; }
+        public string[] Animations { get; set; }
 
         public virtual void Write(BinaryWriter bw)
         {
@@ -39,7 +39,7 @@ namespace MagickaForge.Components.Abilities
             {
                 bw.Write(FuzzyExpression);
             }
-            bw.Write(Animations.Count);
+            bw.Write(Animations.Length);
             foreach (string animation in Animations)
             {
                 bw.Write(animation);
@@ -55,8 +55,8 @@ namespace MagickaForge.Components.Abilities
             {
                 fuzzyExpression = br.ReadString();
             }
-            List<string> animations = new List<string>(br.ReadInt32());
-            for (int i = 0; i < animations.Count; i++)
+            string[] animations = new string[br.ReadInt32()];
+            for (int i = 0; i < animations.Length; i++)
             {
                 animations[i] = br.ReadString();
             }
