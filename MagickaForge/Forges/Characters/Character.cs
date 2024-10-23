@@ -2,6 +2,7 @@ using MagickaForge.Components;
 using MagickaForge.Components.Abilities;
 using MagickaForge.Components.Animations;
 using MagickaForge.Components.Auras;
+using MagickaForge.Components.Lights;
 using MagickaForge.Utils;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -278,7 +279,7 @@ namespace MagickaForge.Forges.Characters
             return JsonSerializer.Deserialize<Character>(json)!;
         }
 
-        public Character XNBToCharacter(string inputPath, bool legacyMagicka)
+        public void XNBToCharacter(string inputPath, bool legacyMagicka)
         {
             BinaryReader br = new(File.Open(inputPath, FileMode.Open));
             br.ReadBytes(Header.Length);
@@ -523,7 +524,6 @@ namespace MagickaForge.Forges.Characters
 
             }
             br.Close();
-            return this;
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿using MagickaForge.Utils;
 using System.Text.Json.Serialization;
 
-namespace MagickaForge.Components
+namespace MagickaForge.Components.Lights
 {
     public struct Light
     {

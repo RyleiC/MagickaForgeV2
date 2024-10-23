@@ -1,5 +1,6 @@
 ﻿using MagickaForge.Components;
 using MagickaForge.Components.Auras;
+using MagickaForge.Components.Lights;
 using MagickaForge.Utils;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -221,7 +222,7 @@ namespace MagickaForge.Forges.Items
             return JsonSerializer.Deserialize<Item>(json)!;
         }
 
-        public Item XNBToItem(string inputPath)
+        public void XNBToItem(string inputPath)
         {
             BinaryReader br = new(File.Open(inputPath, FileMode.Open));
             br.ReadBytes(Header.Length);
@@ -354,7 +355,7 @@ namespace MagickaForge.Forges.Items
 
                 switch (auraType)
                 {
-                    case (AuraType.Buff):
+                    case AuraType.Buff:
                         {
                             Auras[i] = new BuffAura()
                             {
@@ -362,7 +363,7 @@ namespace MagickaForge.Forges.Items
                             };
                         }
                         break;
-                    case (AuraType.Deflect):
+                    case AuraType.Deflect:
                         {
                             Auras[i] = new DeflectAura()
                             {
@@ -370,7 +371,7 @@ namespace MagickaForge.Forges.Items
                             };
                         }
                         break;
-                    case (AuraType.Boost):
+                    case AuraType.Boost:
                         {
                             Auras[i] = new BoostAura()
                             {
@@ -378,7 +379,7 @@ namespace MagickaForge.Forges.Items
                             };
                         }
                         break;
-                    case (AuraType.LifeSteal):
+                    case AuraType.LifeSteal:
                         {
                             Auras[i] = new LifeStealAura()
                             {
@@ -386,7 +387,7 @@ namespace MagickaForge.Forges.Items
                             };
                         }
                         break;
-                    case (AuraType.Love):
+                    case AuraType.Love:
                         {
                             Auras[i] = new LoveAura()
                             {
@@ -408,7 +409,6 @@ namespace MagickaForge.Forges.Items
             }
 
             br.Close();
-            return this;
         }
     }
 

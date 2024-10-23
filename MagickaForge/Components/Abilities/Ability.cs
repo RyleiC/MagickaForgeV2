@@ -1,4 +1,5 @@
 using MagickaForge.Utils;
+using System.Collections;
 using System.Text.Json.Serialization;
 namespace MagickaForge.Components.Abilities
 {
@@ -25,7 +26,7 @@ namespace MagickaForge.Components.Abilities
         [JsonConverter(typeof(JsonStringEnumConverter<AbilityTarget>))]
         public AbilityTarget AbilityTarget { get; set; }
         public string? FuzzyExpression { get; set; }
-        public string[] Animations { get; set; }
+        public List<string> Animations { get; set; }
 
         public virtual void Write(BinaryWriter bw)
         {
@@ -38,7 +39,7 @@ namespace MagickaForge.Components.Abilities
             {
                 bw.Write(FuzzyExpression);
             }
-            bw.Write(Animations.Length);
+            bw.Write(Animations.Count);
             foreach (string animation in Animations)
             {
                 bw.Write(animation);
@@ -54,8 +55,8 @@ namespace MagickaForge.Components.Abilities
             {
                 fuzzyExpression = br.ReadString();
             }
-            string[] animations = new string[br.ReadInt32()];
-            for (int i = 0; i < animations.Length; i++)
+            List<string> animations = new List<string>(br.ReadInt32());
+            for (int i = 0; i < animations.Count; i++)
             {
                 animations[i] = br.ReadString();
             }
@@ -67,8 +68,8 @@ namespace MagickaForge.Components.Abilities
             else if (type == AbilityTypes.CastSpell)
             {
                 ability = new CastSpell() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Angle = br.ReadSingle(), ChantTime = br.ReadSingle(), Power = br.ReadSingle(), CastType = (CastType)br.ReadInt32() };
-                CastSpell castSpell = ability as CastSpell;
-                castSpell.Elements = new int[br.ReadInt32()];
+                CastSpell? castSpell = ability as CastSpell;
+                castSpell!.Elements = new int[br.ReadInt32()];
                 for (int i = 0; i < castSpell.Elements.Length; i++)
                 {
                     castSpell.Elements[i] = br.ReadInt32();

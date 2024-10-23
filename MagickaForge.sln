@@ -5,9 +5,11 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagickaForge", "MagickaForge\MagickaForge.csproj", "{0DE0316F-A7B3-4C26-8B48-73DCC767C92A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterForge", "CharacterForge\CharacterForge.csproj", "{FD92E76A-98B8-4222-9684-DA8712B5E1E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterForge", "CharacterForge\CharacterForge.csproj", "{FD92E76A-98B8-4222-9684-DA8712B5E1E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemForge", "ItemForge\ItemForge.csproj", "{32ACD06A-5C83-48E3-B64D-04C7EA06D387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemForge", "ItemForge\ItemForge.csproj", "{32ACD06A-5C83-48E3-B64D-04C7EA06D387}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelForge", "LevelForge\LevelForge.csproj", "{E88CDEE7-5AF8-4AF4-9A2C-4B9FE61AB3F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{32ACD06A-5C83-48E3-B64D-04C7EA06D387}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32ACD06A-5C83-48E3-B64D-04C7EA06D387}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32ACD06A-5C83-48E3-B64D-04C7EA06D387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88CDEE7-5AF8-4AF4-9A2C-4B9FE61AB3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88CDEE7-5AF8-4AF4-9A2C-4B9FE61AB3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88CDEE7-5AF8-4AF4-9A2C-4B9FE61AB3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88CDEE7-5AF8-4AF4-9A2C-4B9FE61AB3F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

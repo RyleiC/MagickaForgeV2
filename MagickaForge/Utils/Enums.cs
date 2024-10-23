@@ -637,5 +637,12 @@
         Dynamic = 128,
         All = 255
     }
+    public enum LightType
+    {
+        Point,
+        Directional,
+        Spot,
+        Custom = 10
+    }
 }
 

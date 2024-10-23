@@ -80,7 +80,7 @@ namespace ItemForge
                     throw new FileNotFoundException(InstructionPath);
                 }
                 Item item = new();
-                item = item.XNBToItem(InstructionPath);
+                item.XNBToItem(InstructionPath);
                 Item.WriteToJson(InstructionPath.Replace(".xnb", ".json"), item);
                 Console.WriteLine($"Succesfully decompiled {InstructionPath}");
             }

@@ -82,7 +82,7 @@ namespace CharacterForge
                     throw new FileNotFoundException(InstructionPath);
                 }
                 Character character = new();
-                character = character.XNBToCharacter(InstructionPath, LegacyMagicka);
+                character.XNBToCharacter(InstructionPath, LegacyMagicka);
                 Character.WriteToJson(InstructionPath.Replace(".xnb", ".json"), character);
                 Console.WriteLine($"Succesfully decompiled {InstructionPath}");
             }
