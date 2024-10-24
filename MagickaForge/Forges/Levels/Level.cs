@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MagickaForge.Components.Levels;
+﻿using MagickaForge.Components.Levels;
 using MagickaForge.Components.Levels.LevelEntities;
+using MagickaForge.Components.Levels.Liquid;
+using MagickaForge.Components.XNB;
+using System.IO;
 
 namespace MagickaForge.Forges.Levels
 {
@@ -22,24 +19,50 @@ namespace MagickaForge.Forges.Levels
      */
     public class Level
     {
+        private Header header;
         private BinTreeModel model;
         private Light[] lights;
         private Effect[] effects;
         private PhysicsEntity[] physicsEntities;
+        private LiquidDeclaration[] liquids;
+        private ForceField[] forceFields;
         private TriangleMesh[] collisionMeshes;
         private TriangleMesh cameraMesh;
         private TriggerArea[] triggerAreas;
         private Locator[] locators;
-        
+
+        public void LevelToXNB(string outputPath)
+        {
+            BinaryWriter bw = new(File.Open(outputPath, FileMode.Create));
+
+            header.Write(bw);
+            bw.Write7BitEncodedInt(header.GetReaderIndex(ReaderType.Level));
+            bw.Write(header.GetReaderIndex(ReaderType.BinaryTree));
+            model.Write(bw);
+
+            bw.Close();
+        }
         public void XNBToLevel(string inputPath)
         {
             BinaryReader br = new(File.Open(inputPath, FileMode.Open));
-            br.ReadByte();
-            br.ReadBytes(617); //to replace, hardcoded for now
 
-            model = new BinTreeModel(br); //BINARY TREE
+            header = new Header(br);
 
-            br.ReadInt32(); //ANIMATED LEVEL PARTS
+            br.ReadByte(); //0 read, will always be the first reader
+
+            for (int i = 0; i < 13; i++) //DEBUGGING
+            {
+                Console.WriteLine($"{(ReaderType)i}: {header.GetReaderIndex((ReaderType)i)}");
+            }
+
+            br.ReadByte(); //GraphicsDevice useless read
+            model = new BinTreeModel(br, header); //BINARY TREE
+
+            if (br.ReadInt32() != 0) //ANIMATED LEVEL PARTS
+            {
+                throw new NotImplementedException("No animated objects hooked up!");
+            }
+            
 
             lights = new Light[br.ReadInt32()]; //LIGHTS
             for (int i = 0; i < lights.Length; i++)
@@ -52,13 +75,21 @@ namespace MagickaForge.Forges.Levels
                 effects[i] = new Effect(br);
             }
             physicsEntities = new PhysicsEntity[br.ReadInt32()];
-            for (int i = 0; i< physicsEntities.Length; i++)
+            for (int i = 0; i < physicsEntities.Length; i++)
             {
                 physicsEntities[i] = new PhysicsEntity(br);
             }
 
-            br.ReadInt32(); //LIQUIDS
-            br.ReadInt32(); //FORCE FIELDS
+            liquids = new LiquidDeclaration[br.ReadInt32()];
+            for (int i = 0; i < liquids.Length; i++)
+            {
+                liquids[i] = new LiquidDeclaration(br, header);
+            }
+            forceFields = new ForceField[br.ReadInt32()];
+            for (int i = 0; i < forceFields.Length; i++)
+            {
+                forceFields[i] = new ForceField(br);
+            }
 
             collisionMeshes = new TriangleMesh[10];
             for (int i = 0; i < 10; i++)
@@ -76,21 +107,18 @@ namespace MagickaForge.Forges.Levels
                 cameraMesh = new TriangleMesh(br);
             }
             triggerAreas = new TriggerArea[br.ReadInt32()];
-            for (int i = 0;i < triggerAreas.Length; i++)
+            for (int i = 0; i < triggerAreas.Length; i++)
             {
                 triggerAreas[i] = new TriggerArea(br);
             }
             locators = new Locator[br.ReadInt32()];
-            for ( int i = 0; i < locators.Length; i++)
+            for (int i = 0; i < locators.Length; i++)
             {
                 locators[i] = new Locator(br);
             }
             Console.WriteLine("YOU DID IT AND DIDN'T DIE YAY!!");
             br.Close();
-        }
-        public void LevelToXNB(string inputPath)
-        {
-
+            LevelToXNB(inputPath.Replace(".xnb", ".mlvl"));
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagickaForge.Components.Graphics.Effects
+﻿namespace MagickaForge.Components.Graphics.Effects
 {
-    public class AdditiveEffect : Effect
+    public class AdditiveEffect : ShaderEffect
     {
         private float[] _colorTint;
         private bool _useVertexColor;

@@ -1,5 +1,4 @@
 using MagickaForge.Utils;
-using System.Collections;
 using System.Text.Json.Serialization;
 namespace MagickaForge.Components.Abilities
 {

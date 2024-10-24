@@ -1,13 +1,4 @@
-﻿using MagickaForge.Components.Animations;
-using MagickaForge.Components.Graphics.Effects;
-using MagickaForge.Components.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagickaForge.Components.Levels
+﻿namespace MagickaForge.Components.Levels
 {
     public class BinTreeNode
     {

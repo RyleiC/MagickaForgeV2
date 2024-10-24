@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagickaForge.Components.Graphics.Effects
+﻿namespace MagickaForge.Components.Graphics.Effects
 {
-    public class RenderDeferredEffect : Effect
+    public class RenderDeferredEffect : ShaderEffect
     {
         private float _alpha;
         private float _sharpness;
@@ -27,7 +21,7 @@ namespace MagickaForge.Components.Graphics.Effects
             {
                 DiffuseNoAlpha = binaryReader.ReadBoolean(),
                 AlphaMaskEnabled = binaryReader.ReadBoolean(),
-                DiffuseColor = [ binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle() ],
+                DiffuseColor = [binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle()],
                 SpecularAmount = binaryReader.ReadSingle(),
                 SpecularPower = binaryReader.ReadSingle(),
                 EmissiveAmount = binaryReader.ReadSingle(),

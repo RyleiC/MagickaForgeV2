@@ -1,5 +1,4 @@
-﻿using MagickaForge.Forges.Items;
-using MagickaForge.Forges.Levels;
+﻿using MagickaForge.Forges.Levels;
 using System.Diagnostics;
 
 namespace LevelForge

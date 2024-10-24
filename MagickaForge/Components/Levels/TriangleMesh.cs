@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace MagickaForge.Components.Levels
 {
@@ -22,7 +17,7 @@ namespace MagickaForge.Components.Levels
                 vertices[i] = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
             }
             indices = new int[binaryReader.ReadInt32() * 3];
-            for (int i = 0;i < indices.Length; i++)
+            for (int i = 0; i < indices.Length; i++)
             {
                 indices[i] = binaryReader.ReadInt32();
             }

@@ -1,10 +1,6 @@
 ﻿using MagickaForge.Components.Graphics;
 using MagickaForge.Components.Graphics.Effects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MagickaForge.Components.XNB;
 
 namespace MagickaForge.Components.Levels
 {
@@ -21,7 +17,7 @@ namespace MagickaForge.Components.Levels
         private VertexDeclaration _vertexDeclaration;
         private VertexBuffer _vertexBuffer;
         private IndexBuffer _indexBuffer;
-        private Effect _effect;
+        private ShaderEffect _effect;
 
         private int _primativeCount;
         private int _startIndex;
@@ -31,7 +27,7 @@ namespace MagickaForge.Components.Levels
         private BinTreeNode _childA;
         private BinTreeNode _childB;
 
-        public BinTreeRoot(BinaryReader binaryReader)
+        public BinTreeRoot(BinaryReader binaryReader, Header header)
         {
             _visible = binaryReader.ReadBoolean();
             _castShadows = binaryReader.ReadBoolean();
@@ -41,11 +37,10 @@ namespace MagickaForge.Components.Levels
             _vertexCount = binaryReader.ReadInt32();
             _vertexStride = binaryReader.ReadInt32();
 
-            _vertexDeclaration =  new VertexDeclaration(binaryReader);
-            binaryReader.ReadByte();
+            _vertexDeclaration = new VertexDeclaration(binaryReader);
             _vertexBuffer = new VertexBuffer(binaryReader);
             _indexBuffer = new IndexBuffer(binaryReader);
-            _effect = Effect.GetEffect(binaryReader);
+            _effect = ShaderEffect.GetEffect(binaryReader, header);
 
             _primativeCount = binaryReader.ReadInt32();
             _startIndex = binaryReader.ReadInt32();
@@ -69,6 +64,19 @@ namespace MagickaForge.Components.Levels
             {
                 _childB = new BinTreeNode(binaryReader);
             }
+        }
+        public void Write(BinaryWriter binaryWriter, Header header)
+        {
+            binaryWriter.Write(_visible);
+            binaryWriter.Write(_castShadows);
+            binaryWriter.Write(_sway);
+            binaryWriter.Write(_entityInfluence);
+            binaryWriter.Write(_groundLevel);
+            binaryWriter.Write(_vertexCount);
+            binaryWriter.Write(_vertexStride);
+      /*      binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexDeclaration));
+            binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexBuffer));
+            binaryWriter.Write(header.GetReaderIndex(ReaderType.IndexBuffer));*/
         }
     }
 }
