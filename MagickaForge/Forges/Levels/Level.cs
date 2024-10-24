@@ -33,14 +33,14 @@ namespace MagickaForge.Forges.Levels
 
         public void LevelToXNB(string outputPath)
         {
-            BinaryWriter bw = new(File.Open(outputPath, FileMode.Create));
+         /*   BinaryWriter bw = new(File.Open(outputPath, FileMode.Create));
 
             header.Write(bw);
             bw.Write7BitEncodedInt(header.GetReaderIndex(ReaderType.Level));
             bw.Write(header.GetReaderIndex(ReaderType.BinaryTree));
             model.Write(bw);
 
-            bw.Close();
+            bw.Close();*/
         }
         public void XNBToLevel(string inputPath)
         {
@@ -60,7 +60,7 @@ namespace MagickaForge.Forges.Levels
 
             if (br.ReadInt32() != 0) //ANIMATED LEVEL PARTS
             {
-                throw new NotImplementedException("No animated objects hooked up!");
+                throw new NotImplementedException("No animated objects hooked up! (yet, come back later!)");
             }
             
 
