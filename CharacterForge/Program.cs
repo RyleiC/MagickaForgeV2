@@ -1,4 +1,4 @@
-﻿using MagickaForge.Forges.Characters;
+﻿using MagickaForge.Pipeline.Characters;
 using System.Diagnostics;
 namespace CharacterForge
 {
@@ -21,7 +21,7 @@ namespace CharacterForge
             }
             Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
             int mode = int.Parse(Console.ReadLine()!);
-            Console.WriteLine("Do you want to compile to an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
+            Console.WriteLine("Is this XNB from an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
             LegacyMagicka = int.Parse(Console.ReadLine()!) == 1;
             Console.WriteLine("= Process Starting... =\n");
 

@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Levels.LevelEntities
 {
@@ -8,13 +8,12 @@ namespace MagickaForge.Components.Levels.LevelEntities
         public Vector3 Position { get; set; }
         public Vector3 SideLenghts { get; set; }
         public Quaternion Quaternion { get; set; }
-        public float[] Orientation { get; set; }
         public TriggerArea(BinaryReader binaryReader)
         {
             Name = binaryReader.ReadString();
-            Position = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
-            SideLenghts = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
-            Quaternion = new Quaternion(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
+            Position = new Vector3(binaryReader);
+            SideLenghts = new Vector3(binaryReader);
+            Quaternion = new Quaternion(binaryReader);
         }
     }
 }

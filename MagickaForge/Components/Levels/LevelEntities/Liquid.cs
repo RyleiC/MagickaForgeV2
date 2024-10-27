@@ -1,13 +1,6 @@
-﻿using MagickaForge.Components.Graphics.Effects;
+﻿using MagickaForge.Components.Graphics;
+using MagickaForge.Components.Graphics.Effects;
 using MagickaForge.Components.XNB;
-using MagickaForge.Components.Levels.LevelEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MagickaForge.Components.Graphics;
-using System.IO;
 
 namespace MagickaForge.Components.Levels.Liquid
 {

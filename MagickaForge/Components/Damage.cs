@@ -1,4 +1,4 @@
-using MagickaForge.Utils;
+using MagickaForge.Utils.Definitions;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components

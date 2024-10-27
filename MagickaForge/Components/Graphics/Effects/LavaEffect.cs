@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Graphics.Effects
 {
@@ -31,8 +26,8 @@ namespace MagickaForge.Components.Graphics.Effects
         public LavaEffect(BinaryReader binaryReader)
         {
             maskDistortion = binaryReader.ReadSingle();
-            speedA = new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle());
-            speedB = new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle());
+            speedA = new Vector2(binaryReader);
+            speedB = new Vector2(binaryReader);
             lavaHotEmission = binaryReader.ReadSingle();
             lavaColdEmission = binaryReader.ReadSingle();
             lavaSpecAmount = binaryReader.ReadSingle();

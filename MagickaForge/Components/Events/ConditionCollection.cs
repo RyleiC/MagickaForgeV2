@@ -1,4 +1,8 @@
-﻿using MagickaForge.Utils;
+﻿using MagickaForge.Utils.Definitions;
+using MagickaForge.Utils.Definitions.AI;
+using MagickaForge.Utils.Definitions.Events;
+using MagickaForge.Utils.Definitions.Graphics;
+using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Events
@@ -110,7 +114,7 @@ namespace MagickaForge.Components.Events
                                 ReactTo = (ReactTo)br.ReadByte(),
                                 Reaction = (Order)br.ReadByte(),
                                 Rotation = br.ReadSingle(),
-                                Offset = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()]
+                                Offset = new Vector3(br)
                             };
                         }
                         break;
@@ -154,8 +158,8 @@ namespace MagickaForge.Components.Events
                             Events[i] = new LightEvent()
                             {
                                 Radius = br.ReadSingle(),
-                                DiffuseColor = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()],
-                                AmbientColor = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()],
+                                DiffuseColor = new Color(br),
+                                AmbientColor = new Color(br),
                                 SpecularAmount = br.ReadSingle(),
                                 LightVariationType = (LightVariationType)br.ReadByte(),
                                 VariationAmount = br.ReadSingle(),
@@ -168,11 +172,11 @@ namespace MagickaForge.Components.Events
                             Events[i] = new CastMagickEvent()
                             {
                                 MagickType = br.ReadString(),
-                                Elements = new int[br.ReadInt32()]
+                                Elements = new Elements[br.ReadInt32()]
                             };
                             for (int x = 0; x < (Events[i] as CastMagickEvent)!.Elements!.Length; x++)
                             {
-                                (Events[i] as CastMagickEvent)!.Elements![x] = br.ReadInt32();
+                                (Events[i] as CastMagickEvent)!.Elements![x] = (Elements)br.ReadInt32();
                             }
                         }
                         break;
@@ -187,6 +191,20 @@ namespace MagickaForge.Components.Events
                         };
                         break;
                 }
+            }
+        }
+        public void Write(BinaryWriter bw)
+        {
+            bw.Write((byte)ConditionType);
+            bw.Write((int)Hitpoints);
+            bw.Write((int)Element);
+            bw.Write(Threshold);
+            bw.Write(Time);
+            bw.Write(Repeat);
+            bw.Write(Events!.Length);
+            foreach (Event conditionEvent in Events)
+            {
+                conditionEvent.Write(bw);
             }
         }
     }

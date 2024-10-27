@@ -4,26 +4,18 @@ namespace MagickaForge.Components.Levels
 {
     public class BinTreeModel
     {
-        Header header;
-        BinTreeRoot[] binaryTreeRoots;
+        private Header header;
+        public BinTreeRoot[] BinaryTreeRoots { get; set; }
 
         public BinTreeModel(BinaryReader binaryReader, Header header)
         {
             this.header = header;
 
             var count = binaryReader.ReadInt32();
-            binaryTreeRoots = new BinTreeRoot[count];
+            BinaryTreeRoots = new BinTreeRoot[count];
             for (int i = 0; i < count; i++)
             {
-                binaryTreeRoots[i] = new BinTreeRoot(binaryReader, header);
-            }
-        }
-        public void Write(BinaryWriter binaryWriter)
-        {
-            binaryWriter.Write(binaryTreeRoots.Length);
-            foreach (var root in binaryTreeRoots)
-            {
-                root.Write(binaryWriter, header);
+                BinaryTreeRoots[i] = new BinTreeRoot(binaryReader, header);
             }
         }
     }

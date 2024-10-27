@@ -7,7 +7,6 @@ namespace MagickaForge.Components.Levels
         private Vector3[] vertices;
         private int[] indices;
 
-        public TriangleMesh() { }
         public TriangleMesh(BinaryReader binaryReader)
         {
             binaryReader.ReadByte();

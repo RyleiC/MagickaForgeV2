@@ -9,12 +9,12 @@
 
         public AdditiveEffect(BinaryReader binaryReader)
         {
-            float[] colorTint = new float[4];
+            _colorTint = new float[4];
             for (int i = 0; i < 3; i++)
             {
-                colorTint[i] = binaryReader.ReadSingle();
+                _colorTint[i] = binaryReader.ReadSingle();
             }
-            colorTint[3] = 1f;
+            _colorTint[3] = 1f;
             _useVertexColor = binaryReader.ReadBoolean();
             _hasTexture = binaryReader.ReadBoolean();
             _texture = binaryReader.ReadString();

@@ -1,12 +1,11 @@
 ﻿using MagickaForge.Components.Graphics;
-using System;
-using System.Numerics;
+using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Levels
 {
     public class ForceField
     {
-        private Vector3 color;
+        private Color color;
         private float width;
         private float alphaPower;
         private float alphaFalloffPower;
@@ -25,7 +24,7 @@ namespace MagickaForge.Components.Levels
 
         public ForceField(BinaryReader binaryReader)
         {
-            color = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
+            color = new Color(binaryReader);
             width = binaryReader.ReadSingle();
             alphaPower = binaryReader.ReadSingle();
             alphaFalloffPower = binaryReader.ReadSingle();
@@ -33,7 +32,7 @@ namespace MagickaForge.Components.Levels
             rippleDistortion = binaryReader.ReadSingle();
             mapDistortion = binaryReader.ReadSingle();
             vertexColorEnabled = binaryReader.ReadBoolean();
-            displacementMap =  binaryReader.ReadString();
+            displacementMap = binaryReader.ReadString();
             timeToLive = binaryReader.ReadSingle();
             vertexBuffer = new VertexBuffer(binaryReader);
             indexBuffer = new IndexBuffer(binaryReader);

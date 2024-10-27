@@ -1,4 +1,6 @@
-﻿using MagickaForge.Utils;
+﻿using MagickaForge.Utils.Definitions;
+using MagickaForge.Utils.Definitions.Auras;
+using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Auras
@@ -17,7 +19,7 @@ namespace MagickaForge.Components.Auras
         public AuraTarget AuraTarget { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<VisualCategory>))]
         public VisualCategory VisualCategory { get; set; }
-        public float[]? Color { get; set; }
+        public Color Color { get; set; }
         public string? Effect { get; set; }
         public float Duration { get; set; }
         public float Radius { get; set; }
@@ -30,10 +32,7 @@ namespace MagickaForge.Components.Auras
             bw.Write((byte)AuraTarget);
             bw.Write((byte)type);
             bw.Write((byte)VisualCategory);
-            for (int i = 0; i < 3; i++)
-            {
-                bw.Write(Color[i]);
-            }
+            Color.Write(bw);
             bw.Write(Effect);
             bw.Write(Duration);
             bw.Write(Radius);

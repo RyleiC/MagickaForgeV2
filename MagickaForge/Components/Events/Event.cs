@@ -1,4 +1,8 @@
-﻿using MagickaForge.Utils;
+﻿using MagickaForge.Utils.Definitions;
+using MagickaForge.Utils.Definitions.AI;
+using MagickaForge.Utils.Definitions.Events;
+using MagickaForge.Utils.Definitions.Graphics;
+using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Events
@@ -168,7 +172,7 @@ namespace MagickaForge.Components.Events
         [JsonConverter(typeof(JsonStringEnumConverter<Order>))]
         public Order Reaction { get; set; }
         public float Rotation { get; set; }
-        public required float[] Offset { get; set; }
+        public required Vector3 Offset { get; set; }
         public SpawnEvent() { type = EventType.Spawn; }
         public override void Write(BinaryWriter bw)
         {
@@ -181,10 +185,7 @@ namespace MagickaForge.Components.Events
             bw.Write((byte)ReactTo);
             bw.Write((byte)Reaction);
             bw.Write(Rotation);
-            foreach (int i in Offset)
-            {
-                bw.Write(i);
-            }
+            Offset.Write(bw);
         }
     }
 
@@ -245,8 +246,8 @@ namespace MagickaForge.Components.Events
     public class LightEvent : Event
     {
         public float Radius { get; set; }
-        public required float[] DiffuseColor { get; set; }
-        public required float[] AmbientColor { get; set; }
+        public required Color DiffuseColor { get; set; }
+        public required Color AmbientColor { get; set; }
         public float SpecularAmount { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<LightVariationType>))]
         public LightVariationType LightVariationType { get; set; }
@@ -258,14 +259,8 @@ namespace MagickaForge.Components.Events
         {
             base.Write(bw);
             bw.Write((float)Radius);
-            foreach (float v in DiffuseColor)
-            {
-                bw.Write(v);
-            }
-            foreach (float v in AmbientColor)
-            {
-                bw.Write(v);
-            }
+            DiffuseColor.Write(bw);
+            AmbientColor.Write(bw);
             bw.Write(SpecularAmount);
             bw.Write((byte)LightVariationType);
             bw.Write(VariationAmount);
@@ -275,7 +270,7 @@ namespace MagickaForge.Components.Events
     public class CastMagickEvent : Event
     {
         public required string MagickType { get; set; }
-        public int[] Elements { get; set; }
+        public Elements[] Elements { get; set; }
         public CastMagickEvent() { type = EventType.CastMagick; }
 
         public override void Write(BinaryWriter bw)
@@ -283,9 +278,9 @@ namespace MagickaForge.Components.Events
             base.Write(bw);
             bw.Write(MagickType);
             bw.Write(Elements.Length);
-            foreach (int e in Elements)
+            foreach (var element in Elements)
             {
-                bw.Write(e);
+                bw.Write((int)element);
             }
         }
     }

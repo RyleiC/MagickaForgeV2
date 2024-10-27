@@ -3,9 +3,9 @@
     public class Header
     {
         private readonly byte[] Head = [0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00];
-        private ReaderCache[] readers;
+        public ReaderCache[] readers { get; set; }
         private Dictionary<ReaderType, int> readerTypes;
-        private int sharedResources;
+        public int sharedResources { get; set; }
 
         public Header(BinaryReader binaryReader)
         {
@@ -37,7 +37,8 @@
             binaryWriter.Write7BitEncodedInt(readers.Length);
             foreach (var reader in readers)
             {
-                reader.Write(binaryWriter);
+                binaryWriter.Write(reader.Cache!);
+                binaryWriter.Write(reader.Version);
             }
             binaryWriter.Write7BitEncodedInt(sharedResources);
         }

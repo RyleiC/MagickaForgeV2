@@ -1,9 +1,11 @@
-﻿namespace MagickaForge.Components.XNB
+﻿using System.Text.Json.Serialization;
+
+namespace MagickaForge.Components.XNB
 {
     public class ReaderCache
     {
-        private string? cache;
-        private int version;
+        public string? Cache { get; set; }
+        public int Version { get; set; }
         private ReaderType type;
 
         private const string LEVEL_MODEL = "Magicka.ContentReaders.LevelModelReader, Magicka";
@@ -17,16 +19,16 @@
         private const string LAVA = "PolygonHead.Pipeline.LavaEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
         private const string MODEL = "Microsoft.Xna.Framework.Content.ModelReader";
         private const string STRING = "Microsoft.Xna.Framework.Content.StringReader";
-        private const string VECTOR3_LIST = "\u0001Microsoft.Xna.Framework.Content.ListReader`1[[Microsoft.Xna.Framework.Vector3, Microsoft.Xna.Framework, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d]]";
+        private const string VECTOR3_LIST = "Microsoft.Xna.Framework.Content.ListReader`1[[Microsoft.Xna.Framework.Vector3, Microsoft.Xna.Framework, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d]]";
         private const string VECTOR3 = "Microsoft.Xna.Framework.Content.Vector3Reader";
 
 
         public ReaderCache(BinaryReader binaryReader)
         {
-            cache = binaryReader.ReadString();
-            version = binaryReader.ReadInt32();
+            Cache = binaryReader.ReadString();
+            Version = binaryReader.ReadInt32();
 
-            switch (cache)
+            switch (Cache)
             {
                 case (LEVEL_MODEL): type = ReaderType.Level; break;
                 case (BINARY_TREE): type = ReaderType.BinaryTree; break;
@@ -44,12 +46,7 @@
             }
         }
 
-        public void Write(BinaryWriter binaryWriter)
-        {
-            binaryWriter.Write(cache);
-            binaryWriter.Write(version);
-        }
-
+        [JsonIgnore]
         public ReaderType Type
         {
             get

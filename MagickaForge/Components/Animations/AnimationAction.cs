@@ -1,4 +1,7 @@
-using MagickaForge.Utils;
+using MagickaForge.Utils.Definitions;
+using MagickaForge.Utils.Definitions.Abilities;
+using MagickaForge.Utils.Definitions.Animations;
+using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Animations
@@ -95,7 +98,7 @@ namespace MagickaForge.Components.Animations
             }
             else if (aType == ActionType.DetachItem)
             {
-                action = new DetachItem { WeaponSlot = br.ReadInt32(), Velocity = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()] };
+                action = new DetachItem { WeaponSlot = br.ReadInt32(), Velocity = new Vector3(br) };
             }
             else if (aType == ActionType.Ethereal)
             {
@@ -178,10 +181,10 @@ namespace MagickaForge.Components.Animations
                     spec.Type = br.ReadString();
                     spec.Animation = br.ReadString();
                     spec.Hash = br.ReadString();
-                    spec.Elements = new int[br.ReadInt32()];
+                    spec.Elements = new Elements[br.ReadInt32()];
                     for (int i = 0; i < spec.Elements.Length; i++)
                     {
-                        spec.Elements[i] = br.ReadInt32();
+                        spec.Elements[i] = (Elements)br.ReadInt32();
                     }
                 }
                 action = new SpecialAbilityAction() { WeaponSlot = weaponSlot, SpecialAbilityInstance = spec };
@@ -338,7 +341,7 @@ namespace MagickaForge.Components.Animations
     public class DetachItem : AnimationAction
     {
         public int WeaponSlot { get; set; }
-        public float[]? Velocity { get; set; }
+        public Vector3 Velocity { get; set; }
         public DetachItem()
         {
             type = ActionType.DetachItem;
@@ -348,10 +351,7 @@ namespace MagickaForge.Components.Animations
         {
             base.Write(bw);
             bw.Write(WeaponSlot);
-            for (int i = 0; i < 3; i++)
-            {
-                bw.Write(Velocity![i]);
-            }
+            Velocity.Write(bw);
         }
     }
     public class Ethereal : AnimationAction
@@ -611,7 +611,7 @@ namespace MagickaForge.Components.Animations
                 bw.Write(SpecialAbilityInstance.Elements!.Length);
                 for (int i = 0; i < SpecialAbilityInstance.Elements.Length; i++)
                 {
-                    bw.Write(SpecialAbilityInstance.Elements[i]);
+                    bw.Write((int)SpecialAbilityInstance.Elements[i]);
                 }
             }
         }

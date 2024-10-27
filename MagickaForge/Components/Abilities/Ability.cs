@@ -1,4 +1,7 @@
-using MagickaForge.Utils;
+using MagickaForge.Utils.Definitions;
+using MagickaForge.Utils.Definitions.Abilities;
+using MagickaForge.Utils.Definitions.Spellcasting;
+using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 namespace MagickaForge.Components.Abilities
 {
@@ -25,7 +28,7 @@ namespace MagickaForge.Components.Abilities
         [JsonConverter(typeof(JsonStringEnumConverter<AbilityTarget>))]
         public AbilityTarget AbilityTarget { get; set; }
         public string? FuzzyExpression { get; set; }
-        public string[] Animations { get; set; }
+        public string[]? Animations { get; set; }
 
         public virtual void Write(BinaryWriter bw)
         {
@@ -38,7 +41,7 @@ namespace MagickaForge.Components.Abilities
             {
                 bw.Write(FuzzyExpression);
             }
-            bw.Write(Animations.Length);
+            bw.Write(Animations!.Length);
             foreach (string animation in Animations)
             {
                 bw.Write(animation);
@@ -68,10 +71,10 @@ namespace MagickaForge.Components.Abilities
             {
                 ability = new CastSpell() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Angle = br.ReadSingle(), ChantTime = br.ReadSingle(), Power = br.ReadSingle(), CastType = (CastType)br.ReadInt32() };
                 CastSpell? castSpell = ability as CastSpell;
-                castSpell!.Elements = new int[br.ReadInt32()];
+                castSpell!.Elements = new Elements[br.ReadInt32()];
                 for (int i = 0; i < castSpell.Elements.Length; i++)
                 {
-                    castSpell.Elements[i] = br.ReadInt32();
+                    castSpell.Elements[i] = (Elements)br.ReadInt32();
                 }
             }
             else if (type == AbilityTypes.ConfuseGrip)
@@ -84,7 +87,7 @@ namespace MagickaForge.Components.Abilities
             }
             else if (type == AbilityTypes.Dash)
             {
-                ability = new Dash() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Arc = br.ReadSingle(), Velocity = new float[] { br.ReadSingle(), br.ReadSingle(), br.ReadSingle() } };
+                ability = new Dash() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Arc = br.ReadSingle(), Velocity = new Vector3(br) };
             }
             else if (type == AbilityTypes.ElementSteal)
             {
@@ -101,7 +104,7 @@ namespace MagickaForge.Components.Abilities
             else if (type == AbilityTypes.Melee)
             {
                 ability = new Melee() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), ArcAngle = br.ReadSingle() };
-                Melee melee = ability as Melee;
+                Melee melee = (ability as Melee)!;
                 melee.WeaponSlots = new int[br.ReadInt32()];
                 for (int i = 0; i < melee.WeaponSlots.Length; i++)
                 {
@@ -116,7 +119,7 @@ namespace MagickaForge.Components.Abilities
             else if (type == AbilityTypes.Ranged)
             {
                 ability = new Ranged() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Elevation = br.ReadSingle(), Arc = br.ReadSingle(), Accuracy = br.ReadSingle() };
-                Ranged ranged = ability as Ranged;
+                Ranged ranged = (ability as Ranged)!;
                 ranged.WeaponSlots = new int[br.ReadInt32()];
                 for (int i = 0; i < ranged.WeaponSlots.Length; i++)
                 {
@@ -134,7 +137,7 @@ namespace MagickaForge.Components.Abilities
             else if (type == AbilityTypes.ThrowGrip)
             {
                 ability = new ThrowGrip() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Elevation = br.ReadSingle() };
-                ThrowGrip throwGrip = ability as ThrowGrip;
+                ThrowGrip throwGrip = (ability as ThrowGrip)!;
                 throwGrip.Damages = new Damage[br.ReadInt32()];
                 for (int i = 0; i < throwGrip.Damages.Length; i++)
                 {
@@ -179,7 +182,7 @@ namespace MagickaForge.Components.Abilities
         public float Power { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<CastType>))]
         public CastType CastType { get; set; }
-        public int[] Elements { get; set; }
+        public Elements[]? Elements { get; set; }
 
         public CastSpell()
         {
@@ -195,7 +198,7 @@ namespace MagickaForge.Components.Abilities
             bw.Write(ChantTime);
             bw.Write(Power);
             bw.Write((int)CastType);
-            bw.Write(Elements.Length);
+            bw.Write(Elements!.Length);
             foreach (int element in Elements)
             {
                 bw.Write(element);
@@ -222,7 +225,7 @@ namespace MagickaForge.Components.Abilities
         public float MinimumRange { get; set; }
         public float MaximumRange { get; set; }
         public float Arc { get; set; }
-        public float[] Velocity { get; set; }
+        public Vector3 Velocity { get; set; }
 
         public Dash()
         {
@@ -235,10 +238,7 @@ namespace MagickaForge.Components.Abilities
             bw.Write(MinimumRange);
             bw.Write(MaximumRange);
             bw.Write(Arc);
-            for (int i = 0; i < 3; i++)
-            {
-                bw.Write(Velocity[i]);
-            }
+            Velocity.Write(bw);
         }
     }
     public class ElementSteal : Ability
@@ -302,7 +302,7 @@ namespace MagickaForge.Components.Abilities
         public float MinimumRange { get; set; }
         public float MaximumRange { get; set; }
         public float ArcAngle { get; set; }
-        public int[] WeaponSlots { get; set; }
+        public int[]? WeaponSlots { get; set; }
         public bool Rotate { get; set; }
 
         public Melee()
@@ -316,7 +316,7 @@ namespace MagickaForge.Components.Abilities
             bw.Write(MinimumRange);
             bw.Write(MaximumRange);
             bw.Write(ArcAngle);
-            bw.Write(WeaponSlots.Length);
+            bw.Write(WeaponSlots!.Length);
             foreach (int i in WeaponSlots)
             {
                 bw.Write(i);
@@ -330,7 +330,7 @@ namespace MagickaForge.Components.Abilities
         public float MinimumRange { get; set; }
         public float Angle { get; set; }
         public float MaxWeight { get; set; }
-        public string DropAnimation { get; set; }
+        public string? DropAnimation { get; set; }
         public PickUpCharacter()
         {
             type = AbilityTypes.PickUpCharacter;
@@ -342,7 +342,7 @@ namespace MagickaForge.Components.Abilities
             bw.Write(MinimumRange);
             bw.Write(Angle);
             bw.Write(MaxWeight);
-            bw.Write(DropAnimation);
+            bw.Write(DropAnimation!);
         }
     }
 

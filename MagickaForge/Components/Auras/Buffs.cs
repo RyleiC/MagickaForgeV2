@@ -1,9 +1,11 @@
-﻿using MagickaForge.Utils;
+﻿using MagickaForge.Utils.Definitions;
+using MagickaForge.Utils.Definitions.Auras;
+using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Auras
 {
-    [JsonPolymorphic(TypeDiscriminatorPropertyName = "_BuffType")]
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "_Type")]
     [JsonDerivedType(typeof(BoostDamageBuff), typeDiscriminator: "BoostDamage")]
     [JsonDerivedType(typeof(DealDamageBuff), typeDiscriminator: "DealDamage")]
     [JsonDerivedType(typeof(ResistanceBuff), typeDiscriminator: "Resistance")]
@@ -15,23 +17,23 @@ namespace MagickaForge.Components.Auras
     [JsonDerivedType(typeof(ModifySpellRangeBuff), typeDiscriminator: "ModifySpellRange")]
     public class Buff
     {
-        protected BuffType buffType;
+        protected BuffType Type;
         [JsonConverter(typeof(JsonStringEnumConverter<VisualCategory>))]
-        public VisualCategory BuffVisualCategory { get; set; }
-        public float[]? BuffColor { get; set; }
-        public float BuffTime { get; set; }
-        public string? BuffEffect { get; set; }
+        public VisualCategory VisualCategory { get; set; }
+        public Color Color { get; set; }
+        public float Time { get; set; }
+        public string? Effect { get; set; }
 
         public static Buff GetBuff(BinaryReader br)
         {
-            Buff buff = new Buff();
-            BuffType buffType = (BuffType)br.ReadByte();
-            VisualCategory visualCat = (VisualCategory)br.ReadByte();
-            float[] color = { br.ReadSingle(), br.ReadSingle(), br.ReadSingle() };
-            float buffTime = br.ReadSingle();
-            string buffEffect = br.ReadString();
+            var buff = new Buff();
+            var Type = (BuffType)br.ReadByte();
+            var visualCat = (VisualCategory)br.ReadByte();
+            var Color = new Color(br);
+            var Time = br.ReadSingle();
+            var Effect = br.ReadString();
 
-            switch (buffType)
+            switch (Type)
             {
                 case BuffType.BoostDamage:
                     {
@@ -80,22 +82,19 @@ namespace MagickaForge.Components.Auras
                     break;
             }
 
-            buff.BuffVisualCategory = visualCat;
-            buff.BuffColor = color;
-            buff.BuffTime = buffTime;
-            buff.BuffEffect = buffEffect;
+            buff.VisualCategory = visualCat;
+            buff.Color = Color;
+            buff.Time = Time;
+            buff.Effect = Effect;
             return buff;
         }
         public virtual void Write(BinaryWriter bw)
         {
-            bw.Write((byte)buffType);
-            bw.Write((byte)BuffVisualCategory);
-            foreach (float f in BuffColor)
-            {
-                bw.Write(f);
-            }
-            bw.Write(BuffTime);
-            bw.Write(BuffEffect);
+            bw.Write((byte)Type);
+            bw.Write((byte)VisualCategory);
+            Color.Write(bw);
+            bw.Write(Time);
+            bw.Write(Effect);
         }
     }
     public class BoostDamageBuff : Buff
@@ -109,7 +108,7 @@ namespace MagickaForge.Components.Auras
 
         public BoostDamageBuff()
         {
-            buffType = BuffType.BoostDamage;
+            Type = BuffType.BoostDamage;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -130,7 +129,7 @@ namespace MagickaForge.Components.Auras
         public float Magnitude { get; set; }
         public DealDamageBuff() : base()
         {
-            buffType = BuffType.DealDamage;
+            Type = BuffType.DealDamage;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -150,7 +149,7 @@ namespace MagickaForge.Components.Auras
         public bool StatusImmunity { get; set; }
         public ResistanceBuff()
         {
-            buffType = BuffType.Resistance;
+            Type = BuffType.Resistance;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -164,7 +163,7 @@ namespace MagickaForge.Components.Auras
     public class BoostBuff : Buff
     {
         public float BoostAmount { get; set; }
-        public BoostBuff() { buffType = BuffType.Boost; }
+        public BoostBuff() { Type = BuffType.Boost; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -174,7 +173,7 @@ namespace MagickaForge.Components.Auras
     public class ReduceAggroBuff : Buff
     {
         public float AggroReduceAmount { get; set; }
-        public ReduceAggroBuff() { buffType = BuffType.ReduceAgro; }
+        public ReduceAggroBuff() { Type = BuffType.ReduceAgro; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -185,7 +184,7 @@ namespace MagickaForge.Components.Auras
     {
         public float HealthMultiplier { get; set; }
         public float HealthModifier { get; set; }
-        public ModifyHitpointsBuff() { buffType = BuffType.ModifyHitPoints; }
+        public ModifyHitpointsBuff() { Type = BuffType.ModifyHitPoints; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -197,7 +196,7 @@ namespace MagickaForge.Components.Auras
     {
         public float SpellTimeMultiplier { get; set; }
         public float SpellTimeModifier { get; set; }
-        public ModifySpellTTLBuff() { buffType = BuffType.ModifySpellTTL; }
+        public ModifySpellTTLBuff() { Type = BuffType.ModifySpellTTL; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -207,7 +206,7 @@ namespace MagickaForge.Components.Auras
     }
     public class UndyingBuff : Buff
     {
-        public UndyingBuff() { buffType = BuffType.Undying; }
+        public UndyingBuff() { Type = BuffType.Undying; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -217,7 +216,7 @@ namespace MagickaForge.Components.Auras
     {
         public float SpellRangeMultiplier { get; set; }
         public float SpellRangeModifier { get; set; }
-        public ModifySpellRangeBuff() { buffType = BuffType.ModifySpellRange; }
+        public ModifySpellRangeBuff() { Type = BuffType.ModifySpellRange; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);

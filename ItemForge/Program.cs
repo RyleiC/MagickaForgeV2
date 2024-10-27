@@ -1,4 +1,4 @@
-﻿using MagickaForge.Forges.Items;
+﻿using MagickaForge.Pipeline.Items;
 using System.Diagnostics;
 namespace ItemForge
 {

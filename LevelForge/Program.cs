@@ -1,4 +1,4 @@
-﻿using MagickaForge.Forges.Levels;
+﻿using MagickaForge.Pipeline.Experimental.Levels;
 using System.Diagnostics;
 
 namespace LevelForge
@@ -7,7 +7,7 @@ namespace LevelForge
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("= Magicka Level Forge by Rylei. C =");
+            Console.WriteLine("= Magicka *Experimental* Level Forge by Rylei. C =");
             string instructionPath;
 
             if (args.Length < 1)

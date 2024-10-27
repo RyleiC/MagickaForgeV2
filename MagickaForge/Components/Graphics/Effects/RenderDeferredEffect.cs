@@ -1,4 +1,5 @@
-﻿namespace MagickaForge.Components.Graphics.Effects
+﻿using MagickaForge.Utils.Structures;
+namespace MagickaForge.Components.Graphics.Effects
 {
     public class RenderDeferredEffect : ShaderEffect
     {
@@ -21,7 +22,7 @@
             {
                 DiffuseNoAlpha = binaryReader.ReadBoolean(),
                 AlphaMaskEnabled = binaryReader.ReadBoolean(),
-                DiffuseColor = [binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle()],
+                DiffuseColor = new Color(binaryReader),
                 SpecularAmount = binaryReader.ReadSingle(),
                 SpecularPower = binaryReader.ReadSingle(),
                 EmissiveAmount = binaryReader.ReadSingle(),
@@ -38,7 +39,7 @@
                 {
                     DiffuseNoAlpha = binaryReader.ReadBoolean(),
                     AlphaMaskEnabled = binaryReader.ReadBoolean(),
-                    DiffuseColor = [binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle()],
+                    DiffuseColor = new Color(binaryReader),
                     SpecularAmount = binaryReader.ReadSingle(),
                     SpecularPower = binaryReader.ReadSingle(),
                     EmissiveAmount = binaryReader.ReadSingle(),

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterForge", "Character
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemForge", "ItemForge\ItemForge.csproj", "{32ACD06A-5C83-48E3-B64D-04C7EA06D387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelForge", "LevelForge\LevelForge.csproj", "{E88CDEE7-5AF8-4AF4-9A2C-4B9FE61AB3F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LevelForge", "LevelForge\LevelForge.csproj", "{E88CDEE7-5AF8-4AF4-9A2C-4B9FE61AB3F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

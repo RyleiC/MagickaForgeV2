@@ -21,11 +21,11 @@ namespace MagickaForge.Components.Levels
 
         private int _primativeCount;
         private int _startIndex;
-        private float[] _minBounding;
-        private float[] _maxBounding;
+        private float[]? _minBounding;
+        private float[]? _maxBounding;
 
-        private BinTreeNode _childA;
-        private BinTreeNode _childB;
+        private BinTreeNode? _childA;
+        private BinTreeNode? _childB;
 
         public BinTreeRoot(BinaryReader binaryReader, Header header)
         {
@@ -74,9 +74,9 @@ namespace MagickaForge.Components.Levels
             binaryWriter.Write(_groundLevel);
             binaryWriter.Write(_vertexCount);
             binaryWriter.Write(_vertexStride);
-      /*      binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexDeclaration));
-            binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexBuffer));
-            binaryWriter.Write(header.GetReaderIndex(ReaderType.IndexBuffer));*/
+            /*      binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexDeclaration));
+                  binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexBuffer));
+                  binaryWriter.Write(header.GetReaderIndex(ReaderType.IndexBuffer));*/
         }
     }
 }

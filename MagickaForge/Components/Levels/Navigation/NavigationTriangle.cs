@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils;
+﻿using MagickaForge.Utils.Definitions.AI;
 
 namespace MagickaForge.Components.Levels.Navigation
 {
