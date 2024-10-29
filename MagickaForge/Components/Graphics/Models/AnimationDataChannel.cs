@@ -17,5 +17,13 @@ namespace MagickaForge.Components.Graphics.Models
             Orientation = new Quaternion(binaryReader);
             Scale = new Vector3(binaryReader);
         }
+
+        public void Write(BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(Time);
+            Translation.Write(binaryWriter);
+            Orientation.Write(binaryWriter);
+            Scale.Write(binaryWriter);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace MagickaForge.Components.Graphics.Models
             VertexBuffer = new VertexBuffer(reader);
             IndexBuffer = new IndexBuffer(reader);
             Tag = reader.ReadByte();
-            ModelMeshPart[] meshParts = model.ReadMeshParts(reader, VertexBuffer, IndexBuffer, vertexDeclarations);
+            Parts = model.ReadMeshParts(reader, VertexBuffer, IndexBuffer, vertexDeclarations);
         }
     }
 }

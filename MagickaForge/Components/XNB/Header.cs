@@ -1,4 +1,6 @@
-﻿namespace MagickaForge.Components.XNB
+﻿using MagickaForge.Components.Graphics.Effects;
+
+namespace MagickaForge.Components.XNB
 {
     public class Header
     {
@@ -32,6 +34,15 @@
             } //Head ache..
         }
 
+        public void GiveSharedResources(int index)
+        {
+            ShaderEffect[] shaderEffects =new ShaderEffect[sharedResources];
+            for (int i = 0; index < sharedResources; i++)
+            {
+
+            }
+        }
+
         public void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(Head);
@@ -43,7 +54,7 @@
             }
             binaryWriter.Write7BitEncodedInt(sharedResources);
         }
-
+        
         public int GetReaderIndex(ReaderType readerType)
         {
             if (readerTypes.ContainsKey(readerType))

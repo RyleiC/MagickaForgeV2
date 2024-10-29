@@ -16,7 +16,7 @@ namespace MagickaForge.Components.Graphics.Models
         public int numVertices { get; set; }
         public int startIndex { get; set; }
         public int primativeCount { get; set; }
-        public VertexDeclaration vertexDeclaration { get; set; }
+        public int vdIndex { get; set; }
         public ShaderEffect effect { get; set; }
         public ModelMeshPart() { }
         public ModelMeshPart(BinaryReader binaryReader, VertexDeclaration[] vertexDeclarations)
@@ -26,9 +26,10 @@ namespace MagickaForge.Components.Graphics.Models
             int numVertices = binaryReader.ReadInt32();
             int startIndex = binaryReader.ReadInt32();
             int primitiveCount = binaryReader.ReadInt32();
-            VertexDeclaration vertexDeclaration = vertexDeclarations[binaryReader.ReadInt32()];
+            vdIndex = binaryReader.ReadInt32();
             object obj = binaryReader.ReadByte();
-            SharedObjectManager.RequestSharedObject(new SharedObjectTicket(this, binaryReader.Read7BitEncodedInt()));
+            binaryReader.ReadByte();
+     
         }
     }
 }

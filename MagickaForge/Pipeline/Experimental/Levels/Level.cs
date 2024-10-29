@@ -16,8 +16,14 @@ namespace MagickaForge.Pipeline.Experimental.Levels
      * Implement Model class X
      * Implement Force Fields class X
      * Implement Animated Objects X WOOH
-     * JSON Serializable?
+     * JSON Serializable? X
      * Blender Exporter + blah blah blah
+     * 
+     * 
+     * Read code should be cleaned up [ ]
+     * Add proper shared content [ ]
+     * Implement animated models [ ]
+     * Insure that the model parts are properly and losslessly serialized [ ]
      */
     public class Level
     {
@@ -41,7 +47,12 @@ namespace MagickaForge.Pipeline.Experimental.Levels
             header.Write(bw);
             bw.Write7BitEncodedInt(readerIndex);
             model.Write(bw);
-            bw.Write(0); //FOR NOW, ANIMATED LEVEL PARTS
+            /* bw.Write(animations.Length);
+             for (var i = 0; i < animations.Length; i++)
+             {
+                 animations[i].Write(bw);
+             }*/
+            bw.Write(0);
             bw.Write(lights.Length);
             for (var i = 0; i < lights.Length; i++)
             {
@@ -94,6 +105,7 @@ namespace MagickaForge.Pipeline.Experimental.Levels
                 locators[i].Write(bw);
             }
             navigationMesh.Write(bw);
+           
             bw.Close();
         }
 
@@ -180,6 +192,7 @@ namespace MagickaForge.Pipeline.Experimental.Levels
                 locators[i] = new Locator(br);
             }
             navigationMesh = new NavigationMesh(br);
+
             br.Close();
         }
     }

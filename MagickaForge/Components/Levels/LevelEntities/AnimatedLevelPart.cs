@@ -78,8 +78,59 @@ namespace MagickaForge.Components.Levels.LevelEntities
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write(Name);
+       /*     binaryWriter.Write(Name);
             binaryWriter.Write(AffectShields);
+            model.Write(binaryWriter);
+            binaryWriter.Write(MeshSettings.Length);
+            for (var i = 0; i < MeshSettings.Length; i++)
+            {
+                binaryWriter.Write(MeshSettings[i].Key);
+                binaryWriter.Write(MeshSettings[i].Value);
+                binaryWriter.Write(MeshSettings[i].Highlight);
+            }
+            binaryWriter.Write(Liquids.Length);
+            for (var i = 0; i < Liquids.Length; i++)
+            {
+                Liquids[i].Write(binaryWriter);
+            }
+            binaryWriter.Write(Locators.Length);
+            foreach (var locator in Locators)
+            {
+                locator.Write(binaryWriter);
+            }
+            binaryWriter.Write(AnimationDuration);
+            foreach (AnimationDataChannel animationDataChannel in AnimationDataChannels)
+            {
+                animationDataChannel.Write(binaryWriter);
+            }
+            binaryWriter.Write(Effects.Length);
+            foreach (Effect effect in Effects)
+            {
+                effect.Write(binaryWriter);
+            }
+            binaryWriter.Write(LightNames.Length);
+            for (var i = 0; i < LightNames.Length; i++)
+            {
+                binaryWriter.Write(LightNames[i]);
+                LightPositions[i].Write(binaryWriter);
+            }
+            var hasCollision = MaterialMesh != null;
+            binaryWriter.Write(hasCollision);
+            if (hasCollision)
+            {
+                MaterialMesh.Write(binaryWriter);
+            }
+            var hasNavMesh = NavMesh != null;
+            binaryWriter.Write(hasNavMesh);
+            if (hasNavMesh)
+            {
+                NavMesh.Write(binaryWriter);
+            }
+            binaryWriter.Write(Children.Length);
+            foreach (var child in Children)
+            {
+                child.Write(binaryWriter);
+            }*/
         }
     }
 }
