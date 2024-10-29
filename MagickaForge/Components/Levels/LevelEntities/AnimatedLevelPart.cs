@@ -78,7 +78,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
         }
         public void Write(BinaryWriter binaryWriter)
         {
-       /*     binaryWriter.Write(Name);
+            binaryWriter.Write(Name);
             binaryWriter.Write(AffectShields);
             model.Write(binaryWriter);
             binaryWriter.Write(MeshSettings.Length);
@@ -99,6 +99,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
                 locator.Write(binaryWriter);
             }
             binaryWriter.Write(AnimationDuration);
+            binaryWriter.Write(AnimationDataChannels.Length);
             foreach (AnimationDataChannel animationDataChannel in AnimationDataChannels)
             {
                 animationDataChannel.Write(binaryWriter);
@@ -130,7 +131,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
             foreach (var child in Children)
             {
                 child.Write(binaryWriter);
-            }*/
+            }
         }
     }
 }

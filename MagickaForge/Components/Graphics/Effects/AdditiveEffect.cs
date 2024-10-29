@@ -6,10 +6,10 @@ namespace MagickaForge.Components.Graphics.Effects
 {
     public class AdditiveEffect : ShaderEffect
     {
-        private Color _colorTint { get; set; }
-        private bool _useVertexColor { get; set; }
-        private bool _hasTexture { get; set; }
-        private string? _texture { get; set; }
+        public Color _colorTint { get; set; }
+        public bool _useVertexColor { get; set; }
+        public bool _hasTexture { get; set; }
+        public string? _texture { get; set; }
         public AdditiveEffect() { }
         public AdditiveEffect(BinaryReader binaryReader)
         {

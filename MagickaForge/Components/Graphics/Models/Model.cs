@@ -12,7 +12,7 @@ namespace MagickaForge.Components.Graphics.Models
     public class Model
     {
         public int writerType { get; set; }
-        public ModelBone Root { get; set; }
+        public int Root { get; set; }
         public byte Tag { get; set; }
         public ModelBone[] ModelBones { get; set; }
         public ModelMesh[] Meshes { get; set; }
@@ -21,10 +21,10 @@ namespace MagickaForge.Components.Graphics.Models
 
         public Model(BinaryReader binaryReader)
         {
-            binaryReader.ReadByte();
+            writerType = binaryReader.Read7BitEncodedInt();
             ReadBones(binaryReader);
-            VertexDeclaration[] vertexDeclarations = ReadVertexDeclarations(binaryReader);
-            ReadMeshes(binaryReader, vertexDeclarations);
+            ReadVertexDeclarations(binaryReader);
+            ReadMeshes(binaryReader, vDeclarations);
             Root = ReadBoneReference(binaryReader);
             Tag = binaryReader.ReadByte();
         }
@@ -34,6 +34,7 @@ namespace MagickaForge.Components.Graphics.Models
             binaryWriter.Write7BitEncodedInt(writerType);
             binaryWriter.Write(ModelBones.Length);
             var stringReaderIndex = 0;
+
             foreach (var bone in ModelBones)
             {
                 stringReaderIndex = bone.readerType;
@@ -41,13 +42,15 @@ namespace MagickaForge.Components.Graphics.Models
                 binaryWriter.Write(bone.Name);
                 bone.Transform.Write(binaryWriter);
             }
+            //var here = binaryWriter.BaseStream.Position;
+            //throw new Exception(here.ToString());
             foreach (var bone in ModelBones)
             {
-                binaryWriter.Write(bone.Parent);
+                WriteBoneIndexes(binaryWriter, bone.Parent);
                 binaryWriter.Write(bone.Children.Length);
                 foreach (int child in bone.Children)
                 {
-                    binaryWriter.Write(child);
+                    WriteBoneIndexes(binaryWriter, child);
                 }
             }
             binaryWriter.Write(vDeclarations.Length);
@@ -55,19 +58,19 @@ namespace MagickaForge.Components.Graphics.Models
             {
                 vd.Write(binaryWriter);
             }
-            int value = 0;
-            foreach (ModelMesh ms in Meshes)
+		    binaryWriter.Write(Meshes.Length);
+            for (var i = 0; i < Meshes.Length; i++)
             {
-                binaryWriter.Write(stringReaderIndex);
-                binaryWriter.Write(ms.Name);
-                binaryWriter.Write(ms.ParentBone.BoneIndex);
-                ms.Center.Write(binaryWriter);
-                binaryWriter.Write(ms.Radius);
-                ms.VertexBuffer.Write(binaryWriter);
-                ms.IndexBuffer.Write(binaryWriter);
+                binaryWriter.Write7BitEncodedInt(stringReaderIndex);
+                binaryWriter.Write(Meshes[i].Name);
+                WriteBoneIndexes(binaryWriter, Meshes[i].ParentBone);
+                Meshes[i].Center.Write(binaryWriter);
+                binaryWriter.Write(Meshes[i].Radius);
+                Meshes[i].VertexBuffer.Write(binaryWriter);
+                Meshes[i].IndexBuffer.Write(binaryWriter);
                 binaryWriter.Write7BitEncodedInt(0);
-                binaryWriter.Write(ms.Parts.Length);
-                foreach (ModelMeshPart part in ms.Parts)
+                binaryWriter.Write(Meshes[i].Parts.Length);
+                foreach (ModelMeshPart part in Meshes[i].Parts)
                 {
                     binaryWriter.Write(part.streamOffset);
                     binaryWriter.Write(part.baseVertex);
@@ -75,25 +78,25 @@ namespace MagickaForge.Components.Graphics.Models
                     binaryWriter.Write(part.startIndex);
                     binaryWriter.Write(part.primativeCount);
                     binaryWriter.Write(part.vdIndex);
-                    binaryWriter.Write7BitEncodedInt(0);
-
+                    binaryWriter.Write(part.Tag); //TAG
+                    binaryWriter.Write7BitEncodedInt(part.SharedContentID); //EFFECT PLACEHOLDER
                 }
-                value++;
             }
+            WriteBoneIndexes(binaryWriter, Root);
+		    binaryWriter.Write(Tag);
         }
-        private void WriteBoneIndex(BinaryWriter binaryWriter, ModelBone bone)
+
+        public void WriteBoneIndexes(BinaryWriter binaryWriter, int BoneIndex)
         {
-            int num = ModelBones.Length + 1;
-            int num2 = (bone == null) ? 0 : (bone.BoneIndex + 1);
-            if (num <= 255)
+            if (ModelBones.Length + 1 <= 255)
             {
-                binaryWriter.Write((byte)num2);
+                binaryWriter.Write((byte)(BoneIndex + 1));
                 return;
             }
-            binaryWriter.Write(num2);
+            binaryWriter.Write(BoneIndex + 1);
         }
 
-        private void ReadBones(BinaryReader binaryReader)
+        public void ReadBones(BinaryReader binaryReader)
         {
             int num = binaryReader.ReadInt32();
             ModelBones = new ModelBone[num];
@@ -104,23 +107,18 @@ namespace MagickaForge.Components.Graphics.Models
             }
             for (var i = 0; i < ModelBones.Length; i++)
             {
-                ModelBone parent = ReadBoneReference(binaryReader);
-                ModelBone[] children = new ModelBone[binaryReader.ReadInt32()];
+                int parent = ReadBoneReference(binaryReader);
+                int[] children = new int[binaryReader.ReadInt32()];
                 for (int k = 0; k < children.Length; k++)
                 {
                     children[k] = ReadBoneReference(binaryReader);
                 }
-                ModelBones[i].Children = new int[children.Length];
-                for (int k = 0; k < children.Length; k++)
-                {
-                    ModelBones[i].Children[k] = children[k].BoneIndex;
-                }
-                if (parent != null)
-                ModelBones[i].Parent = parent.BoneIndex;
+                ModelBones[i].Children = children;
+                ModelBones[i].Parent = parent;
             }
         }
 
-        public ModelBone ReadBoneReference(BinaryReader input)
+        public int ReadBoneReference(BinaryReader input)
         {
             var num = ModelBones.Length + 1;
             int index;
@@ -134,39 +132,33 @@ namespace MagickaForge.Components.Graphics.Models
             }
             if (index != 0)
             {
-                return ModelBones[index - 1];
+                return index - 1;
             }
-            return null;
+            return -1;
         }
 
-        public VertexDeclaration[] ReadVertexDeclarations(BinaryReader input)
+        public void ReadVertexDeclarations(BinaryReader input)
         {
-            int num = input.ReadInt32();
-            VertexDeclaration[] array = new VertexDeclaration[num];
-            for (int i = 0; i < num; i++)
+            vDeclarations = new VertexDeclaration[input.ReadInt32()];
+            for (int i = 0; i < vDeclarations.Length; i++)
             {
-                array[i] = new VertexDeclaration(input);
+                vDeclarations[i] = new VertexDeclaration(input);
             }
-            vDeclarations = array;
-            return array;
         }
 
         public void ReadMeshes(BinaryReader input, VertexDeclaration[] vertexDeclarations)
         {
-            int num = input.ReadInt32();
-            ModelMesh[] array = new ModelMesh[num];
-            for (int i = 0; i < num; i++)
+            Meshes = new ModelMesh[input.ReadInt32()];
+            for (int i = 0; i < Meshes.Length; i++)
             {
-                array[i] = new ModelMesh(input, this, vertexDeclarations);
+                Meshes[i] = new ModelMesh(input, this, vertexDeclarations);
             }
-            Meshes = array;
         }
 
         public ModelMeshPart[] ReadMeshParts(BinaryReader binaryReader, VertexBuffer vertexBuffer, IndexBuffer indexBuffer, VertexDeclaration[] vertexDeclarations)
         {
-            int num = binaryReader.ReadInt32();
-            ModelMeshPart[] meshParts = new ModelMeshPart[num];
-            for (int i = 0; i < num; i++)
+            ModelMeshPart[] meshParts = new ModelMeshPart[binaryReader.ReadInt32()];
+            for (int i = 0; i < meshParts.Length; i++)
             {
                 meshParts[i] = new ModelMeshPart(binaryReader, vertexDeclarations);
             }

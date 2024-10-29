@@ -19,7 +19,7 @@ namespace MagickaForge.Components.Graphics.Models
         public ModelBone() { }
         public ModelBone(BinaryReader binaryReader)
         {
-            binaryReader.Read7BitEncodedInt();
+            readerType = binaryReader.Read7BitEncodedInt();
             Name = binaryReader.ReadString();
             Transform = new Matrix(binaryReader);
         }

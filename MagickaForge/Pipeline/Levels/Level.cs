@@ -1,12 +1,14 @@
 ﻿using System.Text.Json;
+using MagickaForge.Components.Graphics.Models;
 using MagickaForge.Components.Levels;
 using MagickaForge.Components.Levels.LevelEntities;
 using MagickaForge.Components.Levels.Liquid;
 using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Components.XNB;
 using MagickaForge.Pipeline.Items;
+using Microsoft.Win32.SafeHandles;
 
-namespace MagickaForge.Pipeline.Experimental.Levels
+namespace MagickaForge.Pipeline.Levels
 {
     /*
      * TODO:
@@ -41,18 +43,19 @@ namespace MagickaForge.Pipeline.Experimental.Levels
         public TriggerArea[] triggerAreas { get; set; }
         public Locator[] locators { get; set; }
         public NavigationMesh navigationMesh { get; set; }
+        public SharedContentCache[] contentCache { get; set; }
+
         public void LevelToXNB(string outputPath)
         {
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
             header.Write(bw);
             bw.Write7BitEncodedInt(readerIndex);
             model.Write(bw);
-            /* bw.Write(animations.Length);
-             for (var i = 0; i < animations.Length; i++)
-             {
-                 animations[i].Write(bw);
-             }*/
-            bw.Write(0);
+            bw.Write(animations.Length);
+            for (var i = 0; i < animations.Length; i++)
+            {
+                animations[i].Write(bw);
+            }
             bw.Write(lights.Length);
             for (var i = 0; i < lights.Length; i++)
             {
@@ -105,9 +108,13 @@ namespace MagickaForge.Pipeline.Experimental.Levels
                 locators[i].Write(bw);
             }
             navigationMesh.Write(bw);
-           
+            for (var i = 0; i < contentCache.Length; i++)
+            {
+                contentCache[i].Write(bw);
+            }
             bw.Close();
         }
+
 
         public static void WriteToJson(string outputPath, Level level)
         {
@@ -192,7 +199,11 @@ namespace MagickaForge.Pipeline.Experimental.Levels
                 locators[i] = new Locator(br);
             }
             navigationMesh = new NavigationMesh(br);
-
+            contentCache = new SharedContentCache[header.sharedResources];
+            for (int i = 0; i < contentCache.Length; i++)
+            {
+                contentCache[i] = new SharedContentCache(br, header);
+            }
             br.Close();
         }
     }

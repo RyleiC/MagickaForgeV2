@@ -17,19 +17,19 @@ namespace MagickaForge.Components.Graphics.Models
         public int startIndex { get; set; }
         public int primativeCount { get; set; }
         public int vdIndex { get; set; }
-        public ShaderEffect effect { get; set; }
+	    public byte Tag { get; set; }
+        public int SharedContentID { get; set; }
         public ModelMeshPart() { }
         public ModelMeshPart(BinaryReader binaryReader, VertexDeclaration[] vertexDeclarations)
         {
-            int streamOffset = binaryReader.ReadInt32();
-            int baseVertex = binaryReader.ReadInt32();
-            int numVertices = binaryReader.ReadInt32();
-            int startIndex = binaryReader.ReadInt32();
-            int primitiveCount = binaryReader.ReadInt32();
+            streamOffset = binaryReader.ReadInt32();
+            baseVertex = binaryReader.ReadInt32();
+            numVertices = binaryReader.ReadInt32();
+            startIndex = binaryReader.ReadInt32();
+            primativeCount = binaryReader.ReadInt32();
             vdIndex = binaryReader.ReadInt32();
-            object obj = binaryReader.ReadByte();
-            binaryReader.ReadByte();
-     
+            Tag = binaryReader.ReadByte();
+            SharedContentID = binaryReader.Read7BitEncodedInt();
         }
     }
 }
