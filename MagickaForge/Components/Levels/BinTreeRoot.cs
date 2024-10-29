@@ -1,32 +1,33 @@
 ﻿using MagickaForge.Components.Graphics;
 using MagickaForge.Components.Graphics.Effects;
 using MagickaForge.Components.XNB;
+using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Levels
 {
     public class BinTreeRoot
     {
-        private bool _visible;
-        private bool _castShadows;
-        private float _sway;
-        private float _entityInfluence;
-        private float _groundLevel;
-        private int _vertexCount;
-        private int _vertexStride;
+        public bool _visible { get; set; }
+        public bool _castShadows { get; set; }
+        public float _sway { get; set; }
+        public float _entityInfluence { get; set; }
+        public float _groundLevel { get; set; }
+        public int _vertexCount { get; set; }
+        public int _vertexStride { get; set; }
 
-        private VertexDeclaration _vertexDeclaration;
-        private VertexBuffer _vertexBuffer;
-        private IndexBuffer _indexBuffer;
-        private ShaderEffect _effect;
+        public VertexDeclaration _vertexDeclaration { get; set; }
+        public VertexBuffer _vertexBuffer { get; set; }
+        public IndexBuffer _indexBuffer { get; set; }
+        public ShaderEffect _effect { get; set; }
 
-        private int _primativeCount;
-        private int _startIndex;
-        private float[]? _minBounding;
-        private float[]? _maxBounding;
+        public int _primativeCount { get; set; }
+        public int _startIndex { get; set; }
+        public Vector3 _minBounding { get; set; }
+        public Vector3 _maxBounding { get; set; }
 
-        private BinTreeNode? _childA;
-        private BinTreeNode? _childB;
-
+        public BinTreeNode? _childA { get; set; }
+        public BinTreeNode? _childB { get; set; }
+        public BinTreeRoot() { }
         public BinTreeRoot(BinaryReader binaryReader, Header header)
         {
             _visible = binaryReader.ReadBoolean();
@@ -44,16 +45,8 @@ namespace MagickaForge.Components.Levels
 
             _primativeCount = binaryReader.ReadInt32();
             _startIndex = binaryReader.ReadInt32();
-            _minBounding = new float[3];
-            for (int i = 0; i < _minBounding.Length; i++)
-            {
-                _minBounding[i] = binaryReader.ReadSingle();
-            }
-            _maxBounding = new float[3];
-            for (int i = 0; i < _maxBounding.Length; i++)
-            {
-                _maxBounding[i] = binaryReader.ReadSingle();
-            }
+            _minBounding = new Vector3(binaryReader);
+            _maxBounding = new Vector3(binaryReader);
             bool hasChildA = binaryReader.ReadBoolean();
             if (hasChildA)
             {
@@ -74,9 +67,29 @@ namespace MagickaForge.Components.Levels
             binaryWriter.Write(_groundLevel);
             binaryWriter.Write(_vertexCount);
             binaryWriter.Write(_vertexStride);
-            /*      binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexDeclaration));
-                  binaryWriter.Write(header.GetReaderIndex(ReaderType.VertexBuffer));
-                  binaryWriter.Write(header.GetReaderIndex(ReaderType.IndexBuffer));*/
+
+            _vertexDeclaration.Write(binaryWriter);
+            _vertexBuffer.Write(binaryWriter);
+            _indexBuffer.Write(binaryWriter);
+            _effect.Write(binaryWriter);
+            binaryWriter.Write(_primativeCount);
+            binaryWriter.Write(_startIndex);
+            _minBounding.Write(binaryWriter);
+            _maxBounding.Write(binaryWriter);
+
+            var hasChildA = _childA != null;
+            var hasChildB = _childB != null;
+
+            binaryWriter.Write(hasChildA);
+            if (hasChildA)
+            {
+                _childA.Write(binaryWriter);
+            }
+            binaryWriter.Write(hasChildB);
+            if (hasChildB)
+            {
+                _childB.Write(binaryWriter);
+            }
         }
     }
 }

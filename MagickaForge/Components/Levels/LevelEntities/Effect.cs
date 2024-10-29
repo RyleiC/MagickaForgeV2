@@ -9,7 +9,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
         public Vector3 Forward { get; set; }
         public float Range { get; set; }
         public string Type { get; set; }
-
+        public Effect() { }
         public Effect(BinaryReader binaryReader)
         {
             Name = binaryReader.ReadString();
@@ -17,6 +17,15 @@ namespace MagickaForge.Components.Levels.LevelEntities
             Forward = new Vector3(binaryReader);
             Range = binaryReader.ReadSingle();
             Type = binaryReader.ReadString();
+        }
+
+        public void Write(BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(Name);
+            Position.Write(binaryWriter);
+            Forward.Write(binaryWriter);
+            binaryWriter.Write(Range);
+            binaryWriter.Write(Type);
         }
     }
 }

@@ -7,6 +7,7 @@
         private Dictionary<ReaderType, int> readerTypes;
         public int sharedResources { get; set; }
 
+        public Header() { }
         public Header(BinaryReader binaryReader)
         {
             binaryReader.ReadBytes(Head.Length);

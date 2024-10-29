@@ -4,16 +4,16 @@ namespace MagickaForge.Components.Levels.Navigation
 {
     public struct NavigationTriangle
     {
-        public ushort vertexA;
-        public ushort vertexB;
-        public ushort vertexC;
-        public ushort neighborA;
-        public ushort neighborB;
-        public ushort neighborC;
-        public float costAB;
-        public float costBC;
-        public float costCA;
-        public MovementProperties properties;
+        public ushort vertexA { get; set; }
+        public ushort vertexB { get; set; }
+        public ushort vertexC { get; set; }
+        public ushort neighborA { get; set; }
+        public ushort neighborB { get; set; }
+        public ushort neighborC { get; set; }
+        public float costAB { get; set; }
+        public float costBC { get; set; }
+        public float costCA { get; set; }
+        public MovementProperties properties { get; set; }
 
         public NavigationTriangle(BinaryReader br)
         {
@@ -27,6 +27,19 @@ namespace MagickaForge.Components.Levels.Navigation
             costBC = br.ReadSingle();
             costCA = br.ReadSingle();
             properties = (MovementProperties)br.ReadByte();
+        }
+        public void Write(BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(vertexA);
+            binaryWriter.Write(vertexB);
+            binaryWriter.Write(vertexC);
+            binaryWriter.Write(neighborA);
+            binaryWriter.Write(neighborB);
+            binaryWriter.Write(neighborC);
+            binaryWriter.Write(costAB);
+            binaryWriter.Write(costBC);
+            binaryWriter.Write(costCA);
+            binaryWriter.Write((byte)properties);
         }
     }
 }

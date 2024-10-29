@@ -1,28 +1,29 @@
 ﻿using MagickaForge.Utils.Structures;
+using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Graphics.Effects
 {
     public class LavaEffect : ShaderEffect
     {
-        private float maskDistortion;
-        private Vector2 speedA;
-        private Vector2 speedB;
-        private float lavaHotEmission;
-        private float lavaColdEmission;
-        private float lavaSpecAmount;
-        private float lavaSpecPower;
-        private float tempFrequency;
-        private string toneMap;
-        private string tempMap;
-        private string maskMap;
-        private Vector3 rockColor;
-        private float rockEmission;
-        private float rockSpecAmount;
-        private float rockSpecPower;
-        private float rockNormalPower;
-        private string rockTexture;
-        private string rockNormalMap;
-
+        public float maskDistortion { get; set; }
+        public Vector2 speedA { get; set; }
+        public Vector2 speedB { get; set; }
+        public float lavaHotEmission { get; set; }
+        public float lavaColdEmission { get; set; }
+        public float lavaSpecAmount { get; set; }
+        public float lavaSpecPower { get; set; }
+        public float tempFrequency { get; set; }
+        public string toneMap { get; set; }
+        public string tempMap { get; set; }
+        public string maskMap { get; set; }
+        public Vector3 rockColor { get; set; }
+        public float rockEmission { get; set; }
+        public float rockSpecAmount { get; set; }
+        public float rockSpecPower { get; set; }
+        public float rockNormalPower { get; set; }
+        public string rockTexture { get; set; }
+        public string rockNormalMap { get; set; }
+        public LavaEffect() { }
         public LavaEffect(BinaryReader binaryReader)
         {
             maskDistortion = binaryReader.ReadSingle();
@@ -36,13 +37,35 @@ namespace MagickaForge.Components.Graphics.Effects
             toneMap = binaryReader.ReadString();
             tempMap = binaryReader.ReadString();
             maskMap = binaryReader.ReadString();
-            rockColor = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
+            rockColor = new Vector3(binaryReader);
             rockEmission = binaryReader.ReadSingle();
             rockSpecAmount = binaryReader.ReadSingle();
             rockSpecPower = binaryReader.ReadSingle();
             rockNormalPower = binaryReader.ReadSingle();
             rockTexture = binaryReader.ReadString();
             rockNormalMap = binaryReader.ReadString();
+        }
+        public override void Write(BinaryWriter binaryWriter)
+        {
+            base.Write(binaryWriter);
+            binaryWriter.Write(maskDistortion);
+            speedA.Write(binaryWriter);
+            speedB.Write(binaryWriter);
+            binaryWriter.Write(lavaHotEmission);
+            binaryWriter.Write(lavaColdEmission);
+            binaryWriter.Write(lavaSpecAmount);
+            binaryWriter.Write(lavaSpecPower);
+            binaryWriter.Write(tempFrequency);
+            binaryWriter.Write(toneMap);
+            binaryWriter.Write(tempMap);
+            binaryWriter.Write(maskMap);
+            rockColor.Write(binaryWriter);
+            binaryWriter.Write(rockEmission);
+            binaryWriter.Write(rockSpecAmount);
+            binaryWriter.Write(rockSpecPower);
+            binaryWriter.Write(rockNormalPower);
+            binaryWriter.Write(rockTexture);
+            binaryWriter.Write(rockNormalMap);
         }
     }
 }

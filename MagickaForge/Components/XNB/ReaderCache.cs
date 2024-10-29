@@ -22,7 +22,7 @@ namespace MagickaForge.Components.XNB
         private const string VECTOR3_LIST = "Microsoft.Xna.Framework.Content.ListReader`1[[Microsoft.Xna.Framework.Vector3, Microsoft.Xna.Framework, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d]]";
         private const string VECTOR3 = "Microsoft.Xna.Framework.Content.Vector3Reader";
 
-
+        public ReaderCache() { }
         public ReaderCache(BinaryReader binaryReader)
         {
             Cache = binaryReader.ReadString();

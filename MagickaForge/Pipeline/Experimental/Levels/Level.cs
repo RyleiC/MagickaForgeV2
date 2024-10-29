@@ -1,34 +1,116 @@
-﻿using MagickaForge.Components.Levels;
+﻿using System.Text.Json;
+using MagickaForge.Components.Levels;
 using MagickaForge.Components.Levels.LevelEntities;
 using MagickaForge.Components.Levels.Liquid;
+using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Components.XNB;
+using MagickaForge.Pipeline.Items;
 
 namespace MagickaForge.Pipeline.Experimental.Levels
 {
     /*
      * TODO:
-     * Implement non-static header & remove hardcodings
-     * Implement Effect options (LavaEffect & RenderDefferredLiquid), test AdditiveEffect
-     * Implement Liquids class
-     * Implement Model class
-     * Implement Force Fields class
-     * Implement Animated Objects
+     * Implement non-static header & remove hardcodings X
+     * Implement Effect options (LavaEffect & RenderDefferredLiquid), test AdditiveEffect X
+     * Implement Liquids class X
+     * Implement Model class X
+     * Implement Force Fields class X
+     * Implement Animated Objects X WOOH
      * JSON Serializable?
      * Blender Exporter + blah blah blah
      */
     public class Level
     {
+        public int readerIndex { get; set; }
         public Header header { get; set; }
-        private BinTreeModel model { get; set; }
-        private Light[] lights { get; set; }
-        private Effect[] effects { get; set; }
-        private PhysicsEntity[] physicsEntities { get; set; }
-        private LiquidDeclaration[] liquids { get; set; }
-        private ForceField[] forceFields { get; set; }
-        private TriangleMesh[] collisionMeshes { get; set; }
-        private TriangleMesh cameraMesh { get; set; }
-        private TriggerArea[] triggerAreas { get; set; }
-        private Locator[] locators { get; set; }
+        public BinTreeModel model { get; set; }
+        public AnimatedLevelPart[] animations { get; set; }
+        public Light[] lights { get; set; }
+        public Effect[] effects { get; set; }
+        public PhysicsEntity[] physicsEntities { get; set; }
+        public LiquidDeclaration[] liquids { get; set; }
+        public ForceField[] forceFields { get; set; }
+        public TriangleMesh[] collisionMeshes { get; set; }
+        public TriangleMesh cameraMesh { get; set; }
+        public TriggerArea[] triggerAreas { get; set; }
+        public Locator[] locators { get; set; }
+        public NavigationMesh navigationMesh { get; set; }
+        public void LevelToXNB(string outputPath)
+        {
+            BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
+            header.Write(bw);
+            bw.Write7BitEncodedInt(readerIndex);
+            model.Write(bw);
+            bw.Write(0); //FOR NOW, ANIMATED LEVEL PARTS
+            bw.Write(lights.Length);
+            for (var i = 0; i < lights.Length; i++)
+            {
+                lights[i].Write(bw);
+            }
+            bw.Write(effects.Length);
+            for (var i = 0; i < effects.Length; i++)
+            {
+                effects[i].Write(bw);
+            }
+            bw.Write(physicsEntities.Length);
+            for (var i = 0; i < physicsEntities.Length; i++)
+            {
+                physicsEntities[i].Write(bw);
+            }
+            bw.Write(liquids.Length);
+            for (var i = 0; i < liquids.Length; i++)
+            {
+                liquids[i].Write(bw);
+            }
+            bw.Write(forceFields.Length);
+            for (var i = 0; i < forceFields.Length; i++)
+            {
+                forceFields[i].Write(bw);
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                if (collisionMeshes[i] == null)
+                {
+                    bw.Write(false);
+                    continue;
+                }
+                bw.Write(true);
+                collisionMeshes[i].Write(bw);
+            }
+            var hasCameraMesh = cameraMesh != null;
+            bw.Write(hasCameraMesh);
+            if (hasCameraMesh)
+            {
+                cameraMesh.Write(bw);
+            }
+            bw.Write(triggerAreas.Length);
+            for (var i = 0; i < triggerAreas.Length; i++)
+            {
+                triggerAreas[i].Write(bw);
+            }
+            bw.Write(locators.Length);
+            for (var i = 0; i < locators.Length; i++)
+            {
+                locators[i].Write(bw);
+            }
+            navigationMesh.Write(bw);
+            bw.Close();
+        }
+
+        public static void WriteToJson(string outputPath, Level level)
+        {
+            StreamWriter sw = new(outputPath);
+            sw.Write(JsonSerializer.Serialize(level, new JsonSerializerOptions { WriteIndented = true, }));
+            sw.Close();
+        }
+
+        public static Level LoadFromJson(string inputPath)
+        {
+            StreamReader sr = new(inputPath);
+            string json = sr.ReadToEnd();
+            sr.Close();
+            return JsonSerializer.Deserialize<Level>(json)!;
+        }
 
         public void XNBToLevel(string inputPath)
         {
@@ -36,21 +118,15 @@ namespace MagickaForge.Pipeline.Experimental.Levels
 
             header = new Header(br);
 
-            br.ReadByte(); //0 read, will always be the first reader
+            readerIndex = br.Read7BitEncodedInt(); //0 read, will always be the first reader
 
-            for (int i = 0; i < 13; i++) //DEBUGGING
-            {
-                Console.WriteLine($"{(ReaderType)i}: {header.GetReaderIndex((ReaderType)i)}");
-            }
-
-            br.ReadByte(); //GraphicsDevice useless read
             model = new BinTreeModel(br, header); //BINARY TREE
 
-            if (br.ReadInt32() != 0) //ANIMATED LEVEL PARTS
+            animations = new AnimatedLevelPart[br.ReadInt32()];
+            for (int i = 0; i < animations.Length; i++)
             {
-                throw new NotImplementedException("No animated objects hooked up! (yet, come back later!)");
+                animations[i] = new AnimatedLevelPart(br, header);
             }
-
 
             lights = new Light[br.ReadInt32()]; //LIGHTS
             for (int i = 0; i < lights.Length; i++)
@@ -103,8 +179,7 @@ namespace MagickaForge.Pipeline.Experimental.Levels
             {
                 locators[i] = new Locator(br);
             }
-
-            Console.WriteLine("YOU DID IT AND DIDN'T DIE YAY!!");
+            navigationMesh = new NavigationMesh(br);
             br.Close();
         }
     }

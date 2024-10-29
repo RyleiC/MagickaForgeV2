@@ -1,16 +1,17 @@
 ﻿using MagickaForge.Utils.Structures;
+using System.Text.Json.Serialization;
 namespace MagickaForge.Components.Graphics.Effects
 {
     public class RenderDeferredEffect : ShaderEffect
     {
-        private float _alpha;
-        private float _sharpness;
-        private bool _vertexColorEnabled;
-        private bool _useTextureAsReflectiveness;
-        private string? _reflectionMap;
-        private Material _materialA;
-        private Material _materialB;
-
+        public float _alpha { get; set; }
+        public float _sharpness { get; set; }
+        public bool _vertexColorEnabled { get; set; }
+        public bool _useTextureAsReflectiveness { get; set; }
+        public string? _reflectionMap { get; set; }
+        public Material _materialA { get; set; }
+        public Material _materialB { get; set; }
+        public RenderDeferredEffect() { }
         public RenderDeferredEffect(BinaryReader binaryReader)
         {
             _alpha = binaryReader.ReadSingle();
@@ -49,6 +50,23 @@ namespace MagickaForge.Components.Graphics.Effects
                     MaterialTexture = binaryReader.ReadString(),
                     NormalTexture = binaryReader.ReadString(),
                 };
+            }
+        }
+
+        public override void Write(BinaryWriter binaryWriter)
+        {
+            base.Write(binaryWriter);
+            binaryWriter.Write(_alpha);
+            binaryWriter.Write(_sharpness);
+            binaryWriter.Write(_vertexColorEnabled);
+            binaryWriter.Write(_useTextureAsReflectiveness);
+            binaryWriter.Write(_reflectionMap);
+            _materialA.Write(binaryWriter);
+            var hasMaterialB = _materialB != null;
+            binaryWriter.Write(hasMaterialB);
+            if (hasMaterialB)
+            {
+                _materialB.Write(binaryWriter);
             }
         }
     }

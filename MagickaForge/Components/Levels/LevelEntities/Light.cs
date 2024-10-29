@@ -21,7 +21,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
         public float VariationAmount { get; set; }
         public int ShadowSize { get; set; }
         public bool CastShadows { get; set; }
-
+        public Light() { }
         public Light(BinaryReader binaryReader)
         {
             Name = binaryReader.ReadString();
@@ -37,9 +37,28 @@ namespace MagickaForge.Components.Levels.LevelEntities
             AmbientColor = new Color(binaryReader);
             SpecularAmount = binaryReader.ReadSingle();
             VariationSpeed = binaryReader.ReadSingle();
-            VariationSpeed = binaryReader.ReadSingle();
+            VariationAmount = binaryReader.ReadSingle();
             ShadowSize = binaryReader.ReadInt32();
             CastShadows = binaryReader.ReadBoolean();
+        }
+        public void Write(BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(Name);
+            Position.Write(binaryWriter);
+            Direction.Write(binaryWriter);
+            binaryWriter.Write((int)Type);
+            binaryWriter.Write((int)Variation);
+            binaryWriter.Write(Distance);
+            binaryWriter.Write(UseAttenuation);
+            binaryWriter.Write(CutoffAngle);
+            binaryWriter.Write(Sharpness);
+            DiffuseColor.Write(binaryWriter);
+            AmbientColor.Write(binaryWriter);
+            binaryWriter.Write(SpecularAmount);
+            binaryWriter.Write(VariationSpeed);
+            binaryWriter.Write(VariationAmount);
+            binaryWriter.Write(ShadowSize);
+            binaryWriter.Write(CastShadows);
         }
     }
 }

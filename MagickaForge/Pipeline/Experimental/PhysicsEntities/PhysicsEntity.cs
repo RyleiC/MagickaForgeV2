@@ -4,7 +4,7 @@
     {
         public PhysicsEntity()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
