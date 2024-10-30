@@ -56,7 +56,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
             }
             LightNames = new string[binaryReader.ReadInt32()];
             LightPositions = new Matrix[LightNames.Length];
-            for (var i = 0;i < LightNames.Length; i++)
+            for (var i = 0; i < LightNames.Length; i++)
             {
                 LightNames[i] = binaryReader.ReadString();
                 LightPositions[i] = new Matrix(binaryReader);

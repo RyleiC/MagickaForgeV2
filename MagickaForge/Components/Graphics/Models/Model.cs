@@ -1,13 +1,4 @@
-﻿using MagickaForge.Components.Levels.LevelEntities;
-using MagickaForge.Components.XNB;
-using MagickaForge.Utils.Structures;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagickaForge.Components.Graphics.Models
+﻿namespace MagickaForge.Components.Graphics.Models
 {
     public class Model
     {
@@ -58,7 +49,7 @@ namespace MagickaForge.Components.Graphics.Models
             {
                 vd.Write(binaryWriter);
             }
-		    binaryWriter.Write(Meshes.Length);
+            binaryWriter.Write(Meshes.Length);
             for (var i = 0; i < Meshes.Length; i++)
             {
                 binaryWriter.Write7BitEncodedInt(stringReaderIndex);
@@ -83,7 +74,7 @@ namespace MagickaForge.Components.Graphics.Models
                 }
             }
             WriteBoneIndexes(binaryWriter, Root);
-		    binaryWriter.Write(Tag);
+            binaryWriter.Write(Tag);
         }
 
         public void WriteBoneIndexes(BinaryWriter binaryWriter, int BoneIndex)

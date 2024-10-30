@@ -36,7 +36,7 @@ namespace MagickaForge.Components.XNB
 
         public void GiveSharedResources(int index)
         {
-            ShaderEffect[] shaderEffects =new ShaderEffect[sharedResources];
+            ShaderEffect[] shaderEffects = new ShaderEffect[sharedResources];
             for (int i = 0; index < sharedResources; i++)
             {
 
@@ -54,7 +54,7 @@ namespace MagickaForge.Components.XNB
             }
             binaryWriter.Write7BitEncodedInt(sharedResources);
         }
-        
+
         public int GetReaderIndex(ReaderType readerType)
         {
             if (readerTypes.ContainsKey(readerType))

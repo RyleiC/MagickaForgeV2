@@ -2,7 +2,7 @@
 {
     public class VertexDeclaration
     {
-        public VertexElement[] _vertexElements {  get; set; }
+        public VertexElement[] _vertexElements { get; set; }
         public int readerIndex { get; set; }
         public VertexDeclaration() { }
         public VertexDeclaration(BinaryReader binaryReader)

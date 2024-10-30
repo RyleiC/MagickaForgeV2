@@ -1,5 +1,4 @@
-﻿using System;
-using MagickaForge.Utils.Structures;
+﻿using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Graphics.Models
 {
@@ -9,7 +8,7 @@ namespace MagickaForge.Components.Graphics.Models
         public Vector3 Translation { get; set; }
         public Quaternion Orientation { get; set; }
         public Vector3 Scale { get; set; }
-        
+
         public AnimationDataChannel(BinaryReader binaryReader)
         {
             Time = binaryReader.ReadSingle();

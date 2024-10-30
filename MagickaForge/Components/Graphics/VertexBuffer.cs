@@ -9,7 +9,6 @@
         {
             readerIndex = binaryReader.Read7BitEncodedInt();
             var count = binaryReader.ReadInt32();
-            //Console.WriteLine(count);
             _data = binaryReader.ReadBytes(count);
         }
         public void Write(BinaryWriter binaryWriter)

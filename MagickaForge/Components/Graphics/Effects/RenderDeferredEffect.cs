@@ -1,5 +1,4 @@
 ﻿using MagickaForge.Utils.Structures;
-using System.Text.Json.Serialization;
 namespace MagickaForge.Components.Graphics.Effects
 {
     public class RenderDeferredEffect : ShaderEffect

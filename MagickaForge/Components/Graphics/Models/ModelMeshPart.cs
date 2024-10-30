@@ -1,13 +1,4 @@
-﻿using MagickaForge.Components.Graphics.Effects;
-using MagickaForge.Components.XNB;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagickaForge.Components.Graphics.Models
+﻿namespace MagickaForge.Components.Graphics.Models
 {
     public class ModelMeshPart
     {
@@ -17,7 +8,7 @@ namespace MagickaForge.Components.Graphics.Models
         public int startIndex { get; set; }
         public int primativeCount { get; set; }
         public int vdIndex { get; set; }
-	    public byte Tag { get; set; }
+        public byte Tag { get; set; }
         public int SharedContentID { get; set; }
         public ModelMeshPart() { }
         public ModelMeshPart(BinaryReader binaryReader, VertexDeclaration[] vertexDeclarations)

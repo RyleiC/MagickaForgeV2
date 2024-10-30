@@ -1,6 +1,4 @@
-﻿using MagickaForge.Components.Events;
-using MagickaForge.Utils.Structures;
-using System.Text.Json.Serialization;
+﻿using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Graphics.Effects
 {
