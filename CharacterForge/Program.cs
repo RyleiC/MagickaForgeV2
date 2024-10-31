@@ -8,19 +8,10 @@ namespace CharacterForge
         static void Main(string[] args)
         {
             Console.WriteLine("= Magicka Character Forge by Rylei. C =");
-            string instructionPath;
-
-            if (args.Length < 1)
-            {
-                Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
-                instructionPath = Console.ReadLine()!;
-            }
-            else
-            {
-                instructionPath = args[1];
-            }
+            Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
+            string instructionPath = Console.ReadLine()!.Trim('\"');
             Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
-            int mode = int.Parse(Console.ReadLine()!);
+           var mode = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Is this XNB from an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
             LegacyMagicka = int.Parse(Console.ReadLine()!) == 1;
             Console.WriteLine("= Process Starting... =\n");
