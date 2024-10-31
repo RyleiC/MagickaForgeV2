@@ -1,4 +1,5 @@
-﻿namespace MagickaForge.Components.Graphics
+﻿using MagickaForge.Utils.Definitions.Graphics;
+namespace MagickaForge.Components.Graphics
 {
     public class VertexDeclaration
     {
@@ -16,9 +17,9 @@
                 {
                     Stream = binaryReader.ReadInt16(),
                     Offset = binaryReader.ReadInt16(),
-                    Format = binaryReader.ReadByte(),
-                    Method = binaryReader.ReadByte(),
-                    Usage = binaryReader.ReadByte(),
+                    Format = (VertexElementFormat)binaryReader.ReadByte(),
+                    Method = (VertexElementMethod)binaryReader.ReadByte(),
+                    Usage = (VertexElementUsage)binaryReader.ReadByte(),
                     UsageIndex = binaryReader.ReadByte(),
                 };
             }
@@ -31,9 +32,9 @@
             {
                 binaryWriter.Write(element.Stream);
                 binaryWriter.Write(element.Offset);
-                binaryWriter.Write(element.Format);
-                binaryWriter.Write(element.Method);
-                binaryWriter.Write(element.Usage);
+                binaryWriter.Write((byte)element.Format);
+                binaryWriter.Write((byte)element.Method);
+                binaryWriter.Write((byte)element.Usage);
                 binaryWriter.Write(element.UsageIndex);
             }
         }
