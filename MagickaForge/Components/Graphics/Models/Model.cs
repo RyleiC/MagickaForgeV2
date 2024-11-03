@@ -33,8 +33,6 @@
                 binaryWriter.Write(bone.Name);
                 bone.Transform.Write(binaryWriter);
             }
-            //var here = binaryWriter.BaseStream.Position;
-            //throw new Exception(here.ToString());
             foreach (var bone in ModelBones)
             {
                 WriteBoneIndexes(binaryWriter, bone.Parent);
@@ -70,7 +68,7 @@
                     binaryWriter.Write(part.primativeCount);
                     binaryWriter.Write(part.vdIndex);
                     binaryWriter.Write(part.Tag); //TAG
-                    binaryWriter.Write7BitEncodedInt(part.SharedContentID); //EFFECT PLACEHOLDER
+                    binaryWriter.Write7BitEncodedInt(part.SharedContentID); //EFFECT 
                 }
             }
             WriteBoneIndexes(binaryWriter, Root);

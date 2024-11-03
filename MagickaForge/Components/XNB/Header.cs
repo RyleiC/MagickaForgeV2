@@ -31,15 +31,6 @@ namespace MagickaForge.Components.XNB
                         readerTypes.Add(readers[i].Type, i + 1);
                     }
                 }
-            } //Head ache..
-        }
-
-        public void GiveSharedResources(int index)
-        {
-            ShaderEffect[] shaderEffects = new ShaderEffect[sharedResources];
-            for (int i = 0; index < sharedResources; i++)
-            {
-
             }
         }
 
@@ -64,9 +55,5 @@ namespace MagickaForge.Components.XNB
             return -1;
         }
 
-        public ReaderType GetReaderType(int value)
-        {
-            return readers[value].Type;
-        }
     }
 }

@@ -5,6 +5,8 @@ namespace CharacterForge
     internal class Program
     {
         static bool LegacyMagicka;
+
+        //TODO, REBUILD EXAMPLES!
         static void Main(string[] args)
         {
             Console.WriteLine("= Magicka Character Forge by Rylei. C =");

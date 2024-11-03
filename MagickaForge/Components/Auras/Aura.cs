@@ -39,6 +39,75 @@ namespace MagickaForge.Components.Auras
             bw.Write(Types);
             bw.Write((int)Faction);
         }
+
+        public static Aura GetAura(BinaryReader binaryReader)
+        {
+            var aura = new Aura();
+            AuraTarget target = (AuraTarget)binaryReader.ReadByte();
+            AuraType auraType = (AuraType)binaryReader.ReadByte();
+            VisualCategory visualCategory = (VisualCategory)binaryReader.ReadByte();
+            var color = new Color(binaryReader);
+            var effect = binaryReader.ReadString();
+            var duration = binaryReader.ReadSingle();
+            var Radius = binaryReader.ReadSingle();
+            var Types = binaryReader.ReadString();
+            Factions Faction = (Factions)binaryReader.ReadInt32();
+
+            switch (auraType)
+            {
+                case AuraType.Buff:
+                    {
+                        aura = new BuffAura()
+                        {
+                            Buff = Buff.GetBuff(binaryReader)
+                        };
+                    }
+                    break;
+                case AuraType.Deflect:
+                    {
+                        aura = new DeflectAura()
+                        {
+                            DeflectStrength = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+                case AuraType.Boost:
+                    {
+                        aura = new BoostAura()
+                        {
+                            BoostStrength = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+                case AuraType.LifeSteal:
+                    {
+                        aura = new LifeStealAura()
+                        {
+                            LifeStealAmount = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+                case AuraType.Love:
+                    {
+                        aura = new LoveAura()
+                        {
+                            CharmRadius = binaryReader.ReadSingle(),
+                            CharmDuration = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+            };
+
+            aura.AuraTarget = target;
+            aura.VisualCategory = visualCategory;
+            aura.Color = color;
+            aura.Effect = effect;
+            aura.Duration = duration;
+            aura.Radius = Radius;
+            aura.Types = Types;
+            aura.Faction = Faction;
+            return aura;
+        }
     }
 
     public class BuffAura : Aura

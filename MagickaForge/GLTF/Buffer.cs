@@ -4,65 +4,63 @@ namespace MagickaForge.GLTF
 {
     public class Buffer
     {
-        private Vector3[] Vertices;
-        private Vector3[] Normals;
-        private Vector2[] TextureCoordinates;
-        private Vector3[] Tangent;
-        private short[] Indexes;
-        //private int TotalLength;
-        public string uri { get; set; }
+        private Vector3[] _vertices;
+        private Vector3[] _normals;
+        private Vector2[] _textureCoordinates;
+        private Vector3[] _tangent;
+        private short[] _indices;
 
         public Buffer() { }
 
         public void Read(BinaryReader binaryReader, BufferView[] bufferViews)
         {
-            Vertices = new Vector3[bufferViews[0].byteLength / 12];
-            Normals = new Vector3[Vertices.Length];
-            TextureCoordinates = new Vector2[Vertices.Length];
-            Tangent = new Vector3[Vertices.Length];
-            Indexes = new short[bufferViews[4].byteLength / 2];
+            _vertices = new Vector3[bufferViews[0].byteLength / 12];
+            _normals = new Vector3[_vertices.Length];
+            _textureCoordinates = new Vector2[_vertices.Length];
+            _tangent = new Vector3[_vertices.Length];
+            _indices = new short[bufferViews[4].byteLength / 2];
 
-            for (var i = 0; i < Vertices.Length; i++)
+            for (var i = 0; i < _vertices.Length; i++)
             {
-                Vertices[i] = new Vector3(binaryReader);
+                _vertices[i] = new Vector3(binaryReader);
             }
-            for (var i = 0; i < Normals.Length; i++)
+            for (var i = 0; i < _normals.Length; i++)
             {
-                Normals[i] = new Vector3(binaryReader);
+                _normals[i] = new Vector3(binaryReader);
             }
-            for (var i = 0; i < TextureCoordinates.Length; i++)
+            for (var i = 0; i < _textureCoordinates.Length; i++)
             {
-                TextureCoordinates[i] = new Vector2(binaryReader);
+                _textureCoordinates[i] = new Vector2(binaryReader);
             }
-            for (var i = 0; i < Tangent.Length; i++)
+            for (var i = 0; i < _tangent.Length; i++)
             {
-                Tangent[i] = new Vector3(binaryReader);
+                _tangent[i] = new Vector3(binaryReader);
                 binaryReader.ReadSingle();
             }
-            for (var i = 0; i < Indexes.Length; i++)
+            for (var i = 0; i < _indices.Length; i++)
             {
-                Indexes[i] = binaryReader.ReadInt16();
+                _indices[i] = binaryReader.ReadInt16();
             }
 
         }
         public void ToVertexBuffer(string outputPath)
         {
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
-            for (var i = 0; i < Vertices.Length; i++)
+            for (var i = 0; i < _vertices.Length; i++)
             {
-                Vertices[i].Write(bw);
-                Normals[i].Write(bw);
-                TextureCoordinates[i].Write(bw);
-                Tangent[i].Write(bw);
+                _vertices[i].Write(bw);
+                _normals[i].Write(bw);
+                _textureCoordinates[i].Write(bw);
+                _tangent[i].Write(bw);
             }
             bw.Close();
         }
         public void ToIndexBuffer(string outputPath)
         {
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
-            for (var i = 0; i < Indexes.Length; i++)
+            for (var i = 0; i < _indices.Length; i++)
             {
-                bw.Write(Indexes[i]);
+                bw.Write(_indices[i]);
             }
             bw.Close();
         }
