@@ -135,7 +135,6 @@ namespace MagickaForge.Pipeline.Levels
             readerIndex = br.Read7BitEncodedInt(); //0 read, will always be the first reader
 
             model = new BinTreeModel(br, header); //BINARY TREE
-
             animations = new AnimatedLevelPart[br.ReadInt32()];
             for (int i = 0; i < animations.Length; i++)
             {
