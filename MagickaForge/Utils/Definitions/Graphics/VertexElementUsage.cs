@@ -14,6 +14,6 @@
         Color = 10,
         Fog,
         Depth,
-        Sampl
+        Sample
     }
 }

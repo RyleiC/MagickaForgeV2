@@ -111,8 +111,6 @@ namespace MagickaForge.Pipeline.Levels
             }
             bw.Close();
         }
-
-
         public static void WriteToJson(string outputPath, Level level)
         {
             StreamWriter sw = new(outputPath);

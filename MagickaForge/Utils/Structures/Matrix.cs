@@ -2,21 +2,22 @@
 {
     public class Matrix
     {
-        public float[] values { get; set; }
+        private const int MatrixLength = 16;
+        public float[] Values { get; set; }
         public Matrix() { }
         public Matrix(BinaryReader reader)
         {
-            values = new float[16];
-            for (int i = 0; i < 16; i++)
+            Values = new float[MatrixLength];
+            for (int i = 0; i < MatrixLength; i++)
             {
-                values[i] = reader.ReadSingle();
+                Values[i] = reader.ReadSingle();
             }
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            for (var i = 0; i < 16; i++)
+            for (var i = 0; i < MatrixLength; i++)
             {
-                binaryWriter.Write(values[i]);
+                binaryWriter.Write(Values[i]);
             }
         }
     }

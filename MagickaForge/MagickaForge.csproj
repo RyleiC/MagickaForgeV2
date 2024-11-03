@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Pipeline\Experimental\PhysicsEntities\" />
+    <Folder Include="Utils\Structures\Blender\" />
   </ItemGroup>
 
 </Project>
