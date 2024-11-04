@@ -1,6 +1,6 @@
 ﻿namespace MagickaForge.GLTF
 {
-    public class BufferView
+    public class BufferViewNode
     {
         /*
          * These have to be named this to be deserialized

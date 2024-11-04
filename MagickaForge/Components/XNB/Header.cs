@@ -1,6 +1,4 @@
-﻿using MagickaForge.Components.Graphics.Effects;
-
-namespace MagickaForge.Components.XNB
+﻿namespace MagickaForge.Components.XNB
 {
     public class Header
     {

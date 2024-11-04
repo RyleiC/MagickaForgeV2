@@ -23,5 +23,23 @@
             binaryWriter.Write(Y);
             binaryWriter.Write(Z);
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not Vector3)
+            {
+                return false;
+            }
+
+            Vector3 other = (Vector3)obj;
+
+            if (X == other.X && Y == other.Y && Z == other.Z)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
     }
 }

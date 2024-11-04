@@ -4,7 +4,6 @@ using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
 using MagickaForge.Utils.Definitions;
 using MagickaForge.Utils.Definitions.Abilities;
-using MagickaForge.Utils.Definitions.Auras;
 using MagickaForge.Utils.Definitions.Graphics;
 using MagickaForge.Utils.Structures;
 using System.Text.Json;

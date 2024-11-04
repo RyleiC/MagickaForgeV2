@@ -1,4 +1,6 @@
-﻿using MagickaForge.Utils.Structures;
+﻿using MagickaForge.Components.Graphics;
+using MagickaForge.Components.Levels;
+using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.GLTF
 {
@@ -10,9 +12,7 @@ namespace MagickaForge.GLTF
         private Vector3[] _tangent;
         private short[] _indices;
 
-        public Buffer() { }
-
-        public void Read(BinaryReader binaryReader, BufferView[] bufferViews)
+        public void Read(BinaryReader binaryReader, BufferViewNode[] bufferViews)
         {
             _vertices = new Vector3[bufferViews[0].byteLength / 12];
             _normals = new Vector3[_vertices.Length];
@@ -22,7 +22,12 @@ namespace MagickaForge.GLTF
 
             for (var i = 0; i < _vertices.Length; i++)
             {
-                _vertices[i] = new Vector3(binaryReader);
+                _vertices[i] = new Vector3()
+                {
+                    X = binaryReader.ReadSingle(),
+                    Y = binaryReader.ReadSingle(),
+                    Z = binaryReader.ReadSingle() * -1,
+                };
             }
             for (var i = 0; i < _normals.Length; i++)
             {
@@ -43,26 +48,72 @@ namespace MagickaForge.GLTF
             }
 
         }
-        public void ToVertexBuffer(string outputPath)
+
+        public TriangleMesh ToTriangleMesh()
         {
-            BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
+            var mesh = new TriangleMesh();
+            mesh.vertices = _vertices;
             for (var i = 0; i < _vertices.Length; i++)
             {
-                _vertices[i].Write(bw);
-                _normals[i].Write(bw);
-                _textureCoordinates[i].Write(bw);
-                _tangent[i].Write(bw);
+                Vector3 vector = _vertices[i];
+                vector.Z *= -1;
+                mesh.vertices[i] = vector;
             }
-            bw.Close();
-        }
-        public void ToIndexBuffer(string outputPath)
-        {
-            BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
+            mesh.indices = new int[_indices.Length];
             for (var i = 0; i < _indices.Length; i++)
             {
-                bw.Write(_indices[i]);
+                mesh.indices[i] = _indices[i];
             }
-            bw.Close();
+            return mesh;
+        }
+        public VertexBuffer ToVertexBuffer()
+        {
+            var buffer = new VertexBuffer();
+            buffer._data = new byte[_vertices.Length * 36 + _textureCoordinates.Length * 8];
+            var stream = new MemoryStream(buffer._data);
+
+            var binaryWriter = new BinaryWriter(stream);
+            for (var i = 0; i < _vertices.Length; i++)
+            {
+                _vertices[i].Write(binaryWriter);
+                _normals[i].Write(binaryWriter);
+                _textureCoordinates[i].Write(binaryWriter);
+                _tangent[i].Write(binaryWriter);
+            }
+            binaryWriter.Close();
+
+            return buffer;
+        }
+        public IndexBuffer ToIndexBuffer()
+        {
+            var buffer = new IndexBuffer() { _is16Bit = true };
+            buffer._data = new byte[_indices.Length * 2];
+            var stream = new MemoryStream(buffer._data);
+
+            var binaryWriter = new BinaryWriter(stream);
+            for (var i = 0; i < _indices.Length; i++)
+            {
+                binaryWriter.Write(_indices[i]);
+            }
+            binaryWriter.Close();
+
+            return buffer;
+        }
+
+        public int IndiceCount
+        {
+            get
+            {
+                return _indices.Length;
+            }
+        }
+
+        public int VertexCount
+        {
+            get
+            {
+                return _vertices.Length;
+            }
         }
 
     }

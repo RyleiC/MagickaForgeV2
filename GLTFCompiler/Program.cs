@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using GLTFCompiler.Compilers;
-using MagickaForge.GLTF;
-using MagickaForge.Pipeline.Levels;
+﻿using GLTFCompiler.Compilers;
+using System.Diagnostics;
 namespace LevelForge
 {
     internal class Program
@@ -24,12 +22,5 @@ namespace LevelForge
             Console.ReadKey();
         }
 
-        private static void Compile(string instructionPath)
-        {
-            
-            GLTFModel model;
-            model = GLTFModel.LoadGLTFModel(instructionPath);
-        }
- 
     }
 }
