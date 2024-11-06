@@ -22,12 +22,7 @@ namespace MagickaForge.GLTF
 
             for (var i = 0; i < _vertices.Length; i++)
             {
-                _vertices[i] = new Vector3()
-                {
-                    X = binaryReader.ReadSingle(),
-                    Y = binaryReader.ReadSingle(),
-                    Z = binaryReader.ReadSingle() * -1,
-                };
+                _vertices[i] = new Vector3(binaryReader);
             }
             for (var i = 0; i < _normals.Length; i++)
             {
@@ -55,9 +50,7 @@ namespace MagickaForge.GLTF
             mesh.vertices = _vertices;
             for (var i = 0; i < _vertices.Length; i++)
             {
-                Vector3 vector = _vertices[i];
-                vector.Z *= -1;
-                mesh.vertices[i] = vector;
+                mesh.vertices[i] = _vertices[i];
             }
             mesh.indices = new int[_indices.Length];
             for (var i = 0; i < _indices.Length; i++)
@@ -66,6 +59,7 @@ namespace MagickaForge.GLTF
             }
             return mesh;
         }
+
         public VertexBuffer ToVertexBuffer()
         {
             var buffer = new VertexBuffer();
