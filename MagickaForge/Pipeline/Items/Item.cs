@@ -4,7 +4,6 @@ using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
 using MagickaForge.Utils.Definitions;
 using MagickaForge.Utils.Definitions.Abilities;
-using MagickaForge.Utils.Definitions.Auras;
 using MagickaForge.Utils.Definitions.Graphics;
 using MagickaForge.Utils.Structures;
 using System.Text.Json;
@@ -14,8 +13,8 @@ namespace MagickaForge.Pipeline.Items
 {
     public class Item
     {
-
-        private static readonly byte[] Header =
+        private const int MaxLights = 1;
+        private readonly byte[] Header =
         {
             0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x4C,
             0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F, 0x6E, 0x74,
@@ -26,12 +25,11 @@ namespace MagickaForge.Pipeline.Items
             0x20, 0x43, 0x75, 0x6C, 0x74, 0x75, 0x72, 0x65, 0x3D, 0x6E, 0x65, 0x75,
             0x74, 0x72, 0x61, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
         };
-
         public string? Name { get; set; }
         public string? LocalizedName { get; set; }
         public string? LocalizedDescription { get; set; }
         public Sound[]? Sounds { get; set; }
-        public bool Grabbable { get; set; }
+        public bool CanBePickedUp { get; set; }
         public bool Bound { get; set; }
         public int BlockStrength { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<WeaponClass>))]
@@ -41,8 +39,8 @@ namespace MagickaForge.Pipeline.Items
         public bool HideEffects { get; set; }
         public bool PauseSounds { get; set; }
         public Resistance[]? Resistances { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter<PassiveAbilities>))]
-        public PassiveAbilities PassiveAbilityType { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<PassiveAbility>))]
+        public PassiveAbility PassiveAbilityType { get; set; }
         public float PassiveAbilityStrength { get; set; }
         public string[]? Effects { get; set; }
         public Light[]? Lights { get; set; }
@@ -54,14 +52,14 @@ namespace MagickaForge.Pipeline.Items
         public ConditionCollection[]? MeleeConditions { get; set; }
         public float RangedRange { get; set; }
         public bool Facing { get; set; }
-        public float Homing { get; set; }
+        public float HomingStrength { get; set; }
         public float RangedElevation { get; set; }
         public float RangedDanger { get; set; }
         public float GunRange { get; set; }
         public int GunClip { get; set; }
         public int GunRate { get; set; }
         public float GunAccuracy { get; set; }
-        public string? GunSound { get; set; }
+        public string? GunSoundCue { get; set; }
         public string? GunMuzzleEffect { get; set; }
         public string? GunShellEffect { get; set; }
         public float GunTracerVelocity { get; set; }
@@ -72,9 +70,7 @@ namespace MagickaForge.Pipeline.Items
         public ConditionCollection[]? RangedConditions { get; set; }
         public float Scale { get; set; }
         public string? Model { get; set; }
-
         public Aura[]? Auras { get; set; }
-
 
         public void ItemToXNB(string outputPath)
         {
@@ -84,12 +80,12 @@ namespace MagickaForge.Pipeline.Items
             bw.Write(LocalizedName!);
             bw.Write(LocalizedDescription!);
             bw.Write(Sounds!.Length);
-            for (int i = 0; i < Sounds.Length; i++)
+            for (var i = 0; i < Sounds.Length; i++)
             {
                 bw.Write(Sounds[i].Cue!);
                 bw.Write((int)Sounds[i].Bank);
             }
-            bw.Write(Grabbable);
+            bw.Write(CanBePickedUp);
             bw.Write(Bound);
             bw.Write(BlockStrength);
             bw.Write((byte)WeaponClass);
@@ -98,7 +94,7 @@ namespace MagickaForge.Pipeline.Items
             bw.Write(HideEffects);
             bw.Write(PauseSounds);
             bw.Write(Resistances!.Length);
-            for (int i = 0; i < Resistances.Length; i++)
+            for (var i = 0; i < Resistances.Length; i++)
             {
                 bw.Write((int)Resistances[i].Element);
                 bw.Write(Resistances[i].Multiplier);
@@ -108,12 +104,18 @@ namespace MagickaForge.Pipeline.Items
             bw.Write((byte)PassiveAbilityType);
             bw.Write(PassiveAbilityStrength);
             bw.Write(Effects!.Length);
-            for (int i = 0; i < Effects.Length; i++)
+            for (var i = 0; i < Effects.Length; i++)
             {
                 bw.Write(Effects[i]);
             }
+
+            if (Lights.Length > MaxLights)
+            {
+                throw new ArgumentOutOfRangeException("Items may only have up to 1 light!");
+            }
+
             bw.Write(Lights!.Length);
-            for (int i = 0; i < Lights.Length; i++)
+            for (var i = 0; i < Lights.Length; i++)
             {
                 bw.Write(Lights[i].Radius);
                 Lights[i].DiffuseColor.Write(bw);
@@ -131,7 +133,7 @@ namespace MagickaForge.Pipeline.Items
                 bw.Write(SpecialAbility.Animation!);
                 bw.Write(SpecialAbility.Hash!);
                 bw.Write(SpecialAbility.Elements!.Length);
-                for (int x = 0; x < SpecialAbility!.Elements!.Length; x++)
+                for (var x = 0; x < SpecialAbility!.Elements!.Length; x++)
                 {
                     bw.Write((int)SpecialAbility.Elements[x]);
                 }
@@ -139,40 +141,40 @@ namespace MagickaForge.Pipeline.Items
             bw.Write(MeleeRange);
             bw.Write(MeleeMultihit);
             bw.Write(MeleeConditions!.Length);
-            for (int i = 0; i < MeleeConditions.Length; i++)
+            for (var i = 0; i < MeleeConditions.Length; i++)
             {
                 MeleeConditions[i].Write(bw);
             }
             bw.Write(RangedRange);
             bw.Write(Facing);
-            bw.Write(Homing);
+            bw.Write(HomingStrength);
             bw.Write(RangedElevation);
             bw.Write(RangedDanger);
             bw.Write(GunRange);
             bw.Write(GunClip);
             bw.Write(GunRate);
             bw.Write(GunAccuracy);
-            bw.Write(GunSound!);
+            bw.Write(GunSoundCue!);
             bw.Write(GunMuzzleEffect!);
             bw.Write(GunShellEffect!);
             bw.Write(GunTracerVelocity);
             bw.Write(GunNonTracer!);
             bw.Write(GunTracer!);
             bw.Write(GunConditions!.Length);
-            for (int i = 0; i < GunConditions.Length; i++)
+            for (var i = 0; i < GunConditions.Length; i++)
             {
                 GunConditions[i].Write(bw);
             }
             bw.Write(ProjectileModel!);
             bw.Write(RangedConditions!.Length);
-            for (int i = 0; i < RangedConditions.Length; i++)
+            for (var i = 0; i < RangedConditions.Length; i++)
             {
                 RangedConditions[i].Write(bw);
             }
             bw.Write(Scale);
             bw.Write(Model!);
             bw.Write(Auras!.Length);
-            for (int i = 0; i < Auras.Length; i++)
+            for (var i = 0; i < Auras.Length; i++)
             {
                 Auras[i].Write(bw);
             }
@@ -186,9 +188,7 @@ namespace MagickaForge.Pipeline.Items
         }
         public static Item LoadFromJson(string inputPath)
         {
-            StreamReader sr = new(inputPath);
-            string json = sr.ReadToEnd();
-            sr.Close();
+            string json = File.ReadAllText(inputPath);
             return JsonSerializer.Deserialize<Item>(json)!;
         }
 
@@ -201,14 +201,14 @@ namespace MagickaForge.Pipeline.Items
             LocalizedName = br.ReadString();
             LocalizedDescription = br.ReadString();
 
-            int x = br.ReadInt32();
-            Sounds = new Sound[x];
-            for (int i = 0; i < x; i++)
+            Sounds = new Sound[br.ReadInt32()];
+            for (var i = 0; i < Sounds.Length; i++)
             {
                 Sounds[i].Cue = br.ReadString();
                 Sounds[i].Bank = (Banks)br.ReadInt32();
             }
-            Grabbable = br.ReadBoolean();
+
+            CanBePickedUp = br.ReadBoolean();
             Bound = br.ReadBoolean();
             BlockStrength = br.ReadInt32();
             WeaponClass = (WeaponClass)br.ReadByte();
@@ -218,24 +218,25 @@ namespace MagickaForge.Pipeline.Items
             PauseSounds = br.ReadBoolean();
 
             Resistances = new Resistance[br.ReadInt32()];
-            for (int i = 0; i < Resistances.Length; i++)
+            for (var i = 0; i < Resistances.Length; i++)
             {
                 Resistances[i].Element = (Elements)br.ReadInt32();
                 Resistances[i].Multiplier = br.ReadSingle();
                 Resistances[i].Modifier = br.ReadSingle();
                 Resistances[i].StatusImmunity = br.ReadBoolean();
             }
-            PassiveAbilityType = (PassiveAbilities)br.ReadByte();
+
+            PassiveAbilityType = (PassiveAbility)br.ReadByte();
             PassiveAbilityStrength = br.ReadSingle();
 
             Effects = new string[br.ReadInt32()];
-            for (int i = 0; i < Effects.Length; i++)
+            for (var i = 0; i < Effects.Length; i++)
             {
                 Effects[i] = br.ReadString();
             }
 
             Lights = new Light[br.ReadInt32()];
-            for (int i = 0; i < Lights.Length; i++)
+            for (var i = 0; i < Lights.Length; i++)
             {
                 Lights[i].Radius = br.ReadSingle();
                 Lights[i].DiffuseColor = new Color(br);
@@ -257,113 +258,55 @@ namespace MagickaForge.Pipeline.Items
                     Hash = br.ReadString(),
                     Elements = new Elements[br.ReadInt32()]
                 };
-                for (int i = 0; i < specialAbility.Elements.Length; i++)
+                for (var i = 0; i < specialAbility.Elements.Length; i++)
                 {
                     specialAbility.Elements[i] = (Elements)br.ReadInt32();
                 }
                 SpecialAbility = specialAbility;
             }
+
             MeleeRange = br.ReadSingle();
             MeleeMultihit = br.ReadBoolean();
             MeleeConditions = new ConditionCollection[br.ReadInt32()];
-            for (int i = 0; i < MeleeConditions.Length; i++)
+            for (var i = 0; i < MeleeConditions.Length; i++)
             {
                 MeleeConditions[i] = new ConditionCollection(br);
             }
+
             RangedRange = br.ReadSingle();
             Facing = br.ReadBoolean();
-            Homing = br.ReadSingle();
+            HomingStrength = br.ReadSingle();
             RangedElevation = br.ReadSingle();
             RangedDanger = br.ReadSingle();
             GunRange = br.ReadSingle();
             GunClip = br.ReadInt32();
             GunRate = br.ReadInt32();
             GunAccuracy = br.ReadSingle();
-            GunSound = br.ReadString();
+            GunSoundCue = br.ReadString();
             GunMuzzleEffect = br.ReadString();
             GunShellEffect = br.ReadString();
             GunTracerVelocity = br.ReadSingle();
             GunNonTracer = br.ReadString();
             GunTracer = br.ReadString();
             GunConditions = new ConditionCollection[br.ReadInt32()];
-            for (int i = 0; i < GunConditions.Length; i++)
+            for (var i = 0; i < GunConditions.Length; i++)
             {
                 GunConditions[i] = new ConditionCollection(br);
             }
+
             ProjectileModel = br.ReadString();
             RangedConditions = new ConditionCollection[br.ReadInt32()];
-            for (int i = 0; i < RangedConditions.Length; i++)
+            for (var i = 0; i < RangedConditions.Length; i++)
             {
                 RangedConditions[i] = new ConditionCollection(br);
             }
+
             Scale = br.ReadSingle();
             Model = br.ReadString();
             Auras = new Aura[br.ReadInt32()];
-            for (int i = 0; i < Auras.Length; i++)
+            for (var i = 0; i < Auras.Length; i++)
             {
-                AuraTarget target = (AuraTarget)br.ReadByte();
-                AuraType auraType = (AuraType)br.ReadByte();
-                VisualCategory visualCategory = (VisualCategory)br.ReadByte();
-                var color = new Color(br);
-                var effect = br.ReadString();
-                var duration = br.ReadSingle();
-                var Radius = br.ReadSingle();
-                var Types = br.ReadString();
-                Factions Faction = (Factions)br.ReadInt32();
-
-                switch (auraType)
-                {
-                    case AuraType.Buff:
-                        {
-                            Auras[i] = new BuffAura()
-                            {
-                                Buff = Buff.GetBuff(br)
-                            };
-                        }
-                        break;
-                    case AuraType.Deflect:
-                        {
-                            Auras[i] = new DeflectAura()
-                            {
-                                DeflectStrength = br.ReadSingle(),
-                            };
-                        }
-                        break;
-                    case AuraType.Boost:
-                        {
-                            Auras[i] = new BoostAura()
-                            {
-                                BoostStrength = br.ReadSingle(),
-                            };
-                        }
-                        break;
-                    case AuraType.LifeSteal:
-                        {
-                            Auras[i] = new LifeStealAura()
-                            {
-                                LifeStealAmount = br.ReadSingle(),
-                            };
-                        }
-                        break;
-                    case AuraType.Love:
-                        {
-                            Auras[i] = new LoveAura()
-                            {
-                                CharmRadius = br.ReadSingle(),
-                                CharmDuration = br.ReadSingle(),
-                            };
-                        }
-                        break;
-                };
-
-                Auras[i].AuraTarget = target;
-                Auras[i].VisualCategory = visualCategory;
-                Auras[i].Color = color;
-                Auras[i].Effect = effect;
-                Auras[i].Duration = duration;
-                Auras[i].Radius = Radius;
-                Auras[i].Types = Types;
-                Auras[i].Faction = Faction;
+                Auras[i] = Aura.GetAura(br);
             }
 
             br.Close();

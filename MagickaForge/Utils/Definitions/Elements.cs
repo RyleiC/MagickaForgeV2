@@ -1,6 +1,6 @@
 ﻿namespace MagickaForge.Utils.Definitions
 {
-    [JsonStringEnum]
+    [EnumeratedString]
     [Flags]
     public enum Elements
     {

@@ -4,13 +4,13 @@ namespace MagickaForge.Components.Levels
 {
     public class BinTreeModel
     {
-        public int readerIndex { get; set; }
+        public int ReaderIndex { get; set; }
         private Header header;
         public BinTreeRoot[] BinaryTreeRoots { get; set; }
         public BinTreeModel() { }
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write7BitEncodedInt(readerIndex);
+            binaryWriter.Write7BitEncodedInt(ReaderIndex);
             binaryWriter.Write(BinaryTreeRoots.Length);
             for (int i = 0; i < BinaryTreeRoots.Length; i++)
             {
@@ -19,7 +19,7 @@ namespace MagickaForge.Components.Levels
         }
         public BinTreeModel(BinaryReader binaryReader, Header header)
         {
-            readerIndex = binaryReader.Read7BitEncodedInt();
+            ReaderIndex = binaryReader.Read7BitEncodedInt();
             this.header = header;
 
             var count = binaryReader.ReadInt32();

@@ -10,13 +10,13 @@ namespace MagickaForge.Components.Levels.LevelEntities
     {
         public string Name { get; set; }
         public bool AffectShields { get; set; }
-        public Model model { get; set; }
+        public Model Model { get; set; }
         public MeshSetting[] MeshSettings { get; set; }
         public LiquidDeclaration[] Liquids { get; set; }
         public Locator[] Locators { get; set; }
         public float AnimationDuration { get; set; }
         public AnimationDataChannel[] AnimationDataChannels { get; set; }
-        public Effect[] Effects { get; set; }
+        public SceneEffect[] Effects { get; set; }
         public string[] LightNames { get; set; }
         public Matrix[] LightPositions { get; set; }
         public AnimationTriMesh MaterialMesh { get; set; }
@@ -27,7 +27,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
         {
             Name = binaryReader.ReadString();
             AffectShields = binaryReader.ReadBoolean();
-            model = new Model(binaryReader); //EVIL
+            Model = new Model(binaryReader); //EVIL
             MeshSettings = new MeshSetting[binaryReader.ReadInt32()];
             for (var i = 0; i < MeshSettings.Length; i++)
             {
@@ -49,10 +49,10 @@ namespace MagickaForge.Components.Levels.LevelEntities
             {
                 AnimationDataChannels[i] = new AnimationDataChannel(binaryReader);
             }
-            Effects = new Effect[binaryReader.ReadInt32()];
+            Effects = new SceneEffect[binaryReader.ReadInt32()];
             for (var i = 0; i < Effects.Length; i++)
             {
-                Effects[i] = new Effect(binaryReader);
+                Effects[i] = new SceneEffect(binaryReader);
             }
             LightNames = new string[binaryReader.ReadInt32()];
             LightPositions = new Matrix[LightNames.Length];
@@ -80,7 +80,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
         {
             binaryWriter.Write(Name);
             binaryWriter.Write(AffectShields);
-            model.Write(binaryWriter);
+            Model.Write(binaryWriter);
             binaryWriter.Write(MeshSettings.Length);
             for (var i = 0; i < MeshSettings.Length; i++)
             {
@@ -105,7 +105,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
                 animationDataChannel.Write(binaryWriter);
             }
             binaryWriter.Write(Effects.Length);
-            foreach (Effect effect in Effects)
+            foreach (SceneEffect effect in Effects)
             {
                 effect.Write(binaryWriter);
             }

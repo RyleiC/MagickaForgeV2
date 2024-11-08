@@ -4,42 +4,42 @@ namespace MagickaForge.Components.Levels.Navigation
 {
     public struct NavigationTriangle
     {
-        public ushort vertexA { get; set; }
-        public ushort vertexB { get; set; }
-        public ushort vertexC { get; set; }
-        public ushort neighborA { get; set; }
-        public ushort neighborB { get; set; }
-        public ushort neighborC { get; set; }
-        public float costAB { get; set; }
-        public float costBC { get; set; }
-        public float costCA { get; set; }
-        public MovementProperties properties { get; set; }
+        public ushort VertexA { get; set; }
+        public ushort VertexB { get; set; }
+        public ushort VertexC { get; set; }
+        public ushort NeighborA { get; set; }
+        public ushort NeighborB { get; set; }
+        public ushort NeighborC { get; set; }
+        public float CostAB { get; set; }
+        public float CostBC { get; set; }
+        public float CostCA { get; set; }
+        public MovementProperties MovementProperty { get; set; }
 
         public NavigationTriangle(BinaryReader br)
         {
-            vertexA = br.ReadUInt16();
-            vertexB = br.ReadUInt16();
-            vertexC = br.ReadUInt16();
-            neighborA = br.ReadUInt16();
-            neighborB = br.ReadUInt16();
-            neighborC = br.ReadUInt16();
-            costAB = br.ReadSingle();
-            costBC = br.ReadSingle();
-            costCA = br.ReadSingle();
-            properties = (MovementProperties)br.ReadByte();
+            VertexA = br.ReadUInt16();
+            VertexB = br.ReadUInt16();
+            VertexC = br.ReadUInt16();
+            NeighborA = br.ReadUInt16();
+            NeighborB = br.ReadUInt16();
+            NeighborC = br.ReadUInt16();
+            CostAB = br.ReadSingle();
+            CostBC = br.ReadSingle();
+            CostCA = br.ReadSingle();
+            MovementProperty = (MovementProperties)br.ReadByte();
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write(vertexA);
-            binaryWriter.Write(vertexB);
-            binaryWriter.Write(vertexC);
-            binaryWriter.Write(neighborA);
-            binaryWriter.Write(neighborB);
-            binaryWriter.Write(neighborC);
-            binaryWriter.Write(costAB);
-            binaryWriter.Write(costBC);
-            binaryWriter.Write(costCA);
-            binaryWriter.Write((byte)properties);
+            binaryWriter.Write(VertexA);
+            binaryWriter.Write(VertexB);
+            binaryWriter.Write(VertexC);
+            binaryWriter.Write(NeighborA);
+            binaryWriter.Write(NeighborB);
+            binaryWriter.Write(NeighborC);
+            binaryWriter.Write(CostAB);
+            binaryWriter.Write(CostBC);
+            binaryWriter.Write(CostCA);
+            binaryWriter.Write((byte)MovementProperty);
         }
     }
 }

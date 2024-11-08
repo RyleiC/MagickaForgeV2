@@ -1,7 +1,7 @@
 ﻿namespace MagickaForge.Utils.Definitions.AI
 {
     [Flags]
-    public enum ReactTo : byte
+    public enum ReactionTriggers : byte
     {
         None = 0,
         Attack = 1,

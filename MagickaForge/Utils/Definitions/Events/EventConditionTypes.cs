@@ -1,7 +1,7 @@
 ﻿namespace MagickaForge.Utils.Definitions.Events
 {
     [Flags]
-    public enum EventConditionType : byte
+    public enum EventConditionTypes : byte
     {
         Default = 1,
         Hit = 2,

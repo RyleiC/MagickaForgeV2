@@ -4,70 +4,70 @@ namespace MagickaForge.Components.Graphics.Effects
 {
     public class RenderDeferredLiquidEffect : ShaderEffect
     {
-        public string reflectionMap { get; set; }
-        public float waveHeight { get; set; }
-        public Vector2 waveSpeedA { get; set; }
-        public Vector2 waveSpeedB { get; set; }
-        public float waterReflectiveness { get; set; }
-        public Color bottomColor { get; set; }
-        public Color deepColor { get; set; }
-        public float waterEmissive { get; set; }
-        public float waterSpecAmount { get; set; }
-        public float waterSpecPower { get; set; }
-        public string bottomTexture { get; set; }
-        public string waterNormalMap { get; set; }
-        public float iceReflectiveness { get; set; }
-        public Color iceColor { get; set; }
-        public float iceEmissiveAmount { get; set; }
-        public float iceSpecAmount { get; set; }
-        public float iceSpecPower { get; set; }
-        public string iceDiffuseMap { get; set; }
-        public string iceNormalMap { get; set; }
+        public string ReflectionMap { get; set; }
+        public float WaveHeight { get; set; }
+        public Vector2 WaveSpeedA { get; set; }
+        public Vector2 WaveSpeedB { get; set; }
+        public float WaterReflectiveness { get; set; }
+        public Color BottomColor { get; set; }
+        public Color DeepColor { get; set; }
+        public float WaterEmissiveAmount { get; set; }
+        public float WaterSpecularAmount { get; set; }
+        public float WaterSpecularPower { get; set; }
+        public string BottomTexture { get; set; }
+        public string WaterNormalMap { get; set; }
+        public float IceReflectiveness { get; set; }
+        public Color IceColor { get; set; }
+        public float IceEmissiveAmount { get; set; }
+        public float IceSpecularAmount { get; set; }
+        public float IceSpecularPower { get; set; }
+        public string IceDiffuseMap { get; set; }
+        public string IceNormalMap { get; set; }
         public RenderDeferredLiquidEffect() { }
         public RenderDeferredLiquidEffect(BinaryReader binaryReader)
         {
-            reflectionMap = binaryReader.ReadString();
-            waveHeight = binaryReader.ReadSingle();
-            waveSpeedA = new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle());
-            waveSpeedB = new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle());
-            waterReflectiveness = binaryReader.ReadSingle();
-            bottomColor = new Color(binaryReader);
-            deepColor = new Color(binaryReader);
-            waterEmissive = binaryReader.ReadSingle();
-            waterSpecAmount = binaryReader.ReadSingle();
-            waterSpecPower = binaryReader.ReadSingle();
-            bottomTexture = binaryReader.ReadString();
-            waterNormalMap = binaryReader.ReadString();
-            iceReflectiveness = binaryReader.ReadSingle();
-            iceColor = new Color(binaryReader);
-            iceEmissiveAmount = binaryReader.ReadSingle();
-            iceSpecAmount = binaryReader.ReadSingle();
-            iceSpecPower = binaryReader.ReadSingle();
-            iceDiffuseMap = binaryReader.ReadString();
-            iceNormalMap = binaryReader.ReadString();
+            ReflectionMap = binaryReader.ReadString();
+            WaveHeight = binaryReader.ReadSingle();
+            WaveSpeedA = new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle());
+            WaveSpeedB = new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle());
+            WaterReflectiveness = binaryReader.ReadSingle();
+            BottomColor = new Color(binaryReader);
+            DeepColor = new Color(binaryReader);
+            WaterEmissiveAmount = binaryReader.ReadSingle();
+            WaterSpecularAmount = binaryReader.ReadSingle();
+            WaterSpecularPower = binaryReader.ReadSingle();
+            BottomTexture = binaryReader.ReadString();
+            WaterNormalMap = binaryReader.ReadString();
+            IceReflectiveness = binaryReader.ReadSingle();
+            IceColor = new Color(binaryReader);
+            IceEmissiveAmount = binaryReader.ReadSingle();
+            IceSpecularAmount = binaryReader.ReadSingle();
+            IceSpecularPower = binaryReader.ReadSingle();
+            IceDiffuseMap = binaryReader.ReadString();
+            IceNormalMap = binaryReader.ReadString();
         }
         public override void Write(BinaryWriter binaryWriter)
         {
             base.Write(binaryWriter);
-            binaryWriter.Write(reflectionMap);
-            binaryWriter.Write(waveHeight);
-            waveSpeedA.Write(binaryWriter);
-            waveSpeedB.Write(binaryWriter);
-            binaryWriter.Write(waterReflectiveness);
-            bottomColor.Write(binaryWriter);
-            deepColor.Write(binaryWriter);
-            binaryWriter.Write(waterEmissive);
-            binaryWriter.Write(waterSpecAmount);
-            binaryWriter.Write(waterSpecPower);
-            binaryWriter.Write(bottomTexture);
-            binaryWriter.Write(waterNormalMap);
-            binaryWriter.Write(iceReflectiveness);
-            iceColor.Write(binaryWriter);
-            binaryWriter.Write(iceEmissiveAmount);
-            binaryWriter.Write(iceSpecAmount);
-            binaryWriter.Write(iceSpecPower);
-            binaryWriter.Write(iceDiffuseMap);
-            binaryWriter.Write(iceNormalMap);
+            binaryWriter.Write(ReflectionMap);
+            binaryWriter.Write(WaveHeight);
+            WaveSpeedA.Write(binaryWriter);
+            WaveSpeedB.Write(binaryWriter);
+            binaryWriter.Write(WaterReflectiveness);
+            BottomColor.Write(binaryWriter);
+            DeepColor.Write(binaryWriter);
+            binaryWriter.Write(WaterEmissiveAmount);
+            binaryWriter.Write(WaterSpecularAmount);
+            binaryWriter.Write(WaterSpecularPower);
+            binaryWriter.Write(BottomTexture);
+            binaryWriter.Write(WaterNormalMap);
+            binaryWriter.Write(IceReflectiveness);
+            IceColor.Write(binaryWriter);
+            binaryWriter.Write(IceEmissiveAmount);
+            binaryWriter.Write(IceSpecularAmount);
+            binaryWriter.Write(IceSpecularPower);
+            binaryWriter.Write(IceDiffuseMap);
+            binaryWriter.Write(IceNormalMap);
         }
     }
 }

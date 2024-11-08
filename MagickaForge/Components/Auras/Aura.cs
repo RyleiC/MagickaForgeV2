@@ -13,7 +13,7 @@ namespace MagickaForge.Components.Auras
     [JsonDerivedType(typeof(LoveAura), typeDiscriminator: "Love")]
     public class Aura
     {
-        protected AuraType type;
+        protected AuraType _type;
 
         [JsonConverter(typeof(JsonStringEnumConverter<AuraTarget>))]
         public AuraTarget AuraTarget { get; set; }
@@ -30,7 +30,7 @@ namespace MagickaForge.Components.Auras
         public virtual void Write(BinaryWriter bw)
         {
             bw.Write((byte)AuraTarget);
-            bw.Write((byte)type);
+            bw.Write((byte)_type);
             bw.Write((byte)VisualCategory);
             Color.Write(bw);
             bw.Write(Effect);
@@ -39,12 +39,81 @@ namespace MagickaForge.Components.Auras
             bw.Write(Types);
             bw.Write((int)Faction);
         }
+
+        public static Aura GetAura(BinaryReader binaryReader)
+        {
+            var aura = new Aura();
+            AuraTarget target = (AuraTarget)binaryReader.ReadByte();
+            AuraType auraType = (AuraType)binaryReader.ReadByte();
+            VisualCategory visualCategory = (VisualCategory)binaryReader.ReadByte();
+            var color = new Color(binaryReader);
+            var effect = binaryReader.ReadString();
+            var duration = binaryReader.ReadSingle();
+            var Radius = binaryReader.ReadSingle();
+            var Types = binaryReader.ReadString();
+            Factions Faction = (Factions)binaryReader.ReadInt32();
+
+            switch (auraType)
+            {
+                case AuraType.Buff:
+                    {
+                        aura = new BuffAura()
+                        {
+                            Buff = Buff.GetBuff(binaryReader)
+                        };
+                    }
+                    break;
+                case AuraType.Deflect:
+                    {
+                        aura = new DeflectAura()
+                        {
+                            DeflectStrength = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+                case AuraType.Boost:
+                    {
+                        aura = new BoostAura()
+                        {
+                            BoostStrength = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+                case AuraType.LifeSteal:
+                    {
+                        aura = new LifeStealAura()
+                        {
+                            LifeStealAmount = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+                case AuraType.Love:
+                    {
+                        aura = new LoveAura()
+                        {
+                            CharmRadius = binaryReader.ReadSingle(),
+                            CharmDuration = binaryReader.ReadSingle(),
+                        };
+                    }
+                    break;
+            };
+
+            aura.AuraTarget = target;
+            aura.VisualCategory = visualCategory;
+            aura.Color = color;
+            aura.Effect = effect;
+            aura.Duration = duration;
+            aura.Radius = Radius;
+            aura.Types = Types;
+            aura.Faction = Faction;
+            return aura;
+        }
     }
 
     public class BuffAura : Aura
     {
         public Buff Buff { get; set; }
-        public BuffAura() { type = AuraType.Buff; }
+        public BuffAura() { _type = AuraType.Buff; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -54,7 +123,7 @@ namespace MagickaForge.Components.Auras
     public class DeflectAura : Aura
     {
         public float DeflectStrength { get; set; }
-        public DeflectAura() { type = AuraType.Deflect; }
+        public DeflectAura() { _type = AuraType.Deflect; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -64,7 +133,7 @@ namespace MagickaForge.Components.Auras
     public class BoostAura : Aura
     {
         public float BoostStrength { get; set; }
-        public BoostAura() { type = AuraType.Boost; }
+        public BoostAura() { _type = AuraType.Boost; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -74,7 +143,7 @@ namespace MagickaForge.Components.Auras
     public class LifeStealAura : Aura
     {
         public float LifeStealAmount { get; set; }
-        public LifeStealAura() { type = AuraType.LifeSteal; }
+        public LifeStealAura() { _type = AuraType.LifeSteal; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
@@ -85,7 +154,7 @@ namespace MagickaForge.Components.Auras
     {
         public float CharmRadius { get; set; }
         public float CharmDuration { get; set; }
-        public LoveAura() { type = AuraType.Love; }
+        public LoveAura() { _type = AuraType.Love; }
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);

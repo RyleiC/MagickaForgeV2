@@ -2,10 +2,10 @@
 
 namespace MagickaForge.Components.XNB
 {
-    public class SharedContentCache
+    public struct SharedContentCache
     {
         public ShaderEffect effect { get; set; }
-        public SharedContentCache() { }
+
         public SharedContentCache(BinaryReader binaryReader, Header header)
         {
             effect = ShaderEffect.GetEffect(binaryReader, header);

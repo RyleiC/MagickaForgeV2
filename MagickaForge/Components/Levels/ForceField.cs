@@ -5,61 +5,61 @@ namespace MagickaForge.Components.Levels
 {
     public class ForceField
     {
-        public Color color { get; set; }
-        public float width { get; set; }
-        public float alphaPower { get; set; }
-        public float alphaFalloffPower { get; set; }
-        public float maxRadius { get; set; }
-        public float rippleDistortion { get; set; }
-        public float mapDistortion { get; set; }
-        public bool vertexColorEnabled { get; set; }
-        public string displacementMap { get; set; }
-        public float timeToLive { get; set; }
-        public VertexBuffer vertexBuffer { get; set; }
-        public IndexBuffer indexBuffer { get; set; }
-        public VertexDeclaration vertexDeclaration { get; set; }
-        public int vertexStride { get; set; }
-        public int vertexCount { get; set; }
-        public int primativeCount { get; set; }
+        public Color Color { get; set; }
+        public float Width { get; set; }
+        public float AlphaPower { get; set; }
+        public float AlphaFalloffPower { get; set; }
+        public float MaxRadius { get; set; }
+        public float RippleDistortion { get; set; }
+        public float MapDistortion { get; set; }
+        public bool VertexColorEnabled { get; set; }
+        public string DisplacementMap { get; set; }
+        public float Duration { get; set; }
+        public VertexBuffer VertexBuffer { get; set; }
+        public IndexBuffer IndexBuffer { get; set; }
+        public VertexDeclaration VertexDeclaration { get; set; }
+        public int VertexStride { get; set; }
+        public int VertexCount { get; set; }
+        public int PrimativeCount { get; set; }
 
         public ForceField(BinaryReader binaryReader)
         {
-            color = new Color(binaryReader);
-            width = binaryReader.ReadSingle();
-            alphaPower = binaryReader.ReadSingle();
-            alphaFalloffPower = binaryReader.ReadSingle();
-            maxRadius = binaryReader.ReadSingle();
-            rippleDistortion = binaryReader.ReadSingle();
-            mapDistortion = binaryReader.ReadSingle();
-            vertexColorEnabled = binaryReader.ReadBoolean();
-            displacementMap = binaryReader.ReadString();
-            timeToLive = binaryReader.ReadSingle();
-            vertexBuffer = new VertexBuffer(binaryReader);
-            indexBuffer = new IndexBuffer(binaryReader);
-            vertexDeclaration = new VertexDeclaration(binaryReader);
-            vertexStride = binaryReader.ReadInt32();
-            vertexCount = binaryReader.ReadInt32();
-            primativeCount = binaryReader.ReadInt32();
+            Color = new Color(binaryReader);
+            Width = binaryReader.ReadSingle();
+            AlphaPower = binaryReader.ReadSingle();
+            AlphaFalloffPower = binaryReader.ReadSingle();
+            MaxRadius = binaryReader.ReadSingle();
+            RippleDistortion = binaryReader.ReadSingle();
+            MapDistortion = binaryReader.ReadSingle();
+            VertexColorEnabled = binaryReader.ReadBoolean();
+            DisplacementMap = binaryReader.ReadString();
+            Duration = binaryReader.ReadSingle();
+            VertexBuffer = new VertexBuffer(binaryReader);
+            IndexBuffer = new IndexBuffer(binaryReader);
+            VertexDeclaration = new VertexDeclaration(binaryReader);
+            VertexStride = binaryReader.ReadInt32();
+            VertexCount = binaryReader.ReadInt32();
+            PrimativeCount = binaryReader.ReadInt32();
         }
 
         public void Write(BinaryWriter binaryWriter)
         {
-            color.Write(binaryWriter);
-            binaryWriter.Write(width);
-            binaryWriter.Write(alphaPower);
-            binaryWriter.Write(alphaFalloffPower);
-            binaryWriter.Write(maxRadius);
-            binaryWriter.Write(rippleDistortion);
-            binaryWriter.Write(mapDistortion);
-            binaryWriter.Write(vertexColorEnabled);
-            binaryWriter.Write(displacementMap);
-            binaryWriter.Write(timeToLive);
-            vertexBuffer.Write(binaryWriter);
-            indexBuffer.Write(binaryWriter);
-            vertexDeclaration.Write(binaryWriter);
-            binaryWriter.Write(vertexStride);
-            binaryWriter.Write(vertexCount);
-            binaryWriter.Write(primativeCount);
+            Color.Write(binaryWriter);
+            binaryWriter.Write(Width);
+            binaryWriter.Write(AlphaPower);
+            binaryWriter.Write(AlphaFalloffPower);
+            binaryWriter.Write(MaxRadius);
+            binaryWriter.Write(RippleDistortion);
+            binaryWriter.Write(MapDistortion);
+            binaryWriter.Write(VertexColorEnabled);
+            binaryWriter.Write(DisplacementMap);
+            binaryWriter.Write(Duration);
+            VertexBuffer.Write(binaryWriter);
+            IndexBuffer.Write(binaryWriter);
+            VertexDeclaration.Write(binaryWriter);
+            binaryWriter.Write(VertexStride);
+            binaryWriter.Write(VertexCount);
+            binaryWriter.Write(PrimativeCount);
         }
     }
 }

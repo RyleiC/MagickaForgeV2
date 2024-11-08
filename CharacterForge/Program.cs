@@ -5,13 +5,15 @@ namespace CharacterForge
     internal class Program
     {
         static bool LegacyMagicka;
+
+        //TODO, REBUILD EXAMPLES!
         static void Main(string[] args)
         {
             Console.WriteLine("= Magicka Character Forge by Rylei. C =");
             Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
             string instructionPath = Console.ReadLine()!.Trim('\"');
             Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
-           var mode = int.Parse(Console.ReadLine()!);
+            var mode = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Is this XNB from an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
             LegacyMagicka = int.Parse(Console.ReadLine()!) == 1;
             Console.WriteLine("= Process Starting... =\n");

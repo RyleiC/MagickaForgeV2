@@ -4,7 +4,6 @@
     {
         Point,
         Directional,
-        Spot,
-        Custom = 10
+        Spot
     }
 }

@@ -3,18 +3,18 @@ namespace MagickaForge.Components.Levels.LevelEntities
 {
     public class PhysicsEntity
     {
-        public Matrix position { get; set; }
-        public string type { get; set; }
+        public Matrix Position { get; set; }
+        public string Type { get; set; }
         public PhysicsEntity() { }
         public PhysicsEntity(BinaryReader binaryReader)
         {
-            position = new Matrix(binaryReader);
-            type = binaryReader.ReadString();
+            Position = new Matrix(binaryReader);
+            Type = binaryReader.ReadString();
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            position.Write(binaryWriter);
-            binaryWriter.Write(type);
+            Position.Write(binaryWriter);
+            binaryWriter.Write(Type);
         }
     }
 }

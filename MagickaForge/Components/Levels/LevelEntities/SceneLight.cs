@@ -3,7 +3,7 @@ using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Levels.LevelEntities
 {
-    public class Light
+    public class SceneLight
     {
         public string Name { get; set; }
         public Vector3 Position { get; set; }
@@ -21,8 +21,8 @@ namespace MagickaForge.Components.Levels.LevelEntities
         public float VariationAmount { get; set; }
         public int ShadowSize { get; set; }
         public bool CastShadows { get; set; }
-        public Light() { }
-        public Light(BinaryReader binaryReader)
+        public SceneLight() { }
+        public SceneLight(BinaryReader binaryReader)
         {
             Name = binaryReader.ReadString();
             Position = new Vector3(binaryReader);

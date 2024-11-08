@@ -2,15 +2,15 @@
 
 namespace MagickaForge.Components.Levels.LevelEntities
 {
-    public class Effect
+    public class SceneEffect
     {
         public string Name { get; set; }
         public Vector3 Position { get; set; }
         public Vector3 Forward { get; set; }
         public float Range { get; set; }
         public string Type { get; set; }
-        public Effect() { }
-        public Effect(BinaryReader binaryReader)
+        public SceneEffect() { }
+        public SceneEffect(BinaryReader binaryReader)
         {
             Name = binaryReader.ReadString();
             Position = new Vector3(binaryReader);

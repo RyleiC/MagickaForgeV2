@@ -16,7 +16,7 @@ namespace MagickaForge.Pipeline.Levels
      * Implement Force Fields class X
      * Implement Animated Objects X WOOH
      * JSON Serializable? X
-     * Blender Exporter + blah blah blah
+     * Blender Exporter + blah blah blah X
      * 
      * 
      * Read code should be cleaned up [ ]
@@ -26,93 +26,96 @@ namespace MagickaForge.Pipeline.Levels
      */
     public class Level
     {
-        public int readerIndex { get; set; }
-        public Header header { get; set; }
-        public BinTreeModel model { get; set; }
-        public AnimatedLevelPart[] animations { get; set; }
-        public Light[] lights { get; set; }
-        public Effect[] effects { get; set; }
-        public PhysicsEntity[] physicsEntities { get; set; }
-        public LiquidDeclaration[] liquids { get; set; }
-        public ForceField[] forceFields { get; set; }
-        public TriangleMesh[] collisionMeshes { get; set; }
-        public TriangleMesh cameraMesh { get; set; }
-        public TriggerArea[] triggerAreas { get; set; }
-        public Locator[] locators { get; set; }
-        public NavigationMesh navigationMesh { get; set; }
-        public SharedContentCache[] contentCache { get; set; }
+        private const int MaxCollisionMeshes = 10;
+        public int ReaderIndex { get; set; }
+        public Header Header { get; set; }
+        public BinTreeModel BinaryModel { get; set; }
+        public AnimatedLevelPart[] Animations { get; set; }
+        public SceneLight[] Lights { get; set; }
+        public SceneEffect[] Effects { get; set; }
+        public PhysicsEntity[] PhysicsEntities { get; set; }
+        public LiquidDeclaration[] Liquids { get; set; }
+        public ForceField[] ForceFields { get; set; }
+        public TriangleMesh[] CollisionMeshes { get; set; }
+        public TriangleMesh CameraMesh { get; set; }
+        public TriggerArea[] TriggerAreas { get; set; }
+        public Locator[] Locators { get; set; }
+        public NavigationMesh NavigationMesh { get; set; }
+        public SharedContentCache[] ContentCache { get; set; }
 
         public void LevelToXNB(string outputPath)
         {
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
-            header.Write(bw);
-            bw.Write7BitEncodedInt(readerIndex);
-            model.Write(bw);
-            bw.Write(animations.Length);
-            for (var i = 0; i < animations.Length; i++)
+            Header.Write(bw);
+            bw.Write7BitEncodedInt(ReaderIndex);
+            BinaryModel.Write(bw);
+            bw.Write(Animations.Length);
+            for (var i = 0; i < Animations.Length; i++)
             {
-                animations[i].Write(bw);
+                Animations[i].Write(bw);
             }
-            bw.Write(lights.Length);
-            for (var i = 0; i < lights.Length; i++)
+            bw.Write(Lights.Length);
+            for (var i = 0; i < Lights.Length; i++)
             {
-                lights[i].Write(bw);
+                Lights[i].Write(bw);
             }
-            bw.Write(effects.Length);
-            for (var i = 0; i < effects.Length; i++)
+            bw.Write(Effects.Length);
+            for (var i = 0; i < Effects.Length; i++)
             {
-                effects[i].Write(bw);
+                Effects[i].Write(bw);
             }
-            bw.Write(physicsEntities.Length);
-            for (var i = 0; i < physicsEntities.Length; i++)
+            bw.Write(PhysicsEntities.Length);
+            for (var i = 0; i < PhysicsEntities.Length; i++)
             {
-                physicsEntities[i].Write(bw);
+                PhysicsEntities[i].Write(bw);
             }
-            bw.Write(liquids.Length);
-            for (var i = 0; i < liquids.Length; i++)
+            bw.Write(Liquids.Length);
+            for (var i = 0; i < Liquids.Length; i++)
             {
-                liquids[i].Write(bw);
+                Liquids[i].Write(bw);
             }
-            bw.Write(forceFields.Length);
-            for (var i = 0; i < forceFields.Length; i++)
+            bw.Write(ForceFields.Length);
+            for (var i = 0; i < ForceFields.Length; i++)
             {
-                forceFields[i].Write(bw);
+                ForceFields[i].Write(bw);
             }
-            for (int i = 0; i < 10; i++)
+            if (CollisionMeshes.Length > MaxCollisionMeshes)
             {
-                if (collisionMeshes[i] == null)
+                throw new ArgumentOutOfRangeException("Levels may only have up to 10 collision meshes!");
+            }
+            for (var i = 0; i < 10; i++)
+            {
+                if (CollisionMeshes[i] == null)
                 {
                     bw.Write(false);
                     continue;
                 }
                 bw.Write(true);
-                collisionMeshes[i].Write(bw);
+                CollisionMeshes[i].Write(bw);
             }
-            var hasCameraMesh = cameraMesh != null;
+            var hasCameraMesh = CameraMesh != null;
             bw.Write(hasCameraMesh);
             if (hasCameraMesh)
             {
-                cameraMesh.Write(bw);
+                CameraMesh.Write(bw);
             }
-            bw.Write(triggerAreas.Length);
-            for (var i = 0; i < triggerAreas.Length; i++)
+            bw.Write(TriggerAreas.Length);
+            for (var i = 0; i < TriggerAreas.Length; i++)
             {
-                triggerAreas[i].Write(bw);
+                TriggerAreas[i].Write(bw);
             }
-            bw.Write(locators.Length);
-            for (var i = 0; i < locators.Length; i++)
+            bw.Write(Locators.Length);
+            for (var i = 0; i < Locators.Length; i++)
             {
-                locators[i].Write(bw);
+                Locators[i].Write(bw);
             }
-            navigationMesh.Write(bw);
-            for (var i = 0; i < contentCache.Length; i++)
+            NavigationMesh.Write(bw);
+            for (var i = 0; i < ContentCache.Length; i++)
             {
-                contentCache[i].Write(bw);
+                ContentCache[i].Write(bw);
             }
             bw.Close();
         }
-
-
         public static void WriteToJson(string outputPath, Level level)
         {
             StreamWriter sw = new(outputPath);
@@ -132,74 +135,72 @@ namespace MagickaForge.Pipeline.Levels
         {
             BinaryReader br = new(File.Open(inputPath, FileMode.Open));
 
-            header = new Header(br);
+            Header = new Header(br);
 
-            readerIndex = br.Read7BitEncodedInt(); //0 read, will always be the first reader
+            ReaderIndex = br.Read7BitEncodedInt(); //0 read, will always be the first reader
 
-            model = new BinTreeModel(br, header); //BINARY TREE
-
-            animations = new AnimatedLevelPart[br.ReadInt32()];
-            for (int i = 0; i < animations.Length; i++)
+            BinaryModel = new BinTreeModel(br, Header); //BINARY TREE
+            Animations = new AnimatedLevelPart[br.ReadInt32()];
+            for (var i = 0; i < Animations.Length; i++)
             {
-                animations[i] = new AnimatedLevelPart(br, header);
+                Animations[i] = new AnimatedLevelPart(br, Header);
+            }
+            Lights = new SceneLight[br.ReadInt32()]; //LIGHTS
+            for (var i = 0; i < Lights.Length; i++)
+            {
+                Lights[i] = new SceneLight(br);
+            }
+            Effects = new SceneEffect[br.ReadInt32()];
+            for (var i = 0; i < Effects.Length; i++)
+            {
+                Effects[i] = new SceneEffect(br);
+            }
+            PhysicsEntities = new PhysicsEntity[br.ReadInt32()];
+            for (var i = 0; i < PhysicsEntities.Length; i++)
+            {
+                PhysicsEntities[i] = new PhysicsEntity(br);
             }
 
-            lights = new Light[br.ReadInt32()]; //LIGHTS
-            for (int i = 0; i < lights.Length; i++)
+            Liquids = new LiquidDeclaration[br.ReadInt32()];
+            for (var i = 0; i < Liquids.Length; i++)
             {
-                lights[i] = new Light(br);
+                Liquids[i] = new LiquidDeclaration(br, Header);
             }
-            effects = new Effect[br.ReadInt32()];
-            for (int i = 0; i < effects.Length; i++)
+            ForceFields = new ForceField[br.ReadInt32()];
+            for (var i = 0; i < ForceFields.Length; i++)
             {
-                effects[i] = new Effect(br);
-            }
-            physicsEntities = new PhysicsEntity[br.ReadInt32()];
-            for (int i = 0; i < physicsEntities.Length; i++)
-            {
-                physicsEntities[i] = new PhysicsEntity(br);
+                ForceFields[i] = new ForceField(br);
             }
 
-            liquids = new LiquidDeclaration[br.ReadInt32()];
-            for (int i = 0; i < liquids.Length; i++)
-            {
-                liquids[i] = new LiquidDeclaration(br, header);
-            }
-            forceFields = new ForceField[br.ReadInt32()];
-            for (int i = 0; i < forceFields.Length; i++)
-            {
-                forceFields[i] = new ForceField(br);
-            }
-
-            collisionMeshes = new TriangleMesh[10];
-            for (int i = 0; i < 10; i++)
+            CollisionMeshes = new TriangleMesh[10];
+            for (var i = 0; i < 10; i++)
             {
                 if (br.ReadBoolean())
                 {
-                    collisionMeshes[i] = new TriangleMesh(br);
+                    CollisionMeshes[i] = new TriangleMesh(br);
                 }
             }
 
             var hasCameraMesh = br.ReadBoolean();
             if (hasCameraMesh)
             {
-                cameraMesh = new TriangleMesh(br);
+                CameraMesh = new TriangleMesh(br);
             }
-            triggerAreas = new TriggerArea[br.ReadInt32()];
-            for (int i = 0; i < triggerAreas.Length; i++)
+            TriggerAreas = new TriggerArea[br.ReadInt32()];
+            for (var i = 0; i < TriggerAreas.Length; i++)
             {
-                triggerAreas[i] = new TriggerArea(br);
+                TriggerAreas[i] = new TriggerArea(br);
             }
-            locators = new Locator[br.ReadInt32()];
-            for (int i = 0; i < locators.Length; i++)
+            Locators = new Locator[br.ReadInt32()];
+            for (var i = 0; i < Locators.Length; i++)
             {
-                locators[i] = new Locator(br);
+                Locators[i] = new Locator(br);
             }
-            navigationMesh = new NavigationMesh(br);
-            contentCache = new SharedContentCache[header.sharedResources];
-            for (int i = 0; i < contentCache.Length; i++)
+            NavigationMesh = new NavigationMesh(br);
+            ContentCache = new SharedContentCache[Header.SharedResources];
+            for (var i = 0; i < ContentCache.Length; i++)
             {
-                contentCache[i] = new SharedContentCache(br, header);
+                ContentCache[i] = new SharedContentCache(br, Header);
             }
             br.Close();
         }

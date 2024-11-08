@@ -7,9 +7,9 @@
         Resistance,
         Undying,
         Boost,
-        ReduceAgro,
+        ReduceAggro,
         ModifyHitPoints,
-        ModifySpellTTL,
+        ModifySpellDuration,
         ModifySpellRange
     }
 }
