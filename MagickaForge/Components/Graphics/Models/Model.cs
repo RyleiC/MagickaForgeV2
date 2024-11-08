@@ -2,34 +2,34 @@
 {
     public class Model
     {
-        public int writerType { get; set; }
+        public int ReaderType { get; set; }
         public int Root { get; set; }
         public byte Tag { get; set; }
         public ModelBone[] ModelBones { get; set; }
         public ModelMesh[] Meshes { get; set; }
         public Model() { }
-        public VertexDeclaration[] vDeclarations { get; set; }
+        public VertexDeclaration[] VertexDeclarations { get; set; }
 
         public Model(BinaryReader binaryReader)
         {
-            writerType = binaryReader.Read7BitEncodedInt();
+            ReaderType = binaryReader.Read7BitEncodedInt();
             ReadBones(binaryReader);
             ReadVertexDeclarations(binaryReader);
-            ReadMeshes(binaryReader, vDeclarations);
+            ReadMeshes(binaryReader, VertexDeclarations);
             Root = ReadBoneReference(binaryReader);
             Tag = binaryReader.ReadByte();
         }
 
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write7BitEncodedInt(writerType);
+            binaryWriter.Write7BitEncodedInt(ReaderType);
             binaryWriter.Write(ModelBones.Length);
             var stringReaderIndex = 0;
 
             foreach (var bone in ModelBones)
             {
-                stringReaderIndex = bone.readerType;
-                binaryWriter.Write7BitEncodedInt(bone.readerType);
+                stringReaderIndex = bone.ReaderType;
+                binaryWriter.Write7BitEncodedInt(bone.ReaderType);
                 binaryWriter.Write(bone.Name);
                 bone.Transform.Write(binaryWriter);
             }
@@ -42,8 +42,8 @@
                     WriteBoneIndexes(binaryWriter, child);
                 }
             }
-            binaryWriter.Write(vDeclarations.Length);
-            foreach (VertexDeclaration vd in vDeclarations)
+            binaryWriter.Write(VertexDeclarations.Length);
+            foreach (VertexDeclaration vd in VertexDeclarations)
             {
                 vd.Write(binaryWriter);
             }
@@ -58,15 +58,15 @@
                 Meshes[i].VertexBuffer.Write(binaryWriter);
                 Meshes[i].IndexBuffer.Write(binaryWriter);
                 binaryWriter.Write7BitEncodedInt(0);
-                binaryWriter.Write(Meshes[i].Parts.Length);
-                foreach (ModelMeshPart part in Meshes[i].Parts)
+                binaryWriter.Write(Meshes[i].MeshParts.Length);
+                foreach (ModelMeshPart part in Meshes[i].MeshParts)
                 {
-                    binaryWriter.Write(part.streamOffset);
-                    binaryWriter.Write(part.baseVertex);
-                    binaryWriter.Write(part.numVertices);
-                    binaryWriter.Write(part.startIndex);
-                    binaryWriter.Write(part.primativeCount);
-                    binaryWriter.Write(part.vdIndex);
+                    binaryWriter.Write(part.StreamOffset);
+                    binaryWriter.Write(part.BaseVertex);
+                    binaryWriter.Write(part.VertexCount);
+                    binaryWriter.Write(part.StartIndex);
+                    binaryWriter.Write(part.PrimativeCount);
+                    binaryWriter.Write(part.VertexDeclarationIndex);
                     binaryWriter.Write(part.Tag); //TAG
                     binaryWriter.Write7BitEncodedInt(part.SharedContentID); //EFFECT 
                 }
@@ -128,10 +128,10 @@
 
         public void ReadVertexDeclarations(BinaryReader input)
         {
-            vDeclarations = new VertexDeclaration[input.ReadInt32()];
-            for (int i = 0; i < vDeclarations.Length; i++)
+            VertexDeclarations = new VertexDeclaration[input.ReadInt32()];
+            for (int i = 0; i < VertexDeclarations.Length; i++)
             {
-                vDeclarations[i] = new VertexDeclaration(input);
+                VertexDeclarations[i] = new VertexDeclaration(input);
             }
         }
 

@@ -4,35 +4,35 @@ namespace MagickaForge.Components.Levels.Navigation
 {
     public class NavigationMesh
     {
-        public Vector3[] vertices { get; set; }
-        public NavigationTriangle[] navigationTriangles { get; set; }
+        public Vector3[] Vertices { get; set; }
+        public NavigationTriangle[] NavigationTriangles { get; set; }
         public NavigationMesh() { }
 
         public NavigationMesh(BinaryReader binaryReader)
         {
-            vertices = new Vector3[binaryReader.ReadUInt16()];
-            for (int i = 0; i < vertices.Length; i++)
+            Vertices = new Vector3[binaryReader.ReadUInt16()];
+            for (int i = 0; i < Vertices.Length; i++)
             {
-                vertices[i] = vertices[i] = new Vector3(binaryReader);
+                Vertices[i] = Vertices[i] = new Vector3(binaryReader);
             }
-            navigationTriangles = new NavigationTriangle[binaryReader.ReadUInt16()];
-            for (int i = 0; i < navigationTriangles.Length; i++)
+            NavigationTriangles = new NavigationTriangle[binaryReader.ReadUInt16()];
+            for (int i = 0; i < NavigationTriangles.Length; i++)
             {
-                navigationTriangles[i] = new NavigationTriangle(binaryReader);
+                NavigationTriangles[i] = new NavigationTriangle(binaryReader);
             }
 
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write((ushort)vertices.Length);
-            for (var i = 0; i < vertices.Length; i++)
+            binaryWriter.Write((ushort)Vertices.Length);
+            foreach (var vertex in Vertices)
             {
-                vertices[i].Write(binaryWriter);
+                vertex.Write(binaryWriter);
             }
-            binaryWriter.Write((ushort)navigationTriangles.Length);
-            for (var i = 0; i < navigationTriangles.Length; i++)
+            binaryWriter.Write((ushort)NavigationTriangles.Length);
+            foreach (var navigationTriangles in NavigationTriangles)
             {
-                navigationTriangles[i].Write(binaryWriter);
+                navigationTriangles.Write(binaryWriter);
             }
         }
     }

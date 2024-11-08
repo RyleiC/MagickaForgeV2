@@ -4,7 +4,7 @@ namespace MagickaForge.Components.Graphics.Models
 {
     public class ModelBone
     {
-        public int readerType { get; set; }
+        public int ReaderType { get; set; }
         public int BoneIndex { get; set; }
         public string Name { get; set; }
         public Matrix Transform { get; set; }
@@ -13,7 +13,7 @@ namespace MagickaForge.Components.Graphics.Models
         public ModelBone() { }
         public ModelBone(BinaryReader binaryReader)
         {
-            readerType = binaryReader.Read7BitEncodedInt();
+            ReaderType = binaryReader.Read7BitEncodedInt();
             Name = binaryReader.ReadString();
             Transform = new Matrix(binaryReader);
         }

@@ -7,88 +7,88 @@ namespace MagickaForge.Components.Levels
 {
     public class BinTreeRoot
     {
-        public bool _visible { get; set; }
-        public bool _castShadows { get; set; }
-        public float _sway { get; set; }
-        public float _entityInfluence { get; set; }
-        public float _groundLevel { get; set; }
-        public int _vertexCount { get; set; }
-        public int _vertexStride { get; set; }
+        public bool Visible { get; set; }
+        public bool CastShadows { get; set; }
+        public float Sway { get; set; }
+        public float EntityInfluence { get; set; }
+        public float GroundLevel { get; set; }
+        public int VertexCount { get; set; }
+        public int VertexStride { get; set; }
 
-        public VertexDeclaration _vertexDeclaration { get; set; }
-        public VertexBuffer _vertexBuffer { get; set; }
-        public IndexBuffer _indexBuffer { get; set; }
-        public ShaderEffect _effect { get; set; }
+        public VertexDeclaration VertexDeclaration { get; set; }
+        public VertexBuffer VertexBuffer { get; set; }
+        public IndexBuffer IndexBuffer { get; set; }
+        public ShaderEffect Effect { get; set; }
 
-        public int _primativeCount { get; set; }
-        public int _startIndex { get; set; }
-        public Vector3 _minBounding { get; set; }
-        public Vector3 _maxBounding { get; set; }
+        public int PrimativeCount { get; set; }
+        public int StartIndex { get; set; }
+        public Vector3 BoundingBoxMax { get; set; }
+        public Vector3 BoundingBoxMin { get; set; }
 
-        public BinTreeNode? _childA { get; set; }
-        public BinTreeNode? _childB { get; set; }
+        public BinTreeNode? ChildA { get; set; }
+        public BinTreeNode? ChildB { get; set; }
         public BinTreeRoot() { }
         public BinTreeRoot(BinaryReader binaryReader, Header header)
         {
-            _visible = binaryReader.ReadBoolean();
-            _castShadows = binaryReader.ReadBoolean();
-            _sway = binaryReader.ReadSingle();
-            _entityInfluence = binaryReader.ReadSingle();
-            _groundLevel = binaryReader.ReadSingle();
-            _vertexCount = binaryReader.ReadInt32();
-            _vertexStride = binaryReader.ReadInt32();
+            Visible = binaryReader.ReadBoolean();
+            CastShadows = binaryReader.ReadBoolean();
+            Sway = binaryReader.ReadSingle();
+            EntityInfluence = binaryReader.ReadSingle();
+            GroundLevel = binaryReader.ReadSingle();
+            VertexCount = binaryReader.ReadInt32();
+            VertexStride = binaryReader.ReadInt32();
 
-            _vertexDeclaration = new VertexDeclaration(binaryReader);
-            _vertexBuffer = new VertexBuffer(binaryReader);
-            _indexBuffer = new IndexBuffer(binaryReader);
-            _effect = ShaderEffect.GetEffect(binaryReader, header);
+            VertexDeclaration = new VertexDeclaration(binaryReader);
+            VertexBuffer = new VertexBuffer(binaryReader);
+            IndexBuffer = new IndexBuffer(binaryReader);
+            Effect = ShaderEffect.GetEffect(binaryReader, header);
 
-            _primativeCount = binaryReader.ReadInt32();
-            _startIndex = binaryReader.ReadInt32();
-            _minBounding = new Vector3(binaryReader);
-            _maxBounding = new Vector3(binaryReader);
+            PrimativeCount = binaryReader.ReadInt32();
+            StartIndex = binaryReader.ReadInt32();
+            BoundingBoxMax = new Vector3(binaryReader);
+            BoundingBoxMin = new Vector3(binaryReader);
             bool hasChildA = binaryReader.ReadBoolean();
             if (hasChildA)
             {
-                _childA = new BinTreeNode(binaryReader);
+                ChildA = new BinTreeNode(binaryReader);
             }
             bool hasChildB = binaryReader.ReadBoolean();
             if (hasChildB)
             {
-                _childB = new BinTreeNode(binaryReader);
+                ChildB = new BinTreeNode(binaryReader);
             }
         }
         public void Write(BinaryWriter binaryWriter, Header header)
         {
-            binaryWriter.Write(_visible);
-            binaryWriter.Write(_castShadows);
-            binaryWriter.Write(_sway);
-            binaryWriter.Write(_entityInfluence);
-            binaryWriter.Write(_groundLevel);
-            binaryWriter.Write(_vertexCount);
-            binaryWriter.Write(_vertexStride);
+            binaryWriter.Write(Visible);
+            binaryWriter.Write(CastShadows);
+            binaryWriter.Write(Sway);
+            binaryWriter.Write(EntityInfluence);
+            binaryWriter.Write(GroundLevel);
+            binaryWriter.Write(VertexCount);
+            binaryWriter.Write(VertexStride);
 
-            _vertexDeclaration.Write(binaryWriter);
-            _vertexBuffer.Write(binaryWriter);
-            _indexBuffer.Write(binaryWriter);
-            _effect.Write(binaryWriter);
-            binaryWriter.Write(_primativeCount);
-            binaryWriter.Write(_startIndex);
-            _minBounding.Write(binaryWriter);
-            _maxBounding.Write(binaryWriter);
+            VertexDeclaration.Write(binaryWriter);
+            VertexBuffer.Write(binaryWriter);
+            IndexBuffer.Write(binaryWriter);
+            Effect.Write(binaryWriter);
+            binaryWriter.Write(PrimativeCount);
+            binaryWriter.Write(StartIndex);
+            BoundingBoxMax.Write(binaryWriter);
+            BoundingBoxMin.Write(binaryWriter);
 
-            var hasChildA = _childA != null;
-            var hasChildB = _childB != null;
+            var hasChildA = ChildA != null;
+            var hasChildB = ChildB != null;
 
             binaryWriter.Write(hasChildA);
             if (hasChildA)
             {
-                _childA.Write(binaryWriter);
+                ChildA.Write(binaryWriter);
             }
             binaryWriter.Write(hasChildB);
             if (hasChildB)
             {
-                _childB.Write(binaryWriter);
+                ChildB.Write(binaryWriter);
             }
         }
     }

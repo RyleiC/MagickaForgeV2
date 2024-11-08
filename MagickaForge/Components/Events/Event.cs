@@ -134,7 +134,6 @@ namespace MagickaForge.Components.Events
     {
         public float Time { get; set; }
         public float Magnitude { get; set; }
-
         public bool AtPosition { get; set; }
         public CameraShakeEvent() { type = EventType.CameraShake; }
         public override void Write(BinaryWriter bw)
@@ -167,8 +166,8 @@ namespace MagickaForge.Components.Events
         public float Health { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Order>))]
         public Order Order { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter<ReactTo>))]
-        public ReactTo ReactTo { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<ReactionTriggers>))]
+        public ReactionTriggers ReactTo { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Order>))]
         public Order Reaction { get; set; }
         public float Rotation { get; set; }

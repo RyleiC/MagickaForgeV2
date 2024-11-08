@@ -12,6 +12,6 @@
         Reflect,
         Water,
         Lava,
-        NrOfMaterials
+        NumberOfMaterials
     }
 }

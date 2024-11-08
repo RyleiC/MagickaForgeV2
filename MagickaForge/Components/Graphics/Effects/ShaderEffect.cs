@@ -11,32 +11,32 @@ namespace MagickaForge.Components.Graphics.Effects
     [JsonDerivedType(typeof(RenderDeferredLiquidEffect), typeDiscriminator: "Water")]
     public class ShaderEffect
     {
-        public int readerType { get; set; }
+        public int ReaderType { get; set; }
         public static ShaderEffect GetEffect(BinaryReader binaryReader, Header header)
         {
             int type = binaryReader.Read7BitEncodedInt();
 
-            if (type == header.GetReaderIndex(ReaderType.RenderDeferred))
+            if (type == header.GetReaderIndex(XNB.ReaderType.RenderDeferred))
             {
-                return new RenderDeferredEffect(binaryReader) { readerType = type };
+                return new RenderDeferredEffect(binaryReader) { ReaderType = type };
             }
-            else if (type == header.GetReaderIndex(ReaderType.AdditiveEffect))
+            else if (type == header.GetReaderIndex(XNB.ReaderType.AdditiveEffect))
             {
-                return new AdditiveEffect(binaryReader) { readerType = type };
+                return new AdditiveEffect(binaryReader) { ReaderType = type };
             }
-            else if (type == header.GetReaderIndex(ReaderType.WaterEffect))
+            else if (type == header.GetReaderIndex(XNB.ReaderType.WaterEffect))
             {
-                return new RenderDeferredLiquidEffect(binaryReader) { readerType = type };
+                return new RenderDeferredLiquidEffect(binaryReader) { ReaderType = type };
             }
             else
             {
-                return new LavaEffect(binaryReader) { readerType = type };
+                return new LavaEffect(binaryReader) { ReaderType = type };
             }
             throw new ArgumentException();
         }
         public virtual void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write7BitEncodedInt(readerType);
+            binaryWriter.Write7BitEncodedInt(ReaderType);
         }
     }
 }

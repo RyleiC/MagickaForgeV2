@@ -5,6 +5,12 @@
         private const int MatrixLength = 16;
         public float[] Values { get; set; }
         public Matrix() { }
+
+        public Matrix(float[] values)
+        {
+            Values = values;
+        }
+
         public Matrix(BinaryReader reader)
         {
             Values = new float[MatrixLength];
@@ -13,6 +19,7 @@
                 Values[i] = reader.ReadSingle();
             }
         }
+
         public void Write(BinaryWriter binaryWriter)
         {
             for (var i = 0; i < MatrixLength; i++)

@@ -1,6 +1,6 @@
 ﻿namespace MagickaForge.Utils.Definitions.Abilities
 {
-    public enum AbilityTypes
+    public enum AbilityType
     {
         Block,
         CastSpell,

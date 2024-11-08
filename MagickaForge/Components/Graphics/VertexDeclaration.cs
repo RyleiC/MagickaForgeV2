@@ -3,17 +3,17 @@ namespace MagickaForge.Components.Graphics
 {
     public class VertexDeclaration
     {
-        public VertexElement[] _vertexElements { get; set; }
-        public int readerIndex { get; set; }
+        public VertexElement[] VertexElements { get; set; }
+        public int ReaderIndex { get; set; }
         public VertexDeclaration() { }
         public VertexDeclaration(BinaryReader binaryReader)
         {
-            readerIndex = binaryReader.Read7BitEncodedInt();
+            ReaderIndex = binaryReader.Read7BitEncodedInt();
             var count = binaryReader.ReadInt32();
-            _vertexElements = new VertexElement[count];
+            VertexElements = new VertexElement[count];
             for (int i = 0; i < count; i++)
             {
-                _vertexElements[i] = new VertexElement()
+                VertexElements[i] = new VertexElement()
                 {
                     Stream = binaryReader.ReadInt16(),
                     Offset = binaryReader.ReadInt16(),
@@ -26,9 +26,9 @@ namespace MagickaForge.Components.Graphics
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write7BitEncodedInt(readerIndex);
-            binaryWriter.Write(_vertexElements.Length);
-            foreach (VertexElement element in _vertexElements)
+            binaryWriter.Write7BitEncodedInt(ReaderIndex);
+            binaryWriter.Write(VertexElements.Length);
+            foreach (VertexElement element in VertexElements)
             {
                 binaryWriter.Write(element.Stream);
                 binaryWriter.Write(element.Offset);

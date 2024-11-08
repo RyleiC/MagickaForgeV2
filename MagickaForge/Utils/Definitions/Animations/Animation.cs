@@ -1,6 +1,6 @@
 ﻿namespace MagickaForge.Utils.Definitions.Animations
 {
-    public enum Animations
+    public enum Animation
     {
         None,
         idle,

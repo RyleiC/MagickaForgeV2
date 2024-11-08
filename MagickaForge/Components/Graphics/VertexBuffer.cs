@@ -2,20 +2,20 @@
 {
     public class VertexBuffer
     {
-        public int readerIndex { get; set; }
-        public byte[] _data { get; set; }
+        public int ReaderIndex { get; set; }
+        public byte[] Data { get; set; }
         public VertexBuffer() { }
         public VertexBuffer(BinaryReader binaryReader)
         {
-            readerIndex = binaryReader.Read7BitEncodedInt();
+            ReaderIndex = binaryReader.Read7BitEncodedInt();
             var count = binaryReader.ReadInt32();
-            _data = binaryReader.ReadBytes(count);
+            Data = binaryReader.ReadBytes(count);
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write7BitEncodedInt(readerIndex);
-            binaryWriter.Write(_data.Length);
-            binaryWriter.Write(_data);
+            binaryWriter.Write7BitEncodedInt(ReaderIndex);
+            binaryWriter.Write(Data.Length);
+            binaryWriter.Write(Data);
         }
     }
 }

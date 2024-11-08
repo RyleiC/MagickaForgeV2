@@ -37,14 +37,14 @@ namespace MagickaForge.Components.Animations
     [JsonDerivedType(typeof(WeaponVisibility), typeDiscriminator: "WeaponVisibility")]
     public class AnimationAction
     {
-        protected ActionType type;
+        protected ActionType _type;
 
         public float ActionStart { get; set; }
         public float ActionEnd { get; set; }
 
         public virtual void Write(BinaryWriter bw)
         {
-            bw.Write(type.ToString());
+            bw.Write(_type.ToString());
             bw.Write(ActionStart);
             bw.Write(ActionEnd);
         }
@@ -221,7 +221,7 @@ namespace MagickaForge.Components.Animations
 
         public Block()
         {
-            type = ActionType.Block;
+            _type = ActionType.Block;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -236,7 +236,7 @@ namespace MagickaForge.Components.Animations
 
         public BreakFree()
         {
-            type = ActionType.BreakFree;
+            _type = ActionType.BreakFree;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -252,7 +252,7 @@ namespace MagickaForge.Components.Animations
 
         public CameraShake()
         {
-            type = ActionType.CameraShake;
+            _type = ActionType.CameraShake;
         }
 
         public override void Write(BinaryWriter bw)
@@ -270,7 +270,7 @@ namespace MagickaForge.Components.Animations
 
         public CastSpell()
         {
-            type = ActionType.CastSpell;
+            _type = ActionType.CastSpell;
         }
 
         public override void Write(BinaryWriter bw)
@@ -290,7 +290,7 @@ namespace MagickaForge.Components.Animations
 
         public Crouch()
         {
-            type = ActionType.Crouch;
+            _type = ActionType.Crouch;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -305,7 +305,7 @@ namespace MagickaForge.Components.Animations
         public Damage[]? Damages { get; set; }
         public DamageGrip()
         {
-            type = ActionType.DamageGrip;
+            _type = ActionType.DamageGrip;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -328,7 +328,7 @@ namespace MagickaForge.Components.Animations
         public Targets Target { get; set; }
         public DealDamage()
         {
-            type = ActionType.DealDamage;
+            _type = ActionType.DealDamage;
         }
 
         public override void Write(BinaryWriter bw)
@@ -344,7 +344,7 @@ namespace MagickaForge.Components.Animations
         public Vector3 Velocity { get; set; }
         public DetachItem()
         {
-            type = ActionType.DetachItem;
+            _type = ActionType.DetachItem;
         }
 
         public override void Write(BinaryWriter bw)
@@ -362,7 +362,7 @@ namespace MagickaForge.Components.Animations
 
         public Ethereal()
         {
-            type = ActionType.Ethereal;
+            _type = ActionType.Ethereal;
         }
 
         public override void Write(BinaryWriter bw)
@@ -377,7 +377,7 @@ namespace MagickaForge.Components.Animations
     {
         public Footstep()
         {
-            type = ActionType.Footstep;
+            _type = ActionType.Footstep;
         }
     }
     public class Grip : AnimationAction
@@ -391,7 +391,7 @@ namespace MagickaForge.Components.Animations
         public bool FinishOnGrip { get; set; }
         public Grip()
         {
-            type = ActionType.Grip;
+            _type = ActionType.Grip;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -410,7 +410,7 @@ namespace MagickaForge.Components.Animations
         public float Accuracy { get; set; }
         public Gunfire()
         {
-            type = ActionType.Gunfire;
+            _type = ActionType.Gunfire;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -424,7 +424,7 @@ namespace MagickaForge.Components.Animations
         public bool Collide { get; set; }
         public Immortal()
         {
-            type = ActionType.Immortal;
+            _type = ActionType.Immortal;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -437,7 +437,7 @@ namespace MagickaForge.Components.Animations
         public bool Shimmer { get; set; }
         public Invisible()
         {
-            type = ActionType.Invisible;
+            _type = ActionType.Invisible;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -452,7 +452,7 @@ namespace MagickaForge.Components.Animations
         public float MaxRange { get; set; }
         public Jump()
         {
-            type = ActionType.Jump;
+            _type = ActionType.Jump;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -477,7 +477,7 @@ namespace MagickaForge.Components.Animations
         public float[]? Velocity { get; set; }
         public Move()
         {
-            type = ActionType.Move;
+            _type = ActionType.Move;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -492,7 +492,7 @@ namespace MagickaForge.Components.Animations
     {
         public OverkillGrip()
         {
-            type = ActionType.OverkillGrip;
+            _type = ActionType.OverkillGrip;
         }
 
     }
@@ -504,7 +504,7 @@ namespace MagickaForge.Components.Animations
         public float Value { get; set; }
         public PlayEffect()
         {
-            type = ActionType.PlayEffect;
+            _type = ActionType.PlayEffect;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -523,7 +523,7 @@ namespace MagickaForge.Components.Animations
         public Banks Bank { get; set; }
         public PlaySound()
         {
-            type = ActionType.PlaySound;
+            _type = ActionType.PlaySound;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -536,7 +536,7 @@ namespace MagickaForge.Components.Animations
     {
         public ReleaseGrip()
         {
-            type = ActionType.ReleaseGrip;
+            _type = ActionType.ReleaseGrip;
         }
     }
 
@@ -545,7 +545,7 @@ namespace MagickaForge.Components.Animations
         public string? Status { get; set; }
         public RemoveStatus()
         {
-            type = ActionType.RemoveStatus;
+            _type = ActionType.RemoveStatus;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -559,7 +559,7 @@ namespace MagickaForge.Components.Animations
         public string Bone { get; set; }
         public SetItemAttach()
         {
-            type = ActionType.SetItemAttach;
+            _type = ActionType.SetItemAttach;
             throw new Exception("TODO");
         }
         public override void Write(BinaryWriter bw)
@@ -576,7 +576,7 @@ namespace MagickaForge.Components.Animations
         public bool Aligned { get; set; }
         public SpawnMissile()
         {
-            type = ActionType.SpawnMissile;
+            _type = ActionType.SpawnMissile;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -596,7 +596,7 @@ namespace MagickaForge.Components.Animations
 
         public SpecialAbilityAction()
         {
-            type = ActionType.SpecialAbility;
+            _type = ActionType.SpecialAbility;
         }
 
         public override void Write(BinaryWriter bw)
@@ -621,7 +621,7 @@ namespace MagickaForge.Components.Animations
         public bool Overkill { get; set; }
         public Suicide()
         {
-            type = ActionType.Suicide;
+            _type = ActionType.Suicide;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -633,7 +633,7 @@ namespace MagickaForge.Components.Animations
     {
         public ThrowGrip()
         {
-            type = ActionType.ThrowGrip;
+            _type = ActionType.ThrowGrip;
         }
     }
 
@@ -642,7 +642,7 @@ namespace MagickaForge.Components.Animations
         public float MaxLength { get; set; }
         public Tongue()
         {
-            type = ActionType.Tongue;
+            _type = ActionType.Tongue;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -657,7 +657,7 @@ namespace MagickaForge.Components.Animations
         public bool Visible { get; set; }
         public WeaponVisibility()
         {
-            type = ActionType.WeaponVisibility;
+            _type = ActionType.WeaponVisibility;
         }
 
         public override void Write(BinaryWriter bw)

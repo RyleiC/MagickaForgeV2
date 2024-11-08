@@ -2,7 +2,7 @@
 using MagickaForge.Components.Levels;
 using MagickaForge.Utils.Structures;
 
-namespace MagickaForge.GLTF
+namespace MagickaForge.Experimental.GLTF
 {
     public class Buffer
     {
@@ -44,18 +44,28 @@ namespace MagickaForge.GLTF
 
         }
 
+        /*
+         *  This needs modification.
+         *  As it stands, the right hand & left hand coordinate systems are fighting
+         *  
+         *  If I use the same Z coordinates the player will fall through surfaces as if they were solid on the inside but closed on the outside
+         *  If I use the corrected -Z coordinates for one then now the collisions are mirrored!
+         *  
+         *  This needs some studying under JigLibX to see how to resolve this, until then.
+         *  ~ Rylei C.
+         */
         public TriangleMesh ToTriangleMesh()
         {
             var mesh = new TriangleMesh();
-            mesh.vertices = _vertices;
+            mesh.Vertices = _vertices;
             for (var i = 0; i < _vertices.Length; i++)
             {
-                mesh.vertices[i] = _vertices[i];
+                mesh.Vertices[i] = _vertices[i];
             }
-            mesh.indices = new int[_indices.Length];
+            mesh.Indices = new int[_indices.Length];
             for (var i = 0; i < _indices.Length; i++)
             {
-                mesh.indices[i] = _indices[i];
+                mesh.Indices[i] = _indices[i];
             }
             return mesh;
         }
@@ -63,8 +73,8 @@ namespace MagickaForge.GLTF
         public VertexBuffer ToVertexBuffer()
         {
             var buffer = new VertexBuffer();
-            buffer._data = new byte[_vertices.Length * 36 + _textureCoordinates.Length * 8];
-            var stream = new MemoryStream(buffer._data);
+            buffer.Data = new byte[_vertices.Length * 36 + _textureCoordinates.Length * 8];
+            var stream = new MemoryStream(buffer.Data);
 
             var binaryWriter = new BinaryWriter(stream);
             for (var i = 0; i < _vertices.Length; i++)
@@ -78,11 +88,15 @@ namespace MagickaForge.GLTF
 
             return buffer;
         }
+
         public IndexBuffer ToIndexBuffer()
         {
-            var buffer = new IndexBuffer() { _is16Bit = true };
-            buffer._data = new byte[_indices.Length * 2];
-            var stream = new MemoryStream(buffer._data);
+            var buffer = new IndexBuffer()
+            {
+                Is16Bit = true
+            };
+            buffer.Data = new byte[_indices.Length * 2];
+            var stream = new MemoryStream(buffer.Data);
 
             var binaryWriter = new BinaryWriter(stream);
             for (var i = 0; i < _indices.Length; i++)

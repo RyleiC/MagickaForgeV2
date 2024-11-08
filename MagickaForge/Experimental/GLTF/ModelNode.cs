@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace MagickaForge.GLTF
+namespace MagickaForge.Experimental.GLTF
 {
     public class ModelNode
     {

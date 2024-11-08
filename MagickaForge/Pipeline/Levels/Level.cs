@@ -26,12 +26,13 @@ namespace MagickaForge.Pipeline.Levels
      */
     public class Level
     {
-        public int readerIndex { get; set; }
+        private const int MaxCollisionMeshes = 10;
+        public int ReaderIndex { get; set; }
         public Header Header { get; set; }
         public BinTreeModel BinaryModel { get; set; }
         public AnimatedLevelPart[] Animations { get; set; }
-        public Light[] Lights { get; set; }
-        public Effect[] Effects { get; set; }
+        public SceneLight[] Lights { get; set; }
+        public SceneEffect[] Effects { get; set; }
         public PhysicsEntity[] PhysicsEntities { get; set; }
         public LiquidDeclaration[] Liquids { get; set; }
         public ForceField[] ForceFields { get; set; }
@@ -46,7 +47,7 @@ namespace MagickaForge.Pipeline.Levels
         {
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
             Header.Write(bw);
-            bw.Write7BitEncodedInt(readerIndex);
+            bw.Write7BitEncodedInt(ReaderIndex);
             BinaryModel.Write(bw);
             bw.Write(Animations.Length);
             for (var i = 0; i < Animations.Length; i++)
@@ -77,6 +78,10 @@ namespace MagickaForge.Pipeline.Levels
             for (var i = 0; i < ForceFields.Length; i++)
             {
                 ForceFields[i].Write(bw);
+            }
+            if (CollisionMeshes.Length > MaxCollisionMeshes)
+            {
+                throw new ArgumentOutOfRangeException("Levels may only have up to 10 collision meshes!");
             }
             for (var i = 0; i < 10; i++)
             {
@@ -132,7 +137,7 @@ namespace MagickaForge.Pipeline.Levels
 
             Header = new Header(br);
 
-            readerIndex = br.Read7BitEncodedInt(); //0 read, will always be the first reader
+            ReaderIndex = br.Read7BitEncodedInt(); //0 read, will always be the first reader
 
             BinaryModel = new BinTreeModel(br, Header); //BINARY TREE
             Animations = new AnimatedLevelPart[br.ReadInt32()];
@@ -140,15 +145,15 @@ namespace MagickaForge.Pipeline.Levels
             {
                 Animations[i] = new AnimatedLevelPart(br, Header);
             }
-            Lights = new Light[br.ReadInt32()]; //LIGHTS
+            Lights = new SceneLight[br.ReadInt32()]; //LIGHTS
             for (var i = 0; i < Lights.Length; i++)
             {
-                Lights[i] = new Light(br);
+                Lights[i] = new SceneLight(br);
             }
-            Effects = new Effect[br.ReadInt32()];
+            Effects = new SceneEffect[br.ReadInt32()];
             for (var i = 0; i < Effects.Length; i++)
             {
-                Effects[i] = new Effect(br);
+                Effects[i] = new SceneEffect(br);
             }
             PhysicsEntities = new PhysicsEntity[br.ReadInt32()];
             for (var i = 0; i < PhysicsEntities.Length; i++)
@@ -192,7 +197,7 @@ namespace MagickaForge.Pipeline.Levels
                 Locators[i] = new Locator(br);
             }
             NavigationMesh = new NavigationMesh(br);
-            ContentCache = new SharedContentCache[Header.sharedResources];
+            ContentCache = new SharedContentCache[Header.SharedResources];
             for (var i = 0; i < ContentCache.Length; i++)
             {
                 ContentCache[i] = new SharedContentCache(br, Header);

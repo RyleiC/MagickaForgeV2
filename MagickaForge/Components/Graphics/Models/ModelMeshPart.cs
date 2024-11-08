@@ -2,23 +2,23 @@
 {
     public class ModelMeshPart
     {
-        public int streamOffset { get; set; }
-        public int baseVertex { get; set; }
-        public int numVertices { get; set; }
-        public int startIndex { get; set; }
-        public int primativeCount { get; set; }
-        public int vdIndex { get; set; }
+        public int StreamOffset { get; set; }
+        public int BaseVertex { get; set; }
+        public int VertexCount { get; set; }
+        public int StartIndex { get; set; }
+        public int PrimativeCount { get; set; }
+        public int VertexDeclarationIndex { get; set; }
         public byte Tag { get; set; }
         public int SharedContentID { get; set; }
         public ModelMeshPart() { }
         public ModelMeshPart(BinaryReader binaryReader, VertexDeclaration[] vertexDeclarations)
         {
-            streamOffset = binaryReader.ReadInt32();
-            baseVertex = binaryReader.ReadInt32();
-            numVertices = binaryReader.ReadInt32();
-            startIndex = binaryReader.ReadInt32();
-            primativeCount = binaryReader.ReadInt32();
-            vdIndex = binaryReader.ReadInt32();
+            StreamOffset = binaryReader.ReadInt32();
+            BaseVertex = binaryReader.ReadInt32();
+            VertexCount = binaryReader.ReadInt32();
+            StartIndex = binaryReader.ReadInt32();
+            PrimativeCount = binaryReader.ReadInt32();
+            VertexDeclarationIndex = binaryReader.ReadInt32();
             Tag = binaryReader.ReadByte();
             SharedContentID = binaryReader.Read7BitEncodedInt();
         }

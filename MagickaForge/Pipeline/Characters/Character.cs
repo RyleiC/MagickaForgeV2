@@ -10,6 +10,7 @@ using MagickaForge.Utils.Definitions.Abilities;
 using MagickaForge.Utils.Definitions.AI;
 using MagickaForge.Utils.Definitions.Graphics;
 using MagickaForge.Utils.Structures;
+using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -17,8 +18,11 @@ namespace MagickaForge.Pipeline.Characters
 {
     public class Character
     {
+        private const int MaxLights = 4;
+        private const int MaxAnimationSets = 27;
+        private const int MaxEquipmentSlots = 8;
 
-        private static readonly byte[] Header =
+        private readonly byte[] Header =
         [
             0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x59,
             0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F, 0x6E, 0x74,
@@ -48,7 +52,7 @@ namespace MagickaForge.Pipeline.Characters
         public Gib[]? Gibs { get; set; }
         public BonedLight[]? Lights { get; set; }
         public float MaxHitpoints { get; set; }
-        public int NrOfHealthbars { get; set; }
+        public int NumberOfHealthbars { get; set; }
         public bool Undying { get; set; }
         public float UndieTime { get; set; }
         public float UndieHitpoints { get; set; }
@@ -129,6 +133,10 @@ namespace MagickaForge.Pipeline.Characters
                 bw.Write(gib.Mass);
                 bw.Write(gib.Scale);
             }
+            if (Lights.Length > MaxLights)
+            {
+                throw new ArgumentOutOfRangeException("Characters may only have 4 up to lights!");
+            }
             bw.Write(Lights!.Length);
             foreach (BonedLight light in Lights)
             {
@@ -142,7 +150,7 @@ namespace MagickaForge.Pipeline.Characters
                 bw.Write(light.Light.VariationSpeed);
             }
             bw.Write(MaxHitpoints);
-            bw.Write(NrOfHealthbars);
+            bw.Write(NumberOfHealthbars);
             bw.Write(Undying);
             bw.Write(UndieTime);
             bw.Write(UndieHitpoints);
@@ -192,6 +200,10 @@ namespace MagickaForge.Pipeline.Characters
             foreach (AnimationSet animationSet in Animations!)
             {
                 animationSet.Write(bw);
+            }
+            if (Equipment.Length > MaxEquipmentSlots)
+            {
+                throw new ArgumentOutOfRangeException("Characters may only have up to 8 equipment slots!");
             }
             bw.Write(Equipment!.Length);
             foreach (Attachment attachment in Equipment)
@@ -309,7 +321,7 @@ namespace MagickaForge.Pipeline.Characters
                 Lights[i].Light = light;
             }
             MaxHitpoints = br.ReadSingle();
-            NrOfHealthbars = br.ReadInt32();
+            NumberOfHealthbars = br.ReadInt32();
             Undying = br.ReadBoolean();
             UndieTime = br.ReadSingle();
             UndieHitpoints = br.ReadSingle();
@@ -359,7 +371,7 @@ namespace MagickaForge.Pipeline.Characters
                 Effects[i].Bone = br.ReadString();
                 Effects[i].Effect = br.ReadString();
             }
-            Animations = new AnimationSet[27];
+            Animations = new AnimationSet[MaxAnimationSets];
             for (var i = 0; i < Animations.Length; i++)
             {
                 Animations[i] = new AnimationSet(br);
@@ -394,11 +406,10 @@ namespace MagickaForge.Pipeline.Characters
             Flocking = br.ReadBoolean();
             BreakFreeStrength = br.ReadSingle();
 
-
             Abilities = new Ability[br.ReadInt32()];
             for (var i = 0; i < Abilities.Length; i++)
             {
-                AbilityTypes type = Enum.Parse<AbilityTypes>(br.ReadString(), true);
+                AbilityType type = Enum.Parse<AbilityType>(br.ReadString(), true);
                 Abilities[i] = Ability.GetAbility(br, type);
             }
 
@@ -418,7 +429,6 @@ namespace MagickaForge.Pipeline.Characters
             {
                 Buffs[i] = Buff.GetBuff(br);
             }
-
             Auras = new Aura[br.ReadInt32()];
             for (var i = 0; i < Auras.Length; i++)
             {

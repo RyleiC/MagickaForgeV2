@@ -13,8 +13,8 @@ namespace MagickaForge.Pipeline.Items
 {
     public class Item
     {
-
-        private static readonly byte[] Header =
+        private const int MaxLights = 1;
+        private readonly byte[] Header =
         {
             0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x4C,
             0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F, 0x6E, 0x74,
@@ -25,12 +25,11 @@ namespace MagickaForge.Pipeline.Items
             0x20, 0x43, 0x75, 0x6C, 0x74, 0x75, 0x72, 0x65, 0x3D, 0x6E, 0x65, 0x75,
             0x74, 0x72, 0x61, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
         };
-
         public string? Name { get; set; }
         public string? LocalizedName { get; set; }
         public string? LocalizedDescription { get; set; }
         public Sound[]? Sounds { get; set; }
-        public bool Grabbable { get; set; }
+        public bool CanBePickedUp { get; set; }
         public bool Bound { get; set; }
         public int BlockStrength { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<WeaponClass>))]
@@ -40,8 +39,8 @@ namespace MagickaForge.Pipeline.Items
         public bool HideEffects { get; set; }
         public bool PauseSounds { get; set; }
         public Resistance[]? Resistances { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter<PassiveAbilities>))]
-        public PassiveAbilities PassiveAbilityType { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<PassiveAbility>))]
+        public PassiveAbility PassiveAbilityType { get; set; }
         public float PassiveAbilityStrength { get; set; }
         public string[]? Effects { get; set; }
         public Light[]? Lights { get; set; }
@@ -53,14 +52,14 @@ namespace MagickaForge.Pipeline.Items
         public ConditionCollection[]? MeleeConditions { get; set; }
         public float RangedRange { get; set; }
         public bool Facing { get; set; }
-        public float Homing { get; set; }
+        public float HomingStrength { get; set; }
         public float RangedElevation { get; set; }
         public float RangedDanger { get; set; }
         public float GunRange { get; set; }
         public int GunClip { get; set; }
         public int GunRate { get; set; }
         public float GunAccuracy { get; set; }
-        public string? GunSound { get; set; }
+        public string? GunSoundCue { get; set; }
         public string? GunMuzzleEffect { get; set; }
         public string? GunShellEffect { get; set; }
         public float GunTracerVelocity { get; set; }
@@ -86,7 +85,7 @@ namespace MagickaForge.Pipeline.Items
                 bw.Write(Sounds[i].Cue!);
                 bw.Write((int)Sounds[i].Bank);
             }
-            bw.Write(Grabbable);
+            bw.Write(CanBePickedUp);
             bw.Write(Bound);
             bw.Write(BlockStrength);
             bw.Write((byte)WeaponClass);
@@ -109,6 +108,12 @@ namespace MagickaForge.Pipeline.Items
             {
                 bw.Write(Effects[i]);
             }
+
+            if (Lights.Length > MaxLights)
+            {
+                throw new ArgumentOutOfRangeException("Items may only have up to 1 light!");
+            }
+
             bw.Write(Lights!.Length);
             for (var i = 0; i < Lights.Length; i++)
             {
@@ -142,14 +147,14 @@ namespace MagickaForge.Pipeline.Items
             }
             bw.Write(RangedRange);
             bw.Write(Facing);
-            bw.Write(Homing);
+            bw.Write(HomingStrength);
             bw.Write(RangedElevation);
             bw.Write(RangedDanger);
             bw.Write(GunRange);
             bw.Write(GunClip);
             bw.Write(GunRate);
             bw.Write(GunAccuracy);
-            bw.Write(GunSound!);
+            bw.Write(GunSoundCue!);
             bw.Write(GunMuzzleEffect!);
             bw.Write(GunShellEffect!);
             bw.Write(GunTracerVelocity);
@@ -202,7 +207,8 @@ namespace MagickaForge.Pipeline.Items
                 Sounds[i].Cue = br.ReadString();
                 Sounds[i].Bank = (Banks)br.ReadInt32();
             }
-            Grabbable = br.ReadBoolean();
+
+            CanBePickedUp = br.ReadBoolean();
             Bound = br.ReadBoolean();
             BlockStrength = br.ReadInt32();
             WeaponClass = (WeaponClass)br.ReadByte();
@@ -219,7 +225,8 @@ namespace MagickaForge.Pipeline.Items
                 Resistances[i].Modifier = br.ReadSingle();
                 Resistances[i].StatusImmunity = br.ReadBoolean();
             }
-            PassiveAbilityType = (PassiveAbilities)br.ReadByte();
+
+            PassiveAbilityType = (PassiveAbility)br.ReadByte();
             PassiveAbilityStrength = br.ReadSingle();
 
             Effects = new string[br.ReadInt32()];
@@ -257,6 +264,7 @@ namespace MagickaForge.Pipeline.Items
                 }
                 SpecialAbility = specialAbility;
             }
+
             MeleeRange = br.ReadSingle();
             MeleeMultihit = br.ReadBoolean();
             MeleeConditions = new ConditionCollection[br.ReadInt32()];
@@ -264,16 +272,17 @@ namespace MagickaForge.Pipeline.Items
             {
                 MeleeConditions[i] = new ConditionCollection(br);
             }
+
             RangedRange = br.ReadSingle();
             Facing = br.ReadBoolean();
-            Homing = br.ReadSingle();
+            HomingStrength = br.ReadSingle();
             RangedElevation = br.ReadSingle();
             RangedDanger = br.ReadSingle();
             GunRange = br.ReadSingle();
             GunClip = br.ReadInt32();
             GunRate = br.ReadInt32();
             GunAccuracy = br.ReadSingle();
-            GunSound = br.ReadString();
+            GunSoundCue = br.ReadString();
             GunMuzzleEffect = br.ReadString();
             GunShellEffect = br.ReadString();
             GunTracerVelocity = br.ReadSingle();
@@ -284,12 +293,14 @@ namespace MagickaForge.Pipeline.Items
             {
                 GunConditions[i] = new ConditionCollection(br);
             }
+
             ProjectileModel = br.ReadString();
             RangedConditions = new ConditionCollection[br.ReadInt32()];
             for (var i = 0; i < RangedConditions.Length; i++)
             {
                 RangedConditions[i] = new ConditionCollection(br);
             }
+
             Scale = br.ReadSingle();
             Model = br.ReadString();
             Auras = new Aura[br.ReadInt32()];

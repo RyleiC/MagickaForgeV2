@@ -23,7 +23,7 @@ namespace MagickaForge.Components.Abilities
     [JsonDerivedType(typeof(ZombieGrip), typeDiscriminator: "ZombieGrip")]
     public class Ability
     {
-        protected AbilityTypes type;
+        protected AbilityType _type;
         public float Cooldown { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<AbilityTarget>))]
         public AbilityTarget AbilityTarget { get; set; }
@@ -32,7 +32,7 @@ namespace MagickaForge.Components.Abilities
 
         public virtual void Write(BinaryWriter bw)
         {
-            bw.Write(type.ToString());
+            bw.Write(_type.ToString());
             bw.Write(Cooldown);
             bw.Write((byte)AbilityTarget);
             bool hasFuzzy = FuzzyExpression!.Length > 0;
@@ -47,7 +47,7 @@ namespace MagickaForge.Components.Abilities
                 bw.Write(animation);
             }
         }
-        public static Ability GetAbility(BinaryReader br, AbilityTypes type)
+        public static Ability GetAbility(BinaryReader br, AbilityType type)
         {
             Ability ability = new Ability();
             float cooldown = br.ReadSingle();
@@ -63,11 +63,11 @@ namespace MagickaForge.Components.Abilities
                 animations[i] = br.ReadString();
             }
 
-            if (type == AbilityTypes.Block)
+            if (type == AbilityType.Block)
             {
                 ability = new Block() { Arc = br.ReadSingle(), Shield = br.ReadInt32() };
             }
-            else if (type == AbilityTypes.CastSpell)
+            else if (type == AbilityType.CastSpell)
             {
                 ability = new CastSpell() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Angle = br.ReadSingle(), ChantTime = br.ReadSingle(), Power = br.ReadSingle(), CastType = (CastType)br.ReadInt32() };
                 CastSpell? castSpell = ability as CastSpell;
@@ -77,31 +77,31 @@ namespace MagickaForge.Components.Abilities
                     castSpell.Elements[i] = (Elements)br.ReadInt32();
                 }
             }
-            else if (type == AbilityTypes.ConfuseGrip)
+            else if (type == AbilityType.ConfuseGrip)
             {
                 ability = new ConfuseGrip();
             }
-            else if (type == AbilityTypes.DamageGrip)
+            else if (type == AbilityType.DamageGrip)
             {
                 ability = new DamageGrip();
             }
-            else if (type == AbilityTypes.Dash)
+            else if (type == AbilityType.Dash)
             {
                 ability = new Dash() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Arc = br.ReadSingle(), Velocity = new Vector3(br) };
             }
-            else if (type == AbilityTypes.ElementSteal)
+            else if (type == AbilityType.ElementSteal)
             {
                 ability = new ElementSteal() { Range = br.ReadSingle(), Angle = br.ReadSingle() };
             }
-            else if (type == AbilityTypes.GripCharacterFromBehind)
+            else if (type == AbilityType.GripCharacterFromBehind)
             {
                 ability = new GripCharacterFromBehind() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Angle = br.ReadSingle(), MaxWeight = br.ReadSingle() };
             }
-            else if (type == AbilityTypes.Jump)
+            else if (type == AbilityType.Jump)
             {
                 ability = new Jump() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Angle = br.ReadSingle(), Elevation = br.ReadSingle() };
             }
-            else if (type == AbilityTypes.Melee)
+            else if (type == AbilityType.Melee)
             {
                 ability = new Melee() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), ArcAngle = br.ReadSingle() };
                 Melee melee = (ability as Melee)!;
@@ -112,11 +112,11 @@ namespace MagickaForge.Components.Abilities
                 }
                 melee.Rotate = br.ReadBoolean();
             }
-            else if (type == AbilityTypes.PickUpCharacter)
+            else if (type == AbilityType.PickUpCharacter)
             {
                 ability = new PickUpCharacter() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Angle = br.ReadSingle(), MaxWeight = br.ReadSingle(), DropAnimation = br.ReadString() };
             }
-            else if (type == AbilityTypes.Ranged)
+            else if (type == AbilityType.Ranged)
             {
                 ability = new Ranged() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Elevation = br.ReadSingle(), Arc = br.ReadSingle(), Accuracy = br.ReadSingle() };
                 Ranged ranged = (ability as Ranged)!;
@@ -126,15 +126,15 @@ namespace MagickaForge.Components.Abilities
                     ranged.WeaponSlots[i] = br.ReadInt32();
                 }
             }
-            else if (type == AbilityTypes.RemoveStatus)
+            else if (type == AbilityType.RemoveStatus)
             {
                 ability = new RemoveStatus();
             }
-            else if (type == AbilityTypes.SpecialAbilityAbility)
+            else if (type == AbilityType.SpecialAbilityAbility)
             {
                 ability = new SpecialAbilityAbility() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Angle = br.ReadSingle(), WeaponSlot = br.ReadInt32() };
             }
-            else if (type == AbilityTypes.ThrowGrip)
+            else if (type == AbilityType.ThrowGrip)
             {
                 ability = new ThrowGrip() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Elevation = br.ReadSingle() };
                 ThrowGrip throwGrip = (ability as ThrowGrip)!;
@@ -147,7 +147,7 @@ namespace MagickaForge.Components.Abilities
                     throwGrip.Damages[i].Magnitude = br.ReadSingle();
                 }
             }
-            else if (type == AbilityTypes.ZombieGrip)
+            else if (type == AbilityType.ZombieGrip)
             {
                 ability = new ZombieGrip() { MaximumRange = br.ReadSingle(), MinimumRange = br.ReadSingle(), Angle = br.ReadSingle(), MaxWeight = br.ReadSingle(), DropAnimation = br.ReadString() };
             }
@@ -164,7 +164,7 @@ namespace MagickaForge.Components.Abilities
         public int Shield { get; set; }
         public Block()
         {
-            type = AbilityTypes.Block;
+            _type = AbilityType.Block;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -186,7 +186,7 @@ namespace MagickaForge.Components.Abilities
 
         public CastSpell()
         {
-            type = AbilityTypes.CastSpell;
+            _type = AbilityType.CastSpell;
         }
 
         public override void Write(BinaryWriter bw)
@@ -209,7 +209,7 @@ namespace MagickaForge.Components.Abilities
     {
         public ConfuseGrip()
         {
-            type = AbilityTypes.ConfuseGrip;
+            _type = AbilityType.ConfuseGrip;
         }
     }
 
@@ -217,7 +217,7 @@ namespace MagickaForge.Components.Abilities
     {
         public DamageGrip()
         {
-            type = AbilityTypes.DamageGrip;
+            _type = AbilityType.DamageGrip;
         }
     }
     public class Dash : Ability
@@ -229,7 +229,7 @@ namespace MagickaForge.Components.Abilities
 
         public Dash()
         {
-            type = AbilityTypes.Dash;
+            _type = AbilityType.Dash;
         }
 
         public override void Write(BinaryWriter bw)
@@ -248,7 +248,7 @@ namespace MagickaForge.Components.Abilities
 
         public ElementSteal()
         {
-            type = AbilityTypes.ElementSteal;
+            _type = AbilityType.ElementSteal;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -266,7 +266,7 @@ namespace MagickaForge.Components.Abilities
 
         public GripCharacterFromBehind()
         {
-            type = AbilityTypes.GripCharacterFromBehind;
+            _type = AbilityType.GripCharacterFromBehind;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -286,7 +286,7 @@ namespace MagickaForge.Components.Abilities
 
         public Jump()
         {
-            type = AbilityTypes.Jump;
+            _type = AbilityType.Jump;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -307,7 +307,7 @@ namespace MagickaForge.Components.Abilities
 
         public Melee()
         {
-            type = AbilityTypes.Melee;
+            _type = AbilityType.Melee;
         }
 
         public override void Write(BinaryWriter bw)
@@ -333,7 +333,7 @@ namespace MagickaForge.Components.Abilities
         public string? DropAnimation { get; set; }
         public PickUpCharacter()
         {
-            type = AbilityTypes.PickUpCharacter;
+            _type = AbilityType.PickUpCharacter;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -357,7 +357,7 @@ namespace MagickaForge.Components.Abilities
 
         public Ranged()
         {
-            type = AbilityTypes.Ranged;
+            _type = AbilityType.Ranged;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -378,7 +378,7 @@ namespace MagickaForge.Components.Abilities
     {
         public RemoveStatus()
         {
-            type = AbilityTypes.RemoveStatus;
+            _type = AbilityType.RemoveStatus;
         }
     }
     public class SpecialAbilityAbility : Ability
@@ -390,7 +390,7 @@ namespace MagickaForge.Components.Abilities
 
         public SpecialAbilityAbility()
         {
-            type = AbilityTypes.SpecialAbilityAbility;
+            _type = AbilityType.SpecialAbilityAbility;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -409,7 +409,7 @@ namespace MagickaForge.Components.Abilities
         public Damage[] Damages { get; set; }
         public ThrowGrip()
         {
-            type = AbilityTypes.ThrowGrip;
+            _type = AbilityType.ThrowGrip;
         }
         public override void Write(BinaryWriter bw)
         {
@@ -437,7 +437,7 @@ namespace MagickaForge.Components.Abilities
         public string DropAnimation { get; set; }
         public ZombieGrip()
         {
-            type = AbilityTypes.ZombieGrip;
+            _type = AbilityType.ZombieGrip;
         }
         public override void Write(BinaryWriter bw)
         {

@@ -1,6 +1,6 @@
 ﻿namespace MagickaForge.Utils.Definitions.Abilities
 {
-    public enum PassiveAbilities : byte
+    public enum PassiveAbility : byte
     {
         None,
         ShieldBoost,

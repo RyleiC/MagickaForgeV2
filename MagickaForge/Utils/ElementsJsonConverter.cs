@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-class JsonStringEnumAttribute : JsonConverterAttribute
+class EnumeratedStringAttribute : JsonConverterAttribute
 {
-    public JsonStringEnumAttribute() : base(typeof(JsonStringEnumConverter))
+    public EnumeratedStringAttribute() : base(typeof(JsonStringEnumConverter))
     {
 
     }

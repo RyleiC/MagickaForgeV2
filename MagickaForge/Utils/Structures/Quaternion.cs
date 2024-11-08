@@ -7,12 +7,12 @@
         public float Z { get; set; }
         public float W { get; set; }
 
-        public Quaternion(float X, float Y, float Z, float W)
+        public Quaternion(float x, float y, float z, float w)
         {
-            this.X = X;
-            this.Y = Y;
-            this.Z = Z;
-            this.W = W;
+            X = x;
+            Y = y;
+            Z = z;
+            W = w;
         }
         public Quaternion(BinaryReader binaryReader)
         {

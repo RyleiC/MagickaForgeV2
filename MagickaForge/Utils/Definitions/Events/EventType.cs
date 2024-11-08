@@ -9,7 +9,7 @@
         Remove,
         CameraShake,
         Decal,
-        Blast,
+        Blast, //INVALID IN-GAME
         Spawn,
         Overkill,
         SpawnGibs,
@@ -19,6 +19,6 @@
         Light,
         CastMagick,
         DamageOwner,
-        Callback
+        Callback //INVALID IN-GAME
     }
 }

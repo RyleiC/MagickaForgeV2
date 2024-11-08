@@ -2,24 +2,24 @@
 {
     public class IndexBuffer
     {
-        public int readerIndex { get; set; }
-        public bool _is16Bit { get; set; }
-        public byte[] _data { get; set; }
+        public int ReaderIndex { get; set; }
+        public bool Is16Bit { get; set; }
+        public byte[] Data { get; set; }
         public IndexBuffer() { }
         public IndexBuffer(BinaryReader binaryReader)
         {
-            readerIndex = binaryReader.Read7BitEncodedInt();
-            _is16Bit = binaryReader.ReadBoolean();
+            ReaderIndex = binaryReader.Read7BitEncodedInt();
+            Is16Bit = binaryReader.ReadBoolean();
             var count = binaryReader.ReadInt32();
-            _data = binaryReader.ReadBytes(count);
+            Data = binaryReader.ReadBytes(count);
         }
 
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write7BitEncodedInt(readerIndex);
-            binaryWriter.Write(_is16Bit);
-            binaryWriter.Write(_data.Length);
-            binaryWriter.Write(_data);
+            binaryWriter.Write7BitEncodedInt(ReaderIndex);
+            binaryWriter.Write(Is16Bit);
+            binaryWriter.Write(Data.Length);
+            binaryWriter.Write(Data);
         }
     }
 }

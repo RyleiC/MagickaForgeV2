@@ -1,4 +1,4 @@
-﻿namespace MagickaForge.GLTF
+﻿namespace MagickaForge.Experimental.GLTF
 {
     public class BufferViewNode
     {

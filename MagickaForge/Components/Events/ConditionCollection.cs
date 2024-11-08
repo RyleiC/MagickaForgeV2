@@ -9,8 +9,8 @@ namespace MagickaForge.Components.Events
 {
     public class ConditionCollection
     {
-        [JsonConverter(typeof(JsonStringEnumConverter<EventConditionType>))]
-        public EventConditionType ConditionType { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<EventConditionTypes>))]
+        public EventConditionTypes ConditionType { get; set; }
         public float Hitpoints { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Elements>))]
         public Elements Element { get; set; }
@@ -22,7 +22,7 @@ namespace MagickaForge.Components.Events
         public ConditionCollection() { }
         public ConditionCollection(BinaryReader br)
         {
-            ConditionType = (EventConditionType)br.ReadByte();
+            ConditionType = (EventConditionTypes)br.ReadByte();
             Hitpoints = (float)br.ReadInt32();
             Element = (Elements)br.ReadInt32();
             Threshold = br.ReadSingle();
@@ -111,7 +111,7 @@ namespace MagickaForge.Components.Events
                                 SpawnAnimation = br.ReadString(),
                                 Health = br.ReadSingle(),
                                 Order = (Order)br.ReadByte(),
-                                ReactTo = (ReactTo)br.ReadByte(),
+                                ReactTo = (ReactionTriggers)br.ReadByte(),
                                 Reaction = (Order)br.ReadByte(),
                                 Rotation = br.ReadSingle(),
                                 Offset = new Vector3(br)

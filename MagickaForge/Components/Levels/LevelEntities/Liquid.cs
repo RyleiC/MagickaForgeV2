@@ -6,56 +6,56 @@ namespace MagickaForge.Components.Levels.Liquid
 {
     public class LiquidDeclaration
     {
-        public ShaderEffect effect { get; set; }
-        public Liquid liquid { get; set; }
+        public ShaderEffect Effect { get; set; }
+        public Liquid Liquid { get; set; }
         public LiquidDeclaration() { }
         public LiquidDeclaration(BinaryReader br, Header header)
         {
-            effect = ShaderEffect.GetEffect(br, header);
-            liquid = new Liquid(br);
+            Effect = ShaderEffect.GetEffect(br, header);
+            Liquid = new Liquid(br);
         }
 
         public void Write(BinaryWriter binaryWriter)
         {
-            effect.Write(binaryWriter);
-            liquid.Write(binaryWriter);
+            Effect.Write(binaryWriter);
+            Liquid.Write(binaryWriter);
         }
     }
     public class Liquid
     {
-        public VertexBuffer vertexBuffer { get; set; }
-        public IndexBuffer indexBuffer { get; set; }
-        public VertexDeclaration vertexDeclaration { get; set; }
-        public int vertexStride { get; set; }
-        public int vertexCount { get; set; }
-        public int primativeCount { get; set; }
-        public bool collidable { get; set; }
-        public bool freezable { get; set; }
-        public bool autoFreeze { get; set; }
+        public VertexBuffer VertexBuffer { get; set; }
+        public IndexBuffer IndexBuffer { get; set; }
+        public VertexDeclaration VertexDeclaration { get; set; }
+        public int VertexStride { get; set; }
+        public int VertexCount { get; set; }
+        public int PrimativeCount { get; set; }
+        public bool Collidable { get; set; }
+        public bool Freezable { get; set; }
+        public bool AutoFreeze { get; set; }
         public Liquid() { }
         public Liquid(BinaryReader br)
         {
-            vertexBuffer = new VertexBuffer(br);
-            indexBuffer = new IndexBuffer(br);
-            vertexDeclaration = new VertexDeclaration(br);
-            vertexStride = br.ReadInt32();
-            vertexCount = br.ReadInt32();
-            primativeCount = br.ReadInt32();
-            collidable = br.ReadBoolean();
-            freezable = br.ReadBoolean();
-            autoFreeze = br.ReadBoolean();
+            VertexBuffer = new VertexBuffer(br);
+            IndexBuffer = new IndexBuffer(br);
+            VertexDeclaration = new VertexDeclaration(br);
+            VertexStride = br.ReadInt32();
+            VertexCount = br.ReadInt32();
+            PrimativeCount = br.ReadInt32();
+            Collidable = br.ReadBoolean();
+            Freezable = br.ReadBoolean();
+            AutoFreeze = br.ReadBoolean();
         }
         public void Write(BinaryWriter binaryWriter)
         {
-            vertexBuffer.Write(binaryWriter);
-            indexBuffer.Write(binaryWriter);
-            vertexDeclaration.Write(binaryWriter);
-            binaryWriter.Write(vertexStride);
-            binaryWriter.Write(vertexCount);
-            binaryWriter.Write(primativeCount);
-            binaryWriter.Write(collidable);
-            binaryWriter.Write(freezable);
-            binaryWriter.Write(autoFreeze);
+            VertexBuffer.Write(binaryWriter);
+            IndexBuffer.Write(binaryWriter);
+            VertexDeclaration.Write(binaryWriter);
+            binaryWriter.Write(VertexStride);
+            binaryWriter.Write(VertexCount);
+            binaryWriter.Write(PrimativeCount);
+            binaryWriter.Write(Collidable);
+            binaryWriter.Write(Freezable);
+            binaryWriter.Write(AutoFreeze);
         }
     }
 }

@@ -4,67 +4,67 @@ namespace MagickaForge.Components.Graphics.Effects
 {
     public class LavaEffect : ShaderEffect
     {
-        public float maskDistortion { get; set; }
-        public Vector2 speedA { get; set; }
-        public Vector2 speedB { get; set; }
-        public float lavaHotEmission { get; set; }
-        public float lavaColdEmission { get; set; }
-        public float lavaSpecAmount { get; set; }
-        public float lavaSpecPower { get; set; }
-        public float tempFrequency { get; set; }
-        public string toneMap { get; set; }
-        public string tempMap { get; set; }
-        public string maskMap { get; set; }
-        public Vector3 rockColor { get; set; }
-        public float rockEmission { get; set; }
-        public float rockSpecAmount { get; set; }
-        public float rockSpecPower { get; set; }
-        public float rockNormalPower { get; set; }
-        public string rockTexture { get; set; }
-        public string rockNormalMap { get; set; }
+        public float MaskDistortion { get; set; }
+        public Vector2 SpeedA { get; set; }
+        public Vector2 SpeedB { get; set; }
+        public float HotEmission { get; set; }
+        public float ColdEmission { get; set; }
+        public float LavaSpecularAmount { get; set; }
+        public float LavaSpecularPower { get; set; }
+        public float TemperatureFrequency { get; set; }
+        public string ToneMap { get; set; }
+        public string TemperatureMap { get; set; }
+        public string MaskMap { get; set; }
+        public Vector3 RockColor { get; set; }
+        public float RockEmission { get; set; }
+        public float RockSpecularAmount { get; set; }
+        public float RockSpecularPower { get; set; }
+        public float RockNormalPower { get; set; }
+        public string RockTexture { get; set; }
+        public string RockNormalMap { get; set; }
         public LavaEffect() { }
         public LavaEffect(BinaryReader binaryReader)
         {
-            maskDistortion = binaryReader.ReadSingle();
-            speedA = new Vector2(binaryReader);
-            speedB = new Vector2(binaryReader);
-            lavaHotEmission = binaryReader.ReadSingle();
-            lavaColdEmission = binaryReader.ReadSingle();
-            lavaSpecAmount = binaryReader.ReadSingle();
-            lavaSpecPower = binaryReader.ReadSingle();
-            tempFrequency = binaryReader.ReadSingle();
-            toneMap = binaryReader.ReadString();
-            tempMap = binaryReader.ReadString();
-            maskMap = binaryReader.ReadString();
-            rockColor = new Vector3(binaryReader);
-            rockEmission = binaryReader.ReadSingle();
-            rockSpecAmount = binaryReader.ReadSingle();
-            rockSpecPower = binaryReader.ReadSingle();
-            rockNormalPower = binaryReader.ReadSingle();
-            rockTexture = binaryReader.ReadString();
-            rockNormalMap = binaryReader.ReadString();
+            MaskDistortion = binaryReader.ReadSingle();
+            SpeedA = new Vector2(binaryReader);
+            SpeedB = new Vector2(binaryReader);
+            HotEmission = binaryReader.ReadSingle();
+            ColdEmission = binaryReader.ReadSingle();
+            LavaSpecularAmount = binaryReader.ReadSingle();
+            LavaSpecularPower = binaryReader.ReadSingle();
+            TemperatureFrequency = binaryReader.ReadSingle();
+            ToneMap = binaryReader.ReadString();
+            TemperatureMap = binaryReader.ReadString();
+            MaskMap = binaryReader.ReadString();
+            RockColor = new Vector3(binaryReader);
+            RockEmission = binaryReader.ReadSingle();
+            RockSpecularAmount = binaryReader.ReadSingle();
+            RockSpecularPower = binaryReader.ReadSingle();
+            RockNormalPower = binaryReader.ReadSingle();
+            RockTexture = binaryReader.ReadString();
+            RockNormalMap = binaryReader.ReadString();
         }
         public override void Write(BinaryWriter binaryWriter)
         {
             base.Write(binaryWriter);
-            binaryWriter.Write(maskDistortion);
-            speedA.Write(binaryWriter);
-            speedB.Write(binaryWriter);
-            binaryWriter.Write(lavaHotEmission);
-            binaryWriter.Write(lavaColdEmission);
-            binaryWriter.Write(lavaSpecAmount);
-            binaryWriter.Write(lavaSpecPower);
-            binaryWriter.Write(tempFrequency);
-            binaryWriter.Write(toneMap);
-            binaryWriter.Write(tempMap);
-            binaryWriter.Write(maskMap);
-            rockColor.Write(binaryWriter);
-            binaryWriter.Write(rockEmission);
-            binaryWriter.Write(rockSpecAmount);
-            binaryWriter.Write(rockSpecPower);
-            binaryWriter.Write(rockNormalPower);
-            binaryWriter.Write(rockTexture);
-            binaryWriter.Write(rockNormalMap);
+            binaryWriter.Write(MaskDistortion);
+            SpeedA.Write(binaryWriter);
+            SpeedB.Write(binaryWriter);
+            binaryWriter.Write(HotEmission);
+            binaryWriter.Write(ColdEmission);
+            binaryWriter.Write(LavaSpecularAmount);
+            binaryWriter.Write(LavaSpecularPower);
+            binaryWriter.Write(TemperatureFrequency);
+            binaryWriter.Write(ToneMap);
+            binaryWriter.Write(TemperatureMap);
+            binaryWriter.Write(MaskMap);
+            RockColor.Write(binaryWriter);
+            binaryWriter.Write(RockEmission);
+            binaryWriter.Write(RockSpecularAmount);
+            binaryWriter.Write(RockSpecularPower);
+            binaryWriter.Write(RockNormalPower);
+            binaryWriter.Write(RockTexture);
+            binaryWriter.Write(RockNormalMap);
         }
     }
 }
