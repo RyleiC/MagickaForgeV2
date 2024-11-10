@@ -1,9 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-class EnumeratedStringAttribute : JsonConverterAttribute
+namespace MagickaForge.Utils
 {
-    public EnumeratedStringAttribute() : base(typeof(JsonStringEnumConverter))
+    class EnumeratedStringAttribute : JsonConverterAttribute
     {
+        public EnumeratedStringAttribute() : base(typeof(JsonStringEnumConverter))
+        {
 
+        }
     }
 }

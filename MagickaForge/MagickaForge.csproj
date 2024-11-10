@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Pipeline\Experimental\" />
+    <Compile Remove="Pipeline\Experimental\**" />
+    <EmbeddedResource Remove="Pipeline\Experimental\**" />
+    <None Remove="Pipeline\Experimental\**" />
   </ItemGroup>
 
 </Project>
