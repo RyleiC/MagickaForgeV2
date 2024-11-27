@@ -14,4 +14,8 @@
     <None Remove="Pipeline\Experimental\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\XNBDecomp\XNBDecomp.csproj" />
+  </ItemGroup>
+
 </Project>
