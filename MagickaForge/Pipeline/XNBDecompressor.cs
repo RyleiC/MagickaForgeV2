@@ -17,7 +17,7 @@ public static class XNBDecompressor
         }
         catch
         {
-            Console.WriteLine("Decompression failed!");
+            throw new InvalidDataException("Decompression failed!");
         }
 
         contentReader.Close();
