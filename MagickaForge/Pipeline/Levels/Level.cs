@@ -28,58 +28,58 @@ namespace MagickaForge.Pipeline.Levels
     {
         private const int MaxCollisionMeshes = 10;
         public int ReaderIndex { get; set; }
-        public Header Header { get; set; }
-        public BinTreeModel BinaryModel { get; set; }
-        public AnimatedLevelPart[] Animations { get; set; }
-        public SceneLight[] Lights { get; set; }
-        public SceneEffect[] Effects { get; set; }
-        public PhysicsEntity[] PhysicsEntities { get; set; }
-        public LiquidDeclaration[] Liquids { get; set; }
-        public ForceField[] ForceFields { get; set; }
-        public TriangleMesh[] CollisionMeshes { get; set; }
-        public TriangleMesh CameraMesh { get; set; }
-        public TriggerArea[] TriggerAreas { get; set; }
-        public Locator[] Locators { get; set; }
-        public NavigationMesh NavigationMesh { get; set; }
-        public SharedContentCache[] ContentCache { get; set; }
+        public Header? Header { get; set; }
+        public BinTreeModel? BinaryModel { get; set; }
+        public AnimatedLevelPart[]? Animations { get; set; }
+        public SceneLight[]? Lights { get; set; }
+        public SceneEffect[]? Effects { get; set; }
+        public PhysicsEntity[]? PhysicsEntities { get; set; }
+        public LiquidDeclaration[]? Liquids { get; set; }
+        public ForceField[]? ForceFields { get; set; }
+        public TriangleMesh[]? CollisionMeshes { get; set; }
+        public TriangleMesh? CameraMesh { get; set; }
+        public TriggerArea[]? TriggerAreas { get; set; }
+        public Locator[]? Locators { get; set; }
+        public NavigationMesh? NavigationMesh { get; set; }
+        public SharedContentCache[]? ContentCache { get; set; }
 
         public void LevelToXNB(string outputPath)
         {
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
-            Header.Write(bw);
+            Header!.Write(bw);
             bw.Write7BitEncodedInt(ReaderIndex);
-            BinaryModel.Write(bw);
-            bw.Write(Animations.Length);
+            BinaryModel!.Write(bw);
+            bw.Write(Animations!.Length);
             for (var i = 0; i < Animations.Length; i++)
             {
                 Animations[i].Write(bw);
             }
-            bw.Write(Lights.Length);
+            bw.Write(Lights!.Length);
             for (var i = 0; i < Lights.Length; i++)
             {
                 Lights[i].Write(bw);
             }
-            bw.Write(Effects.Length);
+            bw.Write(Effects!.Length);
             for (var i = 0; i < Effects.Length; i++)
             {
                 Effects[i].Write(bw);
             }
-            bw.Write(PhysicsEntities.Length);
+            bw.Write(PhysicsEntities!.Length);
             for (var i = 0; i < PhysicsEntities.Length; i++)
             {
                 PhysicsEntities[i].Write(bw);
             }
-            bw.Write(Liquids.Length);
+            bw.Write(Liquids!.Length);
             for (var i = 0; i < Liquids.Length; i++)
             {
                 Liquids[i].Write(bw);
             }
-            bw.Write(ForceFields.Length);
+            bw.Write(ForceFields!.Length);
             for (var i = 0; i < ForceFields.Length; i++)
             {
                 ForceFields[i].Write(bw);
             }
-            if (CollisionMeshes.Length > MaxCollisionMeshes)
+            if (CollisionMeshes!.Length > MaxCollisionMeshes)
             {
                 throw new ArgumentOutOfRangeException("Levels may only have up to 10 collision meshes!");
             }
@@ -97,20 +97,20 @@ namespace MagickaForge.Pipeline.Levels
             bw.Write(hasCameraMesh);
             if (hasCameraMesh)
             {
-                CameraMesh.Write(bw);
+                CameraMesh!.Write(bw);
             }
-            bw.Write(TriggerAreas.Length);
+            bw.Write(TriggerAreas!.Length);
             for (var i = 0; i < TriggerAreas.Length; i++)
             {
                 TriggerAreas[i].Write(bw);
             }
-            bw.Write(Locators.Length);
+            bw.Write(Locators!.Length);
             for (var i = 0; i < Locators.Length; i++)
             {
                 Locators[i].Write(bw);
             }
-            NavigationMesh.Write(bw);
-            for (var i = 0; i < ContentCache.Length; i++)
+            NavigationMesh!.Write(bw);
+            for (var i = 0; i < ContentCache!.Length; i++)
             {
                 ContentCache[i].Write(bw);
             }
@@ -133,7 +133,7 @@ namespace MagickaForge.Pipeline.Levels
 
         public void XNBToLevel(string inputPath)
         {
-            BinaryReader br = new(File.Open(inputPath, FileMode.Open));
+            BinaryReader br = new(XNBDecompressor.DecompressXNB(inputPath));
 
             Header = new Header(br);
 

@@ -1,13 +1,13 @@
 using XNBDecomp;
-using MagickaForge;
 
 public static class XNBDecompressor
 {
-    public static string DecompressXNB(string path)
+    public static Stream DecompressXNB(string path)
     {
-        ContentReader contentReader = ContentReader.Create(path);
-        var outPath = path.Replace(".xnb", ".dxnb");
-        ContentWriter contentWriter = new ContentWriter(File.Create(outPath), false, contentReader.fileVersion, contentReader.graphicsProfile);
+        var stream = new MemoryStream();
+        var contentReader = ContentReader.Create(path);
+
+        ContentWriter contentWriter = new ContentWriter(stream, false, contentReader.fileVersion, contentReader.graphicsProfile);
         try
         {
             for (int i = 0; i < contentReader.fileSize; i++)
@@ -23,6 +23,7 @@ public static class XNBDecompressor
         contentReader.Close();
         contentWriter.FlushOutput();
 
-        return outPath;
+        stream.Position = 0;
+        return stream;
     }
 }

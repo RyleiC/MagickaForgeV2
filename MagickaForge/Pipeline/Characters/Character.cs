@@ -10,7 +10,6 @@ using MagickaForge.Utils.Definitions.Abilities;
 using MagickaForge.Utils.Definitions.AI;
 using MagickaForge.Utils.Definitions.Graphics;
 using MagickaForge.Utils.Structures;
-using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -133,7 +132,7 @@ namespace MagickaForge.Pipeline.Characters
                 bw.Write(gib.Mass);
                 bw.Write(gib.Scale);
             }
-            if (Lights.Length > MaxLights)
+            if (Lights!.Length > MaxLights)
             {
                 throw new ArgumentOutOfRangeException("Characters may only have 4 up to lights!");
             }
@@ -201,7 +200,7 @@ namespace MagickaForge.Pipeline.Characters
             {
                 animationSet.Write(bw);
             }
-            if (Equipment.Length > MaxEquipmentSlots)
+            if (Equipment!.Length > MaxEquipmentSlots)
             {
                 throw new ArgumentOutOfRangeException("Characters may only have up to 8 equipment slots!");
             }
@@ -275,7 +274,7 @@ namespace MagickaForge.Pipeline.Characters
 
         public void XNBToCharacter(string inputPath, bool legacyMagicka)
         {
-            BinaryReader br = new(File.Open(inputPath, FileMode.Open));
+            BinaryReader br = new(XNBDecompressor.DecompressXNB(inputPath));
             br.ReadBytes(Header.Length);
 
             Name = br.ReadString();

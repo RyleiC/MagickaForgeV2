@@ -109,7 +109,7 @@ namespace MagickaForge.Pipeline.Items
                 bw.Write(Effects[i]);
             }
 
-            if (Lights.Length > MaxLights)
+            if (Lights!.Length > MaxLights)
             {
                 throw new ArgumentOutOfRangeException("Items may only have up to 1 light!");
             }
@@ -194,7 +194,7 @@ namespace MagickaForge.Pipeline.Items
 
         public void XNBToItem(string inputPath)
         {
-            BinaryReader br = new(File.Open(inputPath, FileMode.Open));
+            BinaryReader br = new(XNBDecompressor.DecompressXNB(inputPath));
             br.ReadBytes(Header.Length);
 
             Name = br.ReadString();
