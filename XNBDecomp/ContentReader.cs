@@ -52,7 +52,7 @@ namespace XNBDecomp
             this.fileSize = fileSize;
         }
 
-        public static ContentReader Create(Stream input)
+        public static ContentReader Create(Stream input, int uncompressedFileSize)
         {
             BinaryReader reader = new BinaryReader(input);
 
@@ -85,21 +85,18 @@ namespace XNBDecomp
                 compressed = (num & XnbCompressedMask) == XnbCompressedMask;
             }
 
-            int fileSize = reader.ReadInt32();
-            if (input.CanSeek && ((fileSize - XnbPrologueSize) > (input.Length - input.Position)))
-            {
-                throw new InvalidOperationException("Bad size.");
-            }
+            reader.ReadInt32();
 
+            int fileSize;
             if (compressed)
             {
-                int compressedTodo = fileSize - XnbCompressedPrologueSize;
+                int compressedTodo = uncompressedFileSize - XnbCompressedPrologueSize;
                 fileSize = reader.ReadInt32();
                 input = DecompressStream.getStream(input, compressedTodo, fileSize);
             }
             else
             {
-                fileSize = fileSize - XnbPrologueSize;
+                fileSize = uncompressedFileSize - XnbPrologueSize;
             }
 
             return new ContentReader(input, filePlatform, fileVersion, graphicsProfile, compressed, fileSize);
@@ -107,7 +104,7 @@ namespace XNBDecomp
 
         public static ContentReader Create(string filename)
         {
-            return Create(File.Open(filename, FileMode.Open));
+            return Create(File.Open(filename, FileMode.Open), (int)new FileInfo(filename).Length);
         }
     }
 }
