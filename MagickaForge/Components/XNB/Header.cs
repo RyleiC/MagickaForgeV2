@@ -1,17 +1,21 @@
-﻿namespace MagickaForge.Components.XNB
+﻿using MagickaForge.Utils;
+
+namespace MagickaForge.Components.XNB
 {
     public class Header
     {
-        private readonly byte[] Head = [0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00];
         public ReaderCache[] Readers { get; set; }
+
         private Dictionary<ReaderType, int> _readerTypes;
+
         public int SharedResources { get; set; }
         public Header() { }
+
         public Header(BinaryReader binaryReader)
         {
-            binaryReader.ReadBytes(Head.Length);
-            _readerTypes = new Dictionary<ReaderType, int>();
+            binaryReader.BaseStream.Position += XNBHelper.XNBHeader.Length + 4;
 
+            _readerTypes = new Dictionary<ReaderType, int>();
             Readers = new ReaderCache[binaryReader.Read7BitEncodedInt()];
             for (int i = 0; i < Readers.Length; i++)
             {
@@ -33,7 +37,8 @@
 
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write(Head);
+            binaryWriter.Write(XNBHelper.XNBHeader);
+            binaryWriter.Write(0); //Placeholder file size
             binaryWriter.Write7BitEncodedInt(Readers.Length);
             foreach (var reader in Readers)
             {

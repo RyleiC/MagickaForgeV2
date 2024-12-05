@@ -21,6 +21,7 @@ namespace MagickaForge.Experimental.GLTF
 
             return model;
         }
+
         public void InitializeBuffer()
         {
             if (bufferViews is null)

@@ -2,6 +2,7 @@
 using MagickaForge.Components.Auras;
 using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
+using MagickaForge.Utils;
 using MagickaForge.Utils.Definitions;
 using MagickaForge.Utils.Definitions.Abilities;
 using MagickaForge.Utils.Definitions.Graphics;
@@ -14,17 +15,18 @@ namespace MagickaForge.Pipeline.Items
     public class Item
     {
         private const int MaxLights = 1;
-        private readonly byte[] Header =
+
+        private readonly byte[] ReaderHeader =
         {
-            0x58, 0x4E, 0x42, 0x77, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x4C,
-            0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F, 0x6E, 0x74,
-            0x65, 0x6E, 0x74, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x73, 0x2E, 0x49,
-            0x74, 0x65, 0x6D, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x2C, 0x20, 0x4D,
-            0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2C, 0x20, 0x56, 0x65, 0x72, 0x73,
-            0x69, 0x6F, 0x6E, 0x3D, 0x31, 0x2E, 0x30, 0x2E, 0x30, 0x2E, 0x30, 0x2C,
-            0x20, 0x43, 0x75, 0x6C, 0x74, 0x75, 0x72, 0x65, 0x3D, 0x6E, 0x65, 0x75,
-            0x74, 0x72, 0x61, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
+            0x01, 0x4C, 0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F,
+            0x6E, 0x74, 0x65, 0x6E, 0x74, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x73,
+            0x2E, 0x49, 0x74, 0x65, 0x6D, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x2C,
+            0x20, 0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2C, 0x20, 0x56, 0x65,
+            0x72, 0x73, 0x69, 0x6F, 0x6E, 0x3D, 0x31, 0x2E, 0x30, 0x2E, 0x30, 0x2E,
+            0x30, 0x2C, 0x20, 0x43, 0x75, 0x6C, 0x74, 0x75, 0x72, 0x65, 0x3D, 0x6E,
+            0x65, 0x75, 0x74, 0x72, 0x61, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
         };
+
         public string? Name { get; set; }
         public string? LocalizedName { get; set; }
         public string? LocalizedDescription { get; set; }
@@ -75,15 +77,17 @@ namespace MagickaForge.Pipeline.Items
         public void ItemToXNB(string outputPath)
         {
             BinaryWriter bw = new(File.Create(outputPath));
-            bw.Write(Header);
+            bw.Write(XNBHelper.XNBHeader);
+            bw.Write(0); //File size placeholder, we go back after the file is written and put in the file size.
+            bw.Write(ReaderHeader);
+
             bw.Write(Name!);
             bw.Write(LocalizedName!);
             bw.Write(LocalizedDescription!);
             bw.Write(Sounds!.Length);
-            for (var i = 0; i < Sounds.Length; i++)
+            foreach (Sound sound in Sounds)
             {
-                bw.Write(Sounds[i].Cue!);
-                bw.Write((int)Sounds[i].Bank);
+                sound.Write(bw);
             }
             bw.Write(CanBePickedUp);
             bw.Write(Bound);
@@ -178,6 +182,9 @@ namespace MagickaForge.Pipeline.Items
             {
                 Auras[i].Write(bw);
             }
+
+            XNBHelper.WriteFileSize(bw);
+
             bw.Close();
         }
         public static void WriteToJson(string outputPath, Item item)
@@ -195,7 +202,7 @@ namespace MagickaForge.Pipeline.Items
         public void XNBToItem(string inputPath)
         {
             BinaryReader br = new(XNBDecompressor.DecompressXNB(inputPath));
-            br.ReadBytes(Header.Length);
+            br.BaseStream.Position += XNBHelper.XNBHeader.Length + ReaderHeader.Length + 4; //Ingores the entire header length, including the XNB header, fileSize, and reader header.
 
             Name = br.ReadString();
             LocalizedName = br.ReadString();

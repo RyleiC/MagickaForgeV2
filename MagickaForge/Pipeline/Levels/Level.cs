@@ -3,6 +3,7 @@ using MagickaForge.Components.Levels.LevelEntities;
 using MagickaForge.Components.Levels.Liquid;
 using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Components.XNB;
+using MagickaForge.Utils;
 using System.Text.Json;
 
 namespace MagickaForge.Pipeline.Levels
@@ -114,6 +115,7 @@ namespace MagickaForge.Pipeline.Levels
             {
                 ContentCache[i].Write(bw);
             }
+            XNBHelper.WriteFileSize(bw);
             bw.Close();
         }
         public static void WriteToJson(string outputPath, Level level)
