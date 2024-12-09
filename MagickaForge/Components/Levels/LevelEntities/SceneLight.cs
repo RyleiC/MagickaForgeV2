@@ -1,5 +1,6 @@
 ﻿using MagickaForge.Utils.Definitions.Graphics;
 using MagickaForge.Utils.Structures;
+using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Levels.LevelEntities
 {
@@ -8,7 +9,9 @@ namespace MagickaForge.Components.Levels.LevelEntities
         public string Name { get; set; }
         public Vector3 Position { get; set; }
         public Vector3 Direction { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<LightType>))]
         public LightType Type { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<LightVariationType>))]
         public LightVariationType Variation { get; set; }
         public float Distance { get; set; }
         public bool UseAttenuation { get; set; }

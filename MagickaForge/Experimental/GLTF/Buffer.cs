@@ -1,6 +1,8 @@
 ﻿using MagickaForge.Components.Graphics;
 using MagickaForge.Components.Levels;
+using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Utils.Structures;
+using MagickaForge.Utils.Definitions.AI;
 
 namespace MagickaForge.Experimental.GLTF
 {
@@ -78,6 +80,29 @@ namespace MagickaForge.Experimental.GLTF
 
             return buffer;
         }
+        public NavigationMesh ToNavigationMesh()
+        {
+            var mesh = new NavigationMesh();
+            mesh.Vertices = _vertices;
+            mesh.NavigationTriangles = new NavigationTriangle[IndiceCount / 3];
+            for (int i = 0; i < mesh.NavigationTriangles.Length; i++)
+            {
+                mesh.NavigationTriangles[i] = new NavigationTriangle()
+                {
+                    VertexA = (ushort)_indices[i],
+                    VertexB = (ushort)_indices[i + 1],
+                    VertexC = (ushort)_indices[i + 2],
+                    CostAB = CalculateDistance(_vertices[_indices[i]], _vertices[_indices[i + 1]]),
+                    CostBC = CalculateDistance(_vertices[_indices[i + 1]], _vertices[_indices[i + 2]]),
+                    CostCA = CalculateDistance(_vertices[_indices[i]], _vertices[_indices[i + 2]]),
+                    NeighborA = ushort.MaxValue,
+                    NeighborB = ushort.MaxValue,
+                    NeighborC = ushort.MaxValue,
+                    MovementProperty = MovementProperties.Default,
+                };
+            }
+            return mesh;
+        }
 
         public IndexBuffer ToIndexBuffer()
         {
@@ -98,6 +123,14 @@ namespace MagickaForge.Experimental.GLTF
             binaryWriter.Close();
 
             return buffer;
+        }
+        private float CalculateDistance(Vector3 positionA, Vector3 positionB)
+        {
+            float x = positionB.X - positionA.X;
+            float y = positionB.Y - positionA.Y;
+            float z = positionB.Z - positionA.Z;
+
+            return MathF.Abs(MathF.Sqrt(MathF.Pow(x, x) + MathF.Pow(y, y) + MathF.Pow(z, z)));
         }
 
         public int IndiceCount
