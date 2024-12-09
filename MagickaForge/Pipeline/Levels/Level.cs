@@ -46,7 +46,9 @@ namespace MagickaForge.Pipeline.Levels
 
         public void LevelToXNB(string outputPath)
         {
+            GLTFHook gLTFHook = new GLTFHook();
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
+            BinaryModel.BinaryTreeRoots = new BinTreeRoot[] { gLTFHook.Root };
             Header!.Write(bw);
             bw.Write7BitEncodedInt(ReaderIndex);
             BinaryModel!.Write(bw);
@@ -84,6 +86,7 @@ namespace MagickaForge.Pipeline.Levels
             {
                 throw new ArgumentOutOfRangeException("Levels may only have up to 10 collision meshes!");
             }
+            CollisionMeshes[0] = gLTFHook.Collision;
             for (var i = 0; i < 10; i++)
             {
                 if (CollisionMeshes[i] == null)

@@ -44,16 +44,6 @@ namespace MagickaForge.Experimental.GLTF
 
         }
 
-        /*
-         *  This needs modification.
-         *  As it stands, the right hand & left hand coordinate systems are fighting
-         *  
-         *  If I use the same Z coordinates the player will fall through surfaces as if they were solid on the inside but closed on the outside
-         *  If I use the corrected -Z coordinates for one then now the collisions are mirrored!
-         *  
-         *  This needs some studying under JigLibX to see how to resolve this, until then.
-         *  ~ Rylei C.
-         */
         public TriangleMesh ToTriangleMesh()
         {
             var mesh = new TriangleMesh();
@@ -99,9 +89,11 @@ namespace MagickaForge.Experimental.GLTF
             var stream = new MemoryStream(buffer.Data);
 
             var binaryWriter = new BinaryWriter(stream);
-            for (var i = 0; i < _indices.Length; i++)
+            for (var i = 0; i < _indices.Length; i += 3)
             {
                 binaryWriter.Write(_indices[i]);
+                binaryWriter.Write(_indices[i + 2]);
+                binaryWriter.Write(_indices[i + 1]);
             }
             binaryWriter.Close();
 
