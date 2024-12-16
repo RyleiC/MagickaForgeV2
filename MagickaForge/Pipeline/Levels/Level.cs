@@ -46,15 +46,15 @@ namespace MagickaForge.Pipeline.Levels
 
         public void LevelToXNB(string outputPath)
         {
-            var grassPath = "C:\\Users\\Rylei\\Downloads\\Toyue\\untitled.gltf";
-            var baseDecl = "C:\\Users\\Rylei\\Downloads\\Toyue\\vertexbase.json";
+        /*        var grassPath = "C:\\Users\\Rylei\\Downloads\\Toyue\\floor.gltf";
+                var baseDecl = "C:\\Users\\Rylei\\Downloads\\Toyue\\vertexbase.json";
 
-            GLTFHook gLTFHook = new GLTFHook(grassPath, baseDecl);
+                GLTFHook gLTFHook = new GLTFHook(grassPath, baseDecl);
+                BinaryModel.BinaryTreeRoots = new BinTreeRoot[] { gLTFHook.Root };
+                CollisionMeshes[0] = gLTFHook.Collision;
+                NavigationMesh = gLTFHook.NavigationMesh;
+            */
             BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
-            BinaryModel.BinaryTreeRoots = new BinTreeRoot[] { gLTFHook.Root };
-            CollisionMeshes[0] = gLTFHook.Collision;
-            NavigationMesh = gLTFHook.NavigationMesh;
-
             Header!.Write(bw);
             bw.Write7BitEncodedInt(ReaderIndex);
             BinaryModel!.Write(bw);

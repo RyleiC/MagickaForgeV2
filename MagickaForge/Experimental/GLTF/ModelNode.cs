@@ -7,6 +7,9 @@ namespace MagickaForge.Experimental.GLTF
         private string _path;
         public Buffer Buffer { get; private set; }
         public BufferViewNode[] bufferViews { get; set; } //Must be named this to be deserialized
+        public int scene { get; set; }
+        public Scene[] scenes { get; set; }
+
         public ModelNode()
         {
             Buffer = new Buffer();

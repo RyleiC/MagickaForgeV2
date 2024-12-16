@@ -96,7 +96,7 @@ namespace MagickaForge.Experimental.GLTF
                     CostBC = CalculateDistance(_vertices[_indices[i + 1]], _vertices[_indices[i + 2]]),
                     CostCA = CalculateDistance(_vertices[_indices[i]], _vertices[_indices[i + 2]]),
                     NeighborA = ushort.MaxValue,
-                    NeighborB = ushort.MaxValue,
+                    NeighborB = ushort.MaxValue, //TEMP WHILE I FIND OTHER WAYS TO CALCULATE
                     NeighborC = ushort.MaxValue,
                     MovementProperty = MovementProperties.Default,
                 };
@@ -113,12 +113,12 @@ namespace MagickaForge.Experimental.GLTF
             buffer.Data = new byte[_indices.Length * 2];
             var stream = new MemoryStream(buffer.Data);
 
-            var binaryWriter = new BinaryWriter(stream);
+            var binaryWriter = new BinaryWriter(stream); //DirectX is a left-handed system and the index order must be switched to 0 2 1
             for (var i = 0; i < _indices.Length; i += 3)
             {
                 binaryWriter.Write(_indices[i]);
                 binaryWriter.Write(_indices[i + 2]);
-                binaryWriter.Write(_indices[i + 1]);
+                binaryWriter.Write(_indices[i + 1]); 
             }
             binaryWriter.Close();
 
