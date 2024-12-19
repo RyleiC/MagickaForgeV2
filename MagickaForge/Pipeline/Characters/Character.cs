@@ -131,9 +131,7 @@ namespace MagickaForge.Pipeline.Characters
             bw.Write(Gibs!.Length);
             foreach (Gib gib in Gibs)
             {
-                bw.Write(gib.Model!);
-                bw.Write(gib.Mass);
-                bw.Write(gib.Scale);
+                gib.Write(bw);
             }
             if (Lights!.Length > MaxLights)
             {
