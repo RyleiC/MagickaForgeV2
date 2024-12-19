@@ -37,6 +37,10 @@ namespace MagickaForge.Components.Abilities
             bw.Write((byte)AbilityTarget);
             bool hasFuzzy = FuzzyExpression!.Length > 0;
             bw.Write(hasFuzzy);
+            if (!hasFuzzy && this is CastSpell)
+            {
+                throw new Exception("CastSpell abilities must have a fuzzy statement!");
+            }
             if (hasFuzzy)
             {
                 bw.Write(FuzzyExpression);
