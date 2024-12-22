@@ -1,4 +1,4 @@
-using MagickaForge.Utils.Definitions.AI;
+using MagickaForge.Utils.Data.AI;
 
 namespace MagickaForge.Components.Characters
 {

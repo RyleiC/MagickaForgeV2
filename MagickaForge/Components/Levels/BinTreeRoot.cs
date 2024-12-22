@@ -58,7 +58,7 @@ namespace MagickaForge.Components.Levels
                 ChildB = new BinTreeNode(binaryReader);
             }
         }
-        public void Write(BinaryWriter binaryWriter, Header header)
+        public void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(Visible);
             binaryWriter.Write(CastShadows);

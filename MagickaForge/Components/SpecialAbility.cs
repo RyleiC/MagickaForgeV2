@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils.Definitions;
+﻿using MagickaForge.Utils.Data;
 namespace MagickaForge.Components
 {
     public class SpecialAbility

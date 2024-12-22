@@ -1,0 +1,34 @@
+﻿namespace MagickaForge.Utils.Data.Animations
+{
+    public enum ActionType
+    {
+        Block,
+        BreakFree,
+        CameraShake,
+        CastSpell,
+        Crouch,
+        DamageGrip,
+        DealDamage,
+        DetachItem,
+        Ethereal,
+        Footstep,
+        Grip,
+        Gunfire,
+        Immortal,
+        Invisible,
+        Jump,
+        Move,
+        OverkillGrip,
+        PlayEffect,
+        PlaySound,
+        ReleaseGrip,
+        RemoveStatus,
+        SetItemAttach,
+        SpawnMissile,
+        SpecialAbility,
+        Suicide,
+        ThrowGrip,
+        Tongue,
+        WeaponVisibility
+    }
+}

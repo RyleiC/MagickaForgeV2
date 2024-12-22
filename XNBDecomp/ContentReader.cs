@@ -52,7 +52,7 @@ namespace XNBDecomp
             this.fileSize = fileSize;
         }
 
-        public static ContentReader Create(Stream input)
+        public static ContentReader Create(Stream input, int diskFileSize)
         {
             BinaryReader reader = new BinaryReader(input);
 
@@ -86,7 +86,6 @@ namespace XNBDecomp
             }
 
             var fileSize = reader.ReadInt32();
-
             if (compressed)
             {
                 int compressedTodo = fileSize - XnbCompressedPrologueSize;
@@ -95,6 +94,13 @@ namespace XNBDecomp
             }
             else
             {
+
+                //BACKWARDS COMPATIBIILITY WITH OLDER VERSIONS OF MAGICKA FORGE
+                if (fileSize < diskFileSize)
+                {
+                    fileSize = diskFileSize;
+                }
+                //it won't have a wrong file size if it is compressed as this tool doesn't compress produced XNBs
                 fileSize = fileSize - XnbPrologueSize;
             }
 
@@ -103,7 +109,7 @@ namespace XNBDecomp
 
         public static ContentReader Create(string filename)
         {
-            return Create(File.Open(filename, FileMode.Open));
+            return Create(File.Open(filename, FileMode.Open), (int)new FileInfo(filename).Length);
         }
     }
 }

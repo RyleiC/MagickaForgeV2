@@ -113,7 +113,7 @@ namespace XNBDecomp
             int contentLength = (int)contentData.Length;
             Write((int)(XnbPrologueSize + contentLength));
 
-            base.OutStream.Write(contentData.GetBuffer(), 0, contentLength);
+            OutStream.Write(contentData.GetBuffer(), 0, contentLength);
         }
 
         private void WriteVersionNumber()

@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils;
+﻿using MagickaForge.Utils.Helpers;
 
 namespace MagickaForge.Components.XNB
 {

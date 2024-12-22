@@ -1,7 +1,7 @@
-﻿using MagickaForge.Utils.Definitions;
-using MagickaForge.Utils.Definitions.AI;
-using MagickaForge.Utils.Definitions.Events;
-using MagickaForge.Utils.Definitions.Graphics;
+﻿using MagickaForge.Utils.Data;
+using MagickaForge.Utils.Data.AI;
+using MagickaForge.Utils.Data.Events;
+using MagickaForge.Utils.Data.Graphics;
 using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 

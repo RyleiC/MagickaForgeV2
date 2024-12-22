@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils.Definitions.Graphics;
+﻿using MagickaForge.Utils.Data.Graphics;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Graphics

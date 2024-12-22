@@ -1,6 +1,6 @@
-using MagickaForge.Utils.Definitions;
-using MagickaForge.Utils.Definitions.Abilities;
-using MagickaForge.Utils.Definitions.Spellcasting;
+using MagickaForge.Utils.Data;
+using MagickaForge.Utils.Data.Abilities;
+using MagickaForge.Utils.Data.Spellcasting;
 using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 namespace MagickaForge.Components.Abilities
@@ -36,11 +36,13 @@ namespace MagickaForge.Components.Abilities
             bw.Write(Cooldown);
             bw.Write((byte)AbilityTarget);
             bool hasFuzzy = FuzzyExpression!.Length > 0;
-            bw.Write(hasFuzzy);
+
             if (!hasFuzzy && this is CastSpell)
             {
-                throw new Exception("CastSpell abilities must have a fuzzy statement!");
+                throw new CantLoadInMagickaException("CastSpell abilities must have a fuzzy statement!");
             }
+
+            bw.Write(hasFuzzy);
             if (hasFuzzy)
             {
                 bw.Write(FuzzyExpression);
@@ -53,7 +55,7 @@ namespace MagickaForge.Components.Abilities
         }
         public static Ability GetAbility(BinaryReader br, AbilityType type)
         {
-            Ability ability = new Ability();
+            var ability = new Ability();
             float cooldown = br.ReadSingle();
             AbilityTarget abilityTarget = (AbilityTarget)br.ReadByte();
             string fuzzyExpression = string.Empty;
@@ -203,9 +205,9 @@ namespace MagickaForge.Components.Abilities
             bw.Write(Power);
             bw.Write((int)CastType);
             bw.Write(Elements!.Length);
-            foreach (int element in Elements)
+            foreach (Elements element in Elements)
             {
-                bw.Write(element);
+                bw.Write((int)element);
             }
         }
     }

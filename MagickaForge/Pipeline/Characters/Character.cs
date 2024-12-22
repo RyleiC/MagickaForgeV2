@@ -5,11 +5,11 @@ using MagickaForge.Components.Auras;
 using MagickaForge.Components.Characters;
 using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
-using MagickaForge.Utils;
-using MagickaForge.Utils.Definitions;
-using MagickaForge.Utils.Definitions.Abilities;
-using MagickaForge.Utils.Definitions.AI;
-using MagickaForge.Utils.Definitions.Graphics;
+using MagickaForge.Utils.Data;
+using MagickaForge.Utils.Data.Abilities;
+using MagickaForge.Utils.Data.AI;
+using MagickaForge.Utils.Data.Graphics;
+using MagickaForge.Utils.Helpers;
 using MagickaForge.Utils.Structures;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -135,7 +135,7 @@ namespace MagickaForge.Pipeline.Characters
             }
             if (Lights!.Length > MaxLights)
             {
-                throw new ArgumentOutOfRangeException("Characters may only have 4 up to lights!");
+                throw new CantLoadInMagickaException("Characters may only have 4 up to lights!");
             }
             bw.Write(Lights!.Length);
             foreach (BonedLight light in Lights)
@@ -203,7 +203,7 @@ namespace MagickaForge.Pipeline.Characters
             }
             if (Equipment!.Length > MaxEquipmentSlots)
             {
-                throw new ArgumentOutOfRangeException("Characters may only have up to 8 equipment slots!");
+                throw new CantLoadInMagickaException("Characters may only have up to 8 equipment slots!");
             }
             bw.Write(Equipment!.Length);
             foreach (Attachment attachment in Equipment)
@@ -266,7 +266,7 @@ namespace MagickaForge.Pipeline.Characters
         public static void WriteToJson(string outputPath, Character character)
         {
             StreamWriter sw = new(outputPath);
-            sw.Write(JsonSerializer.Serialize(character, new JsonSerializerOptions { WriteIndented = true, }));
+            sw.Write(JsonSerializer.Serialize(character, JsonSettings.SerializerSettings));
             sw.Close();
         }
         public static Character LoadFromJson(string inputPath)
@@ -277,7 +277,7 @@ namespace MagickaForge.Pipeline.Characters
 
         public void XNBToCharacter(string inputPath, bool legacyMagicka)
         {
-            BinaryReader br = new(XNBDecompressor.DecompressXNB(inputPath));
+            BinaryReader br = new(XNBHelper.DecompressXNB(inputPath));
             br.BaseStream.Position += XNBHelper.XNBHeader.Length + ReaderHeader.Length + 4;
 
             Name = br.ReadString();

@@ -1,6 +1,6 @@
-using MagickaForge.Utils.Definitions;
-using MagickaForge.Utils.Definitions.Abilities;
-using MagickaForge.Utils.Definitions.Animations;
+using MagickaForge.Utils.Data;
+using MagickaForge.Utils.Data.Abilities;
+using MagickaForge.Utils.Data.Animations;
 using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 

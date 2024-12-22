@@ -1,4 +1,4 @@
-using MagickaForge.Utils.Definitions.Animations;
+using MagickaForge.Utils.Data.Animations;
 
 namespace MagickaForge.Components.Animations
 {

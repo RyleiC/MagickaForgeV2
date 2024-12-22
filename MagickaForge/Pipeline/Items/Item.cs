@@ -2,10 +2,10 @@
 using MagickaForge.Components.Auras;
 using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
-using MagickaForge.Utils;
-using MagickaForge.Utils.Definitions;
-using MagickaForge.Utils.Definitions.Abilities;
-using MagickaForge.Utils.Definitions.Graphics;
+using MagickaForge.Utils.Data;
+using MagickaForge.Utils.Data.Abilities;
+using MagickaForge.Utils.Data.Graphics;
+using MagickaForge.Utils.Helpers;
 using MagickaForge.Utils.Structures;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,7 +17,7 @@ namespace MagickaForge.Pipeline.Items
         private const int MaxLights = 1;
 
         private readonly byte[] ReaderHeader =
-        {
+        [
             0x01, 0x4C, 0x4D, 0x61, 0x67, 0x69, 0x63, 0x6B, 0x61, 0x2E, 0x43, 0x6F,
             0x6E, 0x74, 0x65, 0x6E, 0x74, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x73,
             0x2E, 0x49, 0x74, 0x65, 0x6D, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x2C,
@@ -25,7 +25,7 @@ namespace MagickaForge.Pipeline.Items
             0x72, 0x73, 0x69, 0x6F, 0x6E, 0x3D, 0x31, 0x2E, 0x30, 0x2E, 0x30, 0x2E,
             0x30, 0x2C, 0x20, 0x43, 0x75, 0x6C, 0x74, 0x75, 0x72, 0x65, 0x3D, 0x6E,
             0x65, 0x75, 0x74, 0x72, 0x61, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
-        };
+        ];
 
         public string? Name { get; set; }
         public string? LocalizedName { get; set; }
@@ -76,121 +76,120 @@ namespace MagickaForge.Pipeline.Items
 
         public void ItemToXNB(string outputPath)
         {
-            BinaryWriter bw = new(File.Create(outputPath));
-            bw.Write(XNBHelper.XNBHeader);
-            bw.Write(0); //File size placeholder, we go back after the file is written and put in the file size.
-            bw.Write(ReaderHeader);
+            BinaryWriter binaryWriter = new(File.Create(outputPath));
+            binaryWriter.Write(XNBHelper.XNBHeader);
+            binaryWriter.Write(0); //File size placeholder, we go back after the file is written and put in the file size.
+            binaryWriter.Write(ReaderHeader);
 
-            bw.Write(Name!);
-            bw.Write(LocalizedName!);
-            bw.Write(LocalizedDescription!);
-            bw.Write(Sounds!.Length);
+            binaryWriter.Write(Name!);
+            binaryWriter.Write(LocalizedName!);
+            binaryWriter.Write(LocalizedDescription!);
+            binaryWriter.Write(Sounds!.Length);
             foreach (Sound sound in Sounds)
             {
-                sound.Write(bw);
+                sound.Write(binaryWriter);
             }
-            bw.Write(CanBePickedUp);
-            bw.Write(Bound);
-            bw.Write(BlockStrength);
-            bw.Write((byte)WeaponClass);
-            bw.Write(CooldownTime);
-            bw.Write(HideModel);
-            bw.Write(HideEffects);
-            bw.Write(PauseSounds);
-            bw.Write(Resistances!.Length);
+            binaryWriter.Write(CanBePickedUp);
+            binaryWriter.Write(Bound);
+            binaryWriter.Write(BlockStrength);
+            binaryWriter.Write((byte)WeaponClass);
+            binaryWriter.Write(CooldownTime);
+            binaryWriter.Write(HideModel);
+            binaryWriter.Write(HideEffects);
+            binaryWriter.Write(PauseSounds);
+            binaryWriter.Write(Resistances!.Length);
             for (var i = 0; i < Resistances.Length; i++)
             {
-                bw.Write((int)Resistances[i].Element);
-                bw.Write(Resistances[i].Multiplier);
-                bw.Write(Resistances[i].Modifier);
-                bw.Write(Resistances[i].StatusImmunity);
+                binaryWriter.Write((int)Resistances[i].Element);
+                binaryWriter.Write(Resistances[i].Multiplier);
+                binaryWriter.Write(Resistances[i].Modifier);
+                binaryWriter.Write(Resistances[i].StatusImmunity);
             }
-            bw.Write((byte)PassiveAbilityType);
-            bw.Write(PassiveAbilityStrength);
-            bw.Write(Effects!.Length);
+            binaryWriter.Write((byte)PassiveAbilityType);
+            binaryWriter.Write(PassiveAbilityStrength);
+            binaryWriter.Write(Effects!.Length);
             for (var i = 0; i < Effects.Length; i++)
             {
-                bw.Write(Effects[i]);
+                binaryWriter.Write(Effects[i]);
             }
 
             if (Lights!.Length > MaxLights)
             {
-                throw new ArgumentOutOfRangeException("Items may only have up to 1 light!");
+                throw new CantLoadInMagickaException("Items may only have up to 1 light!");
             }
 
-            bw.Write(Lights!.Length);
+            binaryWriter.Write(Lights!.Length);
             for (var i = 0; i < Lights.Length; i++)
             {
-                bw.Write(Lights[i].Radius);
-                Lights[i].DiffuseColor.Write(bw);
-                Lights[i].AmbientColor.Write(bw);
-                bw.Write(Lights[i].SpecularAmount);
-                bw.Write((byte)Lights[i].LightVariationType);
-                bw.Write(Lights[i].VariationAmount);
-                bw.Write(Lights[i].VariationSpeed);
+                binaryWriter.Write(Lights[i].Radius);
+                Lights[i].DiffuseColor.Write(binaryWriter);
+                Lights[i].AmbientColor.Write(binaryWriter);
+                binaryWriter.Write(Lights[i].SpecularAmount);
+                binaryWriter.Write((byte)Lights[i].LightVariationType);
+                binaryWriter.Write(Lights[i].VariationAmount);
+                binaryWriter.Write(Lights[i].VariationSpeed);
             }
-            bw.Write(HasSpecialAbility);
+            binaryWriter.Write(HasSpecialAbility);
             if (HasSpecialAbility)
             {
-                bw.Write(SpecialAbilityCooldown);
-                bw.Write(SpecialAbility!.Type!);
-                bw.Write(SpecialAbility.Animation!);
-                bw.Write(SpecialAbility.Hash!);
-                bw.Write(SpecialAbility.Elements!.Length);
+                binaryWriter.Write(SpecialAbilityCooldown);
+                binaryWriter.Write(SpecialAbility!.Type!);
+                binaryWriter.Write(SpecialAbility.Animation!);
+                binaryWriter.Write(SpecialAbility.Hash!);
+                binaryWriter.Write(SpecialAbility.Elements!.Length);
                 for (var x = 0; x < SpecialAbility!.Elements!.Length; x++)
                 {
-                    bw.Write((int)SpecialAbility.Elements[x]);
+                    binaryWriter.Write((int)SpecialAbility.Elements[x]);
                 }
             }
-            bw.Write(MeleeRange);
-            bw.Write(MeleeMultihit);
-            bw.Write(MeleeConditions!.Length);
+            binaryWriter.Write(MeleeRange);
+            binaryWriter.Write(MeleeMultihit);
+            binaryWriter.Write(MeleeConditions!.Length);
             for (var i = 0; i < MeleeConditions.Length; i++)
             {
-                MeleeConditions[i].Write(bw);
+                MeleeConditions[i].Write(binaryWriter);
             }
-            bw.Write(RangedRange);
-            bw.Write(Facing);
-            bw.Write(HomingStrength);
-            bw.Write(RangedElevation);
-            bw.Write(RangedDanger);
-            bw.Write(GunRange);
-            bw.Write(GunClip);
-            bw.Write(GunRate);
-            bw.Write(GunAccuracy);
-            bw.Write(GunSoundCue!);
-            bw.Write(GunMuzzleEffect!);
-            bw.Write(GunShellEffect!);
-            bw.Write(GunTracerVelocity);
-            bw.Write(GunNonTracer!);
-            bw.Write(GunTracer!);
-            bw.Write(GunConditions!.Length);
+            binaryWriter.Write(RangedRange);
+            binaryWriter.Write(Facing);
+            binaryWriter.Write(HomingStrength);
+            binaryWriter.Write(RangedElevation);
+            binaryWriter.Write(RangedDanger);
+            binaryWriter.Write(GunRange);
+            binaryWriter.Write(GunClip);
+            binaryWriter.Write(GunRate);
+            binaryWriter.Write(GunAccuracy);
+            binaryWriter.Write(GunSoundCue!);
+            binaryWriter.Write(GunMuzzleEffect!);
+            binaryWriter.Write(GunShellEffect!);
+            binaryWriter.Write(GunTracerVelocity);
+            binaryWriter.Write(GunNonTracer!);
+            binaryWriter.Write(GunTracer!);
+            binaryWriter.Write(GunConditions!.Length);
             for (var i = 0; i < GunConditions.Length; i++)
             {
-                GunConditions[i].Write(bw);
+                GunConditions[i].Write(binaryWriter);
             }
-            bw.Write(ProjectileModel!);
-            bw.Write(RangedConditions!.Length);
+            binaryWriter.Write(ProjectileModel!);
+            binaryWriter.Write(RangedConditions!.Length);
             for (var i = 0; i < RangedConditions.Length; i++)
             {
-                RangedConditions[i].Write(bw);
+                RangedConditions[i].Write(binaryWriter);
             }
-            bw.Write(Scale);
-            bw.Write(Model!);
-            bw.Write(Auras!.Length);
+            binaryWriter.Write(Scale);
+            binaryWriter.Write(Model!);
+            binaryWriter.Write(Auras!.Length);
             for (var i = 0; i < Auras.Length; i++)
             {
-                Auras[i].Write(bw);
+                Auras[i].Write(binaryWriter);
             }
 
-            XNBHelper.WriteFileSize(bw);
-
-            bw.Close();
+            XNBHelper.WriteFileSize(binaryWriter);
+            binaryWriter.Close();
         }
         public static void WriteToJson(string outputPath, Item item)
         {
             StreamWriter sw = new(outputPath);
-            sw.Write(JsonSerializer.Serialize(item, new JsonSerializerOptions { WriteIndented = true, }));
+            sw.Write(JsonSerializer.Serialize(item, JsonSettings.SerializerSettings));
             sw.Close();
         }
         public static Item LoadFromJson(string inputPath)
@@ -201,122 +200,122 @@ namespace MagickaForge.Pipeline.Items
 
         public void XNBToItem(string inputPath)
         {
-            BinaryReader br = new(XNBDecompressor.DecompressXNB(inputPath));
-            br.BaseStream.Position += XNBHelper.XNBHeader.Length + ReaderHeader.Length + 4; //Ingores the entire header length, including the XNB header, fileSize, and reader header.
+            BinaryReader binaryReader = new(XNBHelper.DecompressXNB(inputPath));
+            binaryReader.BaseStream.Position += XNBHelper.XNBHeader.Length + ReaderHeader.Length + 4; //Ingores the entire header length, including the XNB header, fileSize, and reader header.
 
-            Name = br.ReadString();
-            LocalizedName = br.ReadString();
-            LocalizedDescription = br.ReadString();
+            Name = binaryReader.ReadString();
+            LocalizedName = binaryReader.ReadString();
+            LocalizedDescription = binaryReader.ReadString();
 
-            Sounds = new Sound[br.ReadInt32()];
+            Sounds = new Sound[binaryReader.ReadInt32()];
             for (var i = 0; i < Sounds.Length; i++)
             {
-                Sounds[i].Cue = br.ReadString();
-                Sounds[i].Bank = (Banks)br.ReadInt32();
+                Sounds[i].Cue = binaryReader.ReadString();
+                Sounds[i].Bank = (Banks)binaryReader.ReadInt32();
             }
 
-            CanBePickedUp = br.ReadBoolean();
-            Bound = br.ReadBoolean();
-            BlockStrength = br.ReadInt32();
-            WeaponClass = (WeaponClass)br.ReadByte();
-            CooldownTime = br.ReadSingle();
-            HideModel = br.ReadBoolean();
-            HideEffects = br.ReadBoolean();
-            PauseSounds = br.ReadBoolean();
+            CanBePickedUp = binaryReader.ReadBoolean();
+            Bound = binaryReader.ReadBoolean();
+            BlockStrength = binaryReader.ReadInt32();
+            WeaponClass = (WeaponClass)binaryReader.ReadByte();
+            CooldownTime = binaryReader.ReadSingle();
+            HideModel = binaryReader.ReadBoolean();
+            HideEffects = binaryReader.ReadBoolean();
+            PauseSounds = binaryReader.ReadBoolean();
 
-            Resistances = new Resistance[br.ReadInt32()];
+            Resistances = new Resistance[binaryReader.ReadInt32()];
             for (var i = 0; i < Resistances.Length; i++)
             {
-                Resistances[i].Element = (Elements)br.ReadInt32();
-                Resistances[i].Multiplier = br.ReadSingle();
-                Resistances[i].Modifier = br.ReadSingle();
-                Resistances[i].StatusImmunity = br.ReadBoolean();
+                Resistances[i].Element = (Elements)binaryReader.ReadInt32();
+                Resistances[i].Multiplier = binaryReader.ReadSingle();
+                Resistances[i].Modifier = binaryReader.ReadSingle();
+                Resistances[i].StatusImmunity = binaryReader.ReadBoolean();
             }
 
-            PassiveAbilityType = (PassiveAbility)br.ReadByte();
-            PassiveAbilityStrength = br.ReadSingle();
+            PassiveAbilityType = (PassiveAbility)binaryReader.ReadByte();
+            PassiveAbilityStrength = binaryReader.ReadSingle();
 
-            Effects = new string[br.ReadInt32()];
+            Effects = new string[binaryReader.ReadInt32()];
             for (var i = 0; i < Effects.Length; i++)
             {
-                Effects[i] = br.ReadString();
+                Effects[i] = binaryReader.ReadString();
             }
 
-            Lights = new Light[br.ReadInt32()];
+            Lights = new Light[binaryReader.ReadInt32()];
             for (var i = 0; i < Lights.Length; i++)
             {
-                Lights[i].Radius = br.ReadSingle();
-                Lights[i].DiffuseColor = new Color(br);
-                Lights[i].AmbientColor = new Color(br);
-                Lights[i].SpecularAmount = br.ReadSingle();
-                Lights[i].LightVariationType = (LightVariationType)br.ReadByte();
-                Lights[i].VariationAmount = br.ReadSingle();
-                Lights[i].VariationSpeed = br.ReadSingle();
+                Lights[i].Radius = binaryReader.ReadSingle();
+                Lights[i].DiffuseColor = new Color(binaryReader);
+                Lights[i].AmbientColor = new Color(binaryReader);
+                Lights[i].SpecularAmount = binaryReader.ReadSingle();
+                Lights[i].LightVariationType = (LightVariationType)binaryReader.ReadByte();
+                Lights[i].VariationAmount = binaryReader.ReadSingle();
+                Lights[i].VariationSpeed = binaryReader.ReadSingle();
             }
 
-            HasSpecialAbility = br.ReadBoolean();
+            HasSpecialAbility = binaryReader.ReadBoolean();
             if (HasSpecialAbility)
             {
-                SpecialAbilityCooldown = br.ReadSingle();
+                SpecialAbilityCooldown = binaryReader.ReadSingle();
                 SpecialAbility specialAbility = new()
                 {
-                    Type = br.ReadString(),
-                    Animation = br.ReadString(),
-                    Hash = br.ReadString(),
-                    Elements = new Elements[br.ReadInt32()]
+                    Type = binaryReader.ReadString(),
+                    Animation = binaryReader.ReadString(),
+                    Hash = binaryReader.ReadString(),
+                    Elements = new Elements[binaryReader.ReadInt32()]
                 };
                 for (var i = 0; i < specialAbility.Elements.Length; i++)
                 {
-                    specialAbility.Elements[i] = (Elements)br.ReadInt32();
+                    specialAbility.Elements[i] = (Elements)binaryReader.ReadInt32();
                 }
                 SpecialAbility = specialAbility;
             }
 
-            MeleeRange = br.ReadSingle();
-            MeleeMultihit = br.ReadBoolean();
-            MeleeConditions = new ConditionCollection[br.ReadInt32()];
+            MeleeRange = binaryReader.ReadSingle();
+            MeleeMultihit = binaryReader.ReadBoolean();
+            MeleeConditions = new ConditionCollection[binaryReader.ReadInt32()];
             for (var i = 0; i < MeleeConditions.Length; i++)
             {
-                MeleeConditions[i] = new ConditionCollection(br);
+                MeleeConditions[i] = new ConditionCollection(binaryReader);
             }
 
-            RangedRange = br.ReadSingle();
-            Facing = br.ReadBoolean();
-            HomingStrength = br.ReadSingle();
-            RangedElevation = br.ReadSingle();
-            RangedDanger = br.ReadSingle();
-            GunRange = br.ReadSingle();
-            GunClip = br.ReadInt32();
-            GunRate = br.ReadInt32();
-            GunAccuracy = br.ReadSingle();
-            GunSoundCue = br.ReadString();
-            GunMuzzleEffect = br.ReadString();
-            GunShellEffect = br.ReadString();
-            GunTracerVelocity = br.ReadSingle();
-            GunNonTracer = br.ReadString();
-            GunTracer = br.ReadString();
-            GunConditions = new ConditionCollection[br.ReadInt32()];
+            RangedRange = binaryReader.ReadSingle();
+            Facing = binaryReader.ReadBoolean();
+            HomingStrength = binaryReader.ReadSingle();
+            RangedElevation = binaryReader.ReadSingle();
+            RangedDanger = binaryReader.ReadSingle();
+            GunRange = binaryReader.ReadSingle();
+            GunClip = binaryReader.ReadInt32();
+            GunRate = binaryReader.ReadInt32();
+            GunAccuracy = binaryReader.ReadSingle();
+            GunSoundCue = binaryReader.ReadString();
+            GunMuzzleEffect = binaryReader.ReadString();
+            GunShellEffect = binaryReader.ReadString();
+            GunTracerVelocity = binaryReader.ReadSingle();
+            GunNonTracer = binaryReader.ReadString();
+            GunTracer = binaryReader.ReadString();
+            GunConditions = new ConditionCollection[binaryReader.ReadInt32()];
             for (var i = 0; i < GunConditions.Length; i++)
             {
-                GunConditions[i] = new ConditionCollection(br);
+                GunConditions[i] = new ConditionCollection(binaryReader);
             }
 
-            ProjectileModel = br.ReadString();
-            RangedConditions = new ConditionCollection[br.ReadInt32()];
+            ProjectileModel = binaryReader.ReadString();
+            RangedConditions = new ConditionCollection[binaryReader.ReadInt32()];
             for (var i = 0; i < RangedConditions.Length; i++)
             {
-                RangedConditions[i] = new ConditionCollection(br);
+                RangedConditions[i] = new ConditionCollection(binaryReader);
             }
 
-            Scale = br.ReadSingle();
-            Model = br.ReadString();
-            Auras = new Aura[br.ReadInt32()];
+            Scale = binaryReader.ReadSingle();
+            Model = binaryReader.ReadString();
+            Auras = new Aura[binaryReader.ReadInt32()];
             for (var i = 0; i < Auras.Length; i++)
             {
-                Auras[i] = Aura.GetAura(br);
+                Auras[i] = Aura.GetAura(binaryReader);
             }
 
-            br.Close();
+            binaryReader.Close();
         }
     }
 

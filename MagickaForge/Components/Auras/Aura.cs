@@ -1,5 +1,5 @@
-﻿using MagickaForge.Utils.Definitions;
-using MagickaForge.Utils.Definitions.Auras;
+﻿using MagickaForge.Utils.Data;
+using MagickaForge.Utils.Data.Auras;
 using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 

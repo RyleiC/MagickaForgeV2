@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils.Definitions;
+﻿using MagickaForge.Utils.Data;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components
@@ -9,7 +9,7 @@ namespace MagickaForge.Components
         [JsonConverter(typeof(JsonStringEnumConverter<Banks>))]
         public Banks Bank { get; set; }
 
-        public void Write(BinaryWriter binaryWriter)
+        public readonly void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(Cue);
             binaryWriter.Write((int)Bank);

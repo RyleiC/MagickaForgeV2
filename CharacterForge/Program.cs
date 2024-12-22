@@ -7,7 +7,7 @@ namespace CharacterForge
         static bool LegacyMagicka;
 
         //TODO, REBUILD EXAMPLES!
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("= Magicka Character Forge by Rylei. C =");
             Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");

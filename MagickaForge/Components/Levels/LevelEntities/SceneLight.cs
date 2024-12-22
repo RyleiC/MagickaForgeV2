@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils.Definitions.Graphics;
+﻿using MagickaForge.Utils.Data.Graphics;
 using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Levels.LevelEntities

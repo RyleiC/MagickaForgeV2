@@ -3,7 +3,7 @@ using MagickaForge.Components.Levels.LevelEntities;
 using MagickaForge.Components.Levels.Liquid;
 using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Components.XNB;
-using MagickaForge.Utils;
+using MagickaForge.Utils.Helpers;
 using System.Text.Json;
 
 namespace MagickaForge.Pipeline.Levels
@@ -46,82 +46,83 @@ namespace MagickaForge.Pipeline.Levels
 
         public void LevelToXNB(string outputPath)
         {
-            BinaryWriter bw = new BinaryWriter(File.Create(outputPath));
-            Header!.Write(bw);
-            bw.Write7BitEncodedInt(ReaderIndex);
-            BinaryModel!.Write(bw);
-            bw.Write(Animations!.Length);
+            var binaryWriter = new BinaryWriter(File.Create(outputPath));
+
+            Header!.Write(binaryWriter);
+            binaryWriter.Write7BitEncodedInt(ReaderIndex);
+            BinaryModel!.Write(binaryWriter);
+            binaryWriter.Write(Animations!.Length);
             for (var i = 0; i < Animations.Length; i++)
             {
-                Animations[i].Write(bw);
+                Animations[i].Write(binaryWriter);
             }
-            bw.Write(Lights!.Length);
+            binaryWriter.Write(Lights!.Length);
             for (var i = 0; i < Lights.Length; i++)
             {
-                Lights[i].Write(bw);
+                Lights[i].Write(binaryWriter);
             }
-            bw.Write(Effects!.Length);
+            binaryWriter.Write(Effects!.Length);
             for (var i = 0; i < Effects.Length; i++)
             {
-                Effects[i].Write(bw);
+                Effects[i].Write(binaryWriter);
             }
-            bw.Write(PhysicsEntities!.Length);
+            binaryWriter.Write(PhysicsEntities!.Length);
             for (var i = 0; i < PhysicsEntities.Length; i++)
             {
-                PhysicsEntities[i].Write(bw);
+                PhysicsEntities[i].Write(binaryWriter);
             }
-            bw.Write(Liquids!.Length);
+            binaryWriter.Write(Liquids!.Length);
             for (var i = 0; i < Liquids.Length; i++)
             {
-                Liquids[i].Write(bw);
+                Liquids[i].Write(binaryWriter);
             }
-            bw.Write(ForceFields!.Length);
+            binaryWriter.Write(ForceFields!.Length);
             for (var i = 0; i < ForceFields.Length; i++)
             {
-                ForceFields[i].Write(bw);
+                ForceFields[i].Write(binaryWriter);
             }
             if (CollisionMeshes!.Length > MaxCollisionMeshes)
             {
-                throw new ArgumentOutOfRangeException("Levels may only have up to 10 collision meshes!");
+                throw new CantLoadInMagickaException("Levels may only have up to 10 collision meshes!");
             }
             for (var i = 0; i < 10; i++)
             {
                 if (CollisionMeshes[i] == null)
                 {
-                    bw.Write(false);
+                    binaryWriter.Write(false);
                     continue;
                 }
-                bw.Write(true);
-                CollisionMeshes[i].Write(bw);
+                binaryWriter.Write(true);
+                CollisionMeshes[i].Write(binaryWriter);
             }
             var hasCameraMesh = CameraMesh != null;
-            bw.Write(hasCameraMesh);
+            binaryWriter.Write(hasCameraMesh);
             if (hasCameraMesh)
             {
-                CameraMesh!.Write(bw);
+                CameraMesh!.Write(binaryWriter);
             }
-            bw.Write(TriggerAreas!.Length);
+            binaryWriter.Write(TriggerAreas!.Length);
             for (var i = 0; i < TriggerAreas.Length; i++)
             {
-                TriggerAreas[i].Write(bw);
+                TriggerAreas[i].Write(binaryWriter);
             }
-            bw.Write(Locators!.Length);
+            binaryWriter.Write(Locators!.Length);
             for (var i = 0; i < Locators.Length; i++)
             {
-                Locators[i].Write(bw);
+                Locators[i].Write(binaryWriter);
             }
-            NavigationMesh!.Write(bw);
+            NavigationMesh!.Write(binaryWriter);
             for (var i = 0; i < ContentCache!.Length; i++)
             {
-                ContentCache[i].Write(bw);
+                ContentCache[i].Write(binaryWriter);
             }
-            XNBHelper.WriteFileSize(bw);
-            bw.Close();
+            XNBHelper.WriteFileSize(binaryWriter);
+            binaryWriter.Close();
         }
         public static void WriteToJson(string outputPath, Level level)
         {
             StreamWriter sw = new(outputPath);
-            sw.Write(JsonSerializer.Serialize(level, new JsonSerializerOptions { WriteIndented = true, }));
+            sw.Write(JsonSerializer.Serialize(level, JsonSettings.SerializerSettings));
             sw.Close();
         }
 
@@ -135,7 +136,7 @@ namespace MagickaForge.Pipeline.Levels
 
         public void XNBToLevel(string inputPath)
         {
-            BinaryReader br = new(XNBDecompressor.DecompressXNB(inputPath));
+            BinaryReader br = new(XNBHelper.DecompressXNB(inputPath));
 
             Header = new Header(br);
 
