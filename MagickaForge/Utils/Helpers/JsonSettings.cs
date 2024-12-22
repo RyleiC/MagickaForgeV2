@@ -4,7 +4,7 @@ namespace MagickaForge.Utils.Helpers
 {
     public static class JsonSettings
     {
-        private readonly static JsonSerializerOptions jsonOptions = new()
+        private readonly static JsonSerializerOptions JsonOptions = new()
         {
             WriteIndented = true,
         };
@@ -13,7 +13,7 @@ namespace MagickaForge.Utils.Helpers
         {
             get
             {
-                return jsonOptions;
+                return JsonOptions;
             }
         }
     }

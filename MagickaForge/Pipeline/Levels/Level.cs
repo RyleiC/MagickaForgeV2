@@ -4,28 +4,10 @@ using MagickaForge.Components.Levels.Liquid;
 using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Components.XNB;
 using MagickaForge.Utils.Helpers;
-using System.Text.Json;
 
 namespace MagickaForge.Pipeline.Levels
 {
-    /*
-     * TODO:
-     * Implement non-static header & remove hardcodings X
-     * Implement Effect options (LavaEffect & RenderDefferredLiquid), test AdditiveEffect X
-     * Implement Liquids class X
-     * Implement Model class X
-     * Implement Force Fields class X
-     * Implement Animated Objects X WOOH
-     * JSON Serializable? X
-     * Blender Exporter + blah blah blah X
-     * 
-     * 
-     * Read code should be cleaned up [ ]
-     * Add proper shared content [ ]
-     * Implement animated models [ ]
-     * Insure that the model parts are properly and losslessly serialized [ ]
-     */
-    public class Level
+    public class Level : PipelineObject
     {
         private const int MaxCollisionMeshes = 10;
         public int ReaderIndex { get; set; }
@@ -42,9 +24,9 @@ namespace MagickaForge.Pipeline.Levels
         public TriggerArea[]? TriggerAreas { get; set; }
         public Locator[]? Locators { get; set; }
         public NavigationMesh? NavigationMesh { get; set; }
-        public SharedContentCache[]? ContentCache { get; set; }
+        public SharedContentCache[]? SharedContent { get; set; }
 
-        public void LevelToXNB(string outputPath)
+        public override void WriteToXNB(string outputPath)
         {
             var binaryWriter = new BinaryWriter(File.Create(outputPath));
 
@@ -112,29 +94,15 @@ namespace MagickaForge.Pipeline.Levels
                 Locators[i].Write(binaryWriter);
             }
             NavigationMesh!.Write(binaryWriter);
-            for (var i = 0; i < ContentCache!.Length; i++)
+            for (var i = 0; i < SharedContent!.Length; i++)
             {
-                ContentCache[i].Write(binaryWriter);
+                SharedContent[i].Write(binaryWriter);
             }
             XNBHelper.WriteFileSize(binaryWriter);
             binaryWriter.Close();
         }
-        public static void WriteToJson(string outputPath, Level level)
-        {
-            StreamWriter sw = new(outputPath);
-            sw.Write(JsonSerializer.Serialize(level, JsonSettings.SerializerSettings));
-            sw.Close();
-        }
 
-        public static Level LoadFromJson(string inputPath)
-        {
-            StreamReader sr = new(inputPath);
-            string json = sr.ReadToEnd();
-            sr.Close();
-            return JsonSerializer.Deserialize<Level>(json)!;
-        }
-
-        public void XNBToLevel(string inputPath)
+        public override void ReadFromXNB(string inputPath)
         {
             BinaryReader br = new(XNBHelper.DecompressXNB(inputPath));
 
@@ -200,10 +168,10 @@ namespace MagickaForge.Pipeline.Levels
                 Locators[i] = new Locator(br);
             }
             NavigationMesh = new NavigationMesh(br);
-            ContentCache = new SharedContentCache[Header.SharedResources];
-            for (var i = 0; i < ContentCache.Length; i++)
+            SharedContent = new SharedContentCache[Header.SharedResources];
+            for (var i = 0; i < SharedContent.Length; i++)
             {
-                ContentCache[i] = new SharedContentCache(br, Header);
+                SharedContent[i] = new SharedContentCache(br, Header);
             }
             br.Close();
         }

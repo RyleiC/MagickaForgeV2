@@ -35,5 +35,14 @@ namespace MagickaForge.Components.Levels.Navigation
                 navigationTriangles.Write(binaryWriter);
             }
         }
+
+        public static float CalculateTriangleDistance(Vector3 positionA, Vector3 positionB)
+        {
+            float x = positionB.X - positionA.X;
+            float y = positionB.Y - positionA.Y;
+            float z = positionB.Z - positionA.Z;
+
+            return MathF.Abs(MathF.Sqrt(MathF.Pow(x, x) + MathF.Pow(y, y) + MathF.Pow(z, z)));
+        }
     }
 }

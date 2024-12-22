@@ -11,12 +11,11 @@ using MagickaForge.Utils.Data.AI;
 using MagickaForge.Utils.Data.Graphics;
 using MagickaForge.Utils.Helpers;
 using MagickaForge.Utils.Structures;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Pipeline.Characters
 {
-    public class Character
+    public class Character : PipelineObject
     {
         private const int MaxLights = 4;
         private const int MaxAnimationSets = 27;
@@ -105,7 +104,7 @@ namespace MagickaForge.Pipeline.Characters
         public Buff[]? Buffs { get; set; }
         public Aura[]? Auras { get; set; }
 
-        public void CharacterToXNB(string outputPath, bool legacyMagicka)
+        public override void WriteToXNB(string outputPath)
         {
             BinaryWriter bw = new(File.Create(outputPath));
             bw.Write(XNBHelper.XNBHeader);
@@ -157,7 +156,7 @@ namespace MagickaForge.Pipeline.Characters
             bw.Write(PainTolerance);
             bw.Write(KnockdownTolerance);
             bw.Write(ScoreValue);
-            if (!legacyMagicka)
+            if (CompileForModernMagicka)
             {
                 bw.Write(XPValue);
                 bw.Write(RewardOnKill);
@@ -263,19 +262,7 @@ namespace MagickaForge.Pipeline.Characters
             bw.Close();
         }
 
-        public static void WriteToJson(string outputPath, Character character)
-        {
-            StreamWriter sw = new(outputPath);
-            sw.Write(JsonSerializer.Serialize(character, JsonSettings.SerializerSettings));
-            sw.Close();
-        }
-        public static Character LoadFromJson(string inputPath)
-        {
-            string json = File.ReadAllText(inputPath);
-            return JsonSerializer.Deserialize<Character>(json)!;
-        }
-
-        public void XNBToCharacter(string inputPath, bool legacyMagicka)
+        public override void ReadFromXNB(string inputPath)
         {
             BinaryReader br = new(XNBHelper.DecompressXNB(inputPath));
             br.BaseStream.Position += XNBHelper.XNBHeader.Length + ReaderHeader.Length + 4;
@@ -331,7 +318,7 @@ namespace MagickaForge.Pipeline.Characters
             KnockdownTolerance = br.ReadSingle();
             ScoreValue = br.ReadInt32();
 
-            if (!legacyMagicka)
+            if (CompileForModernMagicka)
             {
                 XPValue = br.ReadInt32();
                 RewardOnKill = br.ReadBoolean();
@@ -350,7 +337,6 @@ namespace MagickaForge.Pipeline.Characters
             StunTime = br.ReadSingle();
             SummonElementBank = (Banks)br.ReadInt32();
             SummonElementCue = br.ReadString();
-
             Resistances = new Resistance[br.ReadInt32()];
             for (var i = 0; i < Resistances.Length; i++)
             {

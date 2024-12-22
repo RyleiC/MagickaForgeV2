@@ -1,16 +1,18 @@
 ﻿using MagickaForge.Components.Graphics;
 using MagickaForge.Components.Levels;
+using MagickaForge.Components.Levels.Navigation;
+using MagickaForge.Utils.Data.AI;
 using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Experimental.GLTF
 {
     public class Buffer
     {
-        private Vector3[] _vertices;
-        private Vector3[] _normals;
-        private Vector2[] _textureCoordinates;
-        private Vector3[] _tangent;
-        private short[] _indices;
+        private Vector3[]? _vertices;
+        private Vector3[]? _normals;
+        private Vector2[]? _textureCoordinates;
+        private Vector3[]? _tangent;
+        private short[]? _indices;
 
         public void Read(BinaryReader binaryReader, BufferViewNode[] bufferViews)
         {
@@ -44,16 +46,6 @@ namespace MagickaForge.Experimental.GLTF
 
         }
 
-        /*
-         *  This needs modification.
-         *  As it stands, the right hand & left hand coordinate systems are fighting
-         *  
-         *  If I use the same Z coordinates the player will fall through surfaces as if they were solid on the inside but closed on the outside
-         *  If I use the corrected -Z coordinates for one then now the collisions are mirrored!
-         *  
-         *  This needs some studying under JigLibX to see how to resolve this, until then.
-         *  ~ Rylei C.
-         */
         public TriangleMesh ToTriangleMesh()
         {
             var mesh = new TriangleMesh();
@@ -72,8 +64,10 @@ namespace MagickaForge.Experimental.GLTF
 
         public VertexBuffer ToVertexBuffer()
         {
-            var buffer = new VertexBuffer();
-            buffer.Data = new byte[_vertices.Length * 36 + _textureCoordinates.Length * 8];
+            var buffer = new VertexBuffer
+            {
+                Data = new byte[_vertices.Length * 36 + _textureCoordinates.Length * 8]
+            };
             var stream = new MemoryStream(buffer.Data);
 
             var binaryWriter = new BinaryWriter(stream);
@@ -88,20 +82,47 @@ namespace MagickaForge.Experimental.GLTF
 
             return buffer;
         }
+        public NavigationMesh ToNavigationMesh()
+        {
+            var mesh = new NavigationMesh
+            {
+                Vertices = _vertices,
+                NavigationTriangles = new NavigationTriangle[IndiceCount / 3]
+            };
+            for (int i = 0; i < mesh.NavigationTriangles.Length; i++)
+            {
+                mesh.NavigationTriangles[i] = new NavigationTriangle()
+                {
+                    VertexA = (ushort)_indices[i],
+                    VertexB = (ushort)_indices[i + 1],
+                    VertexC = (ushort)_indices[i + 2],
+                    CostAB = NavigationMesh.CalculateTriangleDistance(_vertices[_indices[i]], _vertices[_indices[i + 1]]),
+                    CostBC = NavigationMesh.CalculateTriangleDistance(_vertices[_indices[i + 1]], _vertices[_indices[i + 2]]),
+                    CostCA = NavigationMesh.CalculateTriangleDistance(_vertices[_indices[i]], _vertices[_indices[i + 2]]),
+                    NeighborA = ushort.MaxValue,
+                    NeighborB = ushort.MaxValue, //TEMP WHILE I FIND OTHER WAYS TO CALCULATE
+                    NeighborC = ushort.MaxValue,
+                    MovementProperty = MovementProperties.Default,
+                };
+            }
+            return mesh;
+        }
 
         public IndexBuffer ToIndexBuffer()
         {
-            var buffer = new IndexBuffer()
+            var buffer = new IndexBuffer
             {
-                Is16Bit = true
+                Is16Bit = true,
+                Data = new byte[_indices.Length * 2]
             };
-            buffer.Data = new byte[_indices.Length * 2];
             var stream = new MemoryStream(buffer.Data);
 
-            var binaryWriter = new BinaryWriter(stream);
-            for (var i = 0; i < _indices.Length; i++)
+            var binaryWriter = new BinaryWriter(stream); //DirectX is a left-handed system and the index order must be switched to 0 2 1
+            for (var i = 0; i < _indices.Length; i += 3)
             {
                 binaryWriter.Write(_indices[i]);
+                binaryWriter.Write(_indices[i + 2]);
+                binaryWriter.Write(_indices[i + 1]);
             }
             binaryWriter.Close();
 

@@ -28,7 +28,7 @@ namespace MagickaForge.Components.Levels.Navigation
             CostCA = br.ReadSingle();
             MovementProperty = (MovementProperties)br.ReadByte();
         }
-        public void Write(BinaryWriter binaryWriter)
+        public readonly void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(VertexA);
             binaryWriter.Write(VertexB);

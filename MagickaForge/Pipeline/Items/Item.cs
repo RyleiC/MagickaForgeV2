@@ -7,12 +7,11 @@ using MagickaForge.Utils.Data.Abilities;
 using MagickaForge.Utils.Data.Graphics;
 using MagickaForge.Utils.Helpers;
 using MagickaForge.Utils.Structures;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Pipeline.Items
 {
-    public class Item
+    public class Item : PipelineObject
     {
         private const int MaxLights = 1;
 
@@ -74,7 +73,7 @@ namespace MagickaForge.Pipeline.Items
         public string? Model { get; set; }
         public Aura[]? Auras { get; set; }
 
-        public void ItemToXNB(string outputPath)
+        public override void WriteToXNB(string outputPath)
         {
             BinaryWriter binaryWriter = new(File.Create(outputPath));
             binaryWriter.Write(XNBHelper.XNBHeader);
@@ -186,19 +185,8 @@ namespace MagickaForge.Pipeline.Items
             XNBHelper.WriteFileSize(binaryWriter);
             binaryWriter.Close();
         }
-        public static void WriteToJson(string outputPath, Item item)
-        {
-            StreamWriter sw = new(outputPath);
-            sw.Write(JsonSerializer.Serialize(item, JsonSettings.SerializerSettings));
-            sw.Close();
-        }
-        public static Item LoadFromJson(string inputPath)
-        {
-            string json = File.ReadAllText(inputPath);
-            return JsonSerializer.Deserialize<Item>(json)!;
-        }
 
-        public void XNBToItem(string inputPath)
+        public override void ReadFromXNB(string inputPath)
         {
             BinaryReader binaryReader = new(XNBHelper.DecompressXNB(inputPath));
             binaryReader.BaseStream.Position += XNBHelper.XNBHeader.Length + ReaderHeader.Length + 4; //Ingores the entire header length, including the XNB header, fileSize, and reader header.
