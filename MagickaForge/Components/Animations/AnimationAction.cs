@@ -258,7 +258,7 @@ namespace MagickaForge.Components.Animations
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
-            bw.Write("RyteWasHere");
+            bw.Write(string.Empty);
             bw.Write(Duration);
             bw.Write(Magnitude);
         }
@@ -560,7 +560,6 @@ namespace MagickaForge.Components.Animations
         public SetItemAttach()
         {
             _type = ActionType.SetItemAttach;
-            throw new Exception("TODO");
         }
         public override void Write(BinaryWriter bw)
         {
