@@ -4,6 +4,8 @@
     {
         Character,
         Item,
-        Level
+        Level,
+        Model,
+        Texture
     }
 }

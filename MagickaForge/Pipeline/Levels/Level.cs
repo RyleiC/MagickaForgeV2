@@ -104,76 +104,76 @@ namespace MagickaForge.Pipeline.Levels
 
         public override void ReadFromXNB(string inputPath)
         {
-            BinaryReader br = new(XNBHelper.DecompressXNB(inputPath));
+            BinaryReader binaryReader = new(XNBHelper.DecompressXNB(inputPath));
 
-            Header = new Header(br);
+            Header = new Header(binaryReader);
 
-            ReaderIndex = br.Read7BitEncodedInt(); //0 read, will always be the first reader
+            ReaderIndex = binaryReader.Read7BitEncodedInt(); //0 read, will always be the first reader
 
-            BinaryModel = new BinTreeModel(br, Header); //BINARY TREE
-            Animations = new AnimatedLevelPart[br.ReadInt32()];
+            BinaryModel = new BinTreeModel(binaryReader, Header); //BINARY TREE
+            Animations = new AnimatedLevelPart[binaryReader.ReadInt32()];
             for (var i = 0; i < Animations.Length; i++)
             {
-                Animations[i] = new AnimatedLevelPart(br, Header);
+                Animations[i] = new AnimatedLevelPart(binaryReader, Header);
             }
-            Lights = new SceneLight[br.ReadInt32()]; //LIGHTS
+            Lights = new SceneLight[binaryReader.ReadInt32()]; //LIGHTS
             for (var i = 0; i < Lights.Length; i++)
             {
-                Lights[i] = new SceneLight(br);
+                Lights[i] = new SceneLight(binaryReader);
             }
-            Effects = new SceneEffect[br.ReadInt32()];
+            Effects = new SceneEffect[binaryReader.ReadInt32()];
             for (var i = 0; i < Effects.Length; i++)
             {
-                Effects[i] = new SceneEffect(br);
+                Effects[i] = new SceneEffect(binaryReader);
             }
-            PhysicsEntities = new PhysicsEntity[br.ReadInt32()];
+            PhysicsEntities = new PhysicsEntity[binaryReader.ReadInt32()];
             for (var i = 0; i < PhysicsEntities.Length; i++)
             {
-                PhysicsEntities[i] = new PhysicsEntity(br);
+                PhysicsEntities[i] = new PhysicsEntity(binaryReader);
             }
 
-            Liquids = new LiquidDeclaration[br.ReadInt32()];
+            Liquids = new LiquidDeclaration[binaryReader.ReadInt32()];
             for (var i = 0; i < Liquids.Length; i++)
             {
-                Liquids[i] = new LiquidDeclaration(br, Header);
+                Liquids[i] = new LiquidDeclaration(binaryReader, Header);
             }
-            ForceFields = new ForceField[br.ReadInt32()];
+            ForceFields = new ForceField[binaryReader.ReadInt32()];
             for (var i = 0; i < ForceFields.Length; i++)
             {
-                ForceFields[i] = new ForceField(br);
+                ForceFields[i] = new ForceField(binaryReader);
             }
 
             CollisionMeshes = new TriangleMesh[10];
             for (var i = 0; i < 10; i++)
             {
-                if (br.ReadBoolean())
+                if (binaryReader.ReadBoolean())
                 {
-                    CollisionMeshes[i] = new TriangleMesh(br);
+                    CollisionMeshes[i] = new TriangleMesh(binaryReader);
                 }
             }
 
-            var hasCameraMesh = br.ReadBoolean();
+            var hasCameraMesh = binaryReader.ReadBoolean();
             if (hasCameraMesh)
             {
-                CameraMesh = new TriangleMesh(br);
+                CameraMesh = new TriangleMesh(binaryReader);
             }
-            TriggerAreas = new TriggerArea[br.ReadInt32()];
+            TriggerAreas = new TriggerArea[binaryReader.ReadInt32()];
             for (var i = 0; i < TriggerAreas.Length; i++)
             {
-                TriggerAreas[i] = new TriggerArea(br);
+                TriggerAreas[i] = new TriggerArea(binaryReader);
             }
-            Locators = new Locator[br.ReadInt32()];
+            Locators = new Locator[binaryReader.ReadInt32()];
             for (var i = 0; i < Locators.Length; i++)
             {
-                Locators[i] = new Locator(br);
+                Locators[i] = new Locator(binaryReader);
             }
-            NavigationMesh = new NavigationMesh(br);
+            NavigationMesh = new NavigationMesh(binaryReader);
             SharedContent = new SharedContentCache[Header.SharedResources];
             for (var i = 0; i < SharedContent.Length; i++)
             {
-                SharedContent[i] = new SharedContentCache(br, Header);
+                SharedContent[i] = new SharedContentCache(binaryReader, Header);
             }
-            br.Close();
+            binaryReader.Close();
         }
     }
 }

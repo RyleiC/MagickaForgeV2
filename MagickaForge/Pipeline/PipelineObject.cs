@@ -1,6 +1,8 @@
 ﻿using MagickaForge.Pipeline.Characters;
 using MagickaForge.Pipeline.Items;
 using MagickaForge.Pipeline.Levels;
+using MagickaForge.Pipeline.Models;
+using MagickaForge.Pipeline.Textures;
 using MagickaForge.Utils.Helpers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -11,6 +13,8 @@ namespace MagickaForge.Pipeline
     [JsonDerivedType(typeof(Item), typeDiscriminator: "Item")]
     [JsonDerivedType(typeof(Level), typeDiscriminator: "Level")]
     [JsonDerivedType(typeof(Character), typeDiscriminator: "Character")]
+    [JsonDerivedType(typeof(NonEmbeddedModel), typeDiscriminator: "Model")]
+    [JsonDerivedType(typeof(Texture), typeDiscriminator: "Texture")]
     public class PipelineObject
     {
         private bool _modernMagicka;
