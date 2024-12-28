@@ -3,7 +3,6 @@ using MagickaForge.Pipeline.Characters;
 using MagickaForge.Pipeline.Items;
 using MagickaForge.Pipeline.Levels;
 using MagickaForge.Pipeline.Models;
-using MagickaForge.Pipeline.Textures;
 using MagickaForgeCompiler.Data;
 using System.Diagnostics;
 
@@ -16,7 +15,6 @@ namespace MagickaForgeCompiler.Compiler
 
         public MagickaCompiler()
         {
-            StartPrompts();
         }
 
         public void StartPrompts()
@@ -28,12 +26,12 @@ namespace MagickaForgeCompiler.Compiler
             Console.Clear();
 
             Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
-            var mode = int.Parse(Console.ReadLine()!);
+            var mode = (CompilationMode)int.Parse(Console.ReadLine()!);
             Console.Clear();
 
-            if (mode == 1)
+            if (mode == CompilationMode.Decompile)
             {
-                Console.WriteLine("What type of content are you attempting to decompile? [\n\"0\" : Character\n\"1\" : Item\n\"2\" : Level\n\"3\" : Model");
+                Console.WriteLine("What type of content are you attempting to decompile? \n\"0\" : Character\n\"1\" : Item\n\"2\" : Level\n\"3\" : Model");
                 _forgeType = (ForgeTypes)int.Parse(Console.ReadLine()!);
                 Console.Clear();
 
@@ -52,13 +50,13 @@ namespace MagickaForgeCompiler.Compiler
 
             var stopWatch = Stopwatch.StartNew();
 
-            if (mode == 0)
+            if (mode == CompilationMode.Decompile)
             {
-                CompileXNB(instructionPath);
+                ReadXNB(instructionPath);
             }
             else
             {
-                ReadXNB(instructionPath);
+                CompileXNB(instructionPath);
             }
 
             stopWatch.Stop();
@@ -122,7 +120,6 @@ namespace MagickaForgeCompiler.Compiler
                 (ForgeTypes.Item) => new Item(),
                 (ForgeTypes.Level) => new Level(),
                 (ForgeTypes.Model) => new NonEmbeddedModel(),
-                (ForgeTypes.Texture) => new Texture(),
                 _ => throw new NotImplementedException(),
             };
         }

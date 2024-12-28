@@ -6,6 +6,7 @@ namespace MagickaForgeCompiler
         public static void Main()
         {
             var compiler = new MagickaCompiler();
+            compiler.StartPrompts();
         }
     }
 }

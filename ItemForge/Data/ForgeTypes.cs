@@ -5,7 +5,6 @@
         Character,
         Item,
         Level,
-        Model,
-        Texture
+        Model
     }
 }
