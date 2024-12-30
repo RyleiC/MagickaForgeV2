@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagickaForge", "MagickaForge\MagickaForge.csproj", "{0DE0316F-A7B3-4C26-8B48-73DCC767C92A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagickaForgeCompiler", "ItemForge\MagickaForgeCompiler.csproj", "{32ACD06A-5C83-48E3-B64D-04C7EA06D387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagickaForgeCompiler", "MagickaForgeCompiler\MagickaForgeCompiler.csproj", "{32ACD06A-5C83-48E3-B64D-04C7EA06D387}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XNBDecomp", "XNBDecomp\XNBDecomp.csproj", "{3A137475-DD8F-4EC6-AEAC-E4D083F1024E}"
 EndProject
