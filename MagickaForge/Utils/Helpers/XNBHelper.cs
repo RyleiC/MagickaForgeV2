@@ -27,22 +27,17 @@ namespace MagickaForge.Utils.Helpers
             var contentReader = ContentReader.Create(path);
 
             var contentWriter = new ContentWriter(stream, false, contentReader.fileVersion, contentReader.graphicsProfile);
-            try
+            for (int i = 0; i < contentReader.fileSize; i++)
             {
-                for (int i = 0; i < contentReader.fileSize; i++)
-                {
-                    contentWriter.Write(contentReader.ReadByte());
-                }
-            }
-            catch
-            {
-                throw new InvalidDataException("Decompression failed!");
+                contentWriter.Write(contentReader.ReadByte());
             }
 
             contentReader.Close();
             contentWriter.FlushOutput();
+            contentWriter.Close();
 
             stream.Position = 0;
+
             return stream;
         }
     }

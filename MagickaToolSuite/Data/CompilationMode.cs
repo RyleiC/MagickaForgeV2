@@ -1,4 +1,4 @@
-﻿namespace MagickaForgeCompiler.Data
+﻿namespace MagickaToolSuite.Data
 {
     internal enum CompilationMode
     {

@@ -1,4 +1,5 @@
 ﻿using MagickaForge.Utils.Data.AI;
+using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Levels.Navigation
 {
@@ -13,6 +14,7 @@ namespace MagickaForge.Components.Levels.Navigation
         public float CostAB { get; set; }
         public float CostBC { get; set; }
         public float CostCA { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<MovementProperties>))]
         public MovementProperties MovementProperty { get; set; }
 
         public NavigationTriangle(BinaryReader br)

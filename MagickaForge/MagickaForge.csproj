@@ -9,12 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pipeline\Experimental\**" />
-    <EmbeddedResource Remove="Pipeline\Experimental\**" />
-    <None Remove="Pipeline\Experimental\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\XNBDecomp\XNBDecomp.csproj" />
   </ItemGroup>
 

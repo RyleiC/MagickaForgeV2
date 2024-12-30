@@ -54,8 +54,7 @@ namespace XNBDecomp
 
         public static ContentReader Create(Stream input, int diskFileSize)
         {
-            BinaryReader reader = new BinaryReader(input);
-
+            var reader = new BinaryReader(input);
             if (((reader.ReadByte() != 'X') || (reader.ReadByte() != 'N')) || (reader.ReadByte() != 'B'))
             {
                 throw new InvalidOperationException("Bad magic.");
