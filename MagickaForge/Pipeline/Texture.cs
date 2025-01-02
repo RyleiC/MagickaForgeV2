@@ -1,6 +1,4 @@
-﻿using MagickaForge.Utils.Helpers;
-
-namespace MagickaForge.Pipeline
+﻿namespace MagickaForge.Pipeline
 {
     public static class Texture
     {
@@ -18,30 +16,30 @@ namespace MagickaForge.Pipeline
 
         public static void WritePngToXNB(string inputPath)
         {
-        /*    Png png = Png.Open(inputPath);
-            using (BinaryWriter bw = new BinaryWriter(File.Open(inputPath.Replace(".png", ".xnb"), FileMode.Create)))
-            {
-                bw.Write(XNBHelper.XNBHeader);
-                bw.Write(0); //Placeholder
-                bw.Write(ReaderHeader);
-                bw.Write(RGBA4Code);
-                bw.Write(png.Width);
-                bw.Write(png.Height);
-                bw.Write(MipMapLayers);
-                bw.Write(png.Width * png.Height * 4);
-                for (int x = 0; x < png.Height; x++)
+            /*    Png png = Png.Open(inputPath);
+                using (BinaryWriter bw = new BinaryWriter(File.Open(inputPath.Replace(".png", ".xnb"), FileMode.Create)))
                 {
-                    for (int y = 0; y < png.Width; y++)
+                    bw.Write(XNBHelper.XNBHeader);
+                    bw.Write(0); //Placeholder
+                    bw.Write(ReaderHeader);
+                    bw.Write(RGBA4Code);
+                    bw.Write(png.Width);
+                    bw.Write(png.Height);
+                    bw.Write(MipMapLayers);
+                    bw.Write(png.Width * png.Height * 4);
+                    for (int x = 0; x < png.Height; x++)
                     {
-                        Pixel pixel = png.GetPixel(y, x);
-                        bw.Write(pixel.B);
-                        bw.Write(pixel.G);
-                        bw.Write(pixel.R);
-                        bw.Write(pixel.A);
+                        for (int y = 0; y < png.Width; y++)
+                        {
+                            Pixel pixel = png.GetPixel(y, x);
+                            bw.Write(pixel.B);
+                            bw.Write(pixel.G);
+                            bw.Write(pixel.R);
+                            bw.Write(pixel.A);
+                        }
                     }
-                }
-                XNBHelper.WriteFileSize(bw);
-            };*/
+                    XNBHelper.WriteFileSize(bw);
+                };*/
             throw new NotImplementedException();
         }
     }

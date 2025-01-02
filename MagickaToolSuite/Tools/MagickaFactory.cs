@@ -9,8 +9,9 @@ namespace MagickaToolSuite.Tools
     {
         private bool _modern;
         private string? _path;
+        private string? _pathNoExtension;
         private bool _pathIsDirectory;
-        private CompilationMode _toolMode;
+        private ToolMode _toolMode;
         private ForgeType _forgeType;
 
         public void BeginProcess()
@@ -19,6 +20,7 @@ namespace MagickaToolSuite.Tools
             Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
 
             _path = Console.ReadLine()!.Trim('\"');
+            _pathNoExtension = Path.GetFileNameWithoutExtension(_path);
 
             FileAttributes fileAttributes = File.GetAttributes(_path);
             _pathIsDirectory = fileAttributes.HasFlag(FileAttributes.Directory);
@@ -29,11 +31,11 @@ namespace MagickaToolSuite.Tools
 
                 if (fileExtension == FileExtensions.JsonExtension)
                 {
-                    _toolMode = CompilationMode.Compile;
+                    _toolMode = ToolMode.Compile;
                 }
                 else if (fileExtension == FileExtensions.XNBExtension)
                 {
-                    _toolMode = CompilationMode.Decompile;
+                    _toolMode = ToolMode.Decompile;
                 }
                 else
                 {
@@ -45,7 +47,7 @@ namespace MagickaToolSuite.Tools
                 PromptToolMode();
             }
 
-            if (_toolMode == CompilationMode.Decompile)
+            if (_toolMode == ToolMode.Decompile)
             {
                 PromptForgeType();
 
@@ -60,7 +62,7 @@ namespace MagickaToolSuite.Tools
                 PromptIsModern();
             }
 
-            else if (_toolMode == CompilationMode.Compile)
+            else if (_toolMode == ToolMode.Compile)
             {
                 var pipelineObject = PipelineJsonObject.Load(_path);
                 if (pipelineObject is Character)
@@ -78,14 +80,14 @@ namespace MagickaToolSuite.Tools
             BeginProcess();
         }
 
-        private void GenerateContent(CompilationMode processMode, string path, bool isPathDirectory)
+        private void GenerateContent(ToolMode processMode, string path, bool isPathDirectory)
         {
             Console.Clear();
             Console.WriteLine("= Process Starting... =\n");
 
             var stopWatch = Stopwatch.StartNew();
 
-            if (processMode == CompilationMode.Decompile)
+            if (processMode == ToolMode.Decompile)
             {
                 CreateDecompiler();
             }
@@ -174,7 +176,7 @@ namespace MagickaToolSuite.Tools
         private void PromptForgeType()
         {
             Console.Clear();
-            Console.WriteLine("What type of content are you attempting to decompile? \n\"0\" : Character\n\"1\" : Item\n\"2\" : Level\n\"3\" : Model");
+            Console.WriteLine("What type of content are you attempting to decompile? \n\"0\" : Character\n\"1\" : Item\n\"2\" : Level\n\"3\" : Model\n\"4\" : Skinned Model");
             _forgeType = (ForgeType)int.Parse(Console.ReadLine()!);
             Console.Clear();
         }
@@ -183,7 +185,7 @@ namespace MagickaToolSuite.Tools
         {
             Console.Clear();
             Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
-            _toolMode = (CompilationMode)int.Parse(Console.ReadLine()!);
+            _toolMode = (ToolMode)int.Parse(Console.ReadLine()!);
             Console.Clear();
         }
     }

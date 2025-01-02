@@ -4,6 +4,5 @@
     {
         public const string JsonExtension = ".json";
         public const string XNBExtension = ".xnb";
-        public const string PNGExtension = ".png";
     }
 }

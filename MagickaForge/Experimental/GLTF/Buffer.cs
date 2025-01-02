@@ -1,8 +1,8 @@
-﻿using MagickaForge.Components.Graphics;
+﻿using MagickaForge.Components.Common;
+using MagickaForge.Components.Graphics;
 using MagickaForge.Components.Levels;
 using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Utils.Data.AI;
-using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Experimental.GLTF
 {

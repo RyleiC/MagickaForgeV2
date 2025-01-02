@@ -1,6 +1,6 @@
 ﻿namespace MagickaToolSuite.Data
 {
-    internal enum CompilationMode
+    internal enum ToolMode
     {
         Compile,
         Decompile

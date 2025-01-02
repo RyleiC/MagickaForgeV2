@@ -1,4 +1,4 @@
-﻿namespace MagickaForge.Utils.Structures
+﻿namespace MagickaForge.Components.Common
 {
     public class Matrix
     {

@@ -1,5 +1,5 @@
-﻿using MagickaForge.Components.Graphics;
-using MagickaForge.Utils.Structures;
+﻿using MagickaForge.Components.Common;
+using MagickaForge.Components.Graphics;
 
 namespace MagickaForge.Components.Levels
 {

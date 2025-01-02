@@ -1,7 +1,7 @@
+using MagickaForge.Components.Common;
 using MagickaForge.Utils.Data;
 using MagickaForge.Utils.Data.Abilities;
 using MagickaForge.Utils.Data.Animations;
-using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Animations

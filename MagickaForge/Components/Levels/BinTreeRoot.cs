@@ -1,7 +1,7 @@
-﻿using MagickaForge.Components.Graphics;
+﻿using MagickaForge.Components.Common;
+using MagickaForge.Components.Graphics;
 using MagickaForge.Components.Graphics.Effects;
 using MagickaForge.Components.XNB;
-using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Levels
 {
@@ -42,7 +42,6 @@ namespace MagickaForge.Components.Levels
             VertexBuffer = new VertexBuffer(binaryReader);
             IndexBuffer = new IndexBuffer(binaryReader);
             Effect = ShaderEffect.GetEffect(binaryReader, header);
-
             PrimativeCount = binaryReader.ReadInt32();
             StartIndex = binaryReader.ReadInt32();
             BoundingBoxMax = new Vector3(binaryReader);

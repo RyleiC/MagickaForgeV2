@@ -1,12 +1,12 @@
 ﻿using MagickaForge.Components;
 using MagickaForge.Components.Auras;
+using MagickaForge.Components.Common;
 using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
 using MagickaForge.Utils.Data;
 using MagickaForge.Utils.Data.Abilities;
 using MagickaForge.Utils.Data.Graphics;
 using MagickaForge.Utils.Helpers;
-using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Pipeline.Json.Items

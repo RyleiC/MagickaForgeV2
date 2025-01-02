@@ -4,45 +4,41 @@ namespace MagickaForge.Components.XNB
 {
     public class ReaderCache
     {
-        public string? Cache { get; set; }
+        public string? ReaderName { get; set; }
         public int Version { get; set; }
-        private ReaderType type;
+        private ReaderType _type;
 
-        private const string LEVEL_MODEL = "Magicka.ContentReaders.LevelModelReader, Magicka";
-        private const string BINARY_TREE = "PolygonHead.Pipeline.BiTreeModelReader, PolygonHead";
-        private const string VERTEX_DECL = "Microsoft.Xna.Framework.Content.VertexDeclarationReader";
-        private const string VERTEX_BUFF = "Microsoft.Xna.Framework.Content.VertexBufferReader";
-        private const string INDEX_BUFF = "Microsoft.Xna.Framework.Content.IndexBufferReader";
-        private const string RENDER_DEFERRED = "PolygonHead.Pipeline.RenderDeferredEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
-        private const string RENDER_ADDITIVE = "PolygonHead.Pipeline.AdditiveEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
-        private const string WATER = "PolygonHead.Pipeline.RenderDeferredLiquidEffectReader, PolygonHead";
-        private const string LAVA = "PolygonHead.Pipeline.LavaEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
-        private const string MODEL = "Microsoft.Xna.Framework.Content.ModelReader";
-        private const string STRING = "Microsoft.Xna.Framework.Content.StringReader";
-        private const string VECTOR3_LIST = "Microsoft.Xna.Framework.Content.ListReader`1[[Microsoft.Xna.Framework.Vector3, Microsoft.Xna.Framework, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d]]";
-        private const string VECTOR3 = "Microsoft.Xna.Framework.Content.Vector3Reader";
+        private const string RenderDeferred = "PolygonHead.Pipeline.RenderDeferredEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
+        private const string RenderAdditive = "PolygonHead.Pipeline.AdditiveEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
+        private const string RenderDeferredLiquid = "PolygonHead.Pipeline.RenderDeferredLiquidEffectReader, PolygonHead";
+        private const string Lava = "PolygonHead.Pipeline.LavaEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
+        private const string BasicSkinnedModel = "XNAnimation.Pipeline.SkinnedModelBasicEffectReader, XNAnimation, Version=0.7.0.0, Culture=neutral";
 
         public ReaderCache() { }
         public ReaderCache(BinaryReader binaryReader)
         {
-            Cache = binaryReader.ReadString();
+            ReaderName = binaryReader.ReadString();
             Version = binaryReader.ReadInt32();
 
-            switch (Cache)
+            if (ReaderName == RenderDeferred)
             {
-                case (LEVEL_MODEL): type = ReaderType.Level; break;
-                case (BINARY_TREE): type = ReaderType.BinaryTree; break;
-                case (VERTEX_DECL): type = ReaderType.VertexDeclaration; break;
-                case (VERTEX_BUFF): type = ReaderType.VertexBuffer; break;
-                case (INDEX_BUFF): type = ReaderType.IndexBuffer; break;
-                case (RENDER_DEFERRED): type = ReaderType.RenderDeferred; break;
-                case (RENDER_ADDITIVE): type = ReaderType.AdditiveEffect; break;
-                case (WATER): type = ReaderType.WaterEffect; break;
-                case (LAVA): type = ReaderType.LavaEffect; break;
-                case (MODEL): type = ReaderType.Model; break;
-                case (STRING): type = ReaderType.String; break;
-                case (VECTOR3): type = ReaderType.Vector3Reader; break;
-                default: type = ReaderType.Vector3ListReader; break;
+                _type = ReaderType.RenderDeferred;
+            }
+            else if (ReaderName == RenderAdditive)
+            {
+                _type = ReaderType.AdditiveEffect;
+            }
+            else if (ReaderName == RenderDeferredLiquid)
+            {
+                _type = ReaderType.WaterEffect;
+            }
+            else if (ReaderName == Lava)
+            {
+                _type = ReaderType.LavaEffect;
+            }
+            else if (ReaderName == BasicSkinnedModel)
+            {
+                _type = ReaderType.BasicSkinned;
             }
         }
 
@@ -51,7 +47,7 @@ namespace MagickaForge.Components.XNB
         {
             get
             {
-                return type;
+                return _type;
             }
         }
 

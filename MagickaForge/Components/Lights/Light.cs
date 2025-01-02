@@ -1,5 +1,5 @@
-﻿using MagickaForge.Utils.Data.Graphics;
-using MagickaForge.Utils.Structures;
+﻿using MagickaForge.Components.Common;
+using MagickaForge.Utils.Data.Graphics;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Lights

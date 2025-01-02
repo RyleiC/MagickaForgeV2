@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils.Structures;
+﻿using MagickaForge.Components.Common;
 
 namespace MagickaForge.Components.Levels
 {
@@ -15,7 +15,6 @@ namespace MagickaForge.Components.Levels
         public BinTreeNode(BinaryReader binaryReader)
         {
             PrimativeCount = binaryReader.ReadInt32();
-
             StartIndex = binaryReader.ReadInt32();
             BoundingBoxMin = new Vector3(binaryReader);
             BoundingBoxMax = new Vector3(binaryReader);

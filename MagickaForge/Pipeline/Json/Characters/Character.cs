@@ -3,6 +3,7 @@ using MagickaForge.Components.Abilities;
 using MagickaForge.Components.Animations;
 using MagickaForge.Components.Auras;
 using MagickaForge.Components.Characters;
+using MagickaForge.Components.Common;
 using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
 using MagickaForge.Utils.Data;
@@ -10,7 +11,6 @@ using MagickaForge.Utils.Data.Abilities;
 using MagickaForge.Utils.Data.AI;
 using MagickaForge.Utils.Data.Graphics;
 using MagickaForge.Utils.Helpers;
-using MagickaForge.Utils.Structures;
 using System.Text.Json.Serialization;
 
 namespace MagickaForge.Pipeline.Json.Characters
@@ -33,6 +33,7 @@ namespace MagickaForge.Pipeline.Json.Characters
             0x6E, 0x65, 0x75, 0x74, 0x72, 0x61, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x01
         ];
+
         [JsonIgnore]
         public bool CompileForModernMagicka { get; set; }
         public string? Name { get; set; }

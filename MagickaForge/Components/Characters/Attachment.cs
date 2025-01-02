@@ -1,4 +1,5 @@
-using MagickaForge.Utils.Structures;
+using MagickaForge.Components.Common;
+
 public struct Attachment
 {
     public int Slot { get; set; }

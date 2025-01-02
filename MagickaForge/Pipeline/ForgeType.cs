@@ -6,6 +6,7 @@
         Item,
         Level,
         Model,
+        SkinnedModel,
         Texture
     }
 }

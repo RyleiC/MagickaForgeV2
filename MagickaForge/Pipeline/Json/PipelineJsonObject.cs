@@ -2,6 +2,7 @@
 using MagickaForge.Pipeline.Json.Items;
 using MagickaForge.Pipeline.Json.Levels;
 using MagickaForge.Pipeline.Json.Models;
+using MagickaToolSuite.Data;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -12,7 +13,8 @@ namespace MagickaForge.Pipeline.Json
     [JsonDerivedType(typeof(Level), typeDiscriminator: "Level")]
     [JsonDerivedType(typeof(Character), typeDiscriminator: "Character")]
     [JsonDerivedType(typeof(NonEmbeddedModel), typeDiscriminator: "Model")]
-    public class PipelineJsonObject
+    [JsonDerivedType(typeof(NonEmbeddedSkinnedModel), typeDiscriminator: "SkinnedModel")]
+    public abstract class PipelineJsonObject
     {
         public virtual void Export(string outputPath)
         {
@@ -36,6 +38,19 @@ namespace MagickaForge.Pipeline.Json
         {
             string json = File.ReadAllText(inputPath);
             return JsonSerializer.Deserialize<PipelineJsonObject>(json)!;
+        }
+
+        public static PipelineJsonObject GetPipelineInstance(ForgeType forgeType, bool modern)
+        {
+            return forgeType switch
+            {
+                (ForgeType.Character) => new Character() { CompileForModernMagicka = modern },
+                (ForgeType.Item) => new Item(),
+                (ForgeType.Level) => new Level(),
+                (ForgeType.Model) => new NonEmbeddedModel(),
+                (ForgeType.SkinnedModel) => new NonEmbeddedSkinnedModel(),
+                _ => throw new NotImplementedException(),
+            };
         }
     }
 }

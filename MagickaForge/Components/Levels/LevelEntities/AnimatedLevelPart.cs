@@ -1,8 +1,8 @@
-﻿using MagickaForge.Components.Graphics.Models;
+﻿using MagickaForge.Components.Common;
+using MagickaForge.Components.Graphics.Models;
 using MagickaForge.Components.Levels.Liquid;
 using MagickaForge.Components.Levels.Navigation;
 using MagickaForge.Components.XNB;
-using MagickaForge.Utils.Structures;
 
 namespace MagickaForge.Components.Levels.LevelEntities
 {

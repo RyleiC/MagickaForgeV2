@@ -1,4 +1,5 @@
-using MagickaForge.Utils.Structures;
+using MagickaForge.Components.Common;
+
 namespace MagickaForge.Components.Characters
 {
     public struct CharacterModel

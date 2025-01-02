@@ -1,4 +1,4 @@
-﻿using MagickaForge.Utils.Structures;
+﻿using MagickaForge.Components.Common;
 namespace MagickaForge.Components.Graphics.Effects
 {
     public class RenderDeferredEffect : ShaderEffect
