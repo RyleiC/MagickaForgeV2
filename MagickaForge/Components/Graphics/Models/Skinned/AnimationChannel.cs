@@ -13,7 +13,7 @@
                 DataChannels[i] = new AnimationDataChannel(br);
             }
         }
-        public void Write(BinaryWriter bw, bool doubleMode)
+        public void Write(BinaryWriter bw)
         {
             bw.Write(DataChannels.Length);
             foreach (AnimationDataChannel channel in DataChannels)
