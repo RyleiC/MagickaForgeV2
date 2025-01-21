@@ -98,36 +98,26 @@ namespace MagickaForge.Pipeline.Json.Items
                 binaryWriter.Write(HideEffects);
                 binaryWriter.Write(PauseSounds);
                 binaryWriter.Write(Resistances!.Length);
-                for (var i = 0; i < Resistances.Length; i++)
+                foreach (Resistance resistance in Resistances)
                 {
-                    binaryWriter.Write((int)Resistances[i].Element);
-                    binaryWriter.Write(Resistances[i].Multiplier);
-                    binaryWriter.Write(Resistances[i].Modifier);
-                    binaryWriter.Write(Resistances[i].StatusImmunity);
+                    resistance.Write(binaryWriter);
                 }
                 binaryWriter.Write((byte)PassiveAbilityType);
                 binaryWriter.Write(PassiveAbilityStrength);
                 binaryWriter.Write(Effects!.Length);
-                for (var i = 0; i < Effects.Length; i++)
+                foreach (string effect in Effects)
                 {
-                    binaryWriter.Write(Effects[i]);
+                    binaryWriter.Write(effect);
                 }
 
                 if (Lights!.Length > MaxLights)
                 {
                     throw new CantLoadInMagickaException("Items may only have up to 1 light!");
                 }
-
                 binaryWriter.Write(Lights!.Length);
-                for (var i = 0; i < Lights.Length; i++)
+                foreach (Light light in Lights)
                 {
-                    binaryWriter.Write(Lights[i].Radius);
-                    Lights[i].DiffuseColor.Write(binaryWriter);
-                    Lights[i].AmbientColor.Write(binaryWriter);
-                    binaryWriter.Write(Lights[i].SpecularAmount);
-                    binaryWriter.Write((byte)Lights[i].LightVariationType);
-                    binaryWriter.Write(Lights[i].VariationAmount);
-                    binaryWriter.Write(Lights[i].VariationSpeed);
+                    light.Write(binaryWriter);
                 }
                 binaryWriter.Write(HasSpecialAbility);
                 if (HasSpecialAbility)
@@ -200,8 +190,7 @@ namespace MagickaForge.Pipeline.Json.Items
                 Sounds = new Sound[binaryReader.ReadInt32()];
                 for (var i = 0; i < Sounds.Length; i++)
                 {
-                    Sounds[i].Cue = binaryReader.ReadString();
-                    Sounds[i].Bank = (Banks)binaryReader.ReadInt32();
+                    Sounds[i] = new Sound(binaryReader);
                 }
 
                 CanBePickedUp = binaryReader.ReadBoolean();
@@ -216,10 +205,7 @@ namespace MagickaForge.Pipeline.Json.Items
                 Resistances = new Resistance[binaryReader.ReadInt32()];
                 for (var i = 0; i < Resistances.Length; i++)
                 {
-                    Resistances[i].Element = (Elements)binaryReader.ReadInt32();
-                    Resistances[i].Multiplier = binaryReader.ReadSingle();
-                    Resistances[i].Modifier = binaryReader.ReadSingle();
-                    Resistances[i].StatusImmunity = binaryReader.ReadBoolean();
+                    Resistances[i] = new Resistance(binaryReader);
                 }
 
                 PassiveAbilityType = (PassiveAbility)binaryReader.ReadByte();
@@ -234,13 +220,7 @@ namespace MagickaForge.Pipeline.Json.Items
                 Lights = new Light[binaryReader.ReadInt32()];
                 for (var i = 0; i < Lights.Length; i++)
                 {
-                    Lights[i].Radius = binaryReader.ReadSingle();
-                    Lights[i].DiffuseColor = new Color(binaryReader);
-                    Lights[i].AmbientColor = new Color(binaryReader);
-                    Lights[i].SpecularAmount = binaryReader.ReadSingle();
-                    Lights[i].LightVariationType = (LightVariationType)binaryReader.ReadByte();
-                    Lights[i].VariationAmount = binaryReader.ReadSingle();
-                    Lights[i].VariationSpeed = binaryReader.ReadSingle();
+                    Lights[i] = new Light(binaryReader);
                 }
 
                 HasSpecialAbility = binaryReader.ReadBoolean();

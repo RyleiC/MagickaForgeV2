@@ -20,9 +20,9 @@ namespace MagickaToolSuite.Tools
             Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
 
             _path = Console.ReadLine()!.Trim('\"');
-            _pathNoExtension = Path.GetFileNameWithoutExtension(_path);
 
             FileAttributes fileAttributes = File.GetAttributes(_path);
+            _pathNoExtension = Path.GetFileNameWithoutExtension(_path);
             _pathIsDirectory = fileAttributes.HasFlag(FileAttributes.Directory);
 
             if (!_pathIsDirectory)
@@ -106,6 +106,7 @@ namespace MagickaToolSuite.Tools
         private void CreateDecompiler()
         {
             var decompiler = new MagickaDecompiler();
+
             if (!_pathIsDirectory)
             {
                 decompiler.Decompile(_forgeType, _path!, _modern);
@@ -119,6 +120,7 @@ namespace MagickaToolSuite.Tools
         private void CreateCompiler()
         {
             var compiler = new MagickaCompiler();
+
             if (!_pathIsDirectory)
             {
                 var pipelineObject = PipelineJsonObject.Load(_path!);
@@ -159,7 +161,7 @@ namespace MagickaToolSuite.Tools
         }
         private void PromptEnd()
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\nPlease input a key.\n- 'R' to repeat the last process\n- 'N' to begin a new compilation/decompilation\n- 'ESC' to exit program");
             Console.ForegroundColor = ConsoleColor.White;
             ReadLastKey();

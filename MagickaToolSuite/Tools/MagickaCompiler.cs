@@ -27,7 +27,10 @@ namespace MagickaToolSuite.Tools
         public void Compile(PipelineJsonObject pipelineObject, string outputPath)
         {
             pipelineObject.Export(outputPath);
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Succesfully compiled {outputPath}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace MagickaForge.Pipeline.Json
             return JsonSerializer.Deserialize<PipelineJsonObject>(json)!;
         }
 
-        public static PipelineJsonObject GetPipelineInstance(ForgeType forgeType, bool modern)
+        public static PipelineJsonObject ForgeTypeToInstance(ForgeType forgeType, bool modern)
         {
             return forgeType switch
             {

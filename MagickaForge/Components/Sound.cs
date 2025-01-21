@@ -9,6 +9,12 @@ namespace MagickaForge.Components
         [JsonConverter(typeof(JsonStringEnumConverter<Banks>))]
         public Banks Bank { get; set; }
 
+        public Sound(BinaryReader binaryReader)
+        {
+            Cue = binaryReader.ReadString();
+            Bank = (Banks)binaryReader.ReadInt32();
+        }
+
         public readonly void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(Cue);

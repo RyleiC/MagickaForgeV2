@@ -8,7 +8,7 @@ namespace MagickaToolSuite.Tools
 {
     internal class MagickaDecompiler
     {
-        private JsonSerializerOptions _options;
+        private readonly JsonSerializerOptions _options;
 
         public MagickaDecompiler()
         {
@@ -30,9 +30,10 @@ namespace MagickaToolSuite.Tools
 
         public void Decompile(ForgeType forgeType, string inputPath, bool modern)
         {
-            PipelineJsonObject pipelineObject = PipelineJsonObject.GetPipelineInstance(forgeType, modern);
+            PipelineJsonObject pipelineObject = PipelineJsonObject.ForgeTypeToInstance(forgeType, modern);
             pipelineObject.Import(inputPath);
             PipelineJsonObject.Save(inputPath.Replace(FileExtensions.XNBExtension, FileExtensions.JsonExtension), pipelineObject, _options);
+
             Console.WriteLine($"Succesfully decompiled {inputPath}");
         }
     }

@@ -90,32 +90,32 @@ namespace MagickaForge.Components.Graphics.Effects
             bw.Write(NormalMapEnabled);
             if (Map0DiffuseEnabled)
             {
-                bw.Write(ExternalRefReaderIndex);
+                bw.Write7BitEncodedInt(ExternalRefReaderIndex);
             }
             bw.Write(Map0Diffuse);
             if (Map1DiffuseEnabled)
             {
-                bw.Write(ExternalRefReaderIndex);
+                bw.Write7BitEncodedInt(ExternalRefReaderIndex);
             }
             bw.Write(Map1Diffuse);
             if (SpecularMapEnabled)
             {
-                bw.Write(ExternalRefReaderIndex);
+                bw.Write7BitEncodedInt(ExternalRefReaderIndex);
             }
             bw.Write(SpecularMap);
             if (Map0DamageEnabled)
             {
-                bw.Write(ExternalRefReaderIndex);
+                bw.Write7BitEncodedInt(ExternalRefReaderIndex);
             }
             bw.Write(Map0Damage);
             if (Map1DamageEnabled)
             {
-                bw.Write(ExternalRefReaderIndex);
+                bw.Write7BitEncodedInt(ExternalRefReaderIndex);
             }
             bw.Write(Map1Damage);
             if (NormalMapEnabled)
             {
-                bw.Write(ExternalRefReaderIndex);
+                bw.Write7BitEncodedInt(ExternalRefReaderIndex);
             }
             bw.Write(NormalMap);
         }
