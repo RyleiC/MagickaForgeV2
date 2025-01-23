@@ -5,10 +5,10 @@ Magicka Forge was written by Rylei C, 06-08-2024.
 The toolkit can both compile & decompile XNBs to JSON files, both allowing you to add in new content as well as view and tinker with pre-existing ones.
 
 As of now, the tool supports items, characters & to a lesser extent, levels.
-Characters & Items may essentially be anything without the bounds of the programming, so I recommend looking at other items to see how the developers did certain things.
+Characters & Items may essentially be anything without the bounds of the game's programming, so I recommend looking at other items to see how the developers did certain things.
 
 # Instructions
-To compile a JSON to an XNB, simply drag and drop the file onto the desired compiler and it should complete compilation swiftly.
+To compile a JSON to an XNB, simply drag and drop the file / folder into the command line prompt for the path and it should complete compilation swiftly.
 For the case of characters, make sure to check which version of Magicka you wish to compile to, as modern & rollbacked characters are not compatible and *will* crash if not appropriately assigned.
 
 These may all be loaded into the game like any other file via placing them in their respective content folders.
