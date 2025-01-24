@@ -8,11 +8,11 @@ namespace MagickaForge.Experimental.GLTF
 {
     public class Buffer
     {
-        private Vector3[]? _vertices;
-        private Vector3[]? _normals;
-        private Vector2[]? _textureCoordinates;
-        private Vector3[]? _tangent;
-        private short[]? _indices;
+        private Vector3[] _vertices;
+        private Vector3[] _normals;
+        private Vector2[] _textureCoordinates;
+        private Vector3[] _tangent;
+        private short[] _indices;
 
         public void Read(BinaryReader binaryReader, BufferViewNode[] bufferViews)
         {
@@ -48,12 +48,11 @@ namespace MagickaForge.Experimental.GLTF
 
         public TriangleMesh ToTriangleMesh()
         {
-            var mesh = new TriangleMesh();
-            mesh.Vertices = _vertices;
-            for (var i = 0; i < _vertices.Length; i++)
+            var mesh = new TriangleMesh
             {
-                mesh.Vertices[i] = _vertices[i];
-            }
+                Vertices = _vertices
+            };
+
             mesh.Indices = new int[_indices.Length];
             for (var i = 0; i < _indices.Length; i++)
             {

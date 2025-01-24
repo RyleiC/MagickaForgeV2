@@ -2,7 +2,7 @@ namespace MagickaForge.Components.Animations
 {
     public class AnimationSet
     {
-        public AnimationClip[]? AnimationClips { get; set; }
+        public AnimationClip[] AnimationClips { get; set; }
         public AnimationSet() { }
 
         public AnimationSet(BinaryReader br)

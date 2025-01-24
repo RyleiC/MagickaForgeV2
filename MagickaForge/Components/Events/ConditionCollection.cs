@@ -17,7 +17,7 @@ namespace MagickaForge.Components.Events
         public float Threshold { get; set; }
         public float Time { get; set; }
         public bool Repeat { get; set; }
-        public Event[]? Events { get; set; }
+        public Event[] Events { get; set; }
 
         public ConditionCollection() { }
         public ConditionCollection(BinaryReader br)

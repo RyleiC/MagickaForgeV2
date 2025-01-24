@@ -30,9 +30,9 @@ namespace XNBDecomp
             byte[] inBuf = new byte[0x10000];
             byte[] outBuf = new byte[0x10000];
 
-            LzxDecoder dec = new LzxDecoder(16);
+            var dec = new LzxDecoder(16);
 
-            MemoryStream decompressedStream = new MemoryStream(decompressedTodo);
+            var decompressedStream = new MemoryStream(decompressedTodo);
 
             int decodedBytes = 0;
             int pos = 0;

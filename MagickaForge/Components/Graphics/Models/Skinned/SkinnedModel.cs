@@ -63,7 +63,7 @@
             foreach (var bone in Bones)
             {
                 bone.Write(binaryWriter);
-            }    
+            }
             foreach (var clip in Animations)
             {
                 clip.Write(binaryWriter);

@@ -4,12 +4,12 @@ namespace MagickaForge.Components.Animations
 {
     public class AnimationClip
     {
-        public string? AnimationType { get; set; }
-        public string? AnimationKey { get; set; }
+        public string AnimationType { get; set; }
+        public string AnimationKey { get; set; }
         public float AnimationSpeed { get; set; }
         public float BlendTime { get; set; }
         public bool Loop { get; set; }
-        public AnimationAction[]? AnimationActions { get; set; }
+        public AnimationAction[] AnimationActions { get; set; }
 
         public AnimationClip() { }
         public AnimationClip(BinaryReader br)

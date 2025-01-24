@@ -7,9 +7,9 @@ namespace MagickaForge.Pipeline.Json.Models
     public class NonEmbeddedModel : PipelineJsonObject
     {
         public int ReaderIndex { get; set; }
-        public Header? Header { get; set; }
+        public Header Header { get; set; }
         public Model Model { get; set; }
-        public SharedContentCache[]? SharedContent { get; set; }
+        public SharedContentCache[] SharedContent { get; set; }
 
         public override void Import(string inputPath)
         {

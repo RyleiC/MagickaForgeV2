@@ -6,9 +6,9 @@ namespace MagickaForge.Pipeline.Json.Models
 {
     public class NonEmbeddedSkinnedModel : PipelineJsonObject
     {
-        public Header? Header { get; set; }
+        public Header Header { get; set; }
         public SkinnedModel SkinnedModel { get; set; }
-        public SharedContentCache[]? SharedContent { get; set; }
+        public SharedContentCache[] SharedContent { get; set; }
 
         public override void Import(string inputPath)
         {

@@ -25,8 +25,8 @@ namespace MagickaForge.Components.Levels
         public Vector3 BoundingBoxMax { get; set; }
         public Vector3 BoundingBoxMin { get; set; }
 
-        public BinTreeNode? ChildA { get; set; }
-        public BinTreeNode? ChildB { get; set; }
+        public BinTreeNode ChildA { get; set; }
+        public BinTreeNode ChildB { get; set; }
         public BinTreeRoot() { }
         public BinTreeRoot(BinaryReader binaryReader, Header header)
         {

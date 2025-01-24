@@ -20,10 +20,10 @@ namespace MagickaForge.Components.Auras
         [JsonConverter(typeof(JsonStringEnumConverter<VisualCategory>))]
         public VisualCategory VisualCategory { get; set; }
         public Color Color { get; set; }
-        public string? Effect { get; set; }
+        public string Effect { get; set; }
         public float Duration { get; set; }
         public float Radius { get; set; }
-        public string? Types { get; set; }
+        public string Types { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Factions>))]
         public Factions Faction { get; set; }
 

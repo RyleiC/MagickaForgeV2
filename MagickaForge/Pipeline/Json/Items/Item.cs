@@ -5,7 +5,6 @@ using MagickaForge.Components.Events;
 using MagickaForge.Components.Lights;
 using MagickaForge.Utils.Data;
 using MagickaForge.Utils.Data.Abilities;
-using MagickaForge.Utils.Data.Graphics;
 using MagickaForge.Utils.Helpers;
 using System.Text.Json.Serialization;
 
@@ -26,10 +25,10 @@ namespace MagickaForge.Pipeline.Json.Items
             0x65, 0x75, 0x74, 0x72, 0x61, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
         ];
 
-        public string? Name { get; set; }
-        public string? LocalizedName { get; set; }
-        public string? LocalizedDescription { get; set; }
-        public Sound[]? Sounds { get; set; }
+        public string Name { get; set; }
+        public string LocalizedName { get; set; }
+        public string LocalizedDescription { get; set; }
+        public Sound[] Sounds { get; set; }
         public bool CanBePickedUp { get; set; }
         public bool Bound { get; set; }
         public int BlockStrength { get; set; }
@@ -39,18 +38,18 @@ namespace MagickaForge.Pipeline.Json.Items
         public bool HideModel { get; set; }
         public bool HideEffects { get; set; }
         public bool PauseSounds { get; set; }
-        public Resistance[]? Resistances { get; set; }
+        public Resistance[] Resistances { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<PassiveAbility>))]
         public PassiveAbility PassiveAbilityType { get; set; }
         public float PassiveAbilityStrength { get; set; }
-        public string[]? Effects { get; set; }
-        public Light[]? Lights { get; set; }
+        public string[] Effects { get; set; }
+        public Light[] Lights { get; set; }
         public bool HasSpecialAbility { get; set; }
         public float SpecialAbilityCooldown { get; set; }
-        public SpecialAbility? SpecialAbility { get; set; }
+        public SpecialAbility SpecialAbility { get; set; }
         public float MeleeRange { get; set; }
         public bool MeleeMultihit { get; set; }
-        public ConditionCollection[]? MeleeConditions { get; set; }
+        public ConditionCollection[] MeleeConditions { get; set; }
         public float RangedRange { get; set; }
         public bool Facing { get; set; }
         public float HomingStrength { get; set; }
@@ -60,18 +59,18 @@ namespace MagickaForge.Pipeline.Json.Items
         public int GunClip { get; set; }
         public int GunRate { get; set; }
         public float GunAccuracy { get; set; }
-        public string? GunSoundCue { get; set; }
-        public string? GunMuzzleEffect { get; set; }
-        public string? GunShellEffect { get; set; }
+        public string GunSoundCue { get; set; }
+        public string GunMuzzleEffect { get; set; }
+        public string GunShellEffect { get; set; }
         public float GunTracerVelocity { get; set; }
-        public string? GunNonTracer { get; set; }
-        public string? GunTracer { get; set; }
-        public ConditionCollection[]? GunConditions { get; set; }
-        public string? ProjectileModel { get; set; }
-        public ConditionCollection[]? RangedConditions { get; set; }
+        public string GunNonTracer { get; set; }
+        public string GunTracer { get; set; }
+        public ConditionCollection[] GunConditions { get; set; }
+        public string ProjectileModel { get; set; }
+        public ConditionCollection[] RangedConditions { get; set; }
         public float Scale { get; set; }
-        public string? Model { get; set; }
-        public Aura[]? Auras { get; set; }
+        public string Model { get; set; }
+        public Aura[] Auras { get; set; }
 
         public override void Export(string outputPath)
         {
@@ -114,6 +113,7 @@ namespace MagickaForge.Pipeline.Json.Items
                 {
                     throw new CantLoadInMagickaException("Items may only have up to 1 light!");
                 }
+
                 binaryWriter.Write(Lights!.Length);
                 foreach (Light light in Lights)
                 {

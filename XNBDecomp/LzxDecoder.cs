@@ -49,8 +49,8 @@ namespace XNBDecomp
 {
     public class LzxDecoder
     {
-        private static uint[]? position_base;
-        private static byte[]? extra_bits;
+        private static uint[] position_base;
+        private static byte[] extra_bits;
 
         private LzxState m_state;
 
@@ -64,8 +64,10 @@ namespace XNBDecomp
             }
 
             // let's initialise our state
-            m_state = new LzxState();
-            m_state.window = new byte[window_size];
+            m_state = new()
+            {
+                window = new byte[window_size]
+            };
             for (int i = 0; i < window_size; i++)
             {
                 m_state.window[i] = 0xDC;
@@ -140,7 +142,7 @@ namespace XNBDecomp
 
         public void Decompress(byte[] outBuf, int outLen, byte[] inBuf, int inLen)
         {
-            BitBuffer bitbuf = new BitBuffer(inBuf, inLen);
+            var bitbuf = new BitBuffer(inBuf, inLen);
 
             byte[] window = m_state.window;
 
@@ -204,9 +206,9 @@ namespace XNBDecomp
 
                         case LzxConstants.BLOCKTYPE.UNCOMPRESSED:
                             bitbuf.EnsureBits(16); /* get up to 16 pad bits into the buffer */
-                            if (bitbuf.bits_left > 16)
+                            if (bitbuf.Bits_left > 16)
                             {
-                                bitbuf.inpos -= 2; /* and align the bitstream! */
+                                bitbuf.Inpos -= 2; /* and align the bitstream! */
                             }
                             R0 = bitbuf.ReadDWord();
                             R1 = bitbuf.ReadDWord();
@@ -219,7 +221,7 @@ namespace XNBDecomp
                 }
 
                 /* buffer exhaustion check */
-                if (bitbuf.inpos > inLen)
+                if (bitbuf.Inpos > inLen)
                 {
                     /* it's possible to have a file where the next run is less than
                      * 16 bits in size. In this case, the READ_HUFFSYM() macro used
@@ -229,7 +231,7 @@ namespace XNBDecomp
                      * remaining - in this boundary case they aren't really part of
                      * the compressed data)
                      */
-                    if (bitbuf.inpos > (inLen + 2) || bitbuf.bits_left < 16)
+                    if (bitbuf.Inpos > (inLen + 2) || bitbuf.Bits_left < 16)
                     {
                         throw new InvalidOperationException("DECR_ILLEGALDATA");
                     }
@@ -474,12 +476,12 @@ namespace XNBDecomp
                             break;
 
                         case LzxConstants.BLOCKTYPE.UNCOMPRESSED:
-                            if ((bitbuf.inpos + this_run) > inLen)
+                            if ((bitbuf.Inpos + this_run) > inLen)
                             {
                                 throw new InvalidOperationException("DECR_ILLEGALDATA");
                             }
-                            Array.Copy(inBuf, bitbuf.inpos, window, window_posn, this_run);
-                            bitbuf.inpos += (uint)this_run;
+                            Array.Copy(inBuf, bitbuf.Inpos, window, window_posn, this_run);
+                            bitbuf.Inpos += (uint)this_run;
                             window_posn += (uint)this_run;
                             break;
 
@@ -687,7 +689,7 @@ namespace XNBDecomp
                 {
                     j >>= 1;
                     i <<= 1;
-                    i |= (bitbuf.bit_buffer & j) != 0 ? (uint)1 : 0;
+                    i |= (bitbuf.Bit_buffer & j) != 0 ? (uint)1 : 0;
                     if (j == 0)
                     {
                         return 0;
@@ -702,38 +704,38 @@ namespace XNBDecomp
 
         private class BitBuffer
         {
-            public uint bit_buffer = 0;
-            public byte bits_left = 0;
-            public uint inpos = 0;
-            int inlen;
-            byte[] inBuf;
+            public uint Bit_buffer { get; set; }
+            public byte Bits_left { get; set; }
+            public uint Inpos { get; set; }
+            private readonly int _inlen;
+            private readonly byte[] _inBuf;
 
             public BitBuffer(byte[] inBuf, int inlen)
             {
-                this.inBuf = inBuf;
-                this.inlen = inlen;
+                _inBuf = inBuf;
+                _inlen = inlen;
             }
 
             public void EnsureBits(byte bits)
             {
-                while (bits_left < bits)
+                while (Bits_left < bits)
                 {
                     byte lo = ReadByte();
                     byte hi = ReadByte();
-                    bit_buffer |= (uint)(((hi << 8) | lo) << (sizeof(uint) * 8 - 16 - bits_left));
-                    bits_left += 16;
+                    Bit_buffer |= (uint)(((hi << 8) | lo) << (sizeof(uint) * 8 - 16 - Bits_left));
+                    Bits_left += 16;
                 }
             }
 
             public uint PeekBits(byte bits)
             {
-                return (bit_buffer >> ((sizeof(uint) * 8) - bits));
+                return (Bit_buffer >> ((sizeof(uint) * 8) - bits));
             }
 
             public void RemoveBits(byte bits)
             {
-                bit_buffer <<= bits;
-                bits_left -= bits;
+                Bit_buffer <<= bits;
+                Bits_left -= bits;
             }
 
             public uint ReadBits(byte bits)
@@ -753,9 +755,9 @@ namespace XNBDecomp
             public byte ReadByte()
             {
                 byte ret = 0;
-                if (inpos < inlen)
+                if (Inpos < _inlen)
                 {
-                    ret = inBuf[inpos++];
+                    ret = _inBuf[Inpos++];
                 }
                 return ret;
             }

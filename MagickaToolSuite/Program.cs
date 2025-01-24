@@ -5,14 +5,22 @@ namespace MagickaToolSuite
 {
     internal class Program
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
             Console.Title = $"Magicka Forge v{versionInfo.FileVersion}";
 
-            var compiler = new MagickaFactory();
-            compiler.BeginProcess();
+            var path = string.Empty;
+            if (args.Length > 0)
+            {
+                path = args[0];
+            }
+
+            var factory = new MagickaFactory(path);
+            factory.BeginProcess();
+
         }
     }
 }

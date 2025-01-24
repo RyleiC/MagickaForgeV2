@@ -160,9 +160,9 @@ namespace MagickaForge.Components.Events
     }
     public class SpawnEvent : Event
     {
-        public string? Type { get; set; }
-        public string? IdleAnimation { get; set; }
-        public string? SpawnAnimation { get; set; }
+        public string Type { get; set; }
+        public string IdleAnimation { get; set; }
+        public string SpawnAnimation { get; set; }
         public float Health { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Order>))]
         public Order Order { get; set; }
@@ -216,7 +216,7 @@ namespace MagickaForge.Components.Events
 
     public class SpawnMagickEvent : Event
     {
-        public string? MagickType { get; set; }
+        public string MagickType { get; set; }
         public SpawnMagickEvent() { type = EventType.SpawnMagick; }
         public override void Write(BinaryWriter bw)
         {

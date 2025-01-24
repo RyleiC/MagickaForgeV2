@@ -27,8 +27,8 @@ namespace MagickaForge.Components.Abilities
         public float Cooldown { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<AbilityTarget>))]
         public AbilityTarget AbilityTarget { get; set; }
-        public string? FuzzyExpression { get; set; }
-        public string[]? Animations { get; set; }
+        public string FuzzyExpression { get; set; }
+        public string[] Animations { get; set; }
 
         public virtual void Write(BinaryWriter bw)
         {
@@ -76,7 +76,7 @@ namespace MagickaForge.Components.Abilities
             else if (type == AbilityType.CastSpell)
             {
                 ability = new CastSpell() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Angle = br.ReadSingle(), ChantTime = br.ReadSingle(), Power = br.ReadSingle(), CastType = (CastType)br.ReadInt32() };
-                CastSpell? castSpell = ability as CastSpell;
+                CastSpell castSpell = ability as CastSpell;
                 castSpell!.Elements = new Elements[br.ReadInt32()];
                 for (int i = 0; i < castSpell.Elements.Length; i++)
                 {
@@ -188,7 +188,7 @@ namespace MagickaForge.Components.Abilities
         public float Power { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<CastType>))]
         public CastType CastType { get; set; }
-        public Elements[]? Elements { get; set; }
+        public Elements[] Elements { get; set; }
 
         public CastSpell()
         {
@@ -308,7 +308,7 @@ namespace MagickaForge.Components.Abilities
         public float MinimumRange { get; set; }
         public float MaximumRange { get; set; }
         public float ArcAngle { get; set; }
-        public int[]? WeaponSlots { get; set; }
+        public int[] WeaponSlots { get; set; }
         public bool Rotate { get; set; }
 
         public Melee()
@@ -336,7 +336,7 @@ namespace MagickaForge.Components.Abilities
         public float MinimumRange { get; set; }
         public float Angle { get; set; }
         public float MaxWeight { get; set; }
-        public string? DropAnimation { get; set; }
+        public string DropAnimation { get; set; }
         public PickUpCharacter()
         {
             _type = AbilityType.PickUpCharacter;

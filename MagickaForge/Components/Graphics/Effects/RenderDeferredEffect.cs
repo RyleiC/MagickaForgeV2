@@ -7,7 +7,7 @@ namespace MagickaForge.Components.Graphics.Effects
         public float Sharpness { get; set; }
         public bool VertexColorEnabled { get; set; }
         public bool UseTextureAsReflectiveness { get; set; }
-        public string? ReflectionMap { get; set; }
+        public string ReflectionMap { get; set; }
         public Material MaterialA { get; set; }
         public Material MaterialB { get; set; }
         public RenderDeferredEffect() { }

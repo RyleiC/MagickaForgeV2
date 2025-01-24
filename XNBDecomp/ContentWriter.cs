@@ -25,50 +25,31 @@ namespace XNBDecomp
 {
     public class ContentWriter : BinaryWriter
     {
-        private char filePlatform;
-        private byte fileVersion;
-        private byte graphicsProfile;
-        private bool compressContent;
-        private Stream finalOutput;
-        private MemoryStream contentData;
+        private readonly char _filePlatform;
+        private readonly byte _fileVersion;
+        private readonly byte _graphicsProfile;
+        private readonly bool _compressContent;
+        private readonly Stream _finalOutput;
+        private readonly MemoryStream _contentData;
 
         private const char PlatformWindows = 'w';
-        private const char PlatformXbox = 'x';
-        private const char PlatformMobile = 'm';
-        private const byte XnbVersion_30 = 3;
         private const byte XnbVersion_31 = 4;
-        private const byte XnbVersion_40 = 5;
-        private const int XnbFileSizeOffset = 6;
         private const int XnbPrologueSize = 10;
-        private const int XnbVersionOffset = 4;
         private const byte XnbProfileMask = 0x7f;
         private const byte XnbCompressedMask = 0x80;
 
-        public ContentWriter(Stream output, bool compressContent = false, int filePlatform = PlatformWindows, int fileVersion = XnbVersion_40, int graphicsProfile = 0)
+        public ContentWriter(Stream output, int filePlatform = PlatformWindows, int fileVersion = XnbVersion_31)
         {
-            finalOutput = output;
-            contentData = new MemoryStream();
-
-            this.filePlatform = (char)filePlatform;
-
-            this.fileVersion = (byte)fileVersion;
-
-            if (fileVersion >= XnbVersion_40)
-            {
-                this.graphicsProfile = (byte)graphicsProfile;
-            }
-            else
-            {
-                this.graphicsProfile = 0;
-            }
-
-            this.compressContent = false;
-
-            base.OutStream = contentData;
+            _finalOutput = output;
+            _contentData = new MemoryStream();
+            _filePlatform = (char)filePlatform;
+            _fileVersion = (byte)fileVersion;
+            _compressContent = false;
+            OutStream = _contentData;
         }
 
-        public ContentWriter(string filename, bool compressContent = false, int filePlatform = PlatformWindows, int fileVersion = XnbVersion_40, int graphicsProfile = 0)
-            : this(File.Open(filename, FileMode.Create), compressContent, filePlatform, fileVersion, graphicsProfile)
+        public ContentWriter(string filename, int filePlatform = PlatformWindows, int fileVersion = XnbVersion_31)
+            : this(File.Open(filename, FileMode.Create), filePlatform, fileVersion)
         {
         }
 
@@ -78,12 +59,12 @@ namespace XNBDecomp
             {
                 if (disposing)
                 {
-                    contentData.Dispose();
+                    _contentData.Dispose();
                 }
             }
             finally
             {
-                base.OutStream = contentData;
+                OutStream = _contentData;
                 base.Dispose(disposing);
             }
         }
@@ -95,12 +76,12 @@ namespace XNBDecomp
 
         private void WriteFinalOutput()
         {
-            base.OutStream = finalOutput;
+            OutStream = _finalOutput;
             Write('X');
             Write('N');
             Write('B');
 
-            Write(filePlatform);
+            Write(_filePlatform);
 
             WriteUncompressedOutput();
             Close();
@@ -110,17 +91,17 @@ namespace XNBDecomp
         {
             WriteVersionNumber();
 
-            int contentLength = (int)contentData.Length;
-            Write((int)(XnbPrologueSize + contentLength));
+            var contentLength = (int)_contentData.Length;
+            Write(XnbPrologueSize + contentLength);
 
-            OutStream.Write(contentData.GetBuffer(), 0, contentLength);
+            OutStream.Write(_contentData.GetBuffer(), 0, contentLength);
         }
 
         private void WriteVersionNumber()
         {
-            Write(fileVersion);
+            Write(_fileVersion);
 
-            byte profile = (byte)((graphicsProfile & XnbProfileMask) | (compressContent ? XnbCompressedMask : 0));
+            byte profile = (byte)((_graphicsProfile & XnbProfileMask) | (_compressContent ? XnbCompressedMask : 0));
             Write(profile);
         }
     }

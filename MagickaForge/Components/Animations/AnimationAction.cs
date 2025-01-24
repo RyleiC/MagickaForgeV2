@@ -142,7 +142,7 @@ namespace MagickaForge.Components.Animations
             }
             else if (aType == ActionType.Move)
             {
-                action = new Move() { Velocity = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()] };
+                action = new Move() { Velocity = new Vector3(br) };
             }
             else if (aType == ActionType.OverkillGrip)
             {
@@ -170,7 +170,7 @@ namespace MagickaForge.Components.Animations
             }
             else if (aType == ActionType.SpawnMissile)
             {
-                action = new SpawnMissile() { WeaponSlot = br.ReadInt32(), Velocity = [br.ReadSingle(), br.ReadSingle(), br.ReadSingle()], Aligned = br.ReadBoolean() };
+                action = new SpawnMissile() { WeaponSlot = br.ReadInt32(), Velocity = new Vector3(br), Aligned = br.ReadBoolean() };
             }
             else if (aType == ActionType.SpecialAbility)
             {
@@ -266,7 +266,7 @@ namespace MagickaForge.Components.Animations
     public class CastSpell : AnimationAction
     {
         public bool FromStaff { get; set; }
-        public string? Bone { get; set; }
+        public string Bone { get; set; }
 
         public CastSpell()
         {
@@ -302,7 +302,7 @@ namespace MagickaForge.Components.Animations
     public class DamageGrip : AnimationAction
     {
         public bool DamageOwner { get; set; }
-        public Damage[]? Damages { get; set; }
+        public Damage[] Damages { get; set; }
         public DamageGrip()
         {
             _type = ActionType.DamageGrip;
@@ -386,8 +386,8 @@ namespace MagickaForge.Components.Animations
         public GripType GripType { get; set; }
         public float Radius { get; set; }
         public float BreakFreeTolerance { get; set; }
-        public string? BoneA { get; set; }
-        public string? BoneB { get; set; }
+        public string BoneA { get; set; }
+        public string BoneB { get; set; }
         public bool FinishOnGrip { get; set; }
         public Grip()
         {
@@ -474,7 +474,7 @@ namespace MagickaForge.Components.Animations
     }
     public class Move : AnimationAction
     {
-        public float[]? Velocity { get; set; }
+        public Vector3 Velocity { get; set; }
         public Move()
         {
             _type = ActionType.Move;
@@ -482,10 +482,7 @@ namespace MagickaForge.Components.Animations
         public override void Write(BinaryWriter bw)
         {
             base.Write(bw);
-            for (int i = 0; i < 3; i++)
-            {
-                bw.Write(Velocity![i]);
-            }
+            Velocity.Write(bw);
         }
     }
     public class OverkillGrip : AnimationAction
@@ -498,9 +495,9 @@ namespace MagickaForge.Components.Animations
     }
     public class PlayEffect : AnimationAction
     {
-        public string? Bone { get; set; }
+        public string Bone { get; set; }
         public bool Attached { get; set; }
-        public string? Effect { get; set; }
+        public string Effect { get; set; }
         public float Value { get; set; }
         public PlayEffect()
         {
@@ -518,7 +515,7 @@ namespace MagickaForge.Components.Animations
 
     public class PlaySound : AnimationAction
     {
-        public string? Cue { get; set; }
+        public string Cue { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Banks>))]
         public Banks Bank { get; set; }
         public PlaySound()
@@ -542,7 +539,7 @@ namespace MagickaForge.Components.Animations
 
     public class RemoveStatus : AnimationAction
     {
-        public string? Status { get; set; }
+        public string Status { get; set; }
         public RemoveStatus()
         {
             _type = ActionType.RemoveStatus;
@@ -571,7 +568,7 @@ namespace MagickaForge.Components.Animations
     public class SpawnMissile : AnimationAction
     {
         public int WeaponSlot { get; set; }
-        public float[]? Velocity { get; set; }
+        public Vector3 Velocity { get; set; }
         public bool Aligned { get; set; }
         public SpawnMissile()
         {
@@ -581,17 +578,14 @@ namespace MagickaForge.Components.Animations
         {
             base.Write(bw);
             bw.Write(WeaponSlot);
-            for (int i = 0; i < 3; i++)
-            {
-                bw.Write(Velocity![i]);
-            }
+            Velocity.Write(bw);
             bw.Write(Aligned);
         }
     }
     public class SpecialAbilityAction : AnimationAction
     {
         public int WeaponSlot { get; set; }
-        public SpecialAbility? SpecialAbilityInstance { get; set; }
+        public SpecialAbility SpecialAbilityInstance { get; set; }
 
         public SpecialAbilityAction()
         {

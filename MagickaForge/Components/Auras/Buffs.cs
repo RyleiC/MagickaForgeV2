@@ -22,7 +22,7 @@ namespace MagickaForge.Components.Auras
         public VisualCategory VisualCategory { get; set; }
         public Color Color { get; set; }
         public float Time { get; set; }
-        public string? Effect { get; set; }
+        public string Effect { get; set; }
 
         public static Buff GetBuff(BinaryReader br)
         {

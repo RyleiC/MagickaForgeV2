@@ -1,12 +1,12 @@
-﻿namespace MagickaToolSuite.Data
+﻿namespace MagickaForge.Pipeline;
+
+
+public enum ForgeType
 {
-    public enum ForgeType
-    {
-        Character,
-        Item,
-        Level,
-        Model,
-        SkinnedModel,
-        Texture
-    }
+    Character,
+    Item,
+    Level,
+    Model,
+    SkinnedModel,
+    Texture
 }

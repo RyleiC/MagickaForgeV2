@@ -4,7 +4,7 @@ namespace MagickaForge.Components.XNB
 {
     public class ReaderCache
     {
-        public string? ReaderName { get; set; }
+        public string ReaderName { get; set; }
         public int Version { get; set; }
         private ReaderType _type;
 

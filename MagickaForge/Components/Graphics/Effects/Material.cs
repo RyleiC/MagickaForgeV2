@@ -12,9 +12,9 @@ namespace MagickaForge.Components.Graphics.Effects
         public float EmissiveAmount { get; set; }
         public float NormalPower { get; set; }
         public float Reflectiveness { get; set; }
-        public string? DiffuseTexture { get; set; }
-        public string? MaterialTexture { get; set; }
-        public string? NormalTexture { get; set; }
+        public string DiffuseTexture { get; set; }
+        public string MaterialTexture { get; set; }
+        public string NormalTexture { get; set; }
         public void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(DiffuseNoAlpha);

@@ -11,20 +11,20 @@ namespace MagickaForge.Pipeline.Json.Levels
     {
         private const int MaxCollisionMeshes = 10;
         public int ReaderIndex { get; set; }
-        public Header? Header { get; set; }
-        public BinTreeModel? BinaryModel { get; set; }
-        public AnimatedLevelPart[]? Animations { get; set; }
-        public SceneLight[]? Lights { get; set; }
-        public SceneEffect[]? Effects { get; set; }
-        public PhysicsEntity[]? PhysicsEntities { get; set; }
-        public LiquidDeclaration[]? Liquids { get; set; }
-        public ForceField[]? ForceFields { get; set; }
-        public TriangleMesh[]? CollisionMeshes { get; set; }
-        public TriangleMesh? CameraMesh { get; set; }
-        public TriggerArea[]? TriggerAreas { get; set; }
-        public Locator[]? Locators { get; set; }
-        public NavigationMesh? NavigationMesh { get; set; }
-        public SharedContentCache[]? SharedContent { get; set; }
+        public Header Header { get; set; }
+        public BinTreeModel BinaryModel { get; set; }
+        public AnimatedLevelPart[] Animations { get; set; }
+        public SceneLight[] Lights { get; set; }
+        public SceneEffect[] Effects { get; set; }
+        public PhysicsEntity[] PhysicsEntities { get; set; }
+        public LiquidDeclaration[] Liquids { get; set; }
+        public ForceField[] ForceFields { get; set; }
+        public TriangleMesh[] CollisionMeshes { get; set; }
+        public TriangleMesh CameraMesh { get; set; }
+        public TriggerArea[] TriggerAreas { get; set; }
+        public Locator[] Locators { get; set; }
+        public NavigationMesh NavigationMesh { get; set; }
+        public SharedContentCache[] SharedContent { get; set; }
 
         public override void Export(string outputPath)
         {

@@ -1,5 +1,5 @@
-﻿using MagickaForge.Pipeline.Json;
-using MagickaToolSuite.Data;
+﻿using MagickaForge.Pipeline;
+using MagickaForge.Pipeline.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -22,7 +22,15 @@ namespace MagickaToolSuite.Tools
 
         public void DirectoryDecompile(string instructionPath, ForgeType forgeType, bool modern)
         {
-            foreach (string filePath in Directory.GetFiles(instructionPath, "*.xnb"))
+            var searchOptions = new EnumerationOptions()
+            {
+                RecurseSubdirectories = true,
+                AttributesToSkip = FileAttributes.Hidden | FileAttributes.System,
+                IgnoreInaccessible = true,
+                MaxRecursionDepth = 16
+            };
+
+            foreach (string filePath in Directory.GetFiles(instructionPath, "*.xnb", searchOptions))
             {
                 Decompile(forgeType, filePath, modern);
             }
@@ -32,9 +40,19 @@ namespace MagickaToolSuite.Tools
         {
             PipelineJsonObject pipelineObject = PipelineJsonObject.ForgeTypeToInstance(forgeType, modern);
             pipelineObject.Import(inputPath);
-            PipelineJsonObject.Save(inputPath.Replace(FileExtensions.XNBExtension, FileExtensions.JsonExtension), pipelineObject, _options);
 
+            var outputPath = Path.ChangeExtension(inputPath, FileExtensions.JsonExtension);
+
+            PipelineJsonObject.Save(outputPath, pipelineObject, _options);
+
+            PrintSuccessMessage(inputPath);
+        }
+
+        private void PrintSuccessMessage(string inputPath)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Succesfully decompiled {inputPath}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

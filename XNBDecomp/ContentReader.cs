@@ -25,31 +25,27 @@ namespace XNBDecomp
 {
     public class ContentReader : BinaryReader
     {
-        public int filePlatform;
-        public int fileVersion;
-        public bool compressed;
-        public int fileSize;
-        public int graphicsProfile;
+        public int FilePlatform { get; private set; }
+        public int FileVersion { get; private set; }
+        public bool Compressed { get; private set; }
+        public int FileSize { get; private set; }
+        public int GraphicsProfile { get; private set; }
 
         private const char PlatformWindows = 'w';
         private const char PlatformXbox = 'x';
-        private const char PlatformMobile = 'm';
-        private const byte XnbVersion_30 = 3;
         private const byte XnbVersion_31 = 4;
-        private const byte XnbVersion_40 = 5;
         private const int XnbCompressedPrologueSize = 14;
         private const int XnbPrologueSize = 10;
-        private const byte XnbProfileMask = 0x7f;
         private const byte XnbCompressedMask = 0x80;
 
         private ContentReader(Stream input, int filePlatform, int fileVersion, int graphicsProfile, bool compressed, int fileSize)
             : base(input)
         {
-            this.filePlatform = filePlatform;
-            this.fileVersion = fileVersion;
-            this.graphicsProfile = graphicsProfile;
-            this.compressed = compressed;
-            this.fileSize = fileSize;
+            FilePlatform = filePlatform;
+            FileVersion = fileVersion;
+            GraphicsProfile = graphicsProfile;
+            Compressed = compressed;
+            FileSize = fileSize;
         }
 
         public static ContentReader Create(Stream input, int diskFileSize)
@@ -59,48 +55,37 @@ namespace XNBDecomp
             {
                 throw new InvalidOperationException("Bad magic.");
             }
-
-            int filePlatform = reader.ReadByte();
+            var filePlatform = reader.ReadByte();
             if (filePlatform != PlatformWindows && filePlatform != PlatformXbox)
             {
                 throw new InvalidOperationException("Bad platform.");
             }
-
-            int fileVersion = reader.ReadByte();
-            if (fileVersion > XnbVersion_40)
+            var fileVersion = reader.ReadByte();
+            if (fileVersion != XnbVersion_31)
             {
-                throw new InvalidOperationException("Bad version.");
+                throw new Exception("MagickaForge only supports XNBs from XNA 3.1");
             }
 
-            int num = reader.ReadByte();
-            bool compressed = false;
-            int graphicsProfile = 0;
-            if (fileVersion >= XnbVersion_40)
-            {
-                graphicsProfile = num & XnbProfileMask;
-            }
-            if (fileVersion >= XnbVersion_30)
-            {
-                compressed = (num & XnbCompressedMask) == XnbCompressedMask;
-            }
+            var num = reader.ReadByte();
+            var graphicsProfile = 0;
+            bool compressed = (num & XnbCompressedMask) == XnbCompressedMask;
 
             var fileSize = reader.ReadInt32();
             if (compressed)
             {
-                int compressedTodo = fileSize - XnbCompressedPrologueSize;
+                var compressedTodo = fileSize - XnbCompressedPrologueSize;
                 fileSize = reader.ReadInt32();
                 input = DecompressStream.getStream(input, compressedTodo, fileSize);
             }
             else
             {
-
-                //BACKWARDS COMPATIBIILITY WITH OLDER VERSIONS OF MAGICKA FORGE
+                //backwards compatibility with older versions which set 0 as the file size
+                //ignore on compressed files as magicka forge cannot produce them
                 if (fileSize < diskFileSize)
                 {
                     fileSize = diskFileSize;
                 }
-                //it won't have a wrong file size if it is compressed as this tool doesn't compress produced XNBs
-                fileSize = fileSize - XnbPrologueSize;
+                fileSize -= XnbPrologueSize;
             }
 
             return new ContentReader(input, filePlatform, fileVersion, graphicsProfile, compressed, fileSize);
@@ -108,7 +93,7 @@ namespace XNBDecomp
 
         public static ContentReader Create(string filename)
         {
-            return Create(File.Open(filename, FileMode.Open), (int)new FileInfo(filename).Length);
+            return Create(File.OpenRead(filename), (int)new FileInfo(filename).Length);
         }
     }
 }

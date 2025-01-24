@@ -36,8 +36,8 @@ namespace MagickaForge.Pipeline.Json.Characters
 
         [JsonIgnore]
         public bool CompileForModernMagicka { get; set; }
-        public string? Name { get; set; }
-        public string? LocalizedName { get; set; }
+        public string Name { get; set; }
+        public string LocalizedName { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Factions>))]
         public Factions Faction { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<BloodType>))]
@@ -49,9 +49,9 @@ namespace MagickaForge.Pipeline.Json.Characters
         public bool Nonslippery { get; set; }
         public bool HasFairy { get; set; }
         public bool CanSeeInvisible { get; set; }
-        public Sound[]? Sounds { get; set; }
-        public Gib[]? Gibs { get; set; }
-        public BonedLight[]? Lights { get; set; }
+        public Sound[] Sounds { get; set; }
+        public Gib[] Gibs { get; set; }
+        public BonedLight[] Lights { get; set; }
         public float MaxHitpoints { get; set; }
         public int NumberOfHealthbars { get; set; }
         public bool Undying { get; set; }
@@ -78,14 +78,14 @@ namespace MagickaForge.Pipeline.Json.Characters
         public float StunTime { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Banks>))]
         public Banks SummonElementBank { get; set; }
-        public string? SummonElementCue { get; set; }
-        public Resistance[]? Resistances { get; set; }
-        public CharacterModel[]? Models { get; set; }
-        public string? AnimationSkeleton { get; set; }
-        public BonedEffect[]? Effects { get; set; }
-        public AnimationSet[]? Animations { get; set; }
-        public Attachment[]? Equipment { get; set; }
-        public ConditionCollection[]? Conditions { get; set; }
+        public string SummonElementCue { get; set; }
+        public Resistance[] Resistances { get; set; }
+        public CharacterModel[] Models { get; set; }
+        public string AnimationSkeleton { get; set; }
+        public BonedEffect[] Effects { get; set; }
+        public AnimationSet[] Animations { get; set; }
+        public Attachment[] Equipment { get; set; }
+        public ConditionCollection[] Conditions { get; set; }
         public float AlertRadius { get; set; }
         public float GroupChase { get; set; }
         public float GroupSeperation { get; set; }
@@ -101,10 +101,10 @@ namespace MagickaForge.Pipeline.Json.Characters
         public float HealthWeight { get; set; }
         public bool Flocking { get; set; }
         public float BreakFreeStrength { get; set; }
-        public Ability[]? Abilities { get; set; }
-        public Movement[]? Movement { get; set; }
-        public Buff[]? Buffs { get; set; }
-        public Aura[]? Auras { get; set; }
+        public Ability[] Abilities { get; set; }
+        public Movement[] Movement { get; set; }
+        public Buff[] Buffs { get; set; }
+        public Aura[] Auras { get; set; }
 
         public override void Export(string outputPath)
         {

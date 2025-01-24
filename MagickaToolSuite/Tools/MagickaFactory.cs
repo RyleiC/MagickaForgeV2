@@ -1,4 +1,5 @@
-﻿using MagickaForge.Pipeline.Json;
+﻿using MagickaForge.Pipeline;
+using MagickaForge.Pipeline.Json;
 using MagickaForge.Pipeline.Json.Characters;
 using MagickaToolSuite.Data;
 using System.Diagnostics;
@@ -8,21 +9,31 @@ namespace MagickaToolSuite.Tools
     internal class MagickaFactory
     {
         private bool _modern;
-        private string? _path;
-        private string? _pathNoExtension;
+        private string _path;
         private bool _pathIsDirectory;
         private ToolMode _toolMode;
         private ForgeType _forgeType;
 
+        public MagickaFactory(string path)
+        {
+            if (!string.IsNullOrEmpty(path))
+            {
+                _path = path.Trim('\"');
+            }
+        }
+
+        public MagickaFactory() : this(string.Empty) { }
+
         public void BeginProcess()
         {
             Console.WriteLine("= Magicka Forge by Rylei. C =");
-            Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
 
-            _path = Console.ReadLine()!.Trim('\"');
+            if (string.IsNullOrEmpty(_path))
+            {
+                PromptForPath();
+            }
 
             FileAttributes fileAttributes = File.GetAttributes(_path);
-            _pathNoExtension = Path.GetFileNameWithoutExtension(_path);
             _pathIsDirectory = fileAttributes.HasFlag(FileAttributes.Directory);
 
             if (!_pathIsDirectory)
@@ -71,16 +82,10 @@ namespace MagickaToolSuite.Tools
                 }
             }
 
-            GenerateContent(_toolMode, _path, _pathIsDirectory);
+            GenerateContent(_toolMode);
         }
 
-        private void ResetFactory()
-        {
-            Console.Clear();
-            BeginProcess();
-        }
-
-        private void GenerateContent(ToolMode processMode, string path, bool isPathDirectory)
+        private void GenerateContent(ToolMode processMode)
         {
             Console.Clear();
             Console.WriteLine("= Process Starting... =\n");
@@ -128,12 +133,42 @@ namespace MagickaToolSuite.Tools
                 {
                     (pipelineObject as Character)!.CompileForModernMagicka = _modern;
                 }
-                compiler.Compile(pipelineObject, _path!.Replace(FileExtensions.JsonExtension, FileExtensions.XNBExtension));
+                compiler.Compile(pipelineObject, _path!);
             }
             else
             {
                 compiler.DirectoryCompile(_path!, _modern);
             }
+        }
+
+        private void ReverseProcess()
+        {
+
+            if (_toolMode == ToolMode.Compile)
+            {
+                _toolMode = ToolMode.Decompile;
+                if (!_pathIsDirectory)
+                {
+                    _path = Path.ChangeExtension(_path!, FileExtensions.XNBExtension);
+                }
+            }
+            else
+            {
+                _toolMode = ToolMode.Compile;
+                if (!_pathIsDirectory)
+                {
+                    _path = Path.ChangeExtension(_path!, FileExtensions.JsonExtension);
+                }
+            }
+
+            GenerateContent(_toolMode);
+        }
+
+        private void ResetFactory()
+        {
+            Console.Clear();
+            _path = string.Empty;
+            BeginProcess();
         }
 
         private void ReadLastKey()
@@ -144,11 +179,15 @@ namespace MagickaToolSuite.Tools
             switch (key)
             {
                 case (ConsoleKey.R):
-                    GenerateContent(_toolMode, _path!, _pathIsDirectory);
+                    GenerateContent(_toolMode);
                     break;
 
                 case (ConsoleKey.N):
                     ResetFactory();
+                    break;
+
+                case (ConsoleKey.P):
+                    ReverseProcess();
                     break;
 
                 case (ConsoleKey.Escape):
@@ -159,10 +198,20 @@ namespace MagickaToolSuite.Tools
                     break;
             }
         }
+
+        private void PromptForPath()
+        {
+            Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
+
+            var input = Console.ReadLine();
+            _path = input!.Trim('\"');
+
+        }
+
         private void PromptEnd()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\nPlease input a key.\n- 'R' to repeat the last process\n- 'N' to begin a new compilation/decompilation\n- 'ESC' to exit program");
+            Console.WriteLine("\nPlease input a key.\n- 'R' to repeat the last process\n- 'P' to reverse the last process\n- 'N' to begin a new compilation/decompilation\n- 'ESC' to exit program");
             Console.ForegroundColor = ConsoleColor.White;
             ReadLastKey();
         }

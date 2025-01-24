@@ -5,31 +5,46 @@ namespace MagickaToolSuite.Tools
 {
     internal class MagickaCompiler
     {
+
         public void DirectoryCompile(string instructionPath, bool modern)
         {
-            foreach (string filePath in Directory.GetFiles(instructionPath, "*.json"))
+            var searchOptions = new EnumerationOptions()
+            {
+                RecurseSubdirectories = true,
+                AttributesToSkip = FileAttributes.Hidden | FileAttributes.System,
+                IgnoreInaccessible = true,
+                MaxRecursionDepth = 16
+            };
+
+            foreach (string filePath in Directory.GetFiles(instructionPath, "*.json", searchOptions))
             {
                 var pipelineItem = PipelineJsonObject.Load(filePath);
-                Compile(pipelineItem, filePath.Replace(FileExtensions.JsonExtension, FileExtensions.XNBExtension), modern);
+                Compile(pipelineItem, filePath, modern);
             }
         }
 
-        public void Compile(PipelineJsonObject pipelineObject, string outputPath, bool modern)
+        public void Compile(PipelineJsonObject pipelineObject, string inputPath, bool modern)
         {
             if (pipelineObject is Character)
             {
                 (pipelineObject as Character)!.CompileForModernMagicka = modern;
             }
 
-            Compile(pipelineObject, outputPath);
+            Compile(pipelineObject, inputPath);
         }
 
-        public void Compile(PipelineJsonObject pipelineObject, string outputPath)
+        public void Compile(PipelineJsonObject pipelineObject, string inputPath)
         {
-            pipelineObject.Export(outputPath);
+            var outputPath = Path.ChangeExtension(inputPath, FileExtensions.XNBExtension);
 
+            pipelineObject.Export(outputPath);
+            PrintSuccessMessage(inputPath);
+        }
+
+        private void PrintSuccessMessage(string inputPath)
+        {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Succesfully compiled {outputPath}");
+            Console.WriteLine($"Succesfully compiled {inputPath}");
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace MagickaForge
 {
-    public class CantLoadInMagickaException(string? message) : Exception(message)
+    public class CantLoadInMagickaException(string message) : Exception(message)
     {
     }
 }

@@ -7,7 +7,7 @@ namespace MagickaForge.Components.Graphics.Effects
         public Color ColorTint { get; set; }
         public bool UseVertexColor { get; set; }
         public bool HasTexture { get; set; }
-        public string? Texture { get; set; }
+        public string Texture { get; set; }
         public AdditiveEffect() { }
         public AdditiveEffect(BinaryReader binaryReader)
         {
