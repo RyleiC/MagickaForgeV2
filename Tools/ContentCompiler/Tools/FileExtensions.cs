@@ -1,4 +1,4 @@
-﻿namespace MagickaToolSuite.Tools
+﻿namespace ContentCompiler.Tools
 {
     public static class FileExtensions
     {

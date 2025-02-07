@@ -1,10 +1,10 @@
 ﻿using MagickaForge.Pipeline;
 using MagickaForge.Pipeline.Json;
 using MagickaForge.Pipeline.Json.Characters;
-using MagickaToolSuite.Data;
+using ContentCompiler.Data;
 using System.Diagnostics;
 
-namespace MagickaToolSuite.Tools
+namespace ContentCompiler.Tools
 {
     internal class MagickaFactory
     {

@@ -1,7 +1,7 @@
-﻿using MagickaToolSuite.Tools;
+﻿using ContentCompiler.Tools;
 using System.Diagnostics;
 using System.Reflection;
-namespace MagickaToolSuite
+namespace ContentCompiler
 {
     internal class Program
     {

@@ -12,4 +12,10 @@
     <ProjectReference Include="..\XNBDecomp\XNBDecomp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Licenses.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -6,17 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
 	<AssemblyVersion>2.1.6.4</AssemblyVersion>
-	<ApplicationIcon>MagickaForge.ico</ApplicationIcon>
+	<ApplicationIcon>Compiler.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MagickaForge\MagickaForge.csproj" />
+    <Content Include="Compiler.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Licenses.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\..\Source\MagickaForge\MagickaForge.csproj" />
   </ItemGroup>
 
 </Project>

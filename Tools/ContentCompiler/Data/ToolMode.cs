@@ -1,4 +1,4 @@
-﻿namespace MagickaToolSuite.Data
+﻿namespace ContentCompiler.Data
 {
     internal enum ToolMode
     {

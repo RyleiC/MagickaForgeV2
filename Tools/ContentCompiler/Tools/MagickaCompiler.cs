@@ -1,7 +1,7 @@
 ﻿using MagickaForge.Pipeline.Json;
 using MagickaForge.Pipeline.Json.Characters;
 
-namespace MagickaToolSuite.Tools
+namespace ContentCompiler.Tools
 {
     internal class MagickaCompiler
     {
