@@ -10,10 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="MagickaForge.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MagickaForge\MagickaForge.csproj" />
   </ItemGroup>
 
