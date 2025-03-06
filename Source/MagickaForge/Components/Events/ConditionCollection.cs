@@ -127,6 +127,11 @@ namespace MagickaForge.Components.Events
                             };
                         }
                         break;
+                    case EventType.Overkill:
+                        {
+                            Events[i] = new OverkillEvent();
+                        }
+                        break;
                     case EventType.SpawnItem:
                         {
                             Events[i] = new SpawnItemEvent()
