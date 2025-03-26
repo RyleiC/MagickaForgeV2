@@ -1,4 +1,6 @@
-﻿using MagickaForge.Components.Common;
+﻿#if GLTFEnabled
+
+using MagickaForge.Components.Common;
 using MagickaForge.Components.Graphics;
 using MagickaForge.Components.Levels;
 using MagickaForge.Components.Levels.Navigation;
@@ -146,3 +148,5 @@ namespace MagickaForge.Experimental.GLTF
 
     }
 }
+
+#endif

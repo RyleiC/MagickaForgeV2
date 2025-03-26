@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿#if GLTFEnabled
+
+using System.Text.Json;
 
 namespace MagickaForge.Experimental.GLTF
 {
@@ -6,7 +8,7 @@ namespace MagickaForge.Experimental.GLTF
     {
         private string _path;
         public Buffer Buffer { get; private set; }
-        public BufferViewNode[] bufferViews { get; set; } //Must be named this to be deserialized
+        public BufferViewNode[] bufferViews { get; set; } //Must be named this to be deserialized, hardcoded to require vertexes, indices, normals and tangets for now
         public int scene { get; set; }
 
         public ModelNode()
@@ -36,3 +38,4 @@ namespace MagickaForge.Experimental.GLTF
         }
     }
 }
+#endif

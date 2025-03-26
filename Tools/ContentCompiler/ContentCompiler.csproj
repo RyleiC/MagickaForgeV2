@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-	<AssemblyVersion>2.1.6.4</AssemblyVersion>
+	<AssemblyVersion>2.1.6.5</AssemblyVersion>
 	<ApplicationIcon>Compiler.ico</ApplicationIcon>
   </PropertyGroup>
 

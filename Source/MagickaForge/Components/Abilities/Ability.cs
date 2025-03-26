@@ -21,6 +21,7 @@ namespace MagickaForge.Components.Abilities
     [JsonDerivedType(typeof(SpecialAbilityAbility), typeDiscriminator: "SpecialAbilityAbility")]
     [JsonDerivedType(typeof(ThrowGrip), typeDiscriminator: "ThrowGrip")]
     [JsonDerivedType(typeof(ZombieGrip), typeDiscriminator: "ZombieGrip")]
+
     public class Ability
     {
         protected AbilityType _type;
@@ -53,6 +54,7 @@ namespace MagickaForge.Components.Abilities
                 bw.Write(animation);
             }
         }
+
         public static Ability GetAbility(BinaryReader br, AbilityType type)
         {
             var ability = new Ability();

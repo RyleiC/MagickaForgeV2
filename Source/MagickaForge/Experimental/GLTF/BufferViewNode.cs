@@ -1,4 +1,6 @@
-﻿namespace MagickaForge.Experimental.GLTF
+﻿#if GLTFEnabled
+
+namespace MagickaForge.Experimental.GLTF
 {
     public class BufferViewNode
     {
@@ -11,3 +13,5 @@
         public int target { get; set; }
     }
 }
+
+#endif
