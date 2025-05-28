@@ -32,7 +32,7 @@ namespace ContentCompiler.Tools
 
             if (isDirectory)
             {
-                foreach (string filePath in Directory.GetFiles(inputPath, "*.json", _enumerationOptions))
+                foreach (string filePath in Directory.GetFiles(inputPath, "*.xnb", _enumerationOptions))
                 {
                     BeginDecompile(type, filePath, useModernCompilation);
                 }
