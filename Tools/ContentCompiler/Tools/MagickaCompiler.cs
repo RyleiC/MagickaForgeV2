@@ -90,7 +90,7 @@ namespace ContentCompiler.Tools
 
             if (Configuration.Instance.Settings.GenerateLanguageFiles)
             {
-                if (pipelineObject is Character character && HasCustomName(character.LocalizedName))
+                if (pipelineObject is Character character && HasCustomText(character.LocalizedName))
                 {
                     var code = $"#mod_{character.Name}";
                     languageFile.RegisterEntry(character.LocalizedName, code);
@@ -98,13 +98,13 @@ namespace ContentCompiler.Tools
                 }
                 else if (pipelineObject is Item item)
                 {
-                    if (HasCustomName(item.LocalizedName))
+                    if (HasCustomText(item.LocalizedName))
                     {
                         var code = $"#mod_{item.Name}";
                         languageFile.RegisterEntry(item.LocalizedName, code);
                         item.LocalizedName = code;
                     }
-                    if (HasCustomName(item.LocalizedName))
+                    if (HasCustomText(item.LocalizedDescription))
                     {
                         var code = $"#mod_{item.Name}_d";
                         languageFile.RegisterEntry(item.LocalizedDescription, code);
@@ -141,7 +141,7 @@ namespace ContentCompiler.Tools
             return pipelineObject;
         }
 
-        private bool HasCustomName(string target)
+        private bool HasCustomText(string target)
         {
             return !string.IsNullOrEmpty(target) && target[0] != '#';
         }
