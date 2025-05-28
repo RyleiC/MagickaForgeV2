@@ -2,6 +2,7 @@
 using MagickaForge.Pipeline.Json.Items;
 using MagickaForge.Pipeline.Json.Levels;
 using MagickaForge.Pipeline.Json.Models;
+using MagickaForge.Utils.Helpers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -13,16 +14,29 @@ namespace MagickaForge.Pipeline.Json
     [JsonDerivedType(typeof(Character), typeDiscriminator: "Character")]
     [JsonDerivedType(typeof(NonEmbeddedModel), typeDiscriminator: "Model")]
     [JsonDerivedType(typeof(NonEmbeddedSkinnedModel), typeDiscriminator: "SkinnedModel")]
+
     public abstract class PipelineJsonObject
     {
-        public virtual void Export(string outputPath)
-        {
+        protected abstract void MidExport(BinaryWriter binaryWriter);
+        protected abstract void MidImport(BinaryReader binaryReader);
 
+        public void Export(string outputPath)
+        {
+            using (var binaryWriter = new BinaryWriter(File.Create(outputPath)))
+            {
+                binaryWriter.Write(XNBHelper.XNBHeader);
+                binaryWriter.Write(-1);
+                MidExport(binaryWriter);
+                XNBHelper.WriteFileSize(binaryWriter);
+            }
         }
 
-        public virtual void Import(string inputPath)
+        public void Import(string inputPath)
         {
-
+            using (var binaryReader = new BinaryReader(XNBHelper.DecompressXNB(inputPath)))
+            {
+                MidImport(binaryReader);
+            }
         }
 
         public static void Save(string outputPath, PipelineJsonObject pipelineObject, JsonSerializerOptions options)
@@ -30,7 +44,7 @@ namespace MagickaForge.Pipeline.Json
             using (StreamWriter sw = new(outputPath))
             {
                 sw.Write(JsonSerializer.Serialize(pipelineObject, options));
-            };
+            }
         }
 
         public static PipelineJsonObject Load(string inputPath)

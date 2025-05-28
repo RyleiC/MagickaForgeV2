@@ -96,7 +96,8 @@ namespace MagickaForge.Components.Auras
                         };
                     }
                     break;
-            };
+            }
+            ;
 
             aura.AuraTarget = target;
             aura.VisualCategory = visualCategory;

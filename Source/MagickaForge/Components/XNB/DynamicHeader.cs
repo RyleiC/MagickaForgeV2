@@ -1,16 +1,13 @@
-﻿using MagickaForge.Utils.Helpers;
-
-namespace MagickaForge.Components.XNB
+﻿namespace MagickaForge.Components.XNB
 {
-    public class Header
+    public class DynamicHeader
     {
         public ReaderCache[] Readers { get; set; }
         public int SharedResources { get; set; }
-        public Header() { }
+        public DynamicHeader() { }
 
-        public Header(BinaryReader binaryReader)
+        public DynamicHeader(BinaryReader binaryReader)
         {
-            binaryReader.BaseStream.Position += XNBHelper.XNBHeader.Length + 4;
             Readers = new ReaderCache[binaryReader.Read7BitEncodedInt()];
             for (int i = 0; i < Readers.Length; i++)
             {
@@ -21,8 +18,6 @@ namespace MagickaForge.Components.XNB
 
         public void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write(XNBHelper.XNBHeader);
-            binaryWriter.Write(0); //Placeholder file size
             binaryWriter.Write7BitEncodedInt(Readers.Length);
             foreach (var reader in Readers)
             {

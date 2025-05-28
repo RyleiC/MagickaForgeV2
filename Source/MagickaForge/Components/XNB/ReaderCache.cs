@@ -4,15 +4,16 @@ namespace MagickaForge.Components.XNB
 {
     public class ReaderCache
     {
-        public string ReaderName { get; set; }
-        public int Version { get; set; }
-        private ReaderType _type;
+        private readonly ReaderType _type;
 
         private const string RenderDeferred = "PolygonHead.Pipeline.RenderDeferredEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
         private const string RenderAdditive = "PolygonHead.Pipeline.AdditiveEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
         private const string RenderDeferredLiquid = "PolygonHead.Pipeline.RenderDeferredLiquidEffectReader, PolygonHead";
         private const string Lava = "PolygonHead.Pipeline.LavaEffectReader, PolygonHead, Version=1.0.0.0, Culture=neutral";
         private const string BasicSkinnedModel = "XNAnimation.Pipeline.SkinnedModelBasicEffectReader, XNAnimation, Version=0.7.0.0, Culture=neutral";
+
+        public string ReaderName { get; set; }
+        public int Version { get; set; }
 
         public ReaderCache() { }
         public ReaderCache(BinaryReader binaryReader)

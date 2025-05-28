@@ -7,7 +7,7 @@ namespace MagickaForge.Components.Abilities
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "_AbilityType")]
     [JsonDerivedType(typeof(Block), typeDiscriminator: "Block")]
-    [JsonDerivedType(typeof(CastSpell), typeDiscriminator: "CastSpell")]
+    [JsonDerivedType(typeof(CastSpellAbility), typeDiscriminator: "CastSpell")]
     [JsonDerivedType(typeof(ConfuseGrip), typeDiscriminator: "ConfuseGrip")]
     [JsonDerivedType(typeof(DamageGrip), typeDiscriminator: "DamageGrip")]
     [JsonDerivedType(typeof(Dash), typeDiscriminator: "Dash")]
@@ -37,12 +37,6 @@ namespace MagickaForge.Components.Abilities
             bw.Write(Cooldown);
             bw.Write((byte)AbilityTarget);
             bool hasFuzzy = FuzzyExpression!.Length > 0;
-
-            if (!hasFuzzy && this is CastSpell)
-            {
-                throw new CantLoadInMagickaException("CastSpell abilities must have a fuzzy statement!");
-            }
-
             bw.Write(hasFuzzy);
             if (hasFuzzy)
             {
@@ -77,8 +71,8 @@ namespace MagickaForge.Components.Abilities
             }
             else if (type == AbilityType.CastSpell)
             {
-                ability = new CastSpell() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Angle = br.ReadSingle(), ChantTime = br.ReadSingle(), Power = br.ReadSingle(), CastType = (CastType)br.ReadInt32() };
-                CastSpell castSpell = ability as CastSpell;
+                ability = new CastSpellAbility() { MinimumRange = br.ReadSingle(), MaximumRange = br.ReadSingle(), Angle = br.ReadSingle(), ChantTime = br.ReadSingle(), Power = br.ReadSingle(), CastType = (CastType)br.ReadInt32() };
+                CastSpellAbility castSpell = ability as CastSpellAbility;
                 castSpell!.Elements = new Elements[br.ReadInt32()];
                 for (int i = 0; i < castSpell.Elements.Length; i++)
                 {
@@ -181,7 +175,7 @@ namespace MagickaForge.Components.Abilities
             bw.Write(Shield);
         }
     }
-    public class CastSpell : Ability
+    public class CastSpellAbility : Ability
     {
         public float MinimumRange { get; set; }
         public float MaximumRange { get; set; }
@@ -192,7 +186,7 @@ namespace MagickaForge.Components.Abilities
         public CastType CastType { get; set; }
         public Elements[] Elements { get; set; }
 
-        public CastSpell()
+        public CastSpellAbility()
         {
             _type = AbilityType.CastSpell;
         }

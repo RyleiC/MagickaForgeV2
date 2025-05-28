@@ -16,7 +16,7 @@ namespace MagickaForge.Components.Levels
                 BinaryTreeRoots[i].Write(binaryWriter);
             }
         }
-        public BinTreeModel(BinaryReader binaryReader, Header header)
+        public BinTreeModel(BinaryReader binaryReader, DynamicHeader header)
         {
             ReaderIndex = binaryReader.Read7BitEncodedInt();
             var count = binaryReader.ReadInt32();

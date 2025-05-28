@@ -25,7 +25,7 @@ namespace XNBDecomp
 {
     internal static class DecompressStream
     {
-        public static Stream getStream(Stream baseStream, int compressedTodo, int decompressedTodo)
+        public static Stream GetStream(Stream baseStream, int compressedTodo, int decompressedTodo)
         {
             byte[] inBuf = new byte[0x10000];
             byte[] outBuf = new byte[0x10000];

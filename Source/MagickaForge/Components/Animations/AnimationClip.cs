@@ -1,10 +1,12 @@
 using MagickaForge.Utils.Data.Animations;
+using System.Text.Json.Serialization;
 
 namespace MagickaForge.Components.Animations
 {
     public class AnimationClip
     {
-        public string AnimationType { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<Animation>))]
+        public Animation AnimationType { get; set; }
         public string AnimationKey { get; set; }
         public float AnimationSpeed { get; set; }
         public float BlendTime { get; set; }
@@ -14,7 +16,7 @@ namespace MagickaForge.Components.Animations
         public AnimationClip() { }
         public AnimationClip(BinaryReader br)
         {
-            AnimationType = br.ReadString();
+            AnimationType = Enum.Parse<Animation>(br.ReadString());
             AnimationKey = br.ReadString();
             AnimationSpeed = br.ReadSingle();
             BlendTime = br.ReadSingle();
@@ -28,7 +30,7 @@ namespace MagickaForge.Components.Animations
         }
         public void Write(BinaryWriter bw)
         {
-            bw.Write(AnimationType!);
+            bw.Write(AnimationType.ToString()!);
             bw.Write(AnimationKey!);
             bw.Write(AnimationSpeed);
             bw.Write(BlendTime);

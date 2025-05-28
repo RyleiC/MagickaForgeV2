@@ -6,12 +6,12 @@ namespace MagickaForge.Components.XNB
     {
         public ShaderEffect Effect { get; set; }
 
-        public SharedContentCache(BinaryReader binaryReader, Header header)
+        public SharedContentCache(BinaryReader binaryReader, DynamicHeader header)
         {
             Effect = ShaderEffect.GetEffect(binaryReader, header);
         }
 
-        public void Write(BinaryWriter binaryWriter)
+        public readonly void Write(BinaryWriter binaryWriter)
         {
             Effect.Write(binaryWriter);
         }

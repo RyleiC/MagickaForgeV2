@@ -30,19 +30,17 @@ namespace MagickaForge.Utils.Helpers
 
         public static Stream DecompressXNB(string path)
         {
-            var stream = new MemoryStream();
             var contentReader = ContentReader.Create(path);
-            var contentWriter = new ContentWriter(stream, contentReader.FileVersion);
-            for (int i = 0; i < contentReader.FileSize; i++)
+
+            var stream = contentReader.BaseStream;
+            if (contentReader.Compressed)
             {
-                contentWriter.Write(contentReader.ReadByte());
+                contentReader.BaseStream.Position = 0;
             }
-
-            contentReader.Close();
-            contentWriter.FlushOutput();
-            contentWriter.Close();
-
-            stream.Position = 0;
+            else
+            {
+                contentReader.BaseStream.Position = XNBHeader.Length + 4;
+            }
 
             return stream;
         }

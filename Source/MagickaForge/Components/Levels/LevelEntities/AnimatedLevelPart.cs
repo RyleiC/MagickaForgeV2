@@ -23,7 +23,7 @@ namespace MagickaForge.Components.Levels.LevelEntities
         public NavigationMesh NavMesh { get; set; }
         public AnimatedLevelPart[] Children { get; set; }
         public AnimatedLevelPart() { }
-        public AnimatedLevelPart(BinaryReader binaryReader, Header header)
+        public AnimatedLevelPart(BinaryReader binaryReader, DynamicHeader header)
         {
             Name = binaryReader.ReadString();
             AffectShields = binaryReader.ReadBoolean();

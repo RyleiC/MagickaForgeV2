@@ -10,7 +10,7 @@ namespace MagickaForge.Components.Animations
     [JsonDerivedType(typeof(Block), typeDiscriminator: "Block")]
     [JsonDerivedType(typeof(BreakFree), typeDiscriminator: "BreakFree")]
     [JsonDerivedType(typeof(CameraShake), typeDiscriminator: "CameraShake")]
-    [JsonDerivedType(typeof(CastSpell), typeDiscriminator: "CastSpell")]
+    [JsonDerivedType(typeof(CastSpellEvent), typeDiscriminator: "CastSpell")]
     [JsonDerivedType(typeof(Crouch), typeDiscriminator: "Crouch")]
     [JsonDerivedType(typeof(DamageGrip), typeDiscriminator: "DamageGrip")]
     [JsonDerivedType(typeof(DealDamage), typeDiscriminator: "DealDamage")]
@@ -68,10 +68,10 @@ namespace MagickaForge.Components.Animations
             }
             else if (aType == ActionType.CastSpell)
             {
-                action = new CastSpell() { FromStaff = br.ReadBoolean() };
-                if (!(action as CastSpell)!.FromStaff)
+                action = new CastSpellEvent() { FromStaff = br.ReadBoolean() };
+                if (!(action as CastSpellEvent)!.FromStaff)
                 {
-                    (action as CastSpell)!.Bone = br.ReadString();
+                    (action as CastSpellEvent)!.Bone = br.ReadString();
                 }
             }
             else if (aType == ActionType.Crouch)
@@ -263,12 +263,12 @@ namespace MagickaForge.Components.Animations
             bw.Write(Magnitude);
         }
     }
-    public class CastSpell : AnimationAction
+    public class CastSpellEvent : AnimationAction
     {
         public bool FromStaff { get; set; }
         public string Bone { get; set; }
 
-        public CastSpell()
+        public CastSpellEvent()
         {
             _type = ActionType.CastSpell;
         }

@@ -1,62 +1,53 @@
-﻿using MagickaForge.Pipeline;
+﻿using ContentCompiler.Data;
+using ContentCompiler.Misc;
+using ContentCompiler.Settings;
+using MagickaForge.Pipeline;
 using MagickaForge.Pipeline.Json;
 using MagickaForge.Pipeline.Json.Characters;
-using ContentCompiler.Data;
 using System.Diagnostics;
 
 namespace ContentCompiler.Tools
 {
-    internal class MagickaFactory
+    public class MagickaFactory
     {
         private bool _modern;
-        private string _path;
         private bool _pathIsDirectory;
+        private string _path;
         private ToolMode _toolMode;
         private ForgeType _forgeType;
 
         public MagickaFactory(string path)
         {
-            if (!string.IsNullOrEmpty(path))
+            if (path != null)
             {
                 _path = path.Trim('\"');
             }
         }
 
-        public MagickaFactory() : this(string.Empty) { }
-
-        public void BeginProcess()
+        public MagickaFactory() : this(null)
         {
-            Console.WriteLine("= Magicka Forge by Rylei. C =");
 
-            if (string.IsNullOrEmpty(_path))
+        }
+
+        public void StartFactory()
+        {
+            Logger.WriteTitle("= Magicka Forge by Rylei. C =");
+
+            if (_path == null)
             {
                 PromptForPath();
             }
 
-            FileAttributes fileAttributes = File.GetAttributes(_path);
-            _pathIsDirectory = fileAttributes.HasFlag(FileAttributes.Directory);
-
-            if (!_pathIsDirectory)
+            var pathStatus = VerifyPath();
+            while (pathStatus != PathStatus.Valid)
             {
-                string fileExtension = Path.GetExtension(_path);
+                PrintPathErrors(pathStatus);
+                PromptForPath();
 
-                if (fileExtension == FileExtensions.JsonExtension)
-                {
-                    _toolMode = ToolMode.Compile;
-                }
-                else if (fileExtension == FileExtensions.XNBExtension)
-                {
-                    _toolMode = ToolMode.Decompile;
-                }
-                else
-                {
-                    throw new ArgumentException("Your file is neither a XNB nor a JSON!");
-                }
+                pathStatus = VerifyPath();
             }
-            else
-            {
-                PromptToolMode();
-            }
+
+            InferToolMode();
 
             if (_toolMode == ToolMode.Decompile)
             {
@@ -67,15 +58,14 @@ namespace ContentCompiler.Tools
                     PromptIsModern();
                 }
             }
-
             else if (_pathIsDirectory)
             {
                 PromptIsModern();
             }
-
             else if (_toolMode == ToolMode.Compile)
             {
                 var pipelineObject = PipelineJsonObject.Load(_path);
+
                 if (pipelineObject is Character)
                 {
                     PromptIsModern();
@@ -85,13 +75,60 @@ namespace ContentCompiler.Tools
             GenerateContent(_toolMode);
         }
 
+        private PathStatus VerifyPath()
+        {
+            if (_path == null)
+            {
+                return PathStatus.PathIsNull;
+            }
+            else if (!PathExists)
+            {
+                return PathStatus.PathDoesNotExist;
+            }
+
+            FileAttributes fileAttributes = File.GetAttributes(_path);
+            _pathIsDirectory = fileAttributes.HasFlag(FileAttributes.Directory);
+
+            if (!_pathIsDirectory)
+            {
+                var extension = Path.GetExtension(_path);
+
+                if (extension != FileExtensions.JsonExtension && extension != FileExtensions.XNBExtension)
+                {
+                    return PathStatus.InvalidExtension;
+                }
+            }
+
+            return PathStatus.Valid;
+        }
+
+        private void InferToolMode()
+        {
+            if (!_pathIsDirectory)
+            {
+                string fileExtension = Path.GetExtension(_path);
+
+                if (fileExtension == FileExtensions.JsonExtension)
+                {
+                    _toolMode = ToolMode.Compile;
+                }
+                else
+                {
+                    _toolMode = ToolMode.Decompile;
+                }
+            }
+            else
+            {
+                PromptToolMode();
+            }
+        }
+
         private void GenerateContent(ToolMode processMode)
         {
             Console.Clear();
-            Console.WriteLine("= Process Starting... =\n");
+            Logger.WriteInfo("= Process Starting... =\n");
 
             var stopWatch = Stopwatch.StartNew();
-
             if (processMode == ToolMode.Decompile)
             {
                 CreateDecompiler();
@@ -100,12 +137,10 @@ namespace ContentCompiler.Tools
             {
                 CreateCompiler();
             }
-
             stopWatch.Stop();
 
-            Console.WriteLine($"\n= Process completed in {stopWatch.ElapsedMilliseconds} ms =");
-
-            PromptEnd();
+            Logger.WriteInfo($"\n= Process completed in {stopWatch.ElapsedMilliseconds} ms =");
+            PromptForHotkeys();
         }
 
         private void CreateDecompiler()
@@ -125,31 +160,17 @@ namespace ContentCompiler.Tools
         private void CreateCompiler()
         {
             var compiler = new MagickaCompiler();
-
-            if (!_pathIsDirectory)
-            {
-                var pipelineObject = PipelineJsonObject.Load(_path!);
-                if (pipelineObject is Character)
-                {
-                    (pipelineObject as Character)!.CompileForModernMagicka = _modern;
-                }
-                compiler.Compile(pipelineObject, _path!);
-            }
-            else
-            {
-                compiler.DirectoryCompile(_path!, _modern);
-            }
+            compiler.Compile(_path!, _modern);
         }
 
         private void ReverseProcess()
         {
-
             if (_toolMode == ToolMode.Compile)
             {
                 _toolMode = ToolMode.Decompile;
                 if (!_pathIsDirectory)
                 {
-                    _path = Path.ChangeExtension(_path!, FileExtensions.XNBExtension);
+                    _path = Path.ChangeExtension(_path, FileExtensions.XNBExtension);
                 }
             }
             else
@@ -157,7 +178,7 @@ namespace ContentCompiler.Tools
                 _toolMode = ToolMode.Compile;
                 if (!_pathIsDirectory)
                 {
-                    _path = Path.ChangeExtension(_path!, FileExtensions.JsonExtension);
+                    _path = Path.ChangeExtension(_path, FileExtensions.JsonExtension);
                 }
             }
 
@@ -167,8 +188,8 @@ namespace ContentCompiler.Tools
         private void ResetFactory()
         {
             Console.Clear();
-            _path = string.Empty;
-            BeginProcess();
+            _path = null;
+            StartFactory();
         }
 
         private void ReadLastKey()
@@ -193,6 +214,11 @@ namespace ContentCompiler.Tools
                 case (ConsoleKey.Escape):
                     return;
 
+                case (ConsoleKey.Q):
+                    Configuration.Instance.ReloadSettings();
+                    ResetFactory();
+                    break;
+
                 default:
                     ReadLastKey();
                     break;
@@ -201,43 +227,79 @@ namespace ContentCompiler.Tools
 
         private void PromptForPath()
         {
-            Console.WriteLine(@"Input the path to a JSON instruction or XNB file\directory:");
+            var pathStatus = VerifyPath();
+            if (PathStatus.Valid == pathStatus)
+            {
+                return;
+            }
 
-            var input = Console.ReadLine();
-            _path = input!.Trim('\"');
+            while (pathStatus != PathStatus.Valid)
+            {
+                if (pathStatus != PathStatus.PathIsNull)
+                {
+                    PrintPathErrors(pathStatus);
+                }
 
+                Logger.WritePrompt("Input the path to a JSON instruction or XNB file\\directory:");
+                _path = Console.ReadLine().Trim('\"');
+
+                pathStatus = VerifyPath();
+            }
         }
 
-        private void PromptEnd()
+        private void PromptForHotkeys()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\nPlease input a key.\n- 'R' to repeat the last process\n- 'P' to reverse the last process\n- 'N' to begin a new compilation/decompilation\n- 'ESC' to exit program");
-            Console.ForegroundColor = ConsoleColor.White;
+            Logger.WritePrompt("\nPlease input a key.\n- 'R' to repeat the last process\n- 'P' to reverse the last process\n- 'N' to begin a new compilation/decompilation\n- 'Q' to reload the config file\n- 'ESC' to exit program");
             ReadLastKey();
         }
 
         private void PromptIsModern()
         {
             Console.Clear();
-            Console.WriteLine("Are you creating/reading content from an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
-            _modern = int.Parse(Console.ReadLine()!) == 0; //Client has said yes
+            Logger.WritePrompt("Are you creating/reading content from an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
+            _modern = int.Parse(Console.ReadLine()) == 0; //Client has said yes
             Console.Clear();
         }
 
         private void PromptForgeType()
         {
             Console.Clear();
-            Console.WriteLine("What type of content are you attempting to decompile? \n\"0\" : Character\n\"1\" : Item\n\"2\" : Level\n\"3\" : Model\n\"4\" : Skinned Model");
-            _forgeType = (ForgeType)int.Parse(Console.ReadLine()!);
+            Logger.WritePrompt("What type of content are you attempting to decompile? \n\"0\" : Character\n\"1\" : Item\n\"2\" : Level\n\"3\" : Model\n\"4\" : Skinned Model");
+            _forgeType = Enum.Parse<ForgeType>(Console.ReadLine());
             Console.Clear();
         }
 
         private void PromptToolMode()
         {
             Console.Clear();
-            Console.WriteLine("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
-            _toolMode = (ToolMode)int.Parse(Console.ReadLine()!);
+            Logger.WritePrompt("Would you like to compile to XNB or decompile to Json?\n\"0\" : Compile\n\"1\" : Decompile");
+            _toolMode = Enum.Parse<ToolMode>(Console.ReadLine());
             Console.Clear();
         }
+
+        private void PrintPathErrors(PathStatus status)
+        {
+            Console.Clear();
+
+            switch (status)
+            {
+                case PathStatus.Valid:
+                    Logger.WriteResult("The path is valid!");
+                    break;
+                case PathStatus.PathIsNull:
+                    Logger.WriteError("The path is null! Please provide a valid path to a file or directory.");
+                    break;
+                case PathStatus.PathDoesNotExist:
+                    Logger.WriteError($"No file nor directory exists on the inputted path! Ensure that your file exists!\nUser Input: {_path}");
+                    break;
+                case PathStatus.InvalidExtension:
+                    Logger.WriteError($"The file extension is not valid! Please provide a JSON or XNB file.\nUser Input: {_path}");
+                    break;
+            }
+
+            Console.WriteLine();
+        }
+
+        private bool PathExists => File.Exists(_path) || Directory.Exists(_path);
     }
 }

@@ -28,7 +28,7 @@ namespace MagickaForge.Components.Levels
         public BinTreeNode ChildA { get; set; }
         public BinTreeNode ChildB { get; set; }
         public BinTreeRoot() { }
-        public BinTreeRoot(BinaryReader binaryReader, Header header)
+        public BinTreeRoot(BinaryReader binaryReader, DynamicHeader header)
         {
             Visible = binaryReader.ReadBoolean();
             CastShadows = binaryReader.ReadBoolean();

@@ -1,6 +1,7 @@
 ﻿using MagickaForge.Components.Common;
 using MagickaForge.Utils.Data;
 using MagickaForge.Utils.Data.AI;
+using MagickaForge.Utils.Data.Animations;
 using MagickaForge.Utils.Data.Events;
 using MagickaForge.Utils.Data.Graphics;
 using System.Text.Json.Serialization;
@@ -161,8 +162,10 @@ namespace MagickaForge.Components.Events
     public class SpawnEvent : Event
     {
         public string Type { get; set; }
-        public string IdleAnimation { get; set; }
-        public string SpawnAnimation { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<Animation>))]
+        public Animation IdleAnimation { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter<Animation>))]
+        public Animation SpawnAnimation { get; set; }
         public float Health { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter<Order>))]
         public Order Order { get; set; }
@@ -177,8 +180,8 @@ namespace MagickaForge.Components.Events
         {
             base.Write(bw);
             bw.Write(Type);
-            bw.Write(IdleAnimation);
-            bw.Write(SpawnAnimation);
+            bw.Write(IdleAnimation.ToString());
+            bw.Write(SpawnAnimation.ToString());
             bw.Write(Health);
             bw.Write((byte)Order);
             bw.Write((byte)ReactTo);

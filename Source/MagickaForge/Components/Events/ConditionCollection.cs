@@ -1,6 +1,7 @@
 ﻿using MagickaForge.Components.Common;
 using MagickaForge.Utils.Data;
 using MagickaForge.Utils.Data.AI;
+using MagickaForge.Utils.Data.Animations;
 using MagickaForge.Utils.Data.Events;
 using MagickaForge.Utils.Data.Graphics;
 using System.Text.Json.Serialization;
@@ -107,8 +108,8 @@ namespace MagickaForge.Components.Events
                             Events[i] = new SpawnEvent()
                             {
                                 Type = br.ReadString(),
-                                IdleAnimation = br.ReadString(),
-                                SpawnAnimation = br.ReadString(),
+                                IdleAnimation = Enum.Parse<Animation>(br.ReadString()),
+                                SpawnAnimation = Enum.Parse<Animation>(br.ReadString()),
                                 Health = br.ReadSingle(),
                                 Order = (Order)br.ReadByte(),
                                 ReactTo = (ReactionTriggers)br.ReadByte(),

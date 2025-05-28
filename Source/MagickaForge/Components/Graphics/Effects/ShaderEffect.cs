@@ -13,7 +13,7 @@ namespace MagickaForge.Components.Graphics.Effects
     public abstract class ShaderEffect
     {
         public int ReaderType { get; set; }
-        public static ShaderEffect GetEffect(BinaryReader binaryReader, Header header)
+        public static ShaderEffect GetEffect(BinaryReader binaryReader, DynamicHeader header)
         {
             int type = binaryReader.Read7BitEncodedInt();
             var effectReader = header.GetReaderType(type);

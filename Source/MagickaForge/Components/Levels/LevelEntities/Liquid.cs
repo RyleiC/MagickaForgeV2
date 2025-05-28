@@ -9,7 +9,7 @@ namespace MagickaForge.Components.Levels.Liquid
         public ShaderEffect Effect { get; set; }
         public Liquid Liquid { get; set; }
         public LiquidDeclaration() { }
-        public LiquidDeclaration(BinaryReader br, Header header)
+        public LiquidDeclaration(BinaryReader br, DynamicHeader header)
         {
             Effect = ShaderEffect.GetEffect(br, header);
             Liquid = new Liquid(br);

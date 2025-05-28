@@ -2,7 +2,7 @@
 {
     public enum Animation
     {
-        None,
+        none,
         idle,
         idlelong,
         idlelong0,
@@ -182,6 +182,7 @@
         removestatus0,
         removestatus1,
         removestatus2,
+        spec_alert,
         spec_alert0,
         spec_alert1,
         spec_alert2,

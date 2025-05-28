@@ -1,51 +1,166 @@
-﻿using MagickaForge.Pipeline.Json;
+﻿using ContentCompiler.Data;
+using ContentCompiler.Data.Languages;
+using ContentCompiler.Misc;
+using ContentCompiler.Settings;
+using MagickaForge.Pipeline.Json;
 using MagickaForge.Pipeline.Json.Characters;
+using MagickaForge.Pipeline.Json.Items;
 
 namespace ContentCompiler.Tools
 {
     internal class MagickaCompiler
     {
+        private readonly XNBVerifier _verifier;
 
-        public void DirectoryCompile(string instructionPath, bool modern)
+        public MagickaCompiler()
         {
-            var searchOptions = new EnumerationOptions()
-            {
-                RecurseSubdirectories = true,
-                AttributesToSkip = FileAttributes.Hidden | FileAttributes.System,
-                IgnoreInaccessible = true,
-                MaxRecursionDepth = 16
-            };
+            _verifier = new XNBVerifier();
+        }
 
-            foreach (string filePath in Directory.GetFiles(instructionPath, "*.json", searchOptions))
+        private readonly static EnumerationOptions _options = new EnumerationOptions()
+        {
+            MatchCasing = MatchCasing.CaseInsensitive,
+            RecurseSubdirectories = true,
+            AttributesToSkip = FileAttributes.Hidden | FileAttributes.System,
+            IgnoreInaccessible = true,
+            MaxRecursionDepth = 16
+        };
+
+
+        public void Compile(string inputPath, bool useModernCompilation)
+        {
+            var successes = 0;
+            var attempts = 0;
+
+            var languageFile = new LanguageFile();
+            var languageFilePath = Path.Combine(Configuration.Instance.Settings.LocalizationPath, $"{Configuration.Instance.Settings.LanguageFileName}.loctable.xml");
+
+            if (Configuration.Instance.Settings.GenerateLanguageFiles)
             {
-                var pipelineItem = PipelineJsonObject.Load(filePath);
-                Compile(pipelineItem, filePath, modern);
+                if (File.Exists(languageFilePath))
+                {
+                    languageFile.Load(languageFilePath);
+                    Logger.WriteSuccess($"Found language file, loading {languageFilePath}\n");
+                }
+                else
+                {
+                    Logger.WriteSuccess($"No language file found, creating new one at {languageFilePath}\nMake sure to restart your game to reload the files!\n");
+                }
+            }
+
+            var isDirectory = CompilingHelper.IsDirectory(inputPath);
+
+            if (isDirectory)
+            {
+                foreach (string filePath in Directory.GetFiles(inputPath, "*.json", _options))
+                {
+                    BeginCompile(languageFile, filePath, useModernCompilation, ref attempts, ref successes);
+                }
+            }
+            else
+            {
+                BeginCompile(languageFile, inputPath, useModernCompilation, ref attempts, ref successes);
+            }
+
+            if (languageFile.IsDirty && Configuration.Instance.Settings.GenerateLanguageFiles)
+            {
+                languageFile.Write(languageFilePath);
+                Logger.WriteResult($"\nLanguage file modifed, writing to {languageFilePath}");
+            }
+
+            Logger.WriteResult($"\n\nCompilation complete! {successes}/{attempts} successful compilations.");
+        }
+
+        private void BeginCompile(LanguageFile languageFile, string filePath, bool useModern, ref int attempts, ref int successes)
+        {
+            attempts++;
+            var pipelineItem = LoadWithModernPreferences(filePath, useModern);
+
+            if (TryCompilation(pipelineItem, languageFile, filePath))
+            {
+                successes++;
             }
         }
 
-        public void Compile(PipelineJsonObject pipelineObject, string inputPath, bool modern)
-        {
-            if (pipelineObject is Character)
-            {
-                (pipelineObject as Character)!.CompileForModernMagicka = modern;
-            }
-
-            Compile(pipelineObject, inputPath);
-        }
-
-        public void Compile(PipelineJsonObject pipelineObject, string inputPath)
+        private bool TryCompilation(PipelineJsonObject pipelineObject, LanguageFile languageFile, string inputPath)
         {
             var outputPath = Path.ChangeExtension(inputPath, FileExtensions.XNBExtension);
+            var verifyResult = new VerifyResult();
+
+            if (Configuration.Instance.Settings.GenerateLanguageFiles)
+            {
+                if (pipelineObject is Character character && HasCustomName(character.LocalizedName))
+                {
+                    var code = $"#mod_{character.Name}";
+                    languageFile.RegisterEntry(character.LocalizedName, code);
+                    character.LocalizedName = code;
+                }
+                else if (pipelineObject is Item item)
+                {
+                    if (HasCustomName(item.LocalizedName))
+                    {
+                        var code = $"#mod_{item.Name}";
+                        languageFile.RegisterEntry(item.LocalizedName, code);
+                        item.LocalizedName = code;
+                    }
+                    if (HasCustomName(item.LocalizedName))
+                    {
+                        var code = $"#mod_{item.Name}_d";
+                        languageFile.RegisterEntry(item.LocalizedDescription, code);
+                        item.LocalizedDescription = code;
+                    }
+                }
+            }
+
+            if (Configuration.Instance.Settings.VerifyXNBs)
+            {
+                verifyResult = _verifier.VerifyXNB(pipelineObject, Path.GetDirectoryName(outputPath));
+            }
+
+            if (!verifyResult.IsValidCompilation)
+            {
+                PrintFailMessage(inputPath, verifyResult);
+                return false;
+            }
 
             pipelineObject.Export(outputPath);
-            PrintSuccessMessage(inputPath);
+            PrintSuccessMessage(inputPath, verifyResult);
+            return true;
         }
 
-        private void PrintSuccessMessage(string inputPath)
+        private PipelineJsonObject LoadWithModernPreferences(string filePath, bool useModern)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Succesfully compiled {inputPath}");
-            Console.ForegroundColor = ConsoleColor.White;
+            var pipelineObject = PipelineJsonObject.Load(filePath);
+
+            if (pipelineObject is Character character)
+            {
+                character.CompileForModernMagicka = useModern;
+            }
+
+            return pipelineObject;
+        }
+
+        private bool HasCustomName(string target)
+        {
+            return !string.IsNullOrEmpty(target) && target[0] != '#';
+        }
+
+        private void PrintSuccessMessage(string inputPath, VerifyResult verifyResult)
+        {
+            if (Configuration.Instance.Settings.VerifyXNBs)
+            {
+                Logger.WriteSuccess($"Successfully compiled {Path.GetFileName(inputPath)} with {verifyResult.WarningCount} warnings");
+                verifyResult.Print();
+                return;
+            }
+
+            Logger.WriteSuccess($"Successfully compiled {Path.GetFileName(inputPath)}");
+        }
+
+        private void PrintFailMessage(string inputPath, VerifyResult verifyResult)
+        {
+            Logger.WriteError($"Failed to compile {Path.GetFileName(inputPath)} [{verifyResult.ErrorCount} errors / {verifyResult.WarningCount} warnings]");
+            verifyResult.Print();
         }
     }
 }
