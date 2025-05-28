@@ -4,11 +4,11 @@ namespace ContentCompiler.Data
 {
     public class VerifyResult
     {
-        public int ErrorCount { get; set; }
-        public int WarningCount { get; set; }
+        public int ErrorCount { get; private set; }
+        public int WarningCount { get; private set; }
 
-        public List<string> Errors { get; set; }
-        public List<string> Warnings { get; set; }
+        public List<string> Errors { get; private init; }
+        public List<string> Warnings { get; private init; }
 
         public VerifyResult()
         {

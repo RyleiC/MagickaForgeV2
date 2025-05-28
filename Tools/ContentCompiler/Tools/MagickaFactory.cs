@@ -86,8 +86,7 @@ namespace ContentCompiler.Tools
                 return PathStatus.PathDoesNotExist;
             }
 
-            FileAttributes fileAttributes = File.GetAttributes(_path);
-            _pathIsDirectory = fileAttributes.HasFlag(FileAttributes.Directory);
+            _pathIsDirectory = CompilingHelper.IsDirectory(_path);
 
             if (!_pathIsDirectory)
             {
@@ -104,31 +103,31 @@ namespace ContentCompiler.Tools
 
         private void InferToolMode()
         {
-            if (!_pathIsDirectory)
+            if (_pathIsDirectory)
             {
-                string fileExtension = Path.GetExtension(_path);
+                PromptToolMode();
+                return;
+            }
 
-                if (fileExtension == FileExtensions.JsonExtension)
-                {
-                    _toolMode = ToolMode.Compile;
-                }
-                else
-                {
-                    _toolMode = ToolMode.Decompile;
-                }
+            string fileExtension = Path.GetExtension(_path);
+            if (fileExtension == FileExtensions.JsonExtension)
+            {
+                _toolMode = ToolMode.Compile;
             }
             else
             {
-                PromptToolMode();
+                _toolMode = ToolMode.Decompile;
             }
         }
 
         private void GenerateContent(ToolMode processMode)
         {
             Console.Clear();
+
             Logger.WriteInfo("= Process Starting... =\n");
 
             var stopWatch = Stopwatch.StartNew();
+
             if (processMode == ToolMode.Decompile)
             {
                 CreateDecompiler();
@@ -137,24 +136,17 @@ namespace ContentCompiler.Tools
             {
                 CreateCompiler();
             }
-            stopWatch.Stop();
 
+            stopWatch.Stop();
             Logger.WriteInfo($"\n= Process completed in {stopWatch.ElapsedMilliseconds} ms =");
+
             PromptForHotkeys();
         }
 
         private void CreateDecompiler()
         {
             var decompiler = new MagickaDecompiler();
-
-            if (!_pathIsDirectory)
-            {
-                decompiler.Decompile(_forgeType, _path!, _modern);
-            }
-            else
-            {
-                decompiler.DirectoryDecompile(_path!, _forgeType, _modern);
-            }
+            decompiler.Decompile(_forgeType, _path, _modern);
         }
 
         private void CreateCompiler()

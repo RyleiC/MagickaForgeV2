@@ -100,6 +100,7 @@ namespace ContentCompiler.Data
             foreach (var item in character.Equipment)
             {
                 var itemPath = GetAssetPath(path, item.Item);
+
                 if (itemPath == null)
                 {
                     verifyResult.AddWarning($"Item file does not exist: {Path.GetFullPath(item.Item, path)}");
@@ -110,7 +111,7 @@ namespace ContentCompiler.Data
 
             foreach (var ability in character.Abilities)
             {
-                if (ability is CastSpellAbility && (ability.FuzzyExpression == null || ability.FuzzyExpression.Length <= 0))
+                if (ability is CastSpellAbility && string.IsNullOrEmpty(ability.FuzzyExpression))
                 {
                     verifyResult.AddError($"All CastSpell abilities require a fuzzy expression.");
                 }
@@ -141,7 +142,7 @@ namespace ContentCompiler.Data
             {
                 if (!validBones.Contains(light.Bone, StringComparer.OrdinalIgnoreCase))
                 {
-                    result.AddWarning($"{light.Bone} is not a valid bone in the animation skeleton");
+                    result.AddWarning($"{light.Bone} is not a bone in the animation skeleton");
                 }
             }
 
@@ -149,7 +150,7 @@ namespace ContentCompiler.Data
             {
                 if (!validBones.Contains(effect.Bone, StringComparer.OrdinalIgnoreCase))
                 {
-                    result.AddWarning($"Effect: {effect.Bone} is not a valid bone in the animation skeleton");
+                    result.AddWarning($"Effect: {effect.Bone} is not a bone in the animation skeleton");
                 }
             }
 
@@ -225,7 +226,6 @@ namespace ContentCompiler.Data
             {
                 verifyResult.AddError($"Item has too many lights. [{item.Lights.Length} > {Item.MaxLights}]");
             }
-
             if (!string.IsNullOrEmpty(item.Model) && GetAssetPath(path, item.Model) == null)
             {
                 verifyResult.AddWarning($"Item model file does not exist: {Path.GetFullPath(item.Model, path)}");

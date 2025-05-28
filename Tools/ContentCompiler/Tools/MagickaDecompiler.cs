@@ -1,4 +1,5 @@
-﻿using ContentCompiler.Misc;
+﻿using ContentCompiler.Data;
+using ContentCompiler.Misc;
 using MagickaForge.Pipeline;
 using MagickaForge.Pipeline.Json;
 using System.Text.Encodings.Web;
@@ -25,15 +26,26 @@ namespace ContentCompiler.Tools
             MaxRecursionDepth = 16
         };
 
-        public void DirectoryDecompile(string instructionPath, ForgeType forgeType, bool modern)
+        public void Decompile(ForgeType type, string inputPath, bool useModernCompilation)
         {
-            foreach (string filePath in Directory.GetFiles(instructionPath, "*.xnb", _enumerationOptions))
+            var isDirectory = CompilingHelper.IsDirectory(inputPath);
+
+            if (isDirectory)
             {
-                Decompile(forgeType, filePath, modern);
+                foreach (string filePath in Directory.GetFiles(inputPath, "*.json", _enumerationOptions))
+                {
+                    BeginDecompile(type, filePath, useModernCompilation);
+                }
             }
+            else
+            {
+                BeginDecompile(type, inputPath, useModernCompilation);
+            }
+
+            Logger.WriteResult($"\n\nDecompilation complete!");
         }
 
-        public void Decompile(ForgeType forgeType, string inputPath, bool modern)
+        public void BeginDecompile(ForgeType forgeType, string inputPath, bool modern)
         {
             PipelineJsonObject pipelineObject = PipelineJsonObject.ForgeTypeToInstance(forgeType, modern);
 

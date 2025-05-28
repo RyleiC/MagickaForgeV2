@@ -14,9 +14,11 @@ namespace ContentCompiler.Data.Languages
         public void RegisterEntry(string displayText, string code)
         {
             var table = _document.Element("Workbook").Element("Worksheet").Element("Table");
+
             foreach (var row in table.Elements("Row"))
             {
                 var cells = row.Elements("Cell").ToList();
+
                 if (cells.Count >= 2 && cells[0].Element("String").Value == code)
                 {
                     if (cells[1].Element("String").Value == displayText)
@@ -32,11 +34,13 @@ namespace ContentCompiler.Data.Languages
 
             _isDirty = true;
             table.Add(new XElement("Row"));
-            table.Elements("Row").Last().Add(new XElement("Cell", new XElement("String", code)));
-            table.Elements("Row").Last().Add(new XElement("Cell", new XElement("String", displayText)));
+            var lastRow = table.Elements("Row").Last();
+
+            lastRow.Add(new XElement("Cell", new XElement("String", code)));
+            lastRow.Add(new XElement("Cell", new XElement("String", displayText)));
         }
 
-        public void Load(string filePath)
+        public void LoadFromFile(string filePath)
         {
             if (File.Exists(filePath))
             {
@@ -55,7 +59,8 @@ namespace ContentCompiler.Data.Languages
                 )
             );
         }
-        public void Write(string filePath)
+
+        public void Export(string filePath)
         {
             _document.Save(filePath);
         }

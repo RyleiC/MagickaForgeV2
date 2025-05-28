@@ -17,8 +17,4 @@
     <ProjectReference Include="..\..\Source\MagickaForge\MagickaForge.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Characters\" />
-  </ItemGroup>
-
 </Project>

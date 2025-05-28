@@ -39,7 +39,7 @@ namespace ContentCompiler.Tools
             {
                 if (File.Exists(languageFilePath))
                 {
-                    languageFile.Load(languageFilePath);
+                    languageFile.LoadFromFile(languageFilePath);
                     Logger.WriteSuccess($"Found language file, loading {languageFilePath}\n");
                 }
                 else
@@ -64,7 +64,7 @@ namespace ContentCompiler.Tools
 
             if (languageFile.IsDirty && Configuration.Instance.Settings.GenerateLanguageFiles)
             {
-                languageFile.Write(languageFilePath);
+                languageFile.Export(languageFilePath);
                 Logger.WriteResult($"\nLanguage file modifed, writing to {languageFilePath}");
             }
 
