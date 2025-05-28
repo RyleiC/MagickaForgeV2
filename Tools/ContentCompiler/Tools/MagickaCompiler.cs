@@ -44,6 +44,7 @@ namespace ContentCompiler.Tools
                 }
                 else
                 {
+                    languageFile.LoadDefault();
                     Logger.WriteSuccess($"No language file found, creating new one at {languageFilePath}\nMake sure to restart your game to reload the files!\n");
                 }
             }
