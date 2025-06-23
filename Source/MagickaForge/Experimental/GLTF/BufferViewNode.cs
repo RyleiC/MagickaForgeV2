@@ -1,16 +1,19 @@
 ﻿#if GLTFEnabled
 
+using System.Text.Json.Serialization;
+
 namespace MagickaForge.Experimental.GLTF
 {
     public class BufferViewNode
     {
-        /*
-         * These have to be named this to be deserialized
-         */
-        public int buffer { get; set; }
-        public int byteLength { get; set; }
-        public int byteOffset { get; set; }
-        public int target { get; set; }
+        [JsonPropertyName("buffer")]
+        public int Buffer { get; set; }
+        [JsonPropertyName("byteLength")]
+        public int ByteLength { get; set; }
+        [JsonPropertyName("byteOffset")]
+        public int ByteOffset { get; set; }
+        [JsonPropertyName("target")]
+        public int Target { get; set; }
     }
 }
 

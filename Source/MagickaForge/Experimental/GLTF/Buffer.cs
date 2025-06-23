@@ -16,13 +16,14 @@ namespace MagickaForge.Experimental.GLTF
         private Vector3[] _tangent;
         private short[] _indices;
 
+        //Hardcoded thus far to require vertices, normals, texture coordinates, tangets and indices.
         public void Read(BinaryReader binaryReader, BufferViewNode[] bufferViews)
         {
-            _vertices = new Vector3[bufferViews[0].byteLength / 12];
+            _vertices = new Vector3[bufferViews[0].ByteLength / 12];
             _normals = new Vector3[_vertices.Length];
             _textureCoordinates = new Vector2[_vertices.Length];
             _tangent = new Vector3[_vertices.Length];
-            _indices = new short[bufferViews[4].byteLength / 2];
+            _indices = new short[bufferViews[4].ByteLength / 2];
 
             for (var i = 0; i < _vertices.Length; i++)
             {
