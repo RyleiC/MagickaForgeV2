@@ -16,7 +16,6 @@ namespace MagickaForge.Components.Graphics.Effects
         public static ShaderEffect GetEffect(BinaryReader binaryReader, DynamicHeader header)
         {
             int type = binaryReader.Read7BitEncodedInt();
-            var effectReader = header.GetReaderType(type);
             return header.GetReaderType(type) switch
             {
                 (XNB.ReaderType.RenderDeferred) => new RenderDeferredEffect(binaryReader) { ReaderType = type },

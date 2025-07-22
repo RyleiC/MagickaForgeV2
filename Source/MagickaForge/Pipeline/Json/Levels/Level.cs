@@ -9,13 +9,14 @@ namespace MagickaForge.Pipeline.Json.Levels
     public class Level : PipelineJsonObject
     {
         public const int MaxCollisionMeshes = 10;
+
         public int ReaderIndex { get; set; }
         public DynamicHeader Header { get; set; }
         public BinTreeModel BinaryModel { get; set; }
         public AnimatedLevelPart[] Animations { get; set; }
         public SceneLight[] Lights { get; set; }
         public SceneEffect[] Effects { get; set; }
-        public PhysicsEntity[] PhysicsEntities { get; set; }
+        public PhysicsEntityEntry[] PhysicsEntities { get; set; }
         public LiquidDeclaration[] Liquids { get; set; }
         public ForceField[] ForceFields { get; set; }
         public TriangleMesh[] CollisionMeshes { get; set; }
@@ -115,10 +116,10 @@ namespace MagickaForge.Pipeline.Json.Levels
             {
                 Effects[i] = new SceneEffect(binaryReader);
             }
-            PhysicsEntities = new PhysicsEntity[binaryReader.ReadInt32()];
+            PhysicsEntities = new PhysicsEntityEntry[binaryReader.ReadInt32()];
             for (var i = 0; i < PhysicsEntities.Length; i++)
             {
-                PhysicsEntities[i] = new PhysicsEntity(binaryReader);
+                PhysicsEntities[i] = new PhysicsEntityEntry(binaryReader);
             }
 
             Liquids = new LiquidDeclaration[binaryReader.ReadInt32()];

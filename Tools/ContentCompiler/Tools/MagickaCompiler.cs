@@ -10,6 +10,8 @@ namespace ContentCompiler.Tools
 {
     internal class MagickaCompiler
     {
+        private const char LocalizationPrefix = '#';
+
         private readonly XNBVerifier _verifier;
 
         public MagickaCompiler()
@@ -31,21 +33,22 @@ namespace ContentCompiler.Tools
         {
             var successes = 0;
             var attempts = 0;
+            var fileName = Configuration.Instance.Settings.Localization.LanguageFileName;
 
             var languageFile = new LanguageFile();
-            var languageFilePath = Path.Combine(Configuration.Instance.Settings.LocalizationPath, $"{Configuration.Instance.Settings.LanguageFileName}.loctable.xml");
+            var languageFilePath = Path.Combine(Configuration.Instance.Settings.LocalizationPath, $"{fileName}.loctable.xml");
 
-            if (Configuration.Instance.Settings.GenerateLanguageFiles)
+            if (Configuration.Instance.Settings.Localization.GenerateLanguageFiles)
             {
                 if (File.Exists(languageFilePath))
                 {
                     languageFile.LoadFromFile(languageFilePath);
-                    Logger.WriteSuccess($"Found language file, loading {languageFilePath}\n");
+                    Logger.WriteResult($"Found language file, loading {languageFilePath}\n");
                 }
                 else
                 {
                     languageFile.LoadDefault();
-                    Logger.WriteSuccess($"No language file found, creating new one at {languageFilePath}\nMake sure to restart your game to reload the files!\n");
+                    Logger.WriteResult($"No language file found, creating new one at {languageFilePath}n");
                 }
             }
 
@@ -63,10 +66,10 @@ namespace ContentCompiler.Tools
                 BeginCompile(languageFile, inputPath, useModernCompilation, ref attempts, ref successes);
             }
 
-            if (languageFile.IsDirty && Configuration.Instance.Settings.GenerateLanguageFiles)
+            if (languageFile.IsDirty && Configuration.Instance.Settings.Localization.GenerateLanguageFiles)
             {
                 languageFile.Export(languageFilePath);
-                Logger.WriteResult($"\nLanguage file modifed, writing to {languageFilePath}");
+                Logger.WriteResult($"\nLanguage file modifed, writing to {languageFilePath}\nMake sure that you restart your game to reload any language changes!");
             }
 
             Logger.WriteResult($"\n\nCompilation complete! {successes}/{attempts} successful compilations.");
@@ -88,7 +91,7 @@ namespace ContentCompiler.Tools
             var outputPath = Path.ChangeExtension(inputPath, FileExtensions.XNBExtension);
             var verifyResult = new VerifyResult();
 
-            if (Configuration.Instance.Settings.GenerateLanguageFiles)
+            if (Configuration.Instance.Settings.Localization.GenerateLanguageFiles)
             {
                 if (pipelineObject is Character character && HasCustomText(character.LocalizedName))
                 {
@@ -113,7 +116,7 @@ namespace ContentCompiler.Tools
                 }
             }
 
-            if (Configuration.Instance.Settings.VerifyXNBs)
+            if (Configuration.Instance.Settings.Compilation.VerifyXNBs)
             {
                 verifyResult = _verifier.VerifyXNB(pipelineObject, Path.GetDirectoryName(outputPath));
             }
@@ -143,12 +146,12 @@ namespace ContentCompiler.Tools
 
         private bool HasCustomText(string target)
         {
-            return !string.IsNullOrEmpty(target) && target[0] != '#';
+            return !string.IsNullOrEmpty(target) && target[0] != LocalizationPrefix;
         }
 
         private void PrintSuccessMessage(string inputPath, VerifyResult verifyResult)
         {
-            if (Configuration.Instance.Settings.VerifyXNBs)
+            if (Configuration.Instance.Settings.Compilation.VerifyXNBs)
             {
                 Logger.WriteSuccess($"Successfully compiled {Path.GetFileName(inputPath)} with {verifyResult.WarningCount} warnings");
                 verifyResult.Print();

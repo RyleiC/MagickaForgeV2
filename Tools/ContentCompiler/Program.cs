@@ -1,4 +1,5 @@
-﻿using ContentCompiler.Settings;
+﻿using ContentCompiler.Misc;
+using ContentCompiler.Settings;
 using ContentCompiler.Tools;
 using System.Diagnostics;
 using System.Reflection;
@@ -8,17 +9,30 @@ namespace ContentCompiler
     {
         public static void Main(string[] args)
         {
-            SetTitle();
-
-            string path = null;
-            if (args.Length > 0)
+            try
             {
-                path = args[0];
-            }
+                SetTitle();
 
-            var config = Configuration.Instance;
-            var factory = new MagickaFactory(path);
-            factory.StartFactory();
+                string path = null;
+                if (args.Length > 0)
+                {
+                    path = args[0];
+                }
+
+                var config = Configuration.Instance;
+                var factory = new MagickaFactory(path);
+                factory.StartFactory();
+            }
+            catch (Exception ex)
+            {
+                Console.Clear();
+
+                Logger.WriteError("Magicka Forge threw an exception !\n\n");
+                Logger.WriteError(ex.ToString());
+                Console.WriteLine("\nPress any key to exit program...");
+
+                _ = Console.ReadKey();
+            }
         }
 
         private static void SetTitle()

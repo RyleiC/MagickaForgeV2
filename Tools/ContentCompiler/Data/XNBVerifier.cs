@@ -7,6 +7,7 @@ using MagickaForge.Pipeline.Json.Characters;
 using MagickaForge.Pipeline.Json.Items;
 using MagickaForge.Pipeline.Json.Levels;
 using MagickaForge.Pipeline.Json.Models;
+using MagickaForge.Pipeline.Json.PhysicsEntities;
 
 namespace ContentCompiler.Data
 {
@@ -16,16 +17,18 @@ namespace ContentCompiler.Data
         {
             switch (pipelineObject)
             {
-                case Character:
-                    return VerifyCharacter(pipelineObject as Character, path);
-                case Item:
-                    return VerifyItem(pipelineObject as Item, path);
-                case Level:
-                    return VerifyLevel(pipelineObject as Level, path);
-                case NonEmbeddedModel:
-                    return VerifyModel(pipelineObject as NonEmbeddedModel, path);
-                case NonEmbeddedSkinnedModel:
-                    return VerifySkinnedModel(pipelineObject as NonEmbeddedSkinnedModel, path);
+                case Character character:
+                    return VerifyCharacter(character, path);
+                case Item item:
+                    return VerifyItem(item, path);
+                case Level level:
+                    return VerifyLevel(level, path);
+                case NonEmbeddedModel model:
+                    return VerifyModel(model, path);
+                case NonEmbeddedSkinnedModel skinnedModel:
+                    return VerifySkinnedModel(skinnedModel, path);
+                case PhysicsEntity physicsEntity:
+                    return VerifyPhysicsEntity(physicsEntity, path);
                 default:
                     return null;
             }
@@ -254,6 +257,11 @@ namespace ContentCompiler.Data
         }
 
         private VerifyResult VerifySkinnedModel(NonEmbeddedSkinnedModel skinnedModel, string path)
+        {
+            return new VerifyResult();
+        }
+
+        private VerifyResult VerifyPhysicsEntity(PhysicsEntity physicsEntity, string path)
         {
             return new VerifyResult();
         }

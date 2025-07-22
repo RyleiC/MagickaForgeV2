@@ -21,25 +21,23 @@ namespace MagickaForge.Components.XNB
             ReaderName = binaryReader.ReadString();
             Version = binaryReader.ReadInt32();
 
-            if (ReaderName == RenderDeferred)
+            switch (ReaderName)
             {
-                _type = ReaderType.RenderDeferred;
-            }
-            else if (ReaderName == RenderAdditive)
-            {
-                _type = ReaderType.AdditiveEffect;
-            }
-            else if (ReaderName == RenderDeferredLiquid)
-            {
-                _type = ReaderType.WaterEffect;
-            }
-            else if (ReaderName == Lava)
-            {
-                _type = ReaderType.LavaEffect;
-            }
-            else if (ReaderName == BasicSkinnedModel)
-            {
-                _type = ReaderType.BasicSkinned;
+                case RenderDeferred:
+                    _type = ReaderType.RenderDeferred;
+                    break;
+                case RenderAdditive:
+                    _type = ReaderType.AdditiveEffect;
+                    break;
+                case RenderDeferredLiquid:
+                    _type = ReaderType.WaterEffect;
+                    break;
+                case Lava:
+                    _type = ReaderType.LavaEffect;
+                    break;
+                case BasicSkinnedModel:
+                    _type = ReaderType.BasicSkinned;
+                    break;
             }
         }
 

@@ -2,8 +2,6 @@
 using ContentCompiler.Misc;
 using ContentCompiler.Settings;
 using MagickaForge.Pipeline;
-using MagickaForge.Pipeline.Json;
-using MagickaForge.Pipeline.Json.Characters;
 using System.Diagnostics;
 
 namespace ContentCompiler.Tools
@@ -48,30 +46,6 @@ namespace ContentCompiler.Tools
             }
 
             InferToolMode();
-
-            if (_toolMode == ToolMode.Decompile)
-            {
-                PromptForgeType();
-
-                if (_forgeType == ForgeType.Character)
-                {
-                    PromptIsModern();
-                }
-            }
-            else if (_pathIsDirectory)
-            {
-                PromptIsModern();
-            }
-            else if (_toolMode == ToolMode.Compile)
-            {
-                var pipelineObject = PipelineJsonObject.Load(_path);
-
-                if (pipelineObject is Character)
-                {
-                    PromptIsModern();
-                }
-            }
-
             GenerateContent(_toolMode);
         }
 
@@ -146,13 +120,13 @@ namespace ContentCompiler.Tools
         private void CreateDecompiler()
         {
             var decompiler = new MagickaDecompiler();
-            decompiler.Decompile(_forgeType, _path, _modern);
+            decompiler.Decompile(_path, Configuration.Instance.Settings.Compilation.Characters.UseModern);
         }
 
         private void CreateCompiler()
         {
             var compiler = new MagickaCompiler();
-            compiler.Compile(_path!, _modern);
+            compiler.Compile(_path!, Configuration.Instance.Settings.Compilation.Characters.UseModern);
         }
 
         private void ReverseProcess()
@@ -250,14 +224,6 @@ namespace ContentCompiler.Tools
             Console.Clear();
             Logger.WritePrompt("Are you creating/reading content from an older version of Magicka? [Eg. 1.5.1.0]\n\"0\" : No\n\"1\" : Yes");
             _modern = int.Parse(Console.ReadLine()) == 0; //Client has said yes
-            Console.Clear();
-        }
-
-        private void PromptForgeType()
-        {
-            Console.Clear();
-            Logger.WritePrompt("What type of content are you attempting to decompile? \n\"0\" : Character\n\"1\" : Item\n\"2\" : Level\n\"3\" : Model\n\"4\" : Skinned Model");
-            _forgeType = Enum.Parse<ForgeType>(Console.ReadLine());
             Console.Clear();
         }
 

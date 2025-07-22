@@ -1,6 +1,5 @@
 ﻿using ContentCompiler.Data;
 using ContentCompiler.Misc;
-using MagickaForge.Pipeline;
 using MagickaForge.Pipeline.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -26,7 +25,7 @@ namespace ContentCompiler.Tools
             MaxRecursionDepth = 16
         };
 
-        public void Decompile(ForgeType type, string inputPath, bool useModernCompilation)
+        public void Decompile(string inputPath, bool useModernCompilation)
         {
             var isDirectory = CompilingHelper.IsDirectory(inputPath);
 
@@ -34,31 +33,29 @@ namespace ContentCompiler.Tools
             {
                 foreach (string filePath in Directory.GetFiles(inputPath, "*.xnb", _enumerationOptions))
                 {
-                    BeginDecompile(type, filePath, useModernCompilation);
+                    BeginDecompile(filePath, useModernCompilation);
                 }
             }
             else
             {
-                BeginDecompile(type, inputPath, useModernCompilation);
+                BeginDecompile(inputPath, useModernCompilation);
             }
 
             Logger.WriteResult($"\n\nDecompilation complete!");
         }
 
-        public void BeginDecompile(ForgeType forgeType, string inputPath, bool modern)
+        private void BeginDecompile(string inputPath, bool modern)
         {
-            PipelineJsonObject pipelineObject = PipelineJsonObject.ForgeTypeToInstance(forgeType, modern);
+            var content = PipelineJsonObject.AutoImportXNB(inputPath);
+            if (content == null)
+            {
+                Logger.WriteWarning($"{inputPath}'s XNB format could not be determined, skipping.");
+                return;
+            }
 
-            pipelineObject.Import(inputPath);
             var outputPath = Path.ChangeExtension(inputPath, FileExtensions.JsonExtension);
+            PipelineJsonObject.Save(outputPath, content, _serializerOptions);
 
-            PipelineJsonObject.Save(outputPath, pipelineObject, _serializerOptions);
-
-            PrintSuccessMessage(inputPath);
-        }
-
-        private void PrintSuccessMessage(string inputPath)
-        {
             Logger.WriteSuccess($"Succesfully decompiled {inputPath}");
         }
     }

@@ -7,10 +7,6 @@ namespace ContentCompiler.Data.Languages
         private XDocument _document;
         private bool _isDirty;
 
-        public LanguageFile()
-        {
-        }
-
         public void RegisterEntry(string displayText, string code)
         {
             var table = _document.Element("Workbook").Element("Worksheet").Element("Table");
@@ -27,17 +23,25 @@ namespace ContentCompiler.Data.Languages
                     }
 
                     _isDirty = true;
-                    cells[1].Element("String").Value = displayText;
+                    cells[1].Element("String").Value = displayText; //Cell 1 holds the actual string, while cell 0 holds the localization string ("#FooBar")
                     return;
                 }
             }
 
             _isDirty = true;
             table.Add(new XElement("Row"));
-            var lastRow = table.Elements("Row").Last();
 
-            lastRow.Add(new XElement("Cell", new XElement("String", code)));
-            lastRow.Add(new XElement("Cell", new XElement("String", displayText)));
+            var lastRow = table.Elements("Row").Last();
+            lastRow.Add(
+                new XElement("Cell",
+                    new XElement("String", code)
+                )
+            );
+            lastRow.Add(
+                new XElement("Cell",
+                    new XElement("String", displayText)
+                )
+            );
         }
 
         public void LoadFromFile(string filePath)

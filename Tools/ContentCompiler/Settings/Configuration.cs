@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using ContentCompiler.Misc;
+using System.Reflection;
 using System.Text.Json;
 
 namespace ContentCompiler.Settings
@@ -10,6 +11,7 @@ namespace ContentCompiler.Settings
 
         private Configuration()
         {
+
         }
 
         public void ReloadSettings()
@@ -42,6 +44,12 @@ namespace ContentCompiler.Settings
                 Settings = JsonSerializer.Deserialize<ConfigurationSettings>(text)
             };
 
+            var currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            if (configuration.Settings.Version != currentVersion)
+            {
+                Logger.WriteWarning("Your config is not made for the same version of ContentCompiler! Consider deleting the config to rebuild it!\n");
+            }
+
             if (!Directory.Exists(configuration.Settings.GamePath))
             {
                 throw new DirectoryNotFoundException($"The specified game path '{configuration.Settings.GamePath}' does not exist. Please update the configuration file at '{configFile}'.");
@@ -62,12 +70,6 @@ namespace ContentCompiler.Settings
             streamWriter.Write(json);
         }
 
-        public static Configuration Instance
-        {
-            get
-            {
-                return _instance.Value;
-            }
-        }
+        public static Configuration Instance => _instance.Value;
     }
 }
